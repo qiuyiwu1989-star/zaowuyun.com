@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>思想 · 智能体管理学 — 造物云 · AI 时代的管理学正在被重写</title>
+<meta name="description" content="智能体管理学：邱懿武在造物云之上构建的 AI 时代管理理论体系。研究当 Agent 成为组织中的一等公民，战略、决策、组织、能力管理将如何重塑。" />
+<link rel="icon" href="https://www.zaowuyun.com/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/zwy.css" />
+<script>(function(){try{var t=localStorage.getItem('zwy-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{bg:'var(--bg)','bg-1':'var(--bg-1)','bg-2':'var(--bg-2)','bg-3':'var(--bg-3)',line:'var(--line)','line-2':'var(--line-2)',fg:'var(--fg)','fg-dim':'var(--fg-dim)','fg-dim2':'var(--fg-dim2)','fg-dim3':'var(--fg-dim3)',accent:'var(--accent)','accent-hi':'var(--accent-hi)','accent-soft':'var(--accent-soft)','accent-fg':'var(--accent-fg)'},fontFamily:{sans:['Inter','sans-serif'],display:['"Space Grotesk"','Inter','sans-serif'],mono:['"JetBrains Mono"','monospace']}}}};</script>
+</head>
+<body class="bg-bg text-fg">
+
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl border-b border-line nav-bar">
+  <div class="container h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2">
+      <img src="https://www.zaowuyun.com/favicon.ico" alt="" class="w-5 h-5 rounded-sm" />
+      <span class="mono text-sm"><span class="text-fg">zaowuyun</span><span class="text-accent">_</span></span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-1">
+      <a href="platform.html"  data-nav="platform"  class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.platform">中台</a>
+      <a href="apps.html"      data-nav="products"  class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.products">产品</a>
+      <a href="education.html" data-nav="education" class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.education">教育</a>
+      <a href="theory.html"    data-nav="theory"    class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.theory">思想</a>
+      <a href="cases.html"     data-nav="cases"     class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.cases">案例</a>
+      <a href="blog.html"      data-nav="insights"  class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.insights">洞察</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="about.html" class="hidden md:inline mono text-[13px] text-fg-dim hover:text-fg transition px-2" data-i18n="nav.about">关于</a>
+      <a href="https://www.zaowuyun.com/" target="_blank" class="hidden sm:inline mono text-[13px] text-fg-dim hover:text-fg transition px-2" data-i18n="nav.login">登录控制台</a>
+      <button id="lang-switch" class="lang-switch" aria-label="语言">EN</button>
+      <button id="theme-toggle" class="toggle" aria-label="主题" type="button">
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <a href="contact.html" class="btn-bracket" data-i18n="nav.book">预约咨询<span>→</span></a>
+    </div>
+  </div>
+</header>
+<script>
+(function(){
+  var path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  var map = {'platform.html':'platform','apps.html':'products','education.html':'education','apps-qiuqiu.html':'education','theory.html':'theory','cases.html':'cases','solutions.html':'cases','solutions-fmcg.html':'cases','blog.html':'insights','news.html':'insights'};
+  var key = map[path]; if(!key) return;
+  var el = document.querySelector('[data-nav="'+key+'"]');
+  if(el){ el.classList.add('text-accent'); el.classList.remove('text-fg-dim'); }
+})();
+</script>
+
+<!-- ================= HERO ================= -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+  <div class="orb orb-accent orb-drift" style="width:580px;height:580px;top:-120px;right:-120px;"></div>
+  <div class="orb orb-blue orb-drift" style="width:400px;height:400px;bottom:-100px;left:-80px;animation-delay:-6s;"></div>
+  <div class="relative container pt-32 pb-24">
+    <div class="flex items-center gap-3 mb-8" data-reveal>
+      <span class="inline-block w-2 h-2 rounded-full bg-accent pulse-ring"></span>
+      <span class="mono text-xs tracking-widest uppercase text-fg-dim">theory · agent management</span>
+    </div>
+    <h1 class="display text-[clamp(44px,8vw,120px)] max-w-[1100px] leading-[0.94]" data-reveal>
+      AI 时代的管理学，<br/>
+      <span class="text-accent">正在被重写</span>
+    </h1>
+    <p class="mt-10 max-w-2xl text-fg-dim text-lg leading-relaxed" data-reveal>
+      <span class="text-fg">智能体管理学（Agent Management Studies）</span>
+      是邱懿武在造物云之上构建的 AI 时代管理理论体系 ——
+      研究当 Agent 成为组织中的一等公民，战略、决策、组织、能力管理将如何重塑。
+    </p>
+    <p class="mt-6 max-w-2xl text-fg-dim leading-relaxed" data-reveal>
+      泰勒在 1911 年用《科学管理原理》定义了工业时代的管理学。
+      德鲁克在 1954 年用《管理的实践》定义了知识工作者时代的管理学。
+      AI 原生时代正在到来，但它的管理学还没被写出来 —— 这就是这件事的起点。
+    </p>
+    <div class="mt-10 flex flex-wrap items-center gap-4" data-reveal>
+      <a href="#kernel" class="btn-primary"><span>看核心命题</span> <span class="arr">↓</span></a>
+      <a href="blog.html" class="text-cta"><span>阅读论述系列</span> <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4 KERNEL PROPOSITIONS ================= -->
+<section id="kernel" class="border-t border-line bg-bg-1">
+  <div class="container py-24">
+    <div class="max-w-3xl mb-16" data-reveal>
+      <div class="sec-label"><span class="num">01_</span>// the four propositions</div>
+      <h2 class="mt-5 display text-[clamp(32px,5vw,60px)]">四个核心命题</h2>
+      <p class="mt-6 text-fg-dim leading-relaxed">智能体管理学的四个基本命题。每一个都对应一份在写的论述。</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <article class="card-step" data-reveal>
+        <div class="mono text-xs text-accent">proposition 01 · agency</div>
+        <h3 class="display text-2xl mt-3">Agent 是组织中的一等公民</h3>
+        <p class="text-fg-dim mt-3 leading-relaxed">
+          不是工具、不是助手、是<span class="text-fg">能被分派任务、能被问责、能被升级的</span>组织角色。
+          当一个 Agent 第一次出现在你的 org chart 上，所有的管理动作都要重新定义。
+        </p>
+      </article>
+      <article class="card-step" data-reveal>
+        <div class="mono text-xs text-accent">proposition 02 · execution</div>
+        <h3 class="display text-2xl mt-3">Most agents execute. AgentCEO manages.</h3>
+        <p class="text-fg-dim mt-3 leading-relaxed">
+          大部分 Agent 在做"执行"。但真正的产业升级，需要会"做管理"的 Agent ——
+          会判断优先级、会分派任务、会管理子 Agent 的能力与边界。
+        </p>
+      </article>
+      <article class="card-step" data-reveal>
+        <div class="mono text-xs text-accent">proposition 03 · governance</div>
+        <h3 class="display text-2xl mt-3">能力管理 ≠ 模型管理</h3>
+        <p class="text-fg-dim mt-3 leading-relaxed">
+          组织的 AI 能力，不是把模型选好就行。是把<span class="text-fg">模型 + 知识 + 工具 + 流程 + 信任</span>
+          这五件事编织成一个可被治理、可被审计、可被进化的能力体。
+        </p>
+      </article>
+      <article class="card-step" data-reveal>
+        <div class="mono text-xs text-accent">proposition 04 · escalation</div>
+        <h3 class="display text-2xl mt-3">人的位置，是升级路径</h3>
+        <p class="text-fg-dim mt-3 leading-relaxed">
+          AI 不是替代人。在新的组织里，人的角色是<span class="text-fg">最终的升级点</span>——
+          所有 Agent 处理不了的边界，最后落到人。这反而让"人的判断力"比任何时代都贵。
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY NOW ================= -->
+<section class="border-t border-line">
+  <div class="container py-24">
+    <div class="grid lg:grid-cols-[1fr_1.4fr] gap-16">
+      <div data-reveal>
+        <div class="sec-label"><span class="num">02_</span>// why now</div>
+        <h2 class="mt-5 display text-[clamp(28px,4vw,48px)] leading-snug">为什么是<br/>现在写这套体系？</h2>
+      </div>
+      <div class="space-y-5 text-fg-dim leading-relaxed text-base" data-reveal>
+        <p>
+          因为<span class="text-fg">21+ 头部企业 + 6 个孵化的产品化项目</span>，给了我们足够多的"现场"。
+          理论不应该是脱离落地的思想实验 —— 它应该被项目验证、被组织验证、被 P&L 验证。
+        </p>
+        <p>
+          造物云的中台、咨询、孵化器，提供了三个层次的实验场：
+          中台是<span class="text-fg">技术地基</span>、咨询是<span class="text-fg">企业现场</span>、孵化器是<span class="text-fg">完整闭环</span>。
+          智能体管理学不是写完才用，是<span class="text-fg">边用边写</span>。
+        </p>
+        <p>
+          这套体系最终会以书籍、课程、培训、咨询方法论的形态对外发布。
+          先在这里登记进展。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WRITINGS INDEX ================= -->
+<section class="border-t border-line bg-bg-1">
+  <div class="container py-24">
+    <div class="flex items-end justify-between flex-wrap gap-6 mb-12" data-reveal>
+      <div>
+        <div class="sec-label"><span class="num">03_</span>// writings</div>
+        <h2 class="mt-5 display text-[clamp(28px,3.8vw,48px)]">论述系列</h2>
+      </div>
+      <a href="blog.html" class="text-cta">所有论述 <span class="arr">→</span></a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4 stagger" data-reveal>
+      <a href="blog.html" class="card overflow-hidden img-zoom" data-reveal>
+        <div class="img-wrap aspect-card img-vignette"><img src="https://picsum.photos/seed/zwy-theory-01/620/420" alt="" /><span class="ph-label">writing · 01</span></div>
+        <div class="p-6">
+          <div class="mono text-[11px] text-accent uppercase tracking-widest">序章 · upcoming</div>
+          <h4 class="mt-3 display text-xl leading-snug">为什么我们需要一门 智能体管理学</h4>
+          <p class="mt-3 text-sm text-fg-dim leading-relaxed">从泰勒到德鲁克到 ……</p>
+        </div>
+      </a>
+      <a href="blog.html" class="card overflow-hidden img-zoom" data-reveal>
+        <div class="img-wrap aspect-card img-vignette"><img src="https://picsum.photos/seed/zwy-theory-02/620/420" alt="" /><span class="ph-label">writing · 02</span></div>
+        <div class="p-6">
+          <div class="mono text-[11px] text-accent uppercase tracking-widest">命题 01 · upcoming</div>
+          <h4 class="mt-3 display text-xl leading-snug">当 Agent 第一次出现在 org chart 上</h4>
+          <p class="mt-3 text-sm text-fg-dim leading-relaxed">分派、问责、升级 —— 三件事被重新定义。</p>
+        </div>
+      </a>
+      <a href="blog.html" class="card overflow-hidden img-zoom" data-reveal>
+        <div class="img-wrap aspect-card img-vignette"><img src="https://picsum.photos/seed/zwy-theory-03/620/420" alt="" /><span class="ph-label">writing · 03</span></div>
+        <div class="p-6">
+          <div class="mono text-[11px] text-accent uppercase tracking-widest">命题 02 · upcoming</div>
+          <h4 class="mt-3 display text-xl leading-snug">Most agents execute. AgentCEO manages.</h4>
+          <p class="mt-3 text-sm text-fg-dim leading-relaxed">从执行型 Agent 到管理型 Agent 的鸿沟。</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="border-t border-line">
+  <div class="container py-24 text-center">
+    <h2 class="display text-[clamp(32px,5vw,56px)] max-w-3xl mx-auto" data-reveal>这套体系，<br/>欢迎被挑战。</h2>
+    <p class="mt-6 text-fg-dim max-w-xl mx-auto" data-reveal>智能体管理学正在被写出来。如果您是 CXO、研究者、媒体或希望共建的同行者，欢迎来对话。</p>
+    <div class="mt-10 flex justify-center gap-4 flex-wrap" data-reveal>
+      <a href="contact.html#theory" class="btn-primary"><span>邀请对话</span> <span class="arr">→</span></a>
+      <a href="blog.html" class="text-cta"><span>订阅论述更新</span> <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<script src="assets/zwy.js"></script>
+</body>
+</html>

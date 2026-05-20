@@ -23,12 +23,12 @@
       <span class="mono text-sm"><span class="text-fg">zaowuyun</span><span class="text-accent">_</span></span>
     </a>
     <nav class="hidden lg:flex items-center gap-1">
-      <a href="method.html"    data-nav="method"     class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.method">方法</a>
-      <a href="solutions.html" data-nav="industries" class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.industries">行业</a>
-      <a href="platform.html"  data-nav="platform"   class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.platform">中台</a>
-      <a href="apps.html"      data-nav="apps"       class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.apps">应用</a>
-      <a href="cases.html"     data-nav="work"       class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.work">作品</a>
-      <a href="blog.html"      data-nav="insights"   class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.insights">洞察</a>
+      <a href="platform.html"  data-nav="platform"  class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.platform">中台</a>
+      <a href="apps.html"      data-nav="products"  class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.products">产品</a>
+      <a href="education.html" data-nav="education" class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.education">教育</a>
+      <a href="theory.html"    data-nav="theory"    class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.theory">思想</a>
+      <a href="cases.html"     data-nav="cases"     class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.cases">案例</a>
+      <a href="blog.html"      data-nav="insights"  class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.insights">洞察</a>
     </nav>
     <div class="flex items-center gap-2">
       <a href="about.html" class="hidden md:inline mono text-[13px] text-fg-dim hover:text-fg transition px-2" data-i18n="nav.about">关于</a>
@@ -46,11 +46,11 @@
 (function(){
   var path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   var map = {
-    'method.html':'method',
-    'solutions.html':'industries','solutions-fmcg.html':'industries',
     'platform.html':'platform',
-    'apps.html':'apps','apps-qiuqiu.html':'apps',
-    'cases.html':'work',
+    'apps.html':'products',
+    'education.html':'education','apps-qiuqiu.html':'education',
+    'theory.html':'theory',
+    'cases.html':'cases','solutions.html':'cases','solutions-fmcg.html':'cases',
     'blog.html':'insights','news.html':'insights'
   };
   var key = map[path];
@@ -59,6 +59,7 @@
   if(el){ el.classList.add('text-accent'); el.classList.remove('text-fg-dim'); }
 })();
 </script>
+
 
 
 <!-- HERO -->

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>教育生态 — 造物云 · 把 AI 接进 K12，让孩子和 AI 一起长大</title>
+<meta name="description" content="球球老师 + 永乐教育 + 13 所高校教育实验室。造物云的教育生态，专注青少年创造力与 AI 原生认知教育。" />
+<link rel="icon" href="https://www.zaowuyun.com/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/zwy.css" />
+<script>(function(){try{var t=localStorage.getItem('zwy-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{bg:'var(--bg)','bg-1':'var(--bg-1)','bg-2':'var(--bg-2)','bg-3':'var(--bg-3)',line:'var(--line)','line-2':'var(--line-2)',fg:'var(--fg)','fg-dim':'var(--fg-dim)','fg-dim2':'var(--fg-dim2)','fg-dim3':'var(--fg-dim3)',accent:'var(--accent)','accent-hi':'var(--accent-hi)','accent-soft':'var(--accent-soft)','accent-fg':'var(--accent-fg)'},fontFamily:{sans:['Inter','sans-serif'],display:['"Space Grotesk"','Inter','sans-serif'],mono:['"JetBrains Mono"','monospace']}}}};</script>
+</head>
+<body class="bg-bg text-fg">
+
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl border-b border-line nav-bar">
+  <div class="container h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2">
+      <img src="https://www.zaowuyun.com/favicon.ico" alt="" class="w-5 h-5 rounded-sm" />
+      <span class="mono text-sm"><span class="text-fg">zaowuyun</span><span class="text-accent">_</span></span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-1">
+      <a href="platform.html"  data-nav="platform"  class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.platform">中台</a>
+      <a href="apps.html"      data-nav="products"  class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.products">产品</a>
+      <a href="education.html" data-nav="education" class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.education">教育</a>
+      <a href="theory.html"    data-nav="theory"    class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.theory">思想</a>
+      <a href="cases.html"     data-nav="cases"     class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.cases">案例</a>
+      <a href="blog.html"      data-nav="insights"  class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.insights">洞察</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="about.html" class="hidden md:inline mono text-[13px] text-fg-dim hover:text-fg transition px-2" data-i18n="nav.about">关于</a>
+      <a href="https://www.zaowuyun.com/" target="_blank" class="hidden sm:inline mono text-[13px] text-fg-dim hover:text-fg transition px-2" data-i18n="nav.login">登录控制台</a>
+      <button id="lang-switch" class="lang-switch" aria-label="语言">EN</button>
+      <button id="theme-toggle" class="toggle" aria-label="主题" type="button">
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <a href="contact.html" class="btn-bracket" data-i18n="nav.book">预约咨询<span>→</span></a>
+    </div>
+  </div>
+</header>
+<script>
+(function(){
+  var path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  var map = {'platform.html':'platform','apps.html':'products','education.html':'education','apps-qiuqiu.html':'education','theory.html':'theory','cases.html':'cases','solutions.html':'cases','solutions-fmcg.html':'cases','blog.html':'insights','news.html':'insights'};
+  var key = map[path]; if(!key) return;
+  var el = document.querySelector('[data-nav="'+key+'"]');
+  if(el){ el.classList.add('text-accent'); el.classList.remove('text-fg-dim'); }
+})();
+</script>
+
+<!-- ================= HERO ================= -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+  <div class="orb orb-accent orb-drift" style="width:520px;height:520px;top:-100px;right:-100px;"></div>
+  <div class="relative container pt-32 pb-20">
+    <div class="flex items-center gap-3 mb-8" data-reveal>
+      <span class="inline-block w-2 h-2 rounded-full bg-accent pulse-ring"></span>
+      <span class="mono text-xs tracking-widest uppercase text-fg-dim">education ecosystem · k12 + creativity</span>
+    </div>
+    <h1 class="display text-[clamp(40px,7vw,96px)] max-w-[1100px] leading-[0.96]" data-reveal>
+      把 AI 接进 K12 ——<br/>
+      <span class="text-accent">让孩子和 AI<br/>一起长大</span>
+    </h1>
+    <p class="mt-10 max-w-2xl text-fg-dim text-lg leading-relaxed" data-reveal>
+      造物云在企业 AI 之外，另开了一条线 —— <span class="text-fg">教育生态</span>。
+      不是给孩子做"AI 工具"，而是用 AI 让孩子的好奇心、表达力、创造力被看见、被回应、被点燃。
+    </p>
+    <div class="mt-8 grid grid-cols-3 gap-px max-w-xl border border-line rounded-sm overflow-hidden" data-reveal>
+      <div class="bg-bg-1 p-5"><div class="display text-3xl text-accent">5000<span class="text-fg-dim text-base">+</span></div><div class="mono text-[11px] text-fg-dim mt-1">活跃儿童</div></div>
+      <div class="bg-bg-1 p-5"><div class="display text-3xl text-accent">12</div><div class="mono text-[11px] text-fg-dim mt-1">合作学校</div></div>
+      <div class="bg-bg-1 p-5"><div class="display text-3xl text-accent">13</div><div class="mono text-[11px] text-fg-dim mt-1">高校实验室</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 球球老师 ================= -->
+<section class="border-t border-line">
+  <div class="container py-24">
+    <div class="feature-row" data-reveal>
+      <div class="img-wrap aspect-wide img-vignette img-zoom" data-reveal-clip>
+        <img src="https://picsum.photos/seed/zwy-qiuqiu-edu/1100/740" alt="" />
+        <span class="ph-label">img · qiuqiu-edu · 1100×740</span>
+      </div>
+      <div data-reveal>
+        <div class="mono text-xs text-accent uppercase tracking-widest">live · 旗舰新品</div>
+        <h2 class="mt-4 display text-[clamp(28px,3.8vw,52px)] leading-snug">球球老师 ·<br/>会聊天的好奇心同伴</h2>
+        <p class="mt-6 text-fg-dim leading-relaxed">
+          K12 儿童认知探索智能体。不教解题、不背单词，专门陪孩子"问出更好的问题"。
+          从 0 到 5000 名活跃儿童，进入 12 所合作学校的家长付费名单。
+        </p>
+        <ul class="mt-6 space-y-2.5 text-sm text-fg-dim">
+          <li>· 安全管线：内容三重审核 + 行为守护</li>
+          <li>· 家长报告：认知地图 + 兴趣轨迹 + 性格画像</li>
+          <li>· 教师工具：班级洞察 + 课后延伸题</li>
+        </ul>
+        <a href="apps-qiuqiu.html" class="mt-8 inline-flex btn-primary">看完整产品页 <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 永乐教育 ================= -->
+<section class="border-t border-line bg-bg-1">
+  <div class="container py-24">
+    <div class="feature-row reverse" data-reveal>
+      <div class="img-wrap aspect-wide img-vignette img-zoom" data-reveal-clip>
+        <img src="https://picsum.photos/seed/zwy-yongle/1100/740" alt="" />
+        <span class="ph-label">img · yongle · 1100×740</span>
+      </div>
+      <div data-reveal>
+        <div class="mono text-xs text-accent uppercase tracking-widest">incubating · 2026</div>
+        <h2 class="mt-4 display text-[clamp(28px,3.8vw,52px)] leading-snug">永乐教育 ·<br/>青少年创造力教育</h2>
+        <p class="mt-6 text-fg-dim leading-relaxed">
+          球球老师之外，造物云正在孵化的第二个教育品牌。专注 8-15 岁青少年的
+          <span class="text-fg">创造力</span> 培养 —— AI 工具、设计思维、跨学科项目制学习。
+        </p>
+        <p class="mt-4 text-fg-dim leading-relaxed">
+          名字来自"永乐大典" —— 一个时代把所有可知的知识汇集起来，并让下一代有能力创造更多。
+          我们相信 AI 时代的青少年教育，应该回到这件事的本源。
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <span class="btn-pill">即将发布</span>
+          <span class="mono text-xs text-fg-dim2">独立站建设中 · 2026 上线</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 高校教育实验室 ================= -->
+<section class="border-t border-line">
+  <div class="container py-24">
+    <div class="max-w-3xl mb-12" data-reveal>
+      <div class="sec-label"><span class="num">03_</span>// academia</div>
+      <h2 class="mt-5 display text-[clamp(32px,4.6vw,60px)]">高校教育实验室 —<br/><span class="text-accent">13 所联合实验室</span></h2>
+      <p class="mt-6 text-fg-dim leading-relaxed max-w-2xl">
+        造物云和浙大、同济、江南、北服、中传等 13 所院校共建联合实验室 ——
+        研究 AI 原生时代的教育方法、儿童认知模型、设计学科的 AI 工具链。
+      </p>
+    </div>
+    <div class="grid grid-cols-4 md:grid-cols-7 gap-3" data-reveal>
+      <div class="logo-grid-cell" style="height:80px;padding:1rem;"><img class="client-logo" style="height:32px;" src="https://cdn.zaowuyun.com/tmp/231008/2513ec4f56d2983b3c27ba98e771d91b.png" alt="浙大" /></div>
+      <div class="logo-grid-cell" style="height:80px;padding:1rem;"><img class="client-logo" style="height:32px;" src="https://cdn.zaowuyun.com/tmp/231008/69987e245dd758be47590672b02e9f80.png" alt="同济" /></div>
+      <div class="logo-grid-cell" style="height:80px;padding:1rem;"><img class="client-logo" style="height:32px;" src="https://cdn.zaowuyun.com/tmp/231008/de467ec02e748bb3aefbf2b2298fab94.png" alt="江南大学" /></div>
+      <div class="logo-grid-cell" style="height:80px;padding:1rem;"><img class="client-logo" style="height:32px;" src="https://cdn.zaowuyun.com/tmp/231008/fd638d6cdc0335be5f227bfb0de5c36f.png" alt="北服" /></div>
+      <div class="logo-grid-cell" style="height:80px;padding:1rem;"><img class="client-logo" style="height:32px;" src="https://cdn.zaowuyun.com/tmp/231008/7712b335f93a571c3c459ddf92b4c1d8.png" alt="中传" /></div>
+      <div class="logo-grid-cell" style="height:80px;padding:1rem;"><img class="client-logo" style="height:32px;" src="https://cdn.zaowuyun.com/tmp/231008/0e4e4b82a3f4e5e4e8435fbba8db7fcb.png" alt="上大" /></div>
+      <div class="logo-grid-cell" style="height:80px;padding:1rem;"><img class="client-logo" style="height:32px;" src="https://cdn.zaowuyun.com/tmp/231008/60e1036286dc3b4c9f32c0f8f56738b7.png" alt="浙理工" /></div>
+    </div>
+    <div class="mt-10 flex flex-wrap items-center gap-4" data-reveal>
+      <a href="academy.html" class="btn-primary">了解联合实验室 <span class="arr">→</span></a>
+      <a href="contact.html#academia" class="text-cta">高校合作意向 <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="border-t border-line bg-bg-1">
+  <div class="container py-24 text-center">
+    <h2 class="display text-[clamp(32px,5vw,56px)] max-w-3xl mx-auto" data-reveal>想让你的学校、机构<br/>用上球球老师？</h2>
+    <p class="mt-6 text-fg-dim max-w-xl mx-auto" data-reveal>我们正在和有共同教育理念的学校、机构、家长共建。先来一次 30 分钟介绍会。</p>
+    <div class="mt-10 flex justify-center gap-4 flex-wrap" data-reveal>
+      <a href="contact.html#education" class="btn-primary"><span>预约介绍会</span> <span class="arr">→</span></a>
+      <a href="apps-qiuqiu.html" class="text-cta"><span>看球球老师产品页</span> <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<script src="assets/zwy.js"></script>
+</body>
+</html>
