@@ -10,6 +10,12 @@
 *.swp
 *.swo
 
+# Claude Code local settings (per-machine)
+.claude/
+
+# Temp scaffolding files
+_new_nav.html
+
 # Logs
 *.log
 npm-debug.log*
