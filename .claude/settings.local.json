@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh auth *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git -c user.email=\"qiuyiwu1989-star@users.noreply.github.com\" -c user.name=\"qiuyiwu1989-star\" commit -m \"Initial commit: 造物云官网静态站点\")",
+      "Bash(~/.local/bin/gh api *)",
+      "Bash(python3)",
+      "Bash(grep -v ':0$')",
+      "Bash(git -c user.email=qiuyiwu1989-star@users.noreply.github.com -c user.name=qiuyiwu1989-star commit -m ' *)",
+      "Bash(git push *)"
+    ]
+  }
+}

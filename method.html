@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>方法 — 造物云 · 我们怎么把 AI 接进一个行业</title>
+<meta name="description" content="造物云 AI 落地方法论 · 诊断 → 中台 → 应用 → 数据闭环 → 品牌资产化。会写代码、会做品牌的 AI 战略咨询团队。" />
+<link rel="icon" href="https://www.zaowuyun.com/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/zwy.css" />
+<script>(function(){try{var t=localStorage.getItem('zwy-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{bg:'var(--bg)','bg-1':'var(--bg-1)','bg-2':'var(--bg-2)','bg-3':'var(--bg-3)',line:'var(--line)','line-2':'var(--line-2)',fg:'var(--fg)','fg-dim':'var(--fg-dim)','fg-dim2':'var(--fg-dim2)','fg-dim3':'var(--fg-dim3)',accent:'var(--accent)','accent-hi':'var(--accent-hi)','accent-soft':'var(--accent-soft)','accent-fg':'var(--accent-fg)'},fontFamily:{sans:['Inter','sans-serif'],display:['"Space Grotesk"','Inter','sans-serif'],mono:['"JetBrains Mono"','monospace']}}}};</script>
+</head>
+<body class="bg-bg text-fg">
+
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl border-b border-line nav-bar">
+  <div class="container h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2">
+      <img src="https://www.zaowuyun.com/favicon.ico" alt="" class="w-5 h-5 rounded-sm" />
+      <span class="mono text-sm"><span class="text-fg">zaowuyun</span><span class="text-accent">_</span></span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-1">
+      <a href="method.html"    data-nav="method"     class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.method">方法</a>
+      <a href="solutions.html" data-nav="industries" class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.industries">行业</a>
+      <a href="platform.html"  data-nav="platform"   class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.platform">中台</a>
+      <a href="apps.html"      data-nav="apps"       class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.apps">应用</a>
+      <a href="cases.html"     data-nav="work"       class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.work">作品</a>
+      <a href="blog.html"      data-nav="insights"   class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.insights">洞察</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="about.html" class="hidden md:inline mono text-[13px] text-fg-dim hover:text-fg transition px-2" data-i18n="nav.about">关于</a>
+      <a href="https://www.zaowuyun.com/" target="_blank" class="hidden sm:inline mono text-[13px] text-fg-dim hover:text-fg transition px-2" data-i18n="nav.login">登录控制台</a>
+      <button id="lang-switch" class="lang-switch" aria-label="语言">EN</button>
+      <button id="theme-toggle" class="toggle" aria-label="主题" type="button">
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <a href="contact.html" class="btn-bracket" data-i18n="nav.book">预约咨询<span>→</span></a>
+    </div>
+  </div>
+</header>
+<script>
+(function(){
+  var path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  var map = {
+    'method.html':'method',
+    'solutions.html':'industries','solutions-fmcg.html':'industries',
+    'platform.html':'platform',
+    'apps.html':'apps','apps-qiuqiu.html':'apps',
+    'cases.html':'work',
+    'blog.html':'insights','news.html':'insights'
+  };
+  var key = map[path];
+  if(!key) return;
+  var el = document.querySelector('[data-nav="'+key+'"]');
+  if(el){ el.classList.add('text-accent'); el.classList.remove('text-fg-dim'); }
+})();
+</script>
+
+<!-- ================= HERO ================= -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+  <div class="orb orb-accent orb-drift" style="width:480px;height:480px;top:-80px;right:-80px;"></div>
+  <div class="relative container pt-32 pb-20">
+    <div class="flex items-center gap-3 mb-8" data-reveal>
+      <span class="inline-block w-2 h-2 rounded-full bg-accent pulse-ring"></span>
+      <span class="mono text-xs tracking-widest uppercase text-fg-dim">methodology · how we land ai</span>
+    </div>
+    <h1 class="display text-[clamp(40px,7vw,96px)] max-w-[1100px]" data-reveal>
+      不止给你 slides<br/>
+      <span class="text-accent">我们把 AI 跑起来</span>
+    </h1>
+    <p class="mt-10 max-w-2xl text-fg-dim text-lg leading-relaxed" data-reveal>
+      造物云不是另一家 AI 咨询公司。我们是
+      <span class="text-fg">会写代码、会做品牌</span>
+      的 AI 战略落地团队 ——
+      用同一套方法，把 21+ 头部企业的 AI 项目跑起来，把自己的 6 个品牌孵化出来。
+    </p>
+    <div class="mt-10 flex flex-wrap items-center gap-4" data-reveal>
+      <a href="contact.html" class="btn-primary"><span>预约 30 分钟战略对话</span> <span class="arr">→</span></a>
+      <a href="#steps" class="text-cta"><span>看完整方法</span> <span class="arr">↓</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5 STEPS ================= -->
+<section id="steps" class="border-t border-line bg-bg-1">
+  <div class="container py-24">
+    <div class="max-w-3xl mb-16" data-reveal>
+      <div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-3">the 5 steps_</div>
+      <h2 class="display text-[clamp(32px,5vw,56px)]">把 AI 接进一个行业，<br/>需要走完五步</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="card-step" data-reveal>
+        <div class="mono text-xs text-accent">01 · diagnose</div>
+        <h3 class="display text-2xl mt-3">行业诊断</h3>
+        <p class="text-fg-dim mt-3 leading-relaxed">不是问"你想做什么 AI"，而是问"你的行业里哪些环节最值得被 AI 重做"。我们用 2–4 周走访、拆解你的价值链，给出一份 AI 介入图谱。</p>
+      </div>
+      <div class="card-step" data-reveal>
+        <div class="mono text-xs text-accent">02 · platform</div>
+        <h3 class="display text-2xl mt-3">中台搭建</h3>
+        <p class="text-fg-dim mt-3 leading-relaxed">模型层 / 知识层 / Agent 编排 / 行业模板 —— 6 层能力栈不是产品，是我们的交付加速器。一次搭建，反复用在你后续所有 AI 项目上。</p>
+      </div>
+      <div class="card-step" data-reveal>
+        <div class="mono text-xs text-accent">03 · apps</div>
+        <h3 class="display text-2xl mt-3">应用落地</h3>
+        <p class="text-fg-dim mt-3 leading-relaxed">从 prompt 到 Agent，从 demo 到生产。我们自己孵化的 6 个应用（球球老师 / AI 商品摄影 / 3D 云设计……）就是同一套方法跑出来的样板。</p>
+      </div>
+      <div class="card-step" data-reveal>
+        <div class="mono text-xs text-accent">04 · data loop</div>
+        <h3 class="display text-2xl mt-3">数据闭环</h3>
+        <p class="text-fg-dim mt-3 leading-relaxed">AI 应用上线只是开始。真实使用数据 → 微调 → 新版本 → 更好的体验 —— 这条闭环我们陪你跑完。没有这一步，再聪明的模型也只是 POC。</p>
+      </div>
+      <div class="card-step md:col-span-2" data-reveal>
+        <div class="mono text-xs text-accent">05 · brand asset</div>
+        <h3 class="display text-2xl mt-3">品牌资产化</h3>
+        <p class="text-fg-dim mt-3 leading-relaxed max-w-3xl">AI 不只是工具，它可以长出一个新品牌。从客户口碑到行业标杆，从单点应用到行业占位 —— 这是我们和大多数咨询团队最不一样的一步：我们自己用同样方法长出了 6 个品牌，所以我们知道怎么帮你。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="border-t border-line">
+  <div class="container py-24 text-center">
+    <h2 class="display text-[clamp(32px,5vw,56px)] max-w-3xl mx-auto" data-reveal>不知道从哪开始？<br/>先来一场 30 分钟战略对话。</h2>
+    <p class="mt-6 text-fg-dim max-w-xl mx-auto" data-reveal>我们会先听你的行业、你的痛点，再判断要不要继续。不卖方案，不发资料包。</p>
+    <div class="mt-10 flex justify-center gap-4" data-reveal>
+      <a href="contact.html" class="btn-primary"><span>预约对话</span> <span class="arr">→</span></a>
+      <a href="cases.html" class="text-cta"><span>先看真实案例</span> <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<script src="assets/zwy.js"></script>
+</body>
+</html>

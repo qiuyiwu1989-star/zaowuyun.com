@@ -18,17 +18,48 @@
 
 <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl border-b border-line nav-bar">
   <div class="container h-16 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-2"><img src="https://www.zaowuyun.com/favicon.ico" class="w-5 h-5 rounded-sm" /><span class="mono text-sm"><span class="text-fg">zaowuyun</span><span class="text-accent">_</span></span></a>
-        <nav class="hidden lg:flex items-center gap-1">
-      <a href="solutions.html" class="px-4 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.what_we_do">我们做什么</a>
-      <a href="cases.html" class="px-4 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.what_we_think">我们的洞察</a>
-      <a href="developers.html" class="px-4 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.developers">开发者</a>
-      <a href="about.html" class="px-4 py-2 mono text-[13px] text-accent transition" data-i18n="nav.who_we_are">关于造物云</a>
+    <a href="index.html" class="flex items-center gap-2">
+      <img src="https://www.zaowuyun.com/favicon.ico" alt="" class="w-5 h-5 rounded-sm" />
+      <span class="mono text-sm"><span class="text-fg">zaowuyun</span><span class="text-accent">_</span></span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-1">
+      <a href="method.html"    data-nav="method"     class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.method">方法</a>
+      <a href="solutions.html" data-nav="industries" class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.industries">行业</a>
+      <a href="platform.html"  data-nav="platform"   class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.platform">中台</a>
+      <a href="apps.html"      data-nav="apps"       class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.apps">应用</a>
+      <a href="cases.html"     data-nav="work"       class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.work">作品</a>
+      <a href="blog.html"      data-nav="insights"   class="px-3 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.insights">洞察</a>
     </nav>
-    <div class="flex items-center gap-2"><a href="https://www.zaowuyun.com/" target="_blank" class="hidden sm:inline mono text-[13px] text-fg-dim hover:text-fg">登录控制台</a><button id="lang-switch" class="lang-switch" aria-label="语言">EN</button>
-      <button id="theme-toggle" class="toggle" type="button"><svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg><svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button><a href="contact.html" class="btn-bracket">预约咨询<span>→</span></a></div>
+    <div class="flex items-center gap-2">
+      <a href="about.html" class="hidden md:inline mono text-[13px] text-fg-dim hover:text-fg transition px-2" data-i18n="nav.about">关于</a>
+      <a href="https://www.zaowuyun.com/" target="_blank" class="hidden sm:inline mono text-[13px] text-fg-dim hover:text-fg transition px-2" data-i18n="nav.login">登录控制台</a>
+      <button id="lang-switch" class="lang-switch" aria-label="语言">EN</button>
+      <button id="theme-toggle" class="toggle" aria-label="主题" type="button">
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <a href="contact.html" class="btn-bracket" data-i18n="nav.book">预约咨询<span>→</span></a>
+    </div>
   </div>
 </header>
+<script>
+(function(){
+  var path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  var map = {
+    'method.html':'method',
+    'solutions.html':'industries','solutions-fmcg.html':'industries',
+    'platform.html':'platform',
+    'apps.html':'apps','apps-qiuqiu.html':'apps',
+    'cases.html':'work',
+    'blog.html':'insights','news.html':'insights'
+  };
+  var key = map[path];
+  if(!key) return;
+  var el = document.querySelector('[data-nav="'+key+'"]');
+  if(el){ el.classList.add('text-accent'); el.classList.remove('text-fg-dim'); }
+})();
+</script>
+
 
 <!-- HERO -->
 <section class="relative pt-36 pb-20 overflow-hidden noise">
