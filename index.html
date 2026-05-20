@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>造物云 — 把 AI 接进你的行业</title>
-<meta name="description" content="造物云 · 连接企业、高校、开发者的 AI 产业平台。用咨询 + 中台 + 应用 + 生态，把 AI 接进每一个行业。" />
+<title>造物云 — 企业 AI 应用中台 · 把 AI 接进你的行业</title>
+<meta name="description" content="造物云是企业 AI 应用中台 —— 上面长出来产品、长出来咨询、长出来教育、长出来人才。21+ 头部企业 / 6 个产品化项目 / 13 所高校实验室 验证。" />
 <link rel="icon" href="https://www.zaowuyun.com/favicon.ico" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,7 +23,6 @@
 </head>
 <body class="bg-bg text-fg">
 
-<!-- ================= NAV  (4 items, Accenture-style mega) ================= -->
 <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl border-b border-line nav-bar">
   <div class="container h-16 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-2">
@@ -53,38 +52,26 @@
 <script>
 (function(){
   var path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
-  var map = {
-    'platform.html':'platform',
-    'apps.html':'products',
-    'education.html':'education','apps-qiuqiu.html':'education',
-    'theory.html':'theory',
-    'cases.html':'cases','solutions.html':'cases','solutions-fmcg.html':'cases',
-    'blog.html':'insights','news.html':'insights'
-  };
-  var key = map[path];
-  if(!key) return;
+  var map = {'platform.html':'platform','apps.html':'products','education.html':'education','apps-qiuqiu.html':'education','theory.html':'theory','cases.html':'cases','solutions.html':'cases','solutions-fmcg.html':'cases','blog.html':'insights','news.html':'insights'};
+  var key = map[path]; if(!key) return;
   var el = document.querySelector('[data-nav="'+key+'"]');
   if(el){ el.classList.add('text-accent'); el.classList.remove('text-fg-dim'); }
 })();
 </script>
 
-
-
-<!-- ================= HERO with full-bleed image ================= -->
+<!-- ================= SECTION 1 · HERO ================= -->
 <section class="hero-with-image">
   <div class="hero-image-bg">
-    <!-- IMAGE: hero background — atmospheric / industry × AI (W:2400 H:1350 推荐) -->
-    <img src="https://picsum.photos/seed/zwy-hero/2400/1350?grayscale&blur=1" alt="" />
+    <img src="https://picsum.photos/seed/zwy-hero-v2/2400/1350?grayscale&blur=1" alt="" />
   </div>
   <div class="absolute inset-0 grid-bg pointer-events-none"></div>
-  <!-- decorative orbs -->
   <div class="orb orb-accent orb-drift" style="width:520px;height:520px;top:-100px;right:-100px;"></div>
   <div class="orb orb-blue orb-drift" style="width:380px;height:380px;bottom:-120px;left:-80px;animation-delay:-6s;"></div>
 
   <div class="relative container py-32 z-10">
     <div class="flex items-center gap-3 mb-8" data-reveal>
       <span class="inline-block w-2 h-2 rounded-full bg-accent pulse-ring"></span>
-      <span class="mono text-xs tracking-widest uppercase text-fg-dim">v2026.05 · ai for industry</span>
+      <span class="mono text-xs tracking-widest uppercase text-fg-dim">v2026.05 · enterprise ai platform</span>
       <span class="hidden sm:inline btn-pill ml-2">backed by 线性资本</span>
     </div>
 
@@ -95,16 +82,16 @@
 
     <div class="mt-10 max-w-2xl" data-reveal>
       <p class="text-fg-dim text-lg leading-relaxed" data-i18n="hero.subtitle">
-        造物云是连接<span class="text-fg">企业、高校、开发者</span>的 AI 产业平台 ——
-        我们用<span class="text-fg">咨询 + 中台 + 应用 + 生态</span>陪你完成从战略到落地的全过程。
+        造物云是<span class="text-fg">企业 AI 应用中台</span> ——
+        上面长出来产品、长出来咨询、长出来教育、长出来人才。
+        21+ 头部企业 / 6 个产品化项目 / 13 所高校实验室 验证。
       </p>
       <div class="mt-8 flex flex-wrap items-center gap-4">
-        <a href="contact.html" class="btn-primary"><span data-i18n="hero.cta_primary">预约 30 分钟咨询</span> <span class="arr">→</span></a>
-        <a href="#capabilities" class="text-cta"><span data-i18n="hero.cta_secondary">看我们做什么</span> <span class="arr">↓</span></a>
+        <a href="contact.html" class="btn-primary"><span data-i18n="hero.cta_primary">预约 30 分钟战略对话</span> <span class="arr">→</span></a>
+        <a href="#platform" class="text-cta"><span data-i18n="hero.cta_secondary">看中台架构</span> <span class="arr">↓</span></a>
       </div>
     </div>
 
-    <!-- scroll indicator -->
     <div class="mt-24 flex items-center gap-3 mono text-xs text-fg-dim2" data-reveal>
       <span class="w-12 h-px bg-fg-dim3"></span>
       <span>scroll to explore</span>
@@ -112,7 +99,7 @@
   </div>
 </section>
 
-<!-- ================= TRUSTED BY logo marquee ================= -->
+<!-- ================= SECTION 2 · TRUSTED BY ================= -->
 <section class="border-y border-line bg-bg-1">
   <div class="container py-10">
     <div class="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
@@ -143,295 +130,245 @@
           <img class="client-logo" src="https://cdn.zaowuyun.com/tmp/231008/3093a28259064fef77e6e608efc5943e.png" alt="火山引擎" />
           <img class="client-logo" src="https://cdn.zaowuyun.com/tmp/231008/c5cfd6511b11b2dad8ed7334fa2a68b3.png" alt="佳简几何" />
           <img class="client-logo" src="https://cdn.zaowuyun.com/tmp/231008/8eeda2939171b7188dfa45a0ecd455d0.png" alt="新潮新消费" />
-          <!-- duplicate -->
           <img class="client-logo" src="https://cdn.zaowuyun.com/tmp/231008/ff02a685c86758e6ccaa2ab7d75f272d.png" alt="" aria-hidden="true" />
           <img class="client-logo" src="https://cdn.zaowuyun.com/tmp/231008/bfa5acd8d51ba8653c47c105b22f1ac8.png" alt="" aria-hidden="true" />
           <img class="client-logo" src="https://cdn.zaowuyun.com/tmp/231008/aad86976fd959cd7ed5ed72459f16c0c.png" alt="" aria-hidden="true" />
-          <img class="client-logo" src="https://cdn.zaowuyun.com/tmp/231008/36d5916e6ca66851284bbc0a619a4407.png" alt="" aria-hidden="true" />
-          <img class="client-logo" src="https://cdn.zaowuyun.com/tmp/231008/0d46388fddba133ad0678267ccd7700d.png" alt="" aria-hidden="true" />
-          <img class="client-logo" src="https://cdn.zaowuyun.com/tmp/231008/3093a28259064fef77e6e608efc5943e.png" alt="" aria-hidden="true" />
-          <img class="client-logo" src="https://cdn.zaowuyun.com/tmp/231008/e7ca10dcf9242a4df2c07a4a03cdf459.png" alt="" aria-hidden="true" />
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= INSIGHT RAIL (Accenture-style horizontal) ================= -->
-<section class="py-20">
+<!-- ================= SECTION 3 · POV + 中台核心 ================= -->
+<section id="platform" class="py-28 relative overflow-hidden">
+  <div class="orb orb-accent" style="width:600px;height:600px;top:-200px;left:-200px;opacity:.18;"></div>
   <div class="container">
-    <div class="flex items-end justify-between flex-wrap gap-6 mb-10" data-reveal>
-      <div>
-        <div class="sec-label"><span class="num">01_</span>// our latest thinking</div>
-        <h2 class="mt-5 display text-[clamp(28px,3.8vw,48px)]" data-i18n="home.insights_title">最近的洞察</h2>
-      </div>
-      <a href="blog.html" class="text-cta">所有内容 <span class="arr">→</span></a>
-    </div>
-  </div>
-
-  <div class="container-wide">
-    <div class="insight-rail" data-reveal>
-      <a href="blog.html" class="card overflow-hidden img-zoom" data-reveal>
-        <div class="img-wrap aspect-wide">
-          <img src="https://picsum.photos/seed/zwy-insight-01/760/430" alt="" />
-          <span class="ph-label">img · insight-01 · 760×430</span>
-        </div>
-        <div class="p-6">
-          <div class="mono text-[11px] text-accent uppercase tracking-widest">research report · 22 min read</div>
-          <h3 class="mt-3 display text-xl leading-snug">AI 应用中台是什么 —— 对一个被滥用的词语的具体回答</h3>
-          <p class="mt-3 text-sm text-fg-dim leading-relaxed">"中台"这个词在 2019 年被讲坏过一次。我们写下我们的具体定义。</p>
-        </div>
-      </a>
-      <a href="blog.html" class="card overflow-hidden img-zoom" data-reveal>
-        <div class="img-wrap aspect-wide">
-          <img src="https://picsum.photos/seed/zwy-insight-02/760/430" alt="" />
-          <span class="ph-label">img · insight-02 · 760×430</span>
-        </div>
-        <div class="p-6">
-          <div class="mono text-[11px] text-accent uppercase tracking-widest">perspective · 11 min</div>
-          <h3 class="mt-3 display text-xl leading-snug">为什么 K12 教育的 AI，应该少做一些</h3>
-          <p class="mt-3 text-sm text-fg-dim leading-relaxed">行业里都在"做更多"。我们的判断是相反的。</p>
-        </div>
-      </a>
-      <a href="cases.html" class="card overflow-hidden img-zoom" data-reveal>
-        <div class="img-wrap aspect-wide">
-          <img src="https://picsum.photos/seed/zwy-insight-03/760/430" alt="" />
-          <span class="ph-label">img · insight-03 · 760×430</span>
-        </div>
-        <div class="p-6">
-          <div class="mono text-[11px] text-accent uppercase tracking-widest">case study · 教育</div>
-          <h3 class="mt-3 display text-xl leading-snug">球球老师 · 从 0 到 5000 名活跃儿童用户</h3>
-          <p class="mt-3 text-sm text-fg-dim leading-relaxed">联合教育集团孵化，3 个月完成 MVP，一学期进入 12 所学校。</p>
-        </div>
-      </a>
-      <a href="cases.html" class="card overflow-hidden img-zoom" data-reveal>
-        <div class="img-wrap aspect-wide">
-          <img src="https://picsum.photos/seed/zwy-insight-04/760/430" alt="" />
-          <span class="ph-label">img · insight-04 · 760×430</span>
-        </div>
-        <div class="p-6">
-          <div class="mono text-[11px] text-accent uppercase tracking-widest">case study · 快消</div>
-          <h3 class="mt-3 display text-xl leading-snug">双十一全 SKU 主图 · 1 天交付</h3>
-          <p class="mt-3 text-sm text-fg-dim leading-relaxed">300+ SKU 大促主图从 2 周压到 1 天。</p>
-        </div>
-      </a>
-      <a href="blog.html" class="card overflow-hidden img-zoom" data-reveal>
-        <div class="img-wrap aspect-wide">
-          <img src="https://picsum.photos/seed/zwy-insight-05/760/430" alt="" />
-          <span class="ph-label">img · insight-05 · 760×430</span>
-        </div>
-        <div class="p-6">
-          <div class="mono text-[11px] text-accent uppercase tracking-widest">research report · 18 min</div>
-          <h3 class="mt-3 display text-xl leading-snug">虚拟模特上线一年后 · 时尚行业的 SKU 节奏变了</h3>
-          <p class="mt-3 text-sm text-fg-dim leading-relaxed">从 4 家服装上市公司的真实数据看节奏变化。</p>
-        </div>
-      </a>
-      <a href="blog.html" class="card overflow-hidden img-zoom" data-reveal>
-        <div class="img-wrap aspect-wide">
-          <img src="https://picsum.photos/seed/zwy-insight-06/760/430" alt="" />
-          <span class="ph-label">img · insight-06 · 760×430</span>
-        </div>
-        <div class="p-6">
-          <div class="mono text-[11px] text-accent uppercase tracking-widest">perspective · 14 min</div>
-          <h3 class="mt-3 display text-xl leading-snug">从 prompt 到 Agent —— 怎么把"会聊天"做成"会做事"</h3>
-          <p class="mt-3 text-sm text-fg-dim leading-relaxed">球球老师 Agent 架构从 0.1 到 1.0 的演化记录。</p>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<div class="hr-thin"></div>
-
-<!-- ================= 360° VALUE BLOCK (signature) ================= -->
-<section class="py-32 relative overflow-hidden">
-  <div class="orb orb-accent" style="width:600px;height:600px;top:-200px;right:-300px;opacity:.25;"></div>
-  <div class="container">
-    <div class="feature-row">
+    <div class="grid lg:grid-cols-[1fr_1.2fr] gap-16 items-start">
       <div data-reveal>
-        <div class="sec-label"><span class="num">02_</span>// 360° value</div>
-        <h2 class="mt-5 display text-[clamp(36px,5.4vw,80px)] leading-[0.95]">
-          长出来的<br/><span class="text-accent">6 个新品牌</span>
+        <div class="sec-label"><span class="num">01_</span>// the platform answer</div>
+        <h2 class="mt-5 display text-[clamp(32px,5vw,68px)] leading-[1.02]">
+          AI 中台 这个词<br/>被讲坏过一次。<br/>
+          <span class="text-accent">我们重新定义它。</span>
         </h2>
-        <p class="mt-8 text-fg-dim text-lg leading-relaxed max-w-md">
-          中台不是 PPT 上的概念 —— 这些都是真正用造物云能力 + 行业 know-how，
-          从 0 到 1 长出来的新消费品牌。
+        <p class="mt-8 text-fg-dim leading-relaxed max-w-md">
+          大多数企业的 AI 项目，停在 POC。
+          因为给方案的人、写代码的人、陪你跑下半场的人 —— 是三批人。
         </p>
-        <div class="mt-10 grid grid-cols-3 gap-4">
-          <div><div class="stat-big text-accent">6</div><div class="mono text-xs text-fg-dim mt-2">新品牌</div></div>
-          <div><div class="stat-big text-fg">21</div><div class="mono text-xs text-fg-dim mt-2">服务企业</div></div>
-          <div><div class="stat-big text-fg">13</div><div class="mono text-xs text-fg-dim mt-2">高校实验室</div></div>
-        </div>
-        <a href="apps.html" class="mt-10 inline-flex btn-primary">看孵化报告 <span class="arr">→</span></a>
+        <p class="mt-4 text-fg-dim leading-relaxed max-w-md">
+          造物云的中台，把这三件事变成一件事。
+          模型层 / 知识层 / Agent 编排 / 行业模板 / 数据闭环 / 应用交付 —— 6 层能力栈，
+          <span class="text-fg">一次搭建，反复用在你后续所有 AI 项目上</span>。
+        </p>
+        <a href="platform.html" class="mt-10 inline-flex btn-primary">看完整中台架构 <span class="arr">→</span></a>
       </div>
 
-      <div class="grid grid-cols-3 gap-3" data-reveal>
-        <div class="logo-grid-cell aspect-square" style="height:auto;"><img class="client-logo" src="https://cdn.zaowuyun.com/tmp/231008/98d635423eef1f8669f6840e634469ba.png" alt="美安星球" style="height:64px;max-width:none;" /></div>
-        <div class="logo-grid-cell aspect-square" style="height:auto;"><img class="client-logo" src="https://cdn.zaowuyun.com/tmp/231008/67a8486a7e3e4c49151e326a059505b5.png" alt="依匠" style="height:64px;max-width:none;" /></div>
-        <div class="logo-grid-cell aspect-square" style="height:auto;"><img class="client-logo" src="https://cdn.zaowuyun.com/tmp/231008/d260bb8b879480757b719c4d8a8c2d6f.png" alt="敬亭山" style="height:64px;max-width:none;" /></div>
-        <div class="logo-grid-cell aspect-square" style="height:auto;"><img class="client-logo" src="https://cdn.zaowuyun.com/tmp/231008/eb339fb12464288ace43ea205983f3ce.png" alt="有砂" style="height:64px;max-width:none;" /></div>
-        <div class="logo-grid-cell aspect-square" style="height:auto;"><img class="client-logo" src="https://cdn.zaowuyun.com/tmp/231008/67564c803a3caabd453294d1d2998fa5.png" alt="百变酒精" style="height:64px;max-width:none;" /></div>
-        <div class="logo-grid-cell aspect-square" style="height:auto;"><img class="client-logo" src="https://cdn.zaowuyun.com/tmp/231008/44dfd134674b43642fba40e77db3af5b.png" alt="力当家" style="height:64px;max-width:none;" /></div>
+      <div class="grid grid-cols-2 gap-3" data-reveal>
+        <div class="card-step"><div class="mono text-xs text-accent">layer 06</div><h4 class="display text-lg mt-2">应用交付</h4><p class="text-xs text-fg-dim mt-2">从 demo 到生产</p></div>
+        <div class="card-step"><div class="mono text-xs text-accent">layer 05</div><h4 class="display text-lg mt-2">数据闭环</h4><p class="text-xs text-fg-dim mt-2">真实使用 → 微调</p></div>
+        <div class="card-step"><div class="mono text-xs text-accent">layer 04</div><h4 class="display text-lg mt-2">行业模板</h4><p class="text-xs text-fg-dim mt-2">4 大行业 know-how</p></div>
+        <div class="card-step"><div class="mono text-xs text-accent">layer 03</div><h4 class="display text-lg mt-2">Agent 编排</h4><p class="text-xs text-fg-dim mt-2">多 Agent 协同</p></div>
+        <div class="card-step"><div class="mono text-xs text-accent">layer 02</div><h4 class="display text-lg mt-2">知识层</h4><p class="text-xs text-fg-dim mt-2">多模态 RAG</p></div>
+        <div class="card-step"><div class="mono text-xs text-accent">layer 01</div><h4 class="display text-lg mt-2">模型层</h4><p class="text-xs text-fg-dim mt-2">多模型路由</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="hr-thin"></div>
+<!-- ================= SECTION 4 · 产品 / 孵化矩阵 ================= -->
+<section class="py-28 bg-bg-1 border-y border-line">
+  <div class="container">
+    <div class="flex items-end justify-between flex-wrap gap-6 mb-14" data-reveal>
+      <div class="max-w-3xl">
+        <div class="sec-label"><span class="num">02_</span>// products incubated on the platform</div>
+        <h2 class="mt-5 display text-[clamp(32px,5vw,68px)] leading-[1.02]">中台之上 ——<br/><span class="text-accent">长出来的产品矩阵</span></h2>
+        <p class="mt-6 text-fg-dim leading-relaxed max-w-2xl">
+          同一个中台 + 行业 know-how + 落地咨询，长出 6 个垂直 AI 产品。
+          每一个都有独立子站、独立账号、独立 P&L。
+        </p>
+      </div>
+      <a href="apps.html" class="text-cta">看应用矩阵 <span class="arr">→</span></a>
+    </div>
 
-<!-- ================= CAPABILITIES × INDUSTRIES MATRIX ================= -->
-<section id="capabilities" class="py-28 bg-bg-1">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 stagger" data-reveal>
+      <a href="apps.html#shoot" class="card overflow-hidden group" data-reveal>
+        <div class="img-wrap aspect-card img-zoom img-vignette"><img src="https://picsum.photos/seed/zwy-app-shoot/620/420" alt="" /><span class="ph-label">app · shoot</span></div>
+        <div class="p-6">
+          <div class="mono text-xs text-accent uppercase tracking-widest">live · 快消 / 电商</div>
+          <h4 class="mt-3 display text-xl">AI 商品摄影</h4>
+          <p class="mt-3 text-sm text-fg-dim leading-relaxed">300+ SKU · -92% 工时。全平台主图一键适配。</p>
+        </div>
+      </a>
+      <a href="apps.html#3d" class="card overflow-hidden group" data-reveal>
+        <div class="img-wrap aspect-card img-zoom img-vignette"><img src="https://picsum.photos/seed/zwy-app-3d/620/420" alt="" /><span class="ph-label">app · 3d</span></div>
+        <div class="p-6">
+          <div class="mono text-xs text-accent uppercase tracking-widest">live · 工业</div>
+          <h4 class="mt-3 display text-xl">3D 云设计</h4>
+          <p class="mt-3 text-sm text-fg-dim leading-relaxed">8 产品线 · -60% 设计周期。工业设计协作平台。</p>
+        </div>
+      </a>
+      <a href="apps.html#gpt" class="card overflow-hidden group" data-reveal>
+        <div class="img-wrap aspect-card img-zoom img-vignette"><img src="https://picsum.photos/seed/zwy-app-gpt/620/420" alt="" /><span class="ph-label">app · gpt</span></div>
+        <div class="p-6">
+          <div class="mono text-xs text-accent uppercase tracking-widest">live · 通用</div>
+          <h4 class="mt-3 display text-xl">造物 GPT</h4>
+          <p class="mt-3 text-sm text-fg-dim leading-relaxed">12M+ 月度调用。行业调教的设计 Agent。</p>
+        </div>
+      </a>
+      <a href="apps.html#video" class="card overflow-hidden group" data-reveal>
+        <div class="img-wrap aspect-card img-zoom img-vignette"><img src="https://picsum.photos/seed/zwy-app-video/620/420" alt="" /><span class="ph-label">app · video</span></div>
+        <div class="p-6">
+          <div class="mono text-xs text-accent uppercase tracking-widest">live · 内容</div>
+          <h4 class="mt-3 display text-xl">AI 视频 / 大片</h4>
+          <p class="mt-3 text-sm text-fg-dim leading-relaxed">产品视频内容生成。视频号 / 抖音节奏适配。</p>
+        </div>
+      </a>
+      <a href="apps.html#select" class="card overflow-hidden group" data-reveal>
+        <div class="img-wrap aspect-card img-zoom img-vignette"><img src="https://picsum.photos/seed/zwy-app-select/620/420" alt="" /><span class="ph-label">app · select</span></div>
+        <div class="p-6">
+          <div class="mono text-xs text-accent uppercase tracking-widest">incubating</div>
+          <h4 class="mt-3 display text-xl">智能拍摄选片</h4>
+          <p class="mt-3 text-sm text-fg-dim leading-relaxed">海量素材筛选与打标。时尚 / 内容团队专用。</p>
+        </div>
+      </a>
+      <a href="contact.html#new-vertical" class="card overflow-hidden group" data-reveal style="border-style:dashed;">
+        <div class="img-wrap aspect-card" style="background:var(--bg-2);display:flex;align-items:center;justify-content:center;">
+          <div class="text-center px-6">
+            <div class="display text-3xl text-accent">+</div>
+            <div class="mt-3 mono text-xs text-fg-dim uppercase tracking-widest">next vertical</div>
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="mono text-xs text-fg-dim2 uppercase tracking-widest">co-build · 2026</div>
+          <h4 class="mt-3 display text-xl">下一个垂直 AI</h4>
+          <p class="mt-3 text-sm text-fg-dim leading-relaxed">你的行业是否值得一个属于自己的 AI 应用？聊聊。</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 5 · 教育生态 ================= -->
+<section class="py-28">
+  <div class="container">
+    <div class="feature-row" data-reveal>
+      <div class="img-wrap aspect-wide img-vignette img-zoom" data-reveal-clip>
+        <img src="https://picsum.photos/seed/zwy-edu-home/1100/740" alt="" />
+        <span class="ph-label">img · education · 1100×740</span>
+      </div>
+      <div data-reveal>
+        <div class="sec-label"><span class="num">03_</span>// education ecosystem</div>
+        <h2 class="mt-5 display text-[clamp(28px,4.2vw,56px)] leading-[1.02]">
+          我们另开了一条线 ——<br/>
+          <span class="text-accent">把 AI 接进 K12</span>
+        </h2>
+        <p class="mt-6 text-fg-dim leading-relaxed">
+          球球老师 + 永乐教育 + 13 所高校教育实验室 ——
+          造物云的教育生态，专注青少年的<span class="text-fg">好奇心、表达力、创造力</span>。
+          让孩子和 AI 一起长大，而不是被 AI 取代。
+        </p>
+        <div class="mt-6 grid grid-cols-3 gap-px border border-line rounded-sm overflow-hidden max-w-md">
+          <div class="bg-bg-1 p-4"><div class="mono text-[11px] text-fg-dim2">活跃儿童</div><div class="mt-1.5 display text-2xl">5000+</div></div>
+          <div class="bg-bg-1 p-4"><div class="mono text-[11px] text-fg-dim2">合作学校</div><div class="mt-1.5 display text-2xl">12</div></div>
+          <div class="bg-bg-1 p-4"><div class="mono text-[11px] text-fg-dim2">高校实验室</div><div class="mt-1.5 display text-2xl">13</div></div>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="education.html" class="btn-primary">进入教育生态 <span class="arr">→</span></a>
+          <a href="apps-qiuqiu.html" class="text-cta">看球球老师 <span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 6 · 思想 Banner ================= -->
+<section class="relative overflow-hidden border-t border-line">
+  <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+  <div class="orb orb-accent orb-drift" style="width:540px;height:540px;top:30%;left:50%;transform:translate(-50%,-50%);opacity:.35;"></div>
+  <div class="relative container py-24">
+    <div class="grid lg:grid-cols-[1.4fr_1fr] gap-16 items-end">
+      <div data-reveal>
+        <div class="sec-label"><span class="num">04_</span>// theory · agent management</div>
+        <h2 class="mt-5 display text-[clamp(36px,6vw,96px)] leading-[0.95]">
+          AI 时代的管理学，<br/><span class="text-accent">正在被重写。</span>
+        </h2>
+      </div>
+      <div data-reveal>
+        <p class="text-fg-dim leading-relaxed">
+          <span class="text-fg">智能体管理学</span>是邱懿武在造物云之上构建的 AI 时代管理理论体系 ——
+          研究当 Agent 成为组织中的一等公民，战略、决策、组织、能力管理将如何重塑。
+        </p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href="theory.html" class="btn-primary">阅读思想体系 <span class="arr">→</span></a>
+          <a href="blog.html" class="btn-bracket">订阅论述更新<span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 7 · 真在跑 Cases + 行业认可 ================= -->
+<section class="py-28 bg-bg-1 border-y border-line">
   <div class="container">
     <div class="mb-12" data-reveal>
-      <div class="sec-label"><span class="num">03_</span>// what we do</div>
-      <h2 class="mt-5 display text-[clamp(34px,5vw,72px)]">能力 × 行业<br/><span class="text-accent">24 种组合</span></h2>
-      <p class="mt-8 text-fg-dim leading-relaxed max-w-2xl">
-        6 个中台能力 × 4 大行业 —— 24 种"我们能为你做什么"的具体形态。
-        点开任何一格，查看对应的解决方案。
+      <div class="sec-label"><span class="num">05_</span>// proof</div>
+      <h2 class="mt-5 display text-[clamp(28px,4.2vw,56px)]">真在跑、真有人用</h2>
+      <p class="mt-6 text-fg-dim leading-relaxed max-w-2xl">
+        21+ 头部企业落地 · 6 个产品化项目跑通 · 3 项国家级认可
       </p>
     </div>
 
-    <div class="matrix" data-reveal>
-      <!-- top header row -->
-      <div class="matrix-corner">能力 \ 行业</div>
-      <div class="matrix-header-h"><div class="name">快消品</div><div class="meta">fmcg</div></div>
-      <div class="matrix-header-h"><div class="name">时尚品</div><div class="meta">fashion</div></div>
-      <div class="matrix-header-h"><div class="name">文化品</div><div class="meta">culture / edu</div></div>
-      <div class="matrix-header-h"><div class="name">工业品</div><div class="meta">industrial</div></div>
-
-      <!-- row 1: AI 咨询 -->
-      <div class="matrix-header-v"><div class="name">AI 咨询</div><div class="meta">consulting</div></div>
-      <a href="solutions-fmcg.html" class="matrix-cell"><span class="text-sm">营销链路诊断</span><span class="mono text-[10px] text-fg-dim2">→ 节日 / 大促规划</span></a>
-      <a href="solutions.html" class="matrix-cell"><span class="text-sm">趋势与品牌定位</span><span class="mono text-[10px] text-fg-dim2">→ 季节系列策划</span></a>
-      <a href="solutions.html" class="matrix-cell"><span class="text-sm">IP 与教育产品策略</span><span class="mono text-[10px] text-fg-dim2">→ 球球老师</span></a>
-      <a href="solutions.html" class="matrix-cell"><span class="text-sm">设计-制造管线咨询</span><span class="mono text-[10px] text-fg-dim2">→ ID 流程优化</span></a>
-
-      <!-- row 2: 中台 -->
-      <div class="matrix-header-v"><div class="name">AI 应用中台</div><div class="meta">platform</div></div>
-      <a href="platform.html" class="matrix-cell"><span class="text-sm">节日模板库</span><span class="mono text-[10px] text-fg-dim2">→ 30+ 节日模版</span></a>
-      <a href="platform.html" class="matrix-cell"><span class="text-sm">虚拟模特资产库</span><span class="mono text-[10px] text-fg-dim2">→ 风格趋势库</span></a>
-      <a href="platform.html" class="matrix-cell"><span class="text-sm">儿童安全管线</span><span class="mono text-[10px] text-fg-dim2">→ 内容审核</span></a>
-      <a href="platform.html" class="matrix-cell"><span class="text-sm">3D 设计资产库</span><span class="mono text-[10px] text-fg-dim2">→ 模型 / 材质 / 灯光</span></a>
-
-      <!-- row 3: 模型 + Agent -->
-      <div class="matrix-header-v"><div class="name">模型 + Agent</div><div class="meta">agents</div></div>
-      <a href="apps.html" class="matrix-cell"><span class="text-sm">商品摄影 Agent</span><span class="mono text-[10px] text-fg-dim2">→ AI 商品摄影</span></a>
-      <a href="apps.html" class="matrix-cell"><span class="text-sm">造型 / 搭配 Agent</span><span class="mono text-[10px] text-fg-dim2">→ 虚拟模特</span></a>
-      <a href="apps-qiuqiu.html" class="matrix-cell"><span class="text-sm">认知探索 Agent</span><span class="mono text-[10px] text-fg-dim2">→ 球球老师</span></a>
-      <a href="apps.html" class="matrix-cell"><span class="text-sm">设计 Agent</span><span class="mono text-[10px] text-fg-dim2">→ 造物 GPT</span></a>
-
-      <!-- row 4: 知识 + 数据 -->
-      <div class="matrix-header-v"><div class="name">知识 + 数据</div><div class="meta">knowledge</div></div>
-      <a href="platform.html" class="matrix-cell"><span class="text-sm">SKU / 包装库</span><span class="mono text-[10px] text-fg-dim2">→ 行业资产库</span></a>
-      <a href="platform.html" class="matrix-cell"><span class="text-sm">风格 / 趋势图谱</span><span class="mono text-[10px] text-fg-dim2">→ 多模态 RAG</span></a>
-      <a href="platform.html" class="matrix-cell"><span class="text-sm">儿童认知图谱</span><span class="mono text-[10px] text-fg-dim2">→ 教育知识库</span></a>
-      <a href="platform.html" class="matrix-cell"><span class="text-sm">工艺 / 材质图谱</span><span class="mono text-[10px] text-fg-dim2">→ 工业图谱</span></a>
-
-      <!-- row 5: 内容 / 设计交付 -->
-      <div class="matrix-header-v"><div class="name">内容交付</div><div class="meta">delivery</div></div>
-      <a href="apps.html" class="matrix-cell"><span class="text-sm">主图 / 短视频</span><span class="mono text-[10px] text-fg-dim2">→ AI 视频 / 大片</span></a>
-      <a href="apps.html" class="matrix-cell"><span class="text-sm">上新拍摄 + 选片</span><span class="mono text-[10px] text-fg-dim2">→ 智能拍摄选片</span></a>
-      <a href="apps-qiuqiu.html" class="matrix-cell"><span class="text-sm">家长 / 教师报告</span><span class="mono text-[10px] text-fg-dim2">→ 球球老师</span></a>
-      <a href="apps.html" class="matrix-cell"><span class="text-sm">3D 大片 / 视频</span><span class="mono text-[10px] text-fg-dim2">→ 工业渲染</span></a>
-
-      <!-- row 6: 行业 Know-How -->
-      <div class="matrix-header-v"><div class="name">行业 Know-How</div><div class="meta">know-how</div></div>
-      <a href="solutions-fmcg.html" class="matrix-cell"><span class="text-sm">120+ 品牌服务</span><span class="mono text-[10px] text-fg-dim2">→ 欧莱雅 / 舒克…</span></a>
-      <a href="solutions.html" class="matrix-cell"><span class="text-sm">上市服饰深度合作</span><span class="mono text-[10px] text-fg-dim2">→ 4 季持续</span></a>
-      <a href="solutions.html" class="matrix-cell"><span class="text-sm">教育集团 12 学校</span><span class="mono text-[10px] text-fg-dim2">→ 5000+ 儿童</span></a>
-      <a href="solutions.html" class="matrix-cell"><span class="text-sm">海尔级深度合作</span><span class="mono text-[10px] text-fg-dim2">→ 全球设计中心</span></a>
-    </div>
-
-    <div class="mt-8 flex flex-wrap items-center gap-4" data-reveal>
-      <a href="solutions.html" class="btn-primary">浏览全部解决方案 <span class="arr">→</span></a>
-      <a href="contact.html" class="text-cta">没找到你的场景？聊聊 <span class="arr">→</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FEATURED CASE  (full-bleed image left) ================= -->
-<section class="py-28">
-  <div class="container">
-    <div class="mb-10" data-reveal>
-      <div class="sec-label"><span class="num">04_</span>// featured cases</div>
-      <h2 class="mt-5 display text-[clamp(28px,3.8vw,48px)]">真在跑、真有人用</h2>
-    </div>
-  </div>
-
-  <!-- big case 01 -->
-  <div class="container">
-    <div class="feature-row mb-16" data-reveal>
-      <div class="img-wrap aspect-wide img-vignette img-zoom" data-reveal-clip>
-        <img src="https://picsum.photos/seed/zwy-case-qiuqiu/1100/740" alt="" />
-        <span class="ph-label">img · case-qiuqiu · 1100×740 (球球老师产品场景)</span>
-      </div>
-      <div data-reveal>
-        <div class="mono text-xs text-accent uppercase tracking-widest">case · 教育</div>
-        <h3 class="mt-4 display text-[clamp(28px,3.5vw,44px)] leading-snug">球球老师 · 从 0 到 5000 名活跃儿童用户</h3>
-        <p class="mt-5 text-fg-dim leading-relaxed">联合某教育集团孵化，3 个月完成 MVP，一学期内进入 12 所合作学校的家长付费名单。</p>
-        <div class="mt-6 grid grid-cols-3 gap-px border border-line rounded-sm overflow-hidden">
-          <div class="bg-bg-1 p-4"><div class="mono text-[11px] text-fg-dim2">学校</div><div class="mt-1.5 display text-2xl">12</div></div>
-          <div class="bg-bg-1 p-4"><div class="mono text-[11px] text-fg-dim2">儿童</div><div class="mt-1.5 display text-2xl">5000+</div></div>
-          <div class="bg-bg-1 p-4"><div class="mono text-[11px] text-fg-dim2">家长 NPS</div><div class="mt-1.5 display text-2xl">62</div></div>
+    <div class="grid md:grid-cols-3 gap-4 stagger mb-16" data-reveal>
+      <a href="apps-qiuqiu.html" class="card overflow-hidden group" data-reveal>
+        <div class="img-wrap aspect-card img-zoom img-vignette"><img src="https://picsum.photos/seed/zwy-case-qiuqiu-v2/620/420" alt="" /><span class="ph-label">case · qiuqiu</span></div>
+        <div class="p-6">
+          <div class="mono text-xs text-accent uppercase tracking-widest">case · 教育</div>
+          <h4 class="mt-2 display text-xl leading-snug">球球老师 · 5000 名活跃儿童</h4>
+          <div class="mt-4 grid grid-cols-3 gap-px border border-line rounded-sm overflow-hidden">
+            <div class="bg-bg-2 p-3"><div class="mono text-[10px] text-fg-dim2">学校</div><div class="mt-1 display text-lg">12</div></div>
+            <div class="bg-bg-2 p-3"><div class="mono text-[10px] text-fg-dim2">儿童</div><div class="mt-1 display text-lg">5000+</div></div>
+            <div class="bg-bg-2 p-3"><div class="mono text-[10px] text-fg-dim2">家长 NPS</div><div class="mt-1 display text-lg">62</div></div>
+          </div>
         </div>
-        <a href="apps-qiuqiu.html" class="mt-7 inline-flex link-arrow">查看完整案例 <span class="arr">→</span></a>
-      </div>
-    </div>
-
-    <!-- big case 02 reverse -->
-    <div class="feature-row reverse mb-16" data-reveal>
-      <div class="img-wrap aspect-wide img-vignette img-zoom" data-reveal-clip>
-        <img src="https://picsum.photos/seed/zwy-case-haier/1100/740" alt="" />
-        <span class="ph-label">img · case-industrial · 1100×740 (3D 工业设计场景)</span>
-      </div>
-      <div data-reveal>
-        <div class="mono text-xs text-accent uppercase tracking-widest">case · 工业</div>
-        <h3 class="mt-4 display text-[clamp(28px,3.5vw,44px)] leading-snug">某消费电子品牌 · 设计周期 -60%</h3>
-        <p class="mt-5 text-fg-dim leading-relaxed">为头部消费电子品牌 ID 团队上线 AI 辅助创意 + 评审流程，单品类设计周期从 6 周压到 2 周。</p>
-        <div class="mt-6 grid grid-cols-3 gap-px border border-line rounded-sm overflow-hidden">
-          <div class="bg-bg-1 p-4"><div class="mono text-[11px] text-fg-dim2">周期</div><div class="mt-1.5 display text-2xl">-60%</div></div>
-          <div class="bg-bg-1 p-4"><div class="mono text-[11px] text-fg-dim2">产品线</div><div class="mt-1.5 display text-2xl">8</div></div>
-          <div class="bg-bg-1 p-4"><div class="mono text-[11px] text-fg-dim2">国家</div><div class="mt-1.5 display text-2xl">3</div></div>
+      </a>
+      <a href="cases.html#industrial" class="card overflow-hidden group" data-reveal>
+        <div class="img-wrap aspect-card img-zoom img-vignette"><img src="https://picsum.photos/seed/zwy-case-haier-v2/620/420" alt="" /><span class="ph-label">case · industrial</span></div>
+        <div class="p-6">
+          <div class="mono text-xs text-accent uppercase tracking-widest">case · 工业</div>
+          <h4 class="mt-2 display text-xl leading-snug">消费电子品牌 · 设计周期 -60%</h4>
+          <div class="mt-4 grid grid-cols-3 gap-px border border-line rounded-sm overflow-hidden">
+            <div class="bg-bg-2 p-3"><div class="mono text-[10px] text-fg-dim2">周期</div><div class="mt-1 display text-lg">-60%</div></div>
+            <div class="bg-bg-2 p-3"><div class="mono text-[10px] text-fg-dim2">产品线</div><div class="mt-1 display text-lg">8</div></div>
+            <div class="bg-bg-2 p-3"><div class="mono text-[10px] text-fg-dim2">国家</div><div class="mt-1 display text-lg">3</div></div>
+          </div>
         </div>
-        <a href="cases.html" class="mt-7 inline-flex link-arrow">查看完整案例 <span class="arr">→</span></a>
-      </div>
+      </a>
+      <a href="cases.html#fmcg" class="card overflow-hidden group" data-reveal>
+        <div class="img-wrap aspect-card img-zoom img-vignette"><img src="https://picsum.photos/seed/zwy-case-fmcg-v2/620/420" alt="" /><span class="ph-label">case · fmcg</span></div>
+        <div class="p-6">
+          <div class="mono text-xs text-accent uppercase tracking-widest">case · 快消</div>
+          <h4 class="mt-2 display text-xl leading-snug">双 11 主图 · 1 天交付</h4>
+          <div class="mt-4 grid grid-cols-3 gap-px border border-line rounded-sm overflow-hidden">
+            <div class="bg-bg-2 p-3"><div class="mono text-[10px] text-fg-dim2">SKU</div><div class="mt-1 display text-lg">300+</div></div>
+            <div class="bg-bg-2 p-3"><div class="mono text-[10px] text-fg-dim2">工时</div><div class="mt-1 display text-lg">-92%</div></div>
+            <div class="bg-bg-2 p-3"><div class="mono text-[10px] text-fg-dim2">交付</div><div class="mt-1 display text-lg">1 天</div></div>
+          </div>
+        </div>
+      </a>
     </div>
 
-    <!-- 3 smaller cases row -->
     <div class="grid md:grid-cols-3 gap-4 stagger" data-reveal>
-      <a href="cases.html" class="card overflow-hidden group" data-reveal>
-        <div class="img-wrap aspect-card img-zoom img-vignette">
-          <img src="https://picsum.photos/seed/zwy-case-fmcg/620/420" alt="" />
-          <span class="ph-label">img · case-fmcg · 620×420</span>
-        </div>
-        <div class="p-6">
-          <div class="mono text-xs text-fg-dim2">case · 快消</div>
-          <h4 class="mt-2 display text-xl leading-snug">双 11 主图 1 天交付</h4>
-          <p class="mt-3 text-sm text-fg-dim">300+ SKU · -92% 工时</p>
-        </div>
-      </a>
-      <a href="cases.html" class="card overflow-hidden group" data-reveal>
-        <div class="img-wrap aspect-card img-zoom img-vignette">
-          <img src="https://picsum.photos/seed/zwy-case-fashion/620/420" alt="" />
-          <span class="ph-label">img · case-fashion · 620×420</span>
-        </div>
-        <div class="p-6">
-          <div class="mono text-xs text-fg-dim2">case · 时尚</div>
-          <h4 class="mt-2 display text-xl leading-snug">虚拟模特覆盖 80% 上新</h4>
-          <p class="mt-3 text-sm text-fg-dim">4 季持续 · -80% 拍摄</p>
-        </div>
-      </a>
-      <a href="cases.html" class="card overflow-hidden group" data-reveal>
-        <div class="img-wrap aspect-card img-zoom img-vignette">
-          <img src="https://picsum.photos/seed/zwy-case-culture/620/420" alt="" />
-          <span class="ph-label">img · case-culture · 620×420</span>
-        </div>
-        <div class="p-6">
-          <div class="mono text-xs text-fg-dim2">case · 文化</div>
-          <h4 class="mt-2 display text-xl leading-snug">文创 IP 衍生品翻倍</h4>
-          <p class="mt-3 text-sm text-fg-dim">+150% SKU · 12 月</p>
-        </div>
-      </a>
+      <div class="card overflow-hidden p-6 flex items-center gap-5" data-reveal>
+        <div class="shrink-0 display text-3xl text-accent">TOP 50</div>
+        <div><h5 class="text-sm font-medium">AIGC 商业落地代表企业</h5><div class="mono text-[11px] text-fg-dim2 mt-1">2025 · 行业评选</div></div>
+      </div>
+      <div class="card overflow-hidden p-6 flex items-center gap-5" data-reveal>
+        <div class="shrink-0 display text-xl text-accent">专精特新</div>
+        <div><h5 class="text-sm font-medium">浙江省专精特新企业</h5><div class="mono text-[11px] text-fg-dim2 mt-1">2024 · 浙江省经信厅</div></div>
+      </div>
+      <div class="card overflow-hidden p-6 flex items-center gap-5" data-reveal>
+        <div class="shrink-0 display text-2xl text-accent">高新</div>
+        <div><h5 class="text-sm font-medium">国家高新技术企业</h5><div class="mono text-[11px] text-fg-dim2 mt-1">2024 · 国家级认定</div></div>
+      </div>
     </div>
 
     <div class="mt-12 flex justify-center" data-reveal>
@@ -440,223 +377,45 @@
   </div>
 </section>
 
-<div class="hr-thin"></div>
-
-<!-- ================= RECOGNITION & AWARDS ================= -->
-<section class="py-24 bg-bg-1">
-  <div class="container">
-    <div class="mb-12" data-reveal>
-      <div class="sec-label"><span class="num">05_</span>// recognition</div>
-      <h2 class="mt-5 display text-[clamp(28px,3.8vw,48px)]">行业认可</h2>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-4 stagger" data-reveal>
-      <div class="card overflow-hidden" data-reveal>
-        <div class="img-wrap aspect-card img-vignette img-grad-purple">
-          <img src="https://picsum.photos/seed/zwy-award-01/620/420" alt="" />
-          <span class="ph-label">img · award-aigc · 620×420</span>
-        </div>
-        <div class="p-7">
-          <div class="display text-5xl text-accent">TOP 50</div>
-          <h4 class="mt-3 text-base font-medium">AIGC 商业落地代表企业</h4>
-          <p class="mt-2 mono text-xs text-fg-dim2">2025 · 行业评选</p>
-          <p class="mt-4 text-sm text-fg-dim leading-relaxed">凭借 AI 商品摄影业务，被评为 2025 年度 AIGC 商业落地代表企业。</p>
-        </div>
-      </div>
-      <div class="card overflow-hidden" data-reveal>
-        <div class="img-wrap aspect-card img-vignette img-grad-purple">
-          <img src="https://picsum.photos/seed/zwy-award-02/620/420" alt="" />
-          <span class="ph-label">img · award-zj-sme · 620×420</span>
-        </div>
-        <div class="p-7">
-          <div class="display text-5xl text-accent">专精特新</div>
-          <h4 class="mt-3 text-base font-medium">浙江省专精特新企业</h4>
-          <p class="mt-2 mono text-xs text-fg-dim2">2024 · 浙江省经信厅</p>
-          <p class="mt-4 text-sm text-fg-dim leading-relaxed">入选浙江省专精特新中小企业培育名录。</p>
-        </div>
-      </div>
-      <div class="card overflow-hidden" data-reveal>
-        <div class="img-wrap aspect-card img-vignette img-grad-purple">
-          <img src="https://picsum.photos/seed/zwy-award-03/620/420" alt="" />
-          <span class="ph-label">img · award-hightech · 620×420</span>
-        </div>
-        <div class="p-7">
-          <div class="display text-5xl text-accent">高新</div>
-          <h4 class="mt-3 text-base font-medium">国家高新技术企业</h4>
-          <p class="mt-2 mono text-xs text-fg-dim2">2024 · 国家级认定</p>
-          <p class="mt-4 text-sm text-fg-dim leading-relaxed">国家高新技术企业资质，享受相关税收与研发支持。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= ECOSYSTEM (Developers + Academy) ================= -->
-<section class="py-28">
-  <div class="container">
-    <div data-reveal>
-      <div class="sec-label"><span class="num">06_</span>// ecosystem</div>
-      <h2 class="mt-5 display text-[clamp(32px,4.4vw,60px)]">不止是平台 ——<br/><span class="text-accent">一个线上线下的生态</span></h2>
-      <p class="mt-6 text-fg-dim max-w-2xl leading-relaxed">
-        企业、开发者、高校在造物云之上协作 —— 联合实验室、API 共建、行业峰会、训练营。
-      </p>
-    </div>
-
-    <div class="mt-14 grid lg:grid-cols-2 gap-4">
-      <!-- developer card with image -->
-      <a href="developers.html" class="card overflow-hidden" data-reveal>
-        <div class="img-wrap aspect-wide img-vignette img-grain">
-          <img src="https://picsum.photos/seed/zwy-developers/900/500" alt="" />
-          <span class="ph-label">img · developers · 900×500 (代码 / 终端画面)</span>
-        </div>
-        <div class="p-8">
-          <div class="flex items-center justify-between">
-            <div class="mono text-xs text-accent">developers /</div>
-            <span class="badge-status is-live"><span class="dot"></span>active community</span>
-          </div>
-          <h3 class="mt-5 display text-3xl">开发者社区</h3>
-          <p class="mt-4 text-sm text-fg-dim leading-relaxed">中台 API、Agent SDK、行业模板、开源样例 —— 让开发者在造物云之上构建 AI 应用。</p>
-          <div class="mt-6 grid grid-cols-3 gap-px rounded-sm overflow-hidden" style="border:1px solid var(--line);">
-            <div class="bg-bg-2 p-4"><div class="mono text-[10px] text-fg-dim2 uppercase">注册开发者</div><div class="mt-1.5 display text-2xl">3000<span class="text-accent text-base">+</span></div></div>
-            <div class="bg-bg-2 p-4"><div class="mono text-[10px] text-fg-dim2 uppercase">月度 API 调用</div><div class="mt-1.5 display text-2xl">12M<span class="text-accent text-base">+</span></div></div>
-            <div class="bg-bg-2 p-4"><div class="mono text-[10px] text-fg-dim2 uppercase">开源样例</div><div class="mt-1.5 display text-2xl">40<span class="text-accent text-base">+</span></div></div>
-          </div>
-          <div class="mt-7 link-arrow">进入开发者中心 <span class="arr">→</span></div>
-        </div>
-      </a>
-
-      <!-- academy card with image -->
-      <a href="academy.html" class="card overflow-hidden" data-reveal>
-        <div class="img-wrap aspect-wide img-vignette img-grain">
-          <img src="https://picsum.photos/seed/zwy-academy/900/500" alt="" />
-          <span class="ph-label">img · academy · 900×500 (实验室 / 校园)</span>
-        </div>
-        <div class="p-8">
-          <div class="flex items-center justify-between">
-            <div class="mono text-xs text-accent">academy /</div>
-            <span class="badge-status"><span class="dot"></span>13 联合实验室</span>
-          </div>
-          <h3 class="mt-5 display text-3xl">高校 & 联合实验室</h3>
-          <p class="mt-4 text-sm text-fg-dim leading-relaxed">与设计与人文学科一流院校共建实验室、课题、人才计划。</p>
-          <div class="mt-6 grid grid-cols-4 gap-2">
-            <div class="logo-grid-cell" style="height:56px;padding:.5rem;"><img class="client-logo" style="height:24px;" src="https://cdn.zaowuyun.com/tmp/231008/2513ec4f56d2983b3c27ba98e771d91b.png" alt="浙大" /></div>
-            <div class="logo-grid-cell" style="height:56px;padding:.5rem;"><img class="client-logo" style="height:24px;" src="https://cdn.zaowuyun.com/tmp/231008/69987e245dd758be47590672b02e9f80.png" alt="同济" /></div>
-            <div class="logo-grid-cell" style="height:56px;padding:.5rem;"><img class="client-logo" style="height:24px;" src="https://cdn.zaowuyun.com/tmp/231008/de467ec02e748bb3aefbf2b2298fab94.png" alt="江南大学" /></div>
-            <div class="logo-grid-cell" style="height:56px;padding:.5rem;"><img class="client-logo" style="height:24px;" src="https://cdn.zaowuyun.com/tmp/231008/fd638d6cdc0335be5f227bfb0de5c36f.png" alt="北服" /></div>
-            <div class="logo-grid-cell" style="height:56px;padding:.5rem;"><img class="client-logo" style="height:24px;" src="https://cdn.zaowuyun.com/tmp/231008/7712b335f93a571c3c459ddf92b4c1d8.png" alt="中传" /></div>
-            <div class="logo-grid-cell" style="height:56px;padding:.5rem;"><img class="client-logo" style="height:24px;" src="https://cdn.zaowuyun.com/tmp/231008/0e4e4b82a3f4e5e4e8435fbba8db7fcb.png" alt="上大" /></div>
-            <div class="logo-grid-cell" style="height:56px;padding:.5rem;"><img class="client-logo" style="height:24px;" src="https://cdn.zaowuyun.com/tmp/231008/60e1036286dc3b4c9f32c0f8f56738b7.png" alt="浙理工" /></div>
-            <div class="logo-grid-cell flex items-center justify-center" style="height:56px;padding:.5rem;"><span class="mono text-[10px] text-fg-dim2">+6 所</span></div>
-          </div>
-          <div class="mt-7 link-arrow">了解联合实验室 <span class="arr">→</span></div>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CAREERS BANNER (full-bleed image right) ================= -->
-<section class="relative overflow-hidden bg-bg-1">
-  <div class="container py-24 lg:py-28">
-    <div class="feature-row">
-      <div data-reveal>
-        <div class="sec-label"><span class="num">07_</span>// careers</div>
-        <h2 class="mt-5 display text-[clamp(36px,5vw,72px)] leading-[0.95]">
-          建一份职业 ——<br/><span class="text-accent">和你想塑造的世界<br/>一样令人兴奋</span>
-        </h2>
-        <p class="mt-8 text-fg-dim text-lg max-w-md leading-relaxed">
-          一群来自一线大厂的 AI 工程师、工业设计师、产品经理、教育专家 —— 因为同一件事走到一起：把 AI 真正接进产业。
-        </p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="#" class="btn-primary">查看在招岗位 <span class="arr">→</span></a>
-          <a href="about.html" class="text-cta">了解团队 <span class="arr">→</span></a>
-        </div>
-      </div>
-      <div class="img-wrap aspect-card img-vignette img-zoom" data-reveal-clip>
-        <img src="https://picsum.photos/seed/zwy-careers/900/600" alt="" />
-        <span class="ph-label">img · careers · 900×600 (团队 / 办公场景)</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= NEWSROOM ================= -->
-<section class="py-28">
-  <div class="container">
-    <div class="flex items-end justify-between flex-wrap gap-6 mb-12" data-reveal>
-      <div>
-        <div class="sec-label"><span class="num">08_</span>// newsroom</div>
-        <h2 class="mt-5 display text-[clamp(28px,3.8vw,48px)]">公司动态</h2>
-      </div>
-      <a href="news.html" class="text-cta">所有动态 <span class="arr">→</span></a>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 stagger" data-reveal>
-      <a href="news.html" class="card overflow-hidden img-zoom" data-reveal>
-        <div class="img-wrap aspect-card img-vignette">
-          <img src="https://picsum.photos/seed/zwy-news-01/620/420" alt="" />
-          <span class="ph-label">img · news-01 · 620×420</span>
-        </div>
-        <div class="p-5">
-          <div class="mono text-[11px] text-accent uppercase tracking-widest">产品发布 · 2026.05</div>
-          <h4 class="mt-3 text-base font-medium leading-snug">球球老师 v1.0 正式锁定</h4>
-          <p class="mt-3 text-xs text-fg-dim leading-relaxed">进入 12 所合作学校的家长付费名单。</p>
-        </div>
-      </a>
-      <a href="news.html" class="card overflow-hidden img-zoom" data-reveal>
-        <div class="img-wrap aspect-card img-vignette">
-          <img src="https://picsum.photos/seed/zwy-news-02/620/420" alt="" />
-          <span class="ph-label">img · news-02 · 620×420</span>
-        </div>
-        <div class="p-5">
-          <div class="mono text-[11px] text-accent uppercase tracking-widest">荣誉 · 2026.03</div>
-          <h4 class="mt-3 text-base font-medium leading-snug">入选 AIGC 商业落地 TOP 50</h4>
-          <p class="mt-3 text-xs text-fg-dim leading-relaxed">2025 年度 AIGC 商业落地代表企业。</p>
-        </div>
-      </a>
-      <a href="news.html" class="card overflow-hidden img-zoom" data-reveal>
-        <div class="img-wrap aspect-card img-vignette">
-          <img src="https://picsum.photos/seed/zwy-news-03/620/420" alt="" />
-          <span class="ph-label">img · news-03 · 620×420</span>
-        </div>
-        <div class="p-5">
-          <div class="mono text-[11px] text-accent uppercase tracking-widest">合作 · 2026.02</div>
-          <h4 class="mt-3 text-base font-medium leading-snug">与同济大学共建 AI 设计实验室</h4>
-          <p class="mt-3 text-xs text-fg-dim leading-relaxed">联合启动 AI 时代工业设计方法论课题。</p>
-        </div>
-      </a>
-      <a href="news.html" class="card overflow-hidden img-zoom" data-reveal>
-        <div class="img-wrap aspect-card img-vignette">
-          <img src="https://picsum.photos/seed/zwy-news-04/620/420" alt="" />
-          <span class="ph-label">img · news-04 · 620×420</span>
-        </div>
-        <div class="p-5">
-          <div class="mono text-[11px] text-accent uppercase tracking-widest">媒体 · 2026.01</div>
-          <h4 class="mt-3 text-base font-medium leading-snug">36Kr 专访 · AI 应用中台</h4>
-          <p class="mt-3 text-xs text-fg-dim leading-relaxed">36Kr 深度专访造物云创始团队。</p>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CTA ================= -->
+<!-- ================= SECTION 8 · 三种合作模式 + CTA ================= -->
 <section class="relative py-32 overflow-hidden">
   <div class="absolute inset-0 grid-bg pointer-events-none opacity-60"></div>
-  <div class="orb orb-accent orb-drift" style="width:540px;height:540px;top:30%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="orb orb-accent orb-drift" style="width:540px;height:540px;top:30%;left:50%;transform:translate(-50%,-50%);opacity:.4;"></div>
   <div class="relative container">
+    <div class="max-w-3xl mb-14" data-reveal>
+      <div class="sec-label"><span class="num">06_</span>// engagement</div>
+      <h2 class="mt-5 display text-[clamp(32px,5vw,68px)] leading-[1.02]">三种合作模式</h2>
+      <p class="mt-6 text-fg-dim leading-relaxed">从轻到重，可以挑一种买，也可以混搭。</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4 mb-16" data-reveal>
+      <div class="card-step" data-reveal>
+        <div class="mono text-xs text-accent">mode 01 · light</div>
+        <h3 class="display text-2xl mt-3">应用采购</h3>
+        <p class="text-fg-dim mt-3 leading-relaxed text-sm">直接买现成应用，业务马上用起来。1–2 周开通。<span class="text-fg">适合：先看效果再深入。</span></p>
+      </div>
+      <div class="card-step" data-reveal>
+        <div class="mono text-xs text-accent">mode 02 · medium</div>
+        <h3 class="display text-2xl mt-3">中台接入</h3>
+        <p class="text-fg-dim mt-3 leading-relaxed text-sm">接入造物云中台 + 行业模板，自己的团队基于中台快速搭应用。月度订阅。<span class="text-fg">适合：已有 AI 团队，希望加速。</span></p>
+      </div>
+      <div class="card-step" data-reveal>
+        <div class="mono text-xs text-accent">mode 03 · deep</div>
+        <h3 class="display text-2xl mt-3">行业共建</h3>
+        <p class="text-fg-dim mt-3 leading-relaxed text-sm">完整诊断 + 中台搭建 + 应用孵化 + 品牌共建。项目制。<span class="text-fg">适合：希望把 AI 长成行业护城河。</span></p>
+      </div>
+    </div>
+
     <div class="grid lg:grid-cols-[1.5fr_1fr] gap-16 items-end">
       <div data-reveal>
-        <div class="sec-label"><span class="num">09_</span>// let's talk</div>
-        <h2 class="mt-5 display text-[clamp(44px,7vw,110px)] leading-[0.95]">
-          把你的行业，<br/>
-          <span class="text-accent">长出一个 ai 应用<span class="cursor"></span></span>
-        </h2>
+        <h3 class="display text-[clamp(36px,6vw,90px)] leading-[0.95]">
+          不知道从哪开始？<br/><span class="text-accent">先来 30 分钟。</span>
+        </h3>
       </div>
       <div data-reveal>
-        <p class="text-fg-dim leading-relaxed">来一次 30 分钟的交流。带上你的业务场景，我们带上中台 —— 看看一起能跑出什么。</p>
+        <p class="text-fg-dim leading-relaxed">我们会先听你的行业、你的痛点，再判断要不要继续。不卖方案，不发资料包。</p>
         <div class="mt-7 flex flex-wrap gap-3">
-          <a href="contact.html" class="btn-primary">预约 30 分钟交流 <span class="arr">→</span></a>
+          <a href="contact.html" class="btn-primary">预约 30 分钟战略对话 <span class="arr">→</span></a>
           <a href="contact.html#download" class="btn-bracket">下载介绍包<span>↓</span></a>
         </div>
         <div class="mt-8 mono text-xs text-fg-dim2 space-y-1.5">
@@ -665,6 +424,64 @@
           <div>hours_ &nbsp;&nbsp;9:30 – 18:00 工作日</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 9 · INSIGHTS ================= -->
+<section class="py-24 border-t border-line">
+  <div class="container">
+    <div class="flex items-end justify-between flex-wrap gap-6 mb-10" data-reveal>
+      <div>
+        <div class="sec-label"><span class="num">07_</span>// latest thinking</div>
+        <h2 class="mt-5 display text-[clamp(28px,3.8vw,48px)]" data-i18n="home.insights_title">最近的洞察</h2>
+      </div>
+      <a href="blog.html" class="text-cta">所有内容 <span class="arr">→</span></a>
+    </div>
+  </div>
+
+  <div class="container-wide">
+    <div class="insight-rail" data-reveal>
+      <a href="theory.html" class="card overflow-hidden img-zoom" data-reveal>
+        <div class="img-wrap aspect-wide"><img src="https://picsum.photos/seed/zwy-insight-theory/760/430" alt="" /><span class="ph-label">img · insight-theory</span></div>
+        <div class="p-6">
+          <div class="mono text-[11px] text-accent uppercase tracking-widest">theory · upcoming</div>
+          <h3 class="mt-3 display text-xl leading-snug">为什么我们需要一门 智能体管理学</h3>
+          <p class="mt-3 text-sm text-fg-dim leading-relaxed">从泰勒到德鲁克到 AI 原生时代 —— 管理学的第三次重写。</p>
+        </div>
+      </a>
+      <a href="blog.html" class="card overflow-hidden img-zoom" data-reveal>
+        <div class="img-wrap aspect-wide"><img src="https://picsum.photos/seed/zwy-insight-01/760/430" alt="" /><span class="ph-label">img · insight-01</span></div>
+        <div class="p-6">
+          <div class="mono text-[11px] text-accent uppercase tracking-widest">research · 22 min</div>
+          <h3 class="mt-3 display text-xl leading-snug">AI 应用中台是什么 —— 对一个被滥用的词语的具体回答</h3>
+          <p class="mt-3 text-sm text-fg-dim leading-relaxed">"中台"这个词在 2019 年被讲坏过一次。我们写下我们的具体定义。</p>
+        </div>
+      </a>
+      <a href="blog.html" class="card overflow-hidden img-zoom" data-reveal>
+        <div class="img-wrap aspect-wide"><img src="https://picsum.photos/seed/zwy-insight-02/760/430" alt="" /><span class="ph-label">img · insight-02</span></div>
+        <div class="p-6">
+          <div class="mono text-[11px] text-accent uppercase tracking-widest">perspective · 11 min</div>
+          <h3 class="mt-3 display text-xl leading-snug">为什么 K12 教育的 AI，应该少做一些</h3>
+          <p class="mt-3 text-sm text-fg-dim leading-relaxed">行业里都在"做更多"。我们的判断是相反的。</p>
+        </div>
+      </a>
+      <a href="blog.html" class="card overflow-hidden img-zoom" data-reveal>
+        <div class="img-wrap aspect-wide"><img src="https://picsum.photos/seed/zwy-insight-05/760/430" alt="" /><span class="ph-label">img · insight-05</span></div>
+        <div class="p-6">
+          <div class="mono text-[11px] text-accent uppercase tracking-widest">research · 18 min</div>
+          <h3 class="mt-3 display text-xl leading-snug">虚拟模特上线一年后 · 时尚行业的 SKU 节奏变了</h3>
+          <p class="mt-3 text-sm text-fg-dim leading-relaxed">从 4 家服装上市公司的真实数据看节奏变化。</p>
+        </div>
+      </a>
+      <a href="blog.html" class="card overflow-hidden img-zoom" data-reveal>
+        <div class="img-wrap aspect-wide"><img src="https://picsum.photos/seed/zwy-insight-06/760/430" alt="" /><span class="ph-label">img · insight-06</span></div>
+        <div class="p-6">
+          <div class="mono text-[11px] text-accent uppercase tracking-widest">perspective · 14 min</div>
+          <h3 class="mt-3 display text-xl leading-snug">从 prompt 到 Agent —— 怎么把"会聊天"做成"会做事"</h3>
+          <p class="mt-3 text-sm text-fg-dim leading-relaxed">球球老师 Agent 架构从 0.1 到 1.0 的演化记录。</p>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -679,7 +496,7 @@
           <div class="mono text-base"><span class="text-fg">zaowuyun</span><span class="text-accent">_</span></div>
         </div>
         <p class="mt-4 text-sm text-fg-dim max-w-xs leading-relaxed">
-          AI 应用中台。<br/>为每一个垂直行业，长出一个值得被信任的 AI 应用。
+          企业 AI 应用中台。<br/>上面长出来产品、长出来咨询、长出来教育、长出来人才。
         </p>
         <div class="mt-5 flex items-center gap-3">
           <span class="mono text-[10px] uppercase tracking-widest text-fg-dim2">backed by</span>
@@ -687,38 +504,37 @@
         </div>
       </div>
       <div>
-        <div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">我们做什么</div>
+        <div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">中台 & 产品</div>
         <ul class="space-y-2.5 text-sm text-fg-dim">
-          <li><a href="solutions.html">解决方案中心</a></li>
-          <li><a href="platform.html">中台能力</a></li>
-          <li><a href="apps.html">应用矩阵</a></li>
-          <li><a href="apps-qiuqiu.html">球球老师</a></li>
+          <li><a href="platform.html">AI 应用中台</a></li>
+          <li><a href="apps.html">产品矩阵</a></li>
+          <li><a href="method.html">落地方法论</a></li>
         </ul>
       </div>
       <div>
-        <div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">我们的洞察</div>
+        <div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">教育 & 思想</div>
+        <ul class="space-y-2.5 text-sm text-fg-dim">
+          <li><a href="education.html">教育生态</a></li>
+          <li><a href="apps-qiuqiu.html">球球老师</a></li>
+          <li><a href="theory.html">智能体管理学</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">案例 & 洞察</div>
         <ul class="space-y-2.5 text-sm text-fg-dim">
           <li><a href="cases.html">案例中心</a></li>
-          <li><a href="blog.html">行业洞察</a></li>
-          <li><a href="news.html">公司动态</a></li>
+          <li><a href="solutions.html">行业方案</a></li>
+          <li><a href="blog.html">洞察 Insights</a></li>
         </ul>
       </div>
       <div>
-        <div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">开发者 & 高校</div>
+        <div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">生态 & 关于</div>
         <ul class="space-y-2.5 text-sm text-fg-dim">
           <li><a href="developers.html">开发者中心</a></li>
           <li><a href="academy.html">高校合作</a></li>
-          <li><a href="https://www.zaowuyun.com/" target="_blank">登录控制台 ↗</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">关于</div>
-        <ul class="space-y-2.5 text-sm text-fg-dim">
           <li><a href="about.html">关于造物云</a></li>
           <li><a href="contact.html">联系我们</a></li>
-          <li><a href="contact.html#enterprise">商务合作</a></li>
-          <li><a href="contact.html#media">媒体联络</a></li>
-          <li><a href="#">招贤纳士</a></li>
+          <li><a href="https://www.zaowuyun.com/" target="_blank">登录控制台 ↗</a></li>
         </ul>
       </div>
     </div>
