@@ -1,0 +1,20 @@
+{
+  "_meta": {
+    "lang": "en-US",
+    "note": "Placeholder English translations. Keys mirror data-i18n attributes in HTML. Empty values fall back to the Chinese default."
+  },
+
+  "nav.what_we_do": "What we do",
+  "nav.what_we_think": "What we think",
+  "nav.developers": "Developers",
+  "nav.who_we_are": "Who we are",
+  "nav.contact": "Contact",
+  "nav.login": "Console",
+  "nav.book": "Book a chat",
+
+  "hero.headline_1": "Bringing AI",
+  "hero.headline_2": "into your industry",
+  "hero.subtitle": "Zaowuyun is an AI industry platform connecting enterprises, universities, and developers — with consulting, a middle platform, applications, and an ecosystem to take you from strategy to delivery.",
+  "hero.cta_primary": "Book a 30-min consultation",
+  "hero.cta_secondary": "See our products"
+}

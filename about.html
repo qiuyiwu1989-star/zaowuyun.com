@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>关于造物云 — 把 AI 接进每一个行业</title>
+<meta name="description" content="造物云的故事、团队、投资方、荣誉。" />
+<link rel="icon" href="https://www.zaowuyun.com/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/zwy.css" />
+<script>(function(){try{var t=localStorage.getItem('zwy-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{bg:'var(--bg)','bg-1':'var(--bg-1)','bg-2':'var(--bg-2)','bg-3':'var(--bg-3)',line:'var(--line)','line-2':'var(--line-2)',fg:'var(--fg)','fg-dim':'var(--fg-dim)','fg-dim2':'var(--fg-dim2)','fg-dim3':'var(--fg-dim3)',accent:'var(--accent)','accent-hi':'var(--accent-hi)','accent-soft':'var(--accent-soft)','accent-fg':'var(--accent-fg)'},fontFamily:{sans:['Inter','sans-serif'],display:['"Space Grotesk"','Inter','sans-serif'],mono:['"JetBrains Mono"','monospace']}}}};</script>
+</head>
+<body class="bg-bg text-fg">
+
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl border-b border-line nav-bar">
+  <div class="container h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2"><img src="https://www.zaowuyun.com/favicon.ico" class="w-5 h-5 rounded-sm" /><span class="mono text-sm"><span class="text-fg">zaowuyun</span><span class="text-accent">_</span></span></a>
+    <nav class="hidden lg:flex items-center gap-1">
+      <a href="solutions.html" class="px-4 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.what_we_do">我们做什么</a>
+      <a href="cases.html" class="px-4 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.what_we_think">我们的洞察</a>
+      <a href="developers.html" class="px-4 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.developers">开发者</a>
+      <a href="about.html" class="px-4 py-2 mono text-[13px] text-accent transition" data-i18n="nav.who_we_are">关于造物云</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="https://www.zaowuyun.com/" target="_blank" class="hidden sm:inline mono text-[13px] text-fg-dim hover:text-fg transition px-2">登录控制台</a>
+      <button id="lang-switch" class="lang-switch">EN</button>
+      <button id="theme-toggle" class="toggle" type="button">
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <a href="contact.html" class="btn-bracket">预约咨询<span>→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO with full-bleed image -->
+<section class="hero-with-image">
+  <div class="hero-image-bg">
+    <img src="https://picsum.photos/seed/zwy-about-hero/2400/1200" alt="" />
+  </div>
+  <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+  <div class="orb orb-accent orb-drift" style="width:480px;height:480px;top:-100px;right:5%;opacity:.25;"></div>
+  <div class="relative container py-28 z-10">
+    <div class="sec-label mb-6" data-reveal><span class="num">▌</span>// about zaowuyun</div>
+    <h1 class="display text-[clamp(48px,8vw,128px)] max-w-[1100px] word-reveal" data-reveal>
+      <span class="block"><span class="w">把</span><span class="w">AI</span><span class="w">接进</span></span>
+      <span class="block"><span class="w text-accent">每一个</span><span class="w text-accent">行业<span class="cursor"></span></span></span>
+    </h1>
+    <p class="mt-10 max-w-3xl text-fg-dim text-lg leading-relaxed" data-reveal>
+      造物云成立于 2020 年，是连接企业、高校、开发者的 AI 产业平台 ——
+      用咨询 + 中台 + 应用 + 生态，陪每个行业完成从战略到落地的全过程。
+    </p>
+  </div>
+</section>
+
+<!-- STORY (image + long text) -->
+<section class="py-28">
+  <div class="container">
+    <div class="feature-row mb-16" data-reveal>
+      <div data-reveal>
+        <div class="sec-label"><span class="num">01_</span>// the story</div>
+        <h2 class="mt-5 display text-[clamp(30px,4vw,52px)]">从工具到中台，<br/>从中台到<span class="text-accent">生态</span></h2>
+      </div>
+      <div class="img-wrap aspect-card img-vignette" data-reveal-clip>
+        <img src="https://picsum.photos/seed/zwy-about-story/900/600" alt="" />
+        <span class="ph-label">img · about-story · 900×600 (办公室 / 团队场景)</span>
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-[1fr_2fr] gap-16">
+      <div data-reveal></div>
+      <div class="space-y-6 text-fg-dim leading-relaxed text-lg" data-reveal>
+        <p>2020 年，造物云从一个简单的问题开始 —— 工业设计为什么这么慢、这么贵、这么依赖单点的人？我们做的第一个产品是<span class="text-fg">浏览器里的 3D 协作工具</span>。</p>
+        <p>2022 年，AIGC 浪潮来了。我们没有去做"又一个通用对话工具"，而是把过去两年沉淀的行业 Know-How 喂给模型 —— <span class="text-fg">AI 商品摄影、AI 视频、智能拍摄选片</span> 一个个长出来，21 家头部品牌成了我们的客户。</p>
+        <p>2024 年起，我们做了一件更难、但更值得的事 —— <span class="text-fg">把这些项目里反复重写的那 70%，沉淀成一套可复用的中台</span>。</p>
+        <p>2026 年的今天，造物云是连接<span class="text-fg">企业（解决方案）、开发者（中台 API）、高校（联合实验室）</span>的 <span class="text-accent">AI 产业平台</span>。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr-thin"></div>
+
+<!-- TIMELINE -->
+<section class="py-24 bg-bg-1">
+  <div class="container">
+    <div class="mb-14" data-reveal>
+      <div class="sec-label"><span class="num">02_</span>// timeline</div>
+      <h2 class="mt-5 display text-[clamp(30px,4vw,52px)]">5 年演进路径</h2>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-x-16 gap-y-2 max-w-5xl">
+      <div class="timeline" data-reveal>
+        <div class="timeline-item">
+          <div class="mono text-xs text-accent">2020</div>
+          <h4 class="mt-1 text-base font-medium">造物云成立</h4>
+          <p class="mt-1.5 text-sm text-fg-dim">浏览器里的 3D 工业设计协作平台，杭州起步。</p>
+        </div>
+        <div class="timeline-item">
+          <div class="mono text-xs text-accent">2021</div>
+          <h4 class="mt-1 text-base font-medium">首批 50 家品牌客户</h4>
+          <p class="mt-1.5 text-sm text-fg-dim">服务 ID 工作室与消费电子品牌，跑通商业模式。</p>
+        </div>
+        <div class="timeline-item">
+          <div class="mono text-xs text-accent">2022</div>
+          <h4 class="mt-1 text-base font-medium">AIGC 工具矩阵上线</h4>
+          <p class="mt-1.5 text-sm text-fg-dim">AI 商品摄影、AI 视频，覆盖快消 / 时尚 / 工业 4 大行业。</p>
+        </div>
+        <div class="timeline-item">
+          <div class="mono text-xs text-accent">2023</div>
+          <h4 class="mt-1 text-base font-medium">企业版 + 资产库</h4>
+          <p class="mt-1.5 text-sm text-fg-dim">推出 B 端工作台、企业资产库、私有部署，服务上市公司。</p>
+        </div>
+      </div>
+      <div class="timeline" data-reveal>
+        <div class="timeline-item">
+          <div class="mono text-xs text-accent">2024</div>
+          <h4 class="mt-1 text-base font-medium">造物 GPT 与行业大模型</h4>
+          <p class="mt-1.5 text-sm text-fg-dim">自研工业设计大模型上线，"行业 Know-How + AI"成型。</p>
+        </div>
+        <div class="timeline-item">
+          <div class="mono text-xs text-accent">2025</div>
+          <h4 class="mt-1 text-base font-medium">6 个新品牌孵化</h4>
+          <p class="mt-1.5 text-sm text-fg-dim">美安星球、依匠、敬亭山、有砂、百变酒精、力当家在中台上长出。</p>
+        </div>
+        <div class="timeline-item">
+          <div class="mono text-xs text-accent">2025</div>
+          <h4 class="mt-1 text-base font-medium">13 所联合实验室</h4>
+          <p class="mt-1.5 text-sm text-fg-dim">与浙大、同济、江南、北服等院校共建 AI 设计实验室。</p>
+        </div>
+        <div class="timeline-item">
+          <div class="mono text-xs text-accent">2026</div>
+          <h4 class="mt-1 text-base font-medium">AI 应用中台 + 球球老师</h4>
+          <p class="mt-1.5 text-sm text-fg-dim">中台对外开放，球球老师走出商品设计、进入 K12 教育认知。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM with portrait images -->
+<section id="team" class="py-28">
+  <div class="container">
+    <div class="grid lg:grid-cols-[1fr_2fr] gap-16 mb-12">
+      <div data-reveal>
+        <div class="sec-label"><span class="num">03_</span>// the team</div>
+        <h2 class="mt-5 display text-[clamp(30px,4vw,52px)]">一群<span class="text-accent">不安分</span>的人</h2>
+      </div>
+      <p class="text-fg-dim text-lg leading-relaxed" data-reveal>
+        来自一线大厂的 AI 工程师、工业设计师、产品经理、教育专家 ——
+        被同一件事吸引到一起：把 AI 真正接进产业，而不是停留在 demo。
+      </p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 stagger" data-reveal>
+      <div class="card overflow-hidden" data-reveal>
+        <div class="img-wrap aspect-portrait img-vignette"><img src="https://picsum.photos/seed/zwy-team-01/280/350" alt="" /><span class="ph-label">img · ceo · 280×350</span></div>
+        <div class="p-4"><div class="text-sm font-medium">创始人 / CEO</div><div class="mono text-[11px] text-fg-dim2 mt-1">10+ 年 SaaS 创业</div></div>
+      </div>
+      <div class="card overflow-hidden" data-reveal>
+        <div class="img-wrap aspect-portrait img-vignette"><img src="https://picsum.photos/seed/zwy-team-02/280/350" alt="" /><span class="ph-label">img · cto · 280×350</span></div>
+        <div class="p-4"><div class="text-sm font-medium">CTO</div><div class="mono text-[11px] text-fg-dim2 mt-1">前阿里 / 字节算法</div></div>
+      </div>
+      <div class="card overflow-hidden" data-reveal>
+        <div class="img-wrap aspect-portrait img-vignette"><img src="https://picsum.photos/seed/zwy-team-03/280/350" alt="" /><span class="ph-label">img · cdo · 280×350</span></div>
+        <div class="p-4"><div class="text-sm font-medium">CDO 设计总监</div><div class="mono text-[11px] text-fg-dim2 mt-1">国际工业设计奖</div></div>
+      </div>
+      <div class="card overflow-hidden" data-reveal>
+        <div class="img-wrap aspect-portrait img-vignette"><img src="https://picsum.photos/seed/zwy-team-04/280/350" alt="" /><span class="ph-label">img · qiuqiu-pm · 280×350</span></div>
+        <div class="p-4"><div class="text-sm font-medium">球球老师 PM</div><div class="mono text-[11px] text-fg-dim2 mt-1">教育 + AI 跨界</div></div>
+      </div>
+      <div class="card overflow-hidden" data-reveal>
+        <div class="img-wrap aspect-portrait img-vignette"><img src="https://picsum.photos/seed/zwy-team-05/280/350" alt="" /><span class="ph-label">img · arch · 280×350</span></div>
+        <div class="p-4"><div class="text-sm font-medium">中台架构师</div><div class="mono text-[11px] text-fg-dim2 mt-1">前火山引擎</div></div>
+      </div>
+      <div class="card overflow-hidden" data-reveal>
+        <div class="img-wrap aspect-portrait img-vignette"><img src="https://picsum.photos/seed/zwy-team-06/280/350" alt="" /><span class="ph-label">img · bd · 280×350</span></div>
+        <div class="p-4"><div class="text-sm font-medium">商务负责人</div><div class="mono text-[11px] text-fg-dim2 mt-1">100+ 头部品牌</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTORS + HONORS with images -->
+<section id="honors" class="py-24 bg-bg-1">
+  <div class="container">
+    <div class="grid lg:grid-cols-2 gap-12">
+      <div data-reveal id="investors">
+        <div class="sec-label"><span class="num">04_</span>// backed by</div>
+        <h2 class="mt-5 display text-[clamp(28px,3.6vw,44px)]">长期主义的<br/>投资人朋友</h2>
+        <div class="mt-8 grid grid-cols-2 gap-4">
+          <div class="logo-grid-cell"><img class="client-logo" style="height:28px;" src="https://cdn.zaowuyun.com/tmp/231010/bc3daf8121a04c4cdf05dbfa1780f9b8.jfif" alt="线性资本" /></div>
+          <div class="logo-grid-cell"><span class="mono text-[11px] text-fg-dim2">陆续公布中</span></div>
+        </div>
+        <p class="mt-6 text-sm text-fg-dim leading-relaxed">线性资本作为我们的早期投资方，在 AI 产业、To B SaaS、产业互联网方向有深度行业认知与生态资源。</p>
+      </div>
+      <div data-reveal>
+        <div class="sec-label"><span class="num">05_</span>// honors & awards</div>
+        <h2 class="mt-5 display text-[clamp(28px,3.6vw,44px)]">行业认可</h2>
+        <div class="mt-8 space-y-3">
+          <div class="card p-5 flex items-center gap-4"><div class="img-wrap aspect-square shrink-0" style="width:48px;height:48px;border-radius:4px;"><img src="https://picsum.photos/seed/zwy-honor-1/96/96" alt="" /></div><div class="flex-1"><div class="mono text-accent text-xs">2025</div><div class="text-sm font-medium">AIGC 商业落地 TOP 50</div></div></div>
+          <div class="card p-5 flex items-center gap-4"><div class="img-wrap aspect-square shrink-0" style="width:48px;height:48px;border-radius:4px;"><img src="https://picsum.photos/seed/zwy-honor-2/96/96" alt="" /></div><div class="flex-1"><div class="mono text-accent text-xs">2024</div><div class="text-sm font-medium">浙江省专精特新企业</div></div></div>
+          <div class="card p-5 flex items-center gap-4"><div class="img-wrap aspect-square shrink-0" style="width:48px;height:48px;border-radius:4px;"><img src="https://picsum.photos/seed/zwy-honor-3/96/96" alt="" /></div><div class="flex-1"><div class="mono text-accent text-xs">2024</div><div class="text-sm font-medium">国家高新技术企业</div></div></div>
+          <div class="card p-5 flex items-center gap-4"><div class="img-wrap aspect-square shrink-0" style="width:48px;height:48px;border-radius:4px;"><img src="https://picsum.photos/seed/zwy-honor-4/96/96" alt="" /></div><div class="flex-1"><div class="mono text-accent text-xs">2023</div><div class="text-sm font-medium">阿里云生态优秀伙伴</div></div></div>
+          <div class="card p-5 flex items-center gap-4"><div class="img-wrap aspect-square shrink-0" style="width:48px;height:48px;border-radius:4px;"><img src="https://picsum.photos/seed/zwy-honor-5/96/96" alt="" /></div><div class="flex-1"><div class="mono text-accent text-xs">2022</div><div class="text-sm font-medium">浙江省创新型中小企业</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values" class="py-24">
+  <div class="container">
+    <div class="mb-14" data-reveal>
+      <div class="sec-label"><span class="num">06_</span>// values</div>
+      <h2 class="mt-5 display text-[clamp(30px,4vw,52px)]">我们相信的<span class="text-accent">三件事</span></h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4 stagger" data-reveal>
+      <div class="card overflow-hidden" data-reveal>
+        <div class="img-wrap aspect-card img-vignette img-grad-purple"><img src="https://picsum.photos/seed/zwy-value-01/620/420" alt="" /><span class="ph-label">img · value-01 · 620×420</span></div>
+        <div class="p-7"><div class="mono text-xs text-accent">/01</div><h3 class="mt-4 text-xl font-medium">行业先验 &gt; 通用对话</h3><p class="mt-4 text-sm text-fg-dim leading-relaxed">每条业务都来自真实客户与付费数据。我们不做"花哨但没用"的 demo。</p></div>
+      </div>
+      <div class="card overflow-hidden" data-reveal>
+        <div class="img-wrap aspect-card img-vignette img-grad-purple"><img src="https://picsum.photos/seed/zwy-value-02/620/420" alt="" /><span class="ph-label">img · value-02 · 620×420</span></div>
+        <div class="p-7"><div class="mono text-xs text-accent">/02</div><h3 class="mt-4 text-xl font-medium">应用独立 &gt; 平台绑架</h3><p class="mt-4 text-sm text-fg-dim leading-relaxed">中台只解决"通用的难"。每个应用保留自己的品牌、交互、商业模式。</p></div>
+      </div>
+      <div class="card overflow-hidden" data-reveal>
+        <div class="img-wrap aspect-card img-vignette img-grad-purple"><img src="https://picsum.photos/seed/zwy-value-03/620/420" alt="" /><span class="ph-label">img · value-03 · 620×420</span></div>
+        <div class="p-7"><div class="mono text-xs text-accent">/03</div><h3 class="mt-4 text-xl font-medium">最后一公里 &gt; PPT 漂亮</h3><p class="mt-4 text-sm text-fg-dim leading-relaxed">私有部署、合规、家长端 / 教师端 —— 那些 PPT 不画的脏活是我们标配。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA with bg image -->
+<section class="hero-with-image" style="min-height:420px;">
+  <div class="hero-image-bg">
+    <img src="https://picsum.photos/seed/zwy-about-cta/2400/900" alt="" />
+  </div>
+  <div class="absolute inset-0 grid-bg pointer-events-none opacity-40"></div>
+  <div class="relative container py-24">
+    <div class="grid lg:grid-cols-[1.5fr_1fr] gap-12 items-end">
+      <div data-reveal>
+        <h2 class="display text-[clamp(36px,5.5vw,80px)] leading-[0.95]">来和我们聊聊 ——<br/><span class="text-accent">不管你是哪一类<span class="cursor"></span></span></h2>
+      </div>
+      <div class="flex flex-col gap-3" data-reveal>
+        <a href="contact.html#enterprise" class="btn-primary justify-between">企业 · 预约咨询 <span class="arr">→</span></a>
+        <a href="developers.html" class="btn-bracket justify-between">开发者 · 进入开发者中心 <span>→</span></a>
+        <a href="academy.html" class="btn-bracket justify-between">高校 · 申请联合实验室 <span>→</span></a>
+        <a href="#" class="btn-bracket justify-between">候选人 · 投递简历 <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-line bg-bg-1">
+  <div class="container py-14">
+    <div class="grid md:grid-cols-6 gap-10">
+      <div class="md:col-span-2"><div class="flex items-center gap-2"><img src="https://www.zaowuyun.com/favicon.ico" class="w-5 h-5 rounded-sm" /><div class="mono text-base"><span class="text-fg">zaowuyun</span><span class="text-accent">_</span></div></div><p class="mt-4 text-sm text-fg-dim max-w-xs leading-relaxed">AI 应用中台。<br/>为每一个垂直行业，长出一个值得被信任的 AI 应用。</p><div class="mt-5 flex items-center gap-3"><span class="mono text-[10px] uppercase tracking-widest text-fg-dim2">backed by</span><img class="client-logo" style="height:20px;" src="https://cdn.zaowuyun.com/tmp/231010/bc3daf8121a04c4cdf05dbfa1780f9b8.jfif" alt="线性资本" /></div></div>
+      <div><div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">我们做什么</div><ul class="space-y-2.5 text-sm text-fg-dim"><li><a href="solutions.html">解决方案中心</a></li><li><a href="platform.html">中台能力</a></li><li><a href="apps.html">应用矩阵</a></li><li><a href="apps-qiuqiu.html">球球老师</a></li></ul></div>
+      <div><div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">我们的洞察</div><ul class="space-y-2.5 text-sm text-fg-dim"><li><a href="cases.html">案例中心</a></li><li><a href="blog.html">行业洞察</a></li><li><a href="news.html">公司动态</a></li></ul></div>
+      <div><div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">开发者 & 高校</div><ul class="space-y-2.5 text-sm text-fg-dim"><li><a href="developers.html">开发者中心</a></li><li><a href="academy.html">高校合作</a></li><li><a href="https://www.zaowuyun.com/" target="_blank">登录控制台 ↗</a></li></ul></div>
+      <div><div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">关于</div><ul class="space-y-2.5 text-sm text-fg-dim"><li><a href="about.html">关于造物云</a></li><li><a href="contact.html">联系我们</a></li><li><a href="contact.html#enterprise">商务合作</a></li><li><a href="#">招贤纳士</a></li></ul></div>
+    </div>
+    <div class="mt-12 pt-6 border-t border-line flex flex-wrap items-center justify-between gap-4 mono text-xs text-fg-dim2"><div>© 2026 zaowuyun · 浙公网安备 33010602013219 号</div><div class="flex gap-5"><a href="#">隐私政策</a><a href="#">服务条款</a><a href="#">合规与安全</a></div></div>
+  </div>
+</footer>
+
+<script src="assets/zwy.js"></script>
+</body>
+</html>

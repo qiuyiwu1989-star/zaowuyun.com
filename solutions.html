@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>解决方案中心 — 造物云</title>
+<meta name="description" content="按行业看 AI 解决方案 · 快消 / 时尚 / 文化 / 工业。咨询 + 中台 + 应用，一站到底。" />
+<link rel="icon" href="https://www.zaowuyun.com/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/zwy.css" />
+<script>(function(){try{var t=localStorage.getItem('zwy-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{bg:'var(--bg)','bg-1':'var(--bg-1)','bg-2':'var(--bg-2)','bg-3':'var(--bg-3)',line:'var(--line)','line-2':'var(--line-2)',fg:'var(--fg)','fg-dim':'var(--fg-dim)','fg-dim2':'var(--fg-dim2)','fg-dim3':'var(--fg-dim3)',accent:'var(--accent)','accent-hi':'var(--accent-hi)','accent-soft':'var(--accent-soft)','accent-fg':'var(--accent-fg)'},fontFamily:{sans:['Inter','ui-sans-serif','system-ui','-apple-system','"PingFang SC"','"Microsoft YaHei"','sans-serif'],display:['"Space Grotesk"','Inter','sans-serif'],mono:['"JetBrains Mono"','ui-monospace','SFMono-Regular','Menlo','monospace']}}}};</script>
+</head>
+<body class="bg-bg text-fg">
+
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl border-b border-line nav-bar">
+  <div class="container h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2"><img src="https://www.zaowuyun.com/favicon.ico" alt="" class="w-5 h-5 rounded-sm" /><span class="mono text-sm"><span class="text-fg">zaowuyun</span><span class="text-accent">_</span></span></a>
+        <nav class="hidden lg:flex items-center gap-1">
+      <a href="solutions.html" class="px-4 py-2 mono text-[13px] text-accent transition" data-i18n="nav.what_we_do">我们做什么</a>
+      <a href="cases.html" class="px-4 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.what_we_think">我们的洞察</a>
+      <a href="developers.html" class="px-4 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.developers">开发者</a>
+      <a href="about.html" class="px-4 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.who_we_are">关于造物云</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="https://www.zaowuyun.com/" target="_blank" class="hidden sm:inline mono text-[13px] text-fg-dim hover:text-fg">登录控制台</a>
+      <button id="lang-switch" class="lang-switch" aria-label="语言">EN</button>
+      <button id="theme-toggle" class="toggle" type="button">
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <a href="contact.html" class="btn-bracket">预约咨询<span>→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative pt-36 pb-20 overflow-hidden noise">
+  <div class="hero-image-bg" style="opacity:.35;"><img src="https://picsum.photos/seed/zwy-solutions-hero/2400/1100" alt="" /></div>
+  <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+  <div class="absolute inset-0 accent-glow pointer-events-none"></div>
+  <div class="relative container">
+    <div class="sec-label mb-6" data-reveal><span class="num">▌</span>// solutions</div>
+    <h1 class="display text-[clamp(44px,7.5vw,108px)] max-w-[1000px]" data-reveal>
+      为每一个行业，<br/><span class="text-accent">设计专属的 AI 路径</span>
+    </h1>
+    <p class="mt-8 max-w-2xl text-fg-dim text-lg leading-relaxed" data-reveal>
+      我们用咨询公司的方法论 + 工程团队的交付力，
+      陪你从"AI 该不该用"到"AI 跑通业务指标"的每一步。
+    </p>
+    <div class="mt-10 flex flex-wrap gap-3" data-reveal>
+      <a href="contact.html#enterprise" class="btn-primary">预约咨询 <span class="arr">→</span></a>
+      <a href="#methodology" class="text-cta">查看方法论 <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRY GRID -->
+<section class="py-24">
+  <div class="container">
+    <div data-reveal>
+      <div class="sec-label"><span class="num">01_</span>// by industry</div>
+      <h2 class="mt-5 display text-[clamp(30px,4vw,52px)]">按行业看方案</h2>
+    </div>
+
+    <div class="mt-12 grid md:grid-cols-2 gap-4 stagger" data-reveal>
+      <a href="solutions-fmcg.html" class="card p-8 group" data-reveal>
+        <div class="flex items-center justify-between">
+          <span class="mono text-xs text-fg-dim2">fmcg / 快消品</span>
+          <span class="mono text-xs text-accent">01</span>
+        </div>
+        <h3 class="mt-4 display text-3xl">快消品</h3>
+        <p class="mt-4 text-sm text-fg-dim leading-relaxed">
+          食品、日化、个护、饮料。围绕节日营销、上新主图、电商爆款链路 ——
+          让品牌的"内容供给"匹配"流量节奏"。
+        </p>
+        <div class="mt-6 grid grid-cols-3 gap-3 text-center mono text-[11px] text-fg-dim2">
+          <div class="border border-line rounded-sm py-2">300+ SKU</div>
+          <div class="border border-line rounded-sm py-2">-92% 工时</div>
+          <div class="border border-line rounded-sm py-2">1 天上线</div>
+        </div>
+        <div class="mt-6 mono text-[11px] text-fg-dim2">服务过：欧莱雅 · 舒克 · YOOZ · 醉清风</div>
+        <div class="mt-5 link-arrow">查看完整方案 <span class="arr">→</span></div>
+      </a>
+
+      <a href="solutions.html" class="card p-8 group" data-reveal>
+        <div class="flex items-center justify-between">
+          <span class="mono text-xs text-fg-dim2">fashion / 时尚品</span>
+          <span class="mono text-xs text-accent">02</span>
+        </div>
+        <h3 class="mt-4 display text-3xl">时尚品</h3>
+        <p class="mt-4 text-sm text-fg-dim leading-relaxed">
+          服装、鞋帽、配饰、美妆。趋势洞察 + 虚拟模特 + 季节系列上新 ——
+          让创意产能跟上"快时尚的节奏"。
+        </p>
+        <div class="mt-6 grid grid-cols-3 gap-3 text-center mono text-[11px] text-fg-dim2">
+          <div class="border border-line rounded-sm py-2">虚拟模特</div>
+          <div class="border border-line rounded-sm py-2">-80% 拍摄</div>
+          <div class="border border-line rounded-sm py-2">4 季持续</div>
+        </div>
+        <div class="mt-6 mono text-[11px] text-fg-dim2">服务过：星巴克 · 申通德高 · 新潮新消费</div>
+        <div class="mt-5 link-arrow">查看完整方案 <span class="arr">→</span></div>
+      </a>
+
+      <a href="solutions.html" class="card p-8 group" data-reveal>
+        <div class="flex items-center justify-between">
+          <span class="mono text-xs text-fg-dim2">culture / 文化品</span>
+          <span class="mono text-xs text-accent">03</span>
+        </div>
+        <h3 class="mt-4 display text-3xl">文化品</h3>
+        <p class="mt-4 text-sm text-fg-dim leading-relaxed">
+          文创、玩具、IP 周边、教育出版。IP 衍生设计 + 儿童内容场景 ——
+          球球老师就是这条赛道上的旗舰应用。
+        </p>
+        <div class="mt-6 grid grid-cols-3 gap-3 text-center mono text-[11px] text-fg-dim2">
+          <div class="border border-line rounded-sm py-2">球球老师</div>
+          <div class="border border-line rounded-sm py-2">IP 衍生</div>
+          <div class="border border-line rounded-sm py-2">儿童认知</div>
+        </div>
+        <div class="mt-6 mono text-[11px] text-fg-dim2">服务过：中国体育彩票 · 绿城 · 致欧家居</div>
+        <div class="mt-5 link-arrow">查看完整方案 <span class="arr">→</span></div>
+      </a>
+
+      <a href="solutions.html" class="card p-8 group" data-reveal>
+        <div class="flex items-center justify-between">
+          <span class="mono text-xs text-fg-dim2">industrial / 工业品</span>
+          <span class="mono text-xs text-accent">04</span>
+        </div>
+        <h3 class="mt-4 display text-3xl">工业品</h3>
+        <p class="mt-4 text-sm text-fg-dim leading-relaxed">
+          消费电子、家电、智能硬件、汽配。AI 草图 + 3D 渲染 + 设计-制造协同 ——
+          这是造物云出发的地方。
+        </p>
+        <div class="mt-6 grid grid-cols-3 gap-3 text-center mono text-[11px] text-fg-dim2">
+          <div class="border border-line rounded-sm py-2">-60% 周期</div>
+          <div class="border border-line rounded-sm py-2">3D 协同</div>
+          <div class="border border-line rounded-sm py-2">8 产品线</div>
+        </div>
+        <div class="mt-6 mono text-[11px] text-fg-dim2">服务过：海尔 · 苏泊尔 · 顾家家居 · 佳简几何</div>
+        <div class="mt-5 link-arrow">查看完整方案 <span class="arr">→</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="hr-thin"></div>
+
+<!-- METHODOLOGY -->
+<section id="methodology" class="py-24 bg-bg-1">
+  <div class="container">
+    <div class="mb-14" data-reveal>
+      <div class="sec-label"><span class="num">02_</span>// methodology</div>
+      <h2 class="mt-5 display text-[clamp(30px,4vw,52px)]">咨询公司的<span class="text-accent">方法论</span><br/>工程团队的<span class="text-accent">交付力</span></h2>
+      <p class="mt-6 max-w-2xl text-fg-dim leading-relaxed">
+        不是发个 PPT 就走的咨询，也不是收到 spec 才动的外包 ——
+        从战略到代码，一个团队负责到底。
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-5 gap-4 stagger relative" data-reveal>
+      <div class="hidden md:block absolute top-12 left-[10%] right-[10%] h-px bg-line"></div>
+      <div class="flow-step" data-reveal>
+        <div class="w-9 h-9 rounded-full bg-accent text-accent-fg mono text-sm flex items-center justify-center font-medium relative z-10">01</div>
+        <h4 class="mt-5 text-lg font-medium">诊断</h4>
+        <p class="mt-3 text-xs text-fg-dim leading-relaxed">业务现状、流程瓶颈、AI 接入机会扫描，输出可决策的方案候选。</p>
+        <div class="mt-4 mono text-[11px] text-fg-dim2">1–2 周</div>
+      </div>
+      <div class="flow-step" data-reveal>
+        <div class="w-9 h-9 rounded-full bg-accent text-accent-fg mono text-sm flex items-center justify-center font-medium relative z-10">02</div>
+        <h4 class="mt-5 text-lg font-medium">方案</h4>
+        <p class="mt-3 text-xs text-fg-dim leading-relaxed">行业 know-how + 中台能力组合 + ROI 测算，定下 MVP 范围与边界。</p>
+        <div class="mt-4 mono text-[11px] text-fg-dim2">2–3 周</div>
+      </div>
+      <div class="flow-step" data-reveal>
+        <div class="w-9 h-9 rounded-full bg-accent text-accent-fg mono text-sm flex items-center justify-center font-medium relative z-10">03</div>
+        <h4 class="mt-5 text-lg font-medium">实施</h4>
+        <p class="mt-3 text-xs text-fg-dim leading-relaxed">同一团队设计 + 工程 + 内容 + 数据，并行推进直到 MVP 上线。</p>
+        <div class="mt-4 mono text-[11px] text-fg-dim2">6–10 周</div>
+      </div>
+      <div class="flow-step" data-reveal>
+        <div class="w-9 h-9 rounded-full bg-accent text-accent-fg mono text-sm flex items-center justify-center font-medium relative z-10">04</div>
+        <h4 class="mt-5 text-lg font-medium">验证</h4>
+        <p class="mt-3 text-xs text-fg-dim leading-relaxed">真实用户灰度、效果指标对比、AB 测试 —— 不靠谱的 idea 在花预算前就死掉。</p>
+        <div class="mt-4 mono text-[11px] text-fg-dim2">2–4 周</div>
+      </div>
+      <div class="flow-step" data-reveal>
+        <div class="w-9 h-9 rounded-full bg-accent text-accent-fg mono text-sm flex items-center justify-center font-medium relative z-10">05</div>
+        <h4 class="mt-5 text-lg font-medium">长期</h4>
+        <p class="mt-3 text-xs text-fg-dim leading-relaxed">月度运维 + 季度迭代 + 数据闭环回写中台，把短期收益变成长期资产。</p>
+        <div class="mt-4 mono text-[11px] text-fg-dim2">长期</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 MODES -->
+<section class="py-24">
+  <div class="container">
+    <div class="flex items-end justify-between flex-wrap gap-6" data-reveal>
+      <div>
+        <div class="sec-label"><span class="num">03_</span>// engagement modes</div>
+        <h2 class="mt-5 display text-[clamp(30px,4vw,52px)]">三种合作模式</h2>
+      </div>
+      <p class="text-fg-dim max-w-md">从最轻量的采购，到一起从 0 共建 —— 选一种最适合你当下阶段的方式开始。</p>
+    </div>
+
+    <div class="mt-12 grid md:grid-cols-3 gap-4 stagger" data-reveal>
+      <div class="card p-8" data-reveal>
+        <div class="mono text-xs text-accent">mode_01</div>
+        <h3 class="mt-4 text-2xl font-medium">应用采购</h3>
+        <p class="mt-2 mono text-xs text-fg-dim2">licensing</p>
+        <p class="mt-6 text-sm text-fg-dim leading-relaxed">采购已落地的 AI 应用，按席位 / 学校 / 年度授权。最快两周对接上线。</p>
+        <div class="mt-8 mono text-[11px] text-fg-dim space-y-1.5">
+          <div>· 适合：教育集团 / 品牌方 / 渠道商</div><div>· 周期：2–4 周</div><div>· 投入：低</div>
+        </div>
+      </div>
+      <div class="card card-accent p-8 relative" data-reveal style="box-shadow:0 0 0 1px var(--accent), 0 12px 40px -16px var(--accent-soft);">
+        <div class="absolute top-4 right-4 btn-pill" style="border-color:var(--accent); color:var(--accent);">recommended</div>
+        <div class="mono text-xs text-accent">mode_02</div>
+        <h3 class="mt-4 text-2xl font-medium">行业共建</h3>
+        <p class="mt-2 mono text-xs text-fg-dim2">co-building</p>
+        <p class="mt-6 text-sm text-fg-dim leading-relaxed">你出场景与 Know-How，我们出中台与工程，一起在你的垂直行业孵化新 AI 应用。</p>
+        <div class="mt-8 mono text-[11px] text-fg-dim space-y-1.5">
+          <div>· 适合：行业龙头 / 创业团队</div><div>· 周期：8–16 周到 MVP</div><div>· 投入：中</div>
+        </div>
+      </div>
+      <div class="card p-8" data-reveal>
+        <div class="mono text-xs text-accent">mode_03</div>
+        <h3 class="mt-4 text-2xl font-medium">中台接入</h3>
+        <p class="mt-2 mono text-xs text-fg-dim2">platform access</p>
+        <p class="mt-6 text-sm text-fg-dim leading-relaxed">已有自己的产品和团队，按需调用中台某一层能力，按调用计费。</p>
+        <div class="mt-8 mono text-[11px] text-fg-dim space-y-1.5">
+          <div>· 适合：有研发团队的企业</div><div>· 周期：1–2 周接入</div><div>· 投入：按用量</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="relative py-24 overflow-hidden bg-bg-1">
+  <div class="absolute inset-0 accent-glow pointer-events-none"></div>
+  <div class="relative container">
+    <div class="grid lg:grid-cols-[1.5fr_1fr] gap-12 items-end">
+      <div data-reveal>
+        <h2 class="display text-[clamp(36px,5.5vw,80px)] leading-[0.95]">不知道从哪开始？<br/><span class="text-accent">先来 30 分钟<span class="cursor"></span></span></h2>
+      </div>
+      <div data-reveal>
+        <p class="text-fg-dim leading-relaxed">第一次交流免费。会议结束你会拿到一份针对你场景的 AI 接入路线图。</p>
+        <a href="contact.html#enterprise" class="mt-6 inline-flex btn-primary">预约 30 分钟咨询 <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-line bg-bg-1">
+  <div class="container py-14">
+        <div class="grid md:grid-cols-6 gap-10">
+      <div class="md:col-span-2"><div class="flex items-center gap-2"><img src="https://www.zaowuyun.com/favicon.ico" class="w-5 h-5 rounded-sm" /><div class="mono text-base"><span class="text-fg">zaowuyun</span><span class="text-accent">_</span></div></div><p class="mt-4 text-sm text-fg-dim max-w-xs leading-relaxed">AI 应用中台。<br/>为每一个垂直行业，长出一个值得被信任的 AI 应用。</p><div class="mt-5 flex items-center gap-3"><span class="mono text-[10px] uppercase tracking-widest text-fg-dim2">backed by</span><img class="client-logo" style="height:20px;" src="https://cdn.zaowuyun.com/tmp/231010/bc3daf8121a04c4cdf05dbfa1780f9b8.jfif" alt="线性资本" /></div></div>
+      <div><div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">我们做什么</div><ul class="space-y-2.5 text-sm text-fg-dim"><li><a href="solutions.html">解决方案中心</a></li><li><a href="platform.html">中台能力</a></li><li><a href="apps.html">应用矩阵</a></li><li><a href="apps-qiuqiu.html">球球老师</a></li></ul></div>
+      <div><div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">我们的洞察</div><ul class="space-y-2.5 text-sm text-fg-dim"><li><a href="cases.html">案例中心</a></li><li><a href="blog.html">行业洞察</a></li><li><a href="news.html">公司动态</a></li></ul></div>
+      <div><div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">开发者 & 高校</div><ul class="space-y-2.5 text-sm text-fg-dim"><li><a href="developers.html">开发者中心</a></li><li><a href="academy.html">高校合作</a></li><li><a href="https://www.zaowuyun.com/" target="_blank">登录控制台 ↗</a></li></ul></div>
+      <div><div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">关于</div><ul class="space-y-2.5 text-sm text-fg-dim"><li><a href="about.html">关于造物云</a></li><li><a href="contact.html">联系我们</a></li><li><a href="contact.html#enterprise">商务合作</a></li><li><a href="#">招贤纳士</a></li></ul></div>
+    </div>
+    <div class="mt-12 pt-6 border-t border-line flex flex-wrap items-center justify-between gap-4 mono text-xs text-fg-dim2">
+      <div>© 2026 zaowuyun · 浙公网安备 33010602013219 号</div>
+      <div class="flex gap-5"><a href="#">隐私政策</a><a href="#">服务条款</a><a href="#">合规与安全</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/zwy.js"></script>
+</body>
+</html>

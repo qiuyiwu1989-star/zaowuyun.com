@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>球球老师 — K12 儿童认知探索智能体</title>
+<meta name="description" content="球球老师 · 会聊天的好奇心同伴。学校推荐、家长付费、陪孩子做开放式探索。" />
+<link rel="icon" href="https://www.zaowuyun.com/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/zwy.css" />
+<script>(function(){try{var t=localStorage.getItem('zwy-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{bg:'var(--bg)','bg-1':'var(--bg-1)','bg-2':'var(--bg-2)','bg-3':'var(--bg-3)',line:'var(--line)','line-2':'var(--line-2)',fg:'var(--fg)','fg-dim':'var(--fg-dim)','fg-dim2':'var(--fg-dim2)','fg-dim3':'var(--fg-dim3)',accent:'var(--accent)','accent-hi':'var(--accent-hi)','accent-soft':'var(--accent-soft)','accent-fg':'var(--accent-fg)'},fontFamily:{sans:['Inter','sans-serif'],display:['"Space Grotesk"','Inter','sans-serif'],mono:['"JetBrains Mono"','monospace']}}}};</script>
+</head>
+<body class="bg-bg text-fg">
+
+<!-- NAV (consistent 4-item Accenture-style, simplified mega for subpages) -->
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl border-b border-line nav-bar">
+  <div class="container h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2"><img src="https://www.zaowuyun.com/favicon.ico" class="w-5 h-5 rounded-sm" /><span class="mono text-sm"><span class="text-fg">zaowuyun</span><span class="text-accent">_</span></span></a>
+    <nav class="hidden lg:flex items-center gap-1">
+      <a href="solutions.html" class="px-4 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.what_we_do">我们做什么</a>
+      <a href="cases.html" class="px-4 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.what_we_think">我们的洞察</a>
+      <a href="developers.html" class="px-4 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.developers">开发者</a>
+      <a href="about.html" class="px-4 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.who_we_are">关于造物云</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="https://www.zaowuyun.com/" target="_blank" class="hidden sm:inline mono text-[13px] text-fg-dim hover:text-fg transition px-2" data-i18n="nav.login">登录控制台</a>
+      <button id="lang-switch" class="lang-switch" aria-label="语言">EN</button>
+      <button id="theme-toggle" class="toggle" type="button">
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <a href="contact.html" class="btn-bracket" data-i18n="nav.book">预约咨询<span>→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO with side image (product mockup) -->
+<section class="relative pt-32 pb-20 overflow-hidden noise">
+  <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+  <div class="orb orb-accent orb-drift" style="width:520px;height:520px;top:-150px;right:-100px;opacity:.3;"></div>
+  <div class="relative container">
+    <div class="hero-split">
+      <div>
+        <div class="mono text-xs text-fg-dim2 uppercase tracking-widest mb-6" data-reveal>
+          <a href="apps.html" class="hover:text-accent">applications</a> / qiuqiu_laoshi · flagship
+        </div>
+        <h1 class="display text-[clamp(48px,8vw,128px)]" data-reveal>球球老师<span class="text-accent cursor"></span></h1>
+        <p class="mt-6 text-2xl text-fg-dim max-w-2xl" data-reveal>会聊天的好奇心同伴 ——<br/>K12 儿童的认知探索智能体</p>
+        <p class="mt-8 max-w-2xl text-fg-dim text-base leading-relaxed" data-reveal>
+          不刷题、不押宝、不假装"考试帮手"。陪孩子做开放式的世界探索 ——
+          学校推荐为家长画好"信任边界"，家长付费让孩子用得长久。
+        </p>
+        <div class="mt-10 flex flex-wrap gap-3" data-reveal>
+          <a href="contact.html#enterprise" class="btn-primary">预约学校接入 <span class="arr">→</span></a>
+          <a href="#demo" class="text-cta">看交互 demo <span class="arr">→</span></a>
+        </div>
+      </div>
+
+      <!-- Hero side image: iPad mockup with chat -->
+      <div class="relative" data-reveal-zoom>
+        <div class="img-wrap aspect-tablet img-vignette img-grain float-up" style="border-radius:18px;box-shadow:var(--img-shadow);">
+          <img src="https://picsum.photos/seed/zwy-qiuqiu-hero/800/600" alt="" />
+          <span class="ph-label">img · qiuqiu-hero · 800×600 (iPad 上的球球老师界面)</span>
+        </div>
+        <!-- decorative floating chat snippet -->
+        <div class="hidden lg:block absolute -bottom-6 -left-6 bg-bg-1 border border-line rounded-lg p-3 max-w-[200px] shadow-2xl">
+          <div class="flex items-center gap-2">
+            <div class="avatar avatar-bot" style="width:1.5rem;height:1.5rem;font-size:.65rem;">球</div>
+            <div class="mono text-[10px] text-fg-dim">球球老师 · 正在思考…</div>
+          </div>
+          <div class="mt-2 text-xs leading-relaxed">这是一个超棒的问题！要不要一起做个小实验？</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI strip -->
+    <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-px border border-line rounded-sm overflow-hidden" data-reveal>
+      <div class="bg-bg-1 p-6"><div class="mono text-xs text-fg-dim2 uppercase">合作学校</div><div class="mt-2 stat-big text-3xl">12<span class="text-accent text-lg">所</span></div></div>
+      <div class="bg-bg-1 p-6"><div class="mono text-xs text-fg-dim2 uppercase">活跃儿童</div><div class="mt-2 stat-big text-3xl">5000<span class="text-accent text-lg">+</span></div></div>
+      <div class="bg-bg-1 p-6"><div class="mono text-xs text-fg-dim2 uppercase">家长 NPS</div><div class="mt-2 stat-big text-3xl">62<span class="text-accent text-lg">分</span></div></div>
+      <div class="bg-bg-1 p-6"><div class="mono text-xs text-fg-dim2 uppercase">版本</div><div class="mt-2 stat-big text-3xl">v1.0<span class="text-accent text-base ml-1">锁定</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PROBLEM (image left, text right) -->
+<section class="py-28 bg-bg-1">
+  <div class="container">
+    <div class="feature-row">
+      <div class="img-wrap aspect-card img-vignette img-zoom" data-reveal-clip>
+        <img src="https://picsum.photos/seed/zwy-qiuqiu-problem/900/600" alt="" />
+        <span class="ph-label">img · qiuqiu-problem · 900×600 (孩子被作业淹没的场景)</span>
+      </div>
+      <div data-reveal>
+        <div class="sec-label"><span class="num">01_</span>// the problem</div>
+        <h2 class="mt-5 display text-[clamp(28px,3.8vw,52px)] leading-snug">K12 阶段，<br/>真正缺的不是<br/><span class="text-accent">"另一个刷题工具"</span></h2>
+        <div class="mt-8 space-y-5 text-fg-dim leading-relaxed">
+          <p>市面上的 K12 AI 产品几乎都长一个样 —— <span class="text-fg">"AI 老师讲你不会的题"、"押中考考点"、"作文模板"</span>。这些 AI 在帮孩子<span class="text-fg">完成应试</span>。但孩子对世界最珍贵的好奇心，在被一题一题消耗。</p>
+          <p>家长在两难：不让用 AI 怕落后，让用又怕孩子被"高效"训练成不会提问的人。</p>
+          <p class="text-fg">球球老师做的事相反 —— 不替孩子答题，而是陪孩子<span class="text-accent">提问</span>、<span class="text-accent">猜想</span>、<span class="text-accent">做小实验</span>。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO conversations -->
+<section id="demo" class="py-28">
+  <div class="container">
+    <div class="mb-12" data-reveal>
+      <div class="sec-label"><span class="num">02_</span>// what it feels like</div>
+      <h2 class="mt-5 display text-[clamp(28px,3.8vw,52px)]">一次<span class="text-accent">真实对话</span></h2>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-4">
+      <div class="card p-8" data-reveal>
+        <div class="mono text-xs text-fg-dim2 mb-5">scene · 听见海</div>
+        <div class="space-y-3">
+          <div class="flex items-start gap-3"><div class="avatar avatar-user shrink-0">娃</div><div class="bubble-them">球球老师，海螺真的能听见海吗？</div></div>
+          <div class="flex items-start gap-3 justify-end"><div class="bubble-me">这个问题超棒！你有没有听过外婆讲"海螺里住着海"的故事？我们一起来想 —— 那个声音到底是从哪来的？</div><div class="avatar avatar-bot shrink-0">球</div></div>
+          <div class="flex items-start gap-3"><div class="avatar avatar-user shrink-0">娃</div><div class="bubble-them">从耳朵？</div></div>
+          <div class="flex items-start gap-3 justify-end"><div class="bubble-me">差不多！其实是空气在海螺里的弯弯绕绕。今天我们做个小实验 —— 找一个杯子贴耳朵上，你也能听见"海"。🐚</div><div class="avatar avatar-bot shrink-0">球</div></div>
+        </div>
+      </div>
+      <div class="card p-8" data-reveal>
+        <div class="mono text-xs text-fg-dim2 mb-5">scene · 一道难题</div>
+        <div class="space-y-3">
+          <div class="flex items-start gap-3"><div class="avatar avatar-user shrink-0">娃</div><div class="bubble-them">这道数学题我不会，你告诉我答案。</div></div>
+          <div class="flex items-start gap-3 justify-end"><div class="bubble-me">我可以告诉你答案 —— 但我们换一种玩法好不好？你先告诉我你看到了什么，让我猜你卡在哪里。如果三句话内我猜不出来，我就告诉你 😎</div><div class="avatar avatar-bot shrink-0">球</div></div>
+          <div class="flex items-start gap-3"><div class="avatar avatar-user shrink-0">娃</div><div class="bubble-them">我看到一堆数字，加号减号…</div></div>
+          <div class="flex items-start gap-3 justify-end"><div class="bubble-me">那我猜你是被"先做哪个"搞晕了。来 —— 用红笔圈出最让你犹豫的那一步，给我看看，我们一起讨论。</div><div class="avatar avatar-bot shrink-0">球</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 card p-7" data-reveal>
+      <div class="mono text-xs text-fg-dim2 uppercase mb-4">behind the scene · 中台是怎么工作的</div>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div><div class="mono text-[11px] text-accent">L1 / models</div><div class="mt-1.5 text-sm">多模型路由 + 儿童内容安全模型</div></div>
+        <div><div class="mono text-[11px] text-accent">L3 / agents</div><div class="mt-1.5 text-sm">认知探索 Agent + 安全护栏 Agent</div></div>
+        <div><div class="mono text-[11px] text-accent">L4 / templates</div><div class="mt-1.5 text-sm">edu / cognitive-探索 模板</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr-thin"></div>
+
+<!-- 6 FEATURES with images -->
+<section class="py-28 bg-bg-1">
+  <div class="container">
+    <div class="mb-14" data-reveal>
+      <div class="sec-label"><span class="num">03_</span>// features</div>
+      <h2 class="mt-5 display text-[clamp(28px,3.8vw,52px)]">v1.0 的<span class="text-accent">六个核心功能</span></h2>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 stagger" data-reveal>
+      <div class="card overflow-hidden img-zoom" data-reveal>
+        <div class="img-wrap aspect-card">
+          <img src="https://picsum.photos/seed/zwy-qq-f01/620/420" alt="" />
+          <span class="ph-label">img · feature-01 · 620×420 (对话场景)</span>
+        </div>
+        <div class="p-6"><div class="mono text-xs text-accent">/01</div><h3 class="mt-3 text-lg font-medium">开放式探索对话</h3><p class="mt-3 text-sm text-fg-dim leading-relaxed">不告诉答案，引导提问 / 猜想 / 验证 —— 把每次"问"变成思维训练。</p></div>
+      </div>
+      <div class="card overflow-hidden img-zoom" data-reveal>
+        <div class="img-wrap aspect-card">
+          <img src="https://picsum.photos/seed/zwy-qq-f02/620/420" alt="" />
+          <span class="ph-label">img · feature-02 · 620×420 (家中小实验)</span>
+        </div>
+        <div class="p-6"><div class="mono text-xs text-accent">/02</div><h3 class="mt-3 text-lg font-medium">日常小实验设计</h3><p class="mt-3 text-sm text-fg-dim leading-relaxed">基于家里能找到的材料，秒级生成 5 分钟小实验。可拍照上传结果。</p></div>
+      </div>
+      <div class="card overflow-hidden img-zoom" data-reveal>
+        <div class="img-wrap aspect-card">
+          <img src="https://picsum.photos/seed/zwy-qq-f03/620/420" alt="" />
+          <span class="ph-label">img · feature-03 · 620×420 (睡前听故事)</span>
+        </div>
+        <div class="p-6"><div class="mono text-xs text-accent">/03</div><h3 class="mt-3 text-lg font-medium">故事化讲述</h3><p class="mt-3 text-sm text-fg-dim leading-relaxed">抽象概念变成故事 + 音频，孩子睡前听一会就装进脑子里。</p></div>
+      </div>
+      <div class="card overflow-hidden img-zoom" data-reveal>
+        <div class="img-wrap aspect-card">
+          <img src="https://picsum.photos/seed/zwy-qq-f04/620/420" alt="" />
+          <span class="ph-label">img · feature-04 · 620×420 (家长周报)</span>
+        </div>
+        <div class="p-6"><div class="mono text-xs text-accent">/04</div><h3 class="mt-3 text-lg font-medium">家长每周报告</h3><p class="mt-3 text-sm text-fg-dim leading-relaxed">不是冷冰冰的数据，是一段"这周你的孩子对什么好奇了"的人话总结。</p></div>
+      </div>
+      <div class="card overflow-hidden img-zoom" data-reveal>
+        <div class="img-wrap aspect-card">
+          <img src="https://picsum.photos/seed/zwy-qq-f05/620/420" alt="" />
+          <span class="ph-label">img · feature-05 · 620×420 (老师后台)</span>
+        </div>
+        <div class="p-6"><div class="mono text-xs text-accent">/05</div><h3 class="mt-3 text-lg font-medium">校园教师共建包</h3><p class="mt-3 text-sm text-fg-dim leading-relaxed">学校老师可以把课程主题"开包"给球球老师，配合课堂节奏延伸。</p></div>
+      </div>
+      <div class="card overflow-hidden img-zoom" data-reveal>
+        <div class="img-wrap aspect-card">
+          <img src="https://picsum.photos/seed/zwy-qq-f06/620/420" alt="" />
+          <span class="ph-label">img · feature-06 · 620×420 (安全 / 合规)</span>
+        </div>
+        <div class="p-6"><div class="mono text-xs text-accent">/06</div><h3 class="mt-3 text-lg font-medium">内容安全管线</h3><p class="mt-3 text-sm text-fg-dim leading-relaxed">儿童专属内容安全模型 + 多层护栏 —— 校长 / 家长 / 教师可审计。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 ROLES (孩子 / 家长 / 学校) with portrait imagery -->
+<section class="py-28">
+  <div class="container">
+    <div class="mb-12" data-reveal>
+      <div class="sec-label"><span class="num">04_</span>// for whom</div>
+      <h2 class="mt-5 display text-[clamp(28px,3.8vw,52px)]">三方都拿到自己的<span class="text-accent">价值</span></h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4 stagger" data-reveal>
+      <div class="card overflow-hidden" data-reveal>
+        <div class="img-wrap aspect-portrait img-vignette">
+          <img src="https://picsum.photos/seed/zwy-qq-child/520/650" alt="" />
+          <span class="ph-label">img · child · 520×650 (儿童用 iPad)</span>
+        </div>
+        <div class="p-8">
+          <div class="mono text-xs uppercase tracking-widest text-accent">child</div>
+          <h3 class="mt-3 display text-2xl">孩子</h3>
+          <p class="mt-4 text-sm text-fg-dim leading-relaxed">一个能问"很多奇怪问题"的伙伴，不嫌烦、不嘲笑、还能一起做事。</p>
+          <ul class="mt-5 mono text-[11px] text-fg-dim space-y-1.5"><li>· 每天 15-20 分钟</li><li>· iPad / Pad 端</li><li>· 语音 + 文字</li></ul>
+        </div>
+      </div>
+      <div class="card overflow-hidden" data-reveal>
+        <div class="img-wrap aspect-portrait img-vignette">
+          <img src="https://picsum.photos/seed/zwy-qq-parent/520/650" alt="" />
+          <span class="ph-label">img · parent · 520×650 (家长在家场景)</span>
+        </div>
+        <div class="p-8">
+          <div class="mono text-xs uppercase tracking-widest text-accent">parent</div>
+          <h3 class="mt-3 display text-2xl">家长</h3>
+          <p class="mt-4 text-sm text-fg-dim leading-relaxed">看得到孩子在好奇什么、思考过什么。AI 不替代陪伴，AI 创造更好的陪伴话题。</p>
+          <ul class="mt-5 mono text-[11px] text-fg-dim space-y-1.5"><li>· 每周报告</li><li>· 安全可审计</li><li>· 家长付费 · 年度</li></ul>
+        </div>
+      </div>
+      <div class="card overflow-hidden" data-reveal>
+        <div class="img-wrap aspect-portrait img-vignette">
+          <img src="https://picsum.photos/seed/zwy-qq-school/520/650" alt="" />
+          <span class="ph-label">img · school · 520×650 (教室场景)</span>
+        </div>
+        <div class="p-8">
+          <div class="mono text-xs uppercase tracking-widest text-accent">school</div>
+          <h3 class="mt-3 display text-2xl">学校 / 老师</h3>
+          <p class="mt-4 text-sm text-fg-dim leading-relaxed">课程主题延伸到课后，AI 助教不替代老师 —— 学校做推荐和品牌信任背书。</p>
+          <ul class="mt-5 mono text-[11px] text-fg-dim space-y-1.5"><li>· 学校推荐入口</li><li>· 教师共建包</li><li>· 学校品牌呈现</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr-thin"></div>
+
+<!-- SAFETY -->
+<section class="py-24 bg-bg-1">
+  <div class="container">
+    <div class="grid lg:grid-cols-[1fr_1.4fr] gap-12">
+      <div data-reveal>
+        <div class="sec-label"><span class="num">05_</span>// safety</div>
+        <h2 class="mt-5 display text-[clamp(28px,3.8vw,46px)]">儿童内容<br/>是<span class="text-accent">底线</span>，<br/>不是 feature</h2>
+        <p class="mt-6 text-sm text-fg-dim leading-relaxed">不是关键词过滤的儿童模型 —— 这是我们对家长和学校的承诺。</p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4 stagger" data-reveal>
+        <div class="card p-6" data-reveal><div class="mono text-xs text-accent">/01</div><h4 class="mt-3 text-base font-medium">儿童专属安全模型</h4><p class="mt-2 text-xs text-fg-dim leading-relaxed">自研儿童语境模型识别隐喻、暗示、不当引导。</p></div>
+        <div class="card p-6" data-reveal><div class="mono text-xs text-accent">/02</div><h4 class="mt-3 text-base font-medium">三层护栏</h4><p class="mt-2 text-xs text-fg-dim leading-relaxed">模型层 + Agent 层 + 内容层，任何一层异常都拒绝输出。</p></div>
+        <div class="card p-6" data-reveal><div class="mono text-xs text-accent">/03</div><h4 class="mt-3 text-base font-medium">家长可审计</h4><p class="mt-2 text-xs text-fg-dim leading-relaxed">所有对话家长可查阅、可标注、可反馈到模型。</p></div>
+        <div class="card p-6" data-reveal><div class="mono text-xs text-accent">/04</div><h4 class="mt-3 text-base font-medium">合规备案</h4><p class="mt-2 text-xs text-fg-dim leading-relaxed">生成式 AI 服务备案 + K12 内容监管要求。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="py-28">
+  <div class="container">
+    <div class="mb-12" data-reveal>
+      <div class="sec-label"><span class="num">06_</span>// pricing</div>
+      <h2 class="mt-5 display text-[clamp(28px,3.8vw,46px)]">价格与<span class="text-accent">合作方式</span></h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4 stagger" data-reveal>
+      <div class="card p-8" data-reveal>
+        <div class="mono text-xs text-accent">family</div><h3 class="mt-4 text-2xl font-medium">家庭年度</h3><p class="mt-2 mono text-xs text-fg-dim2">家长付费</p>
+        <div class="mt-8"><div class="display text-4xl">¥598<span class="text-base text-fg-dim">/ 年</span></div></div>
+        <ul class="mt-6 text-sm text-fg-dim space-y-2"><li>· 单孩子账号</li><li>· 每周家长报告</li><li>· 校园教师共建内容</li></ul>
+      </div>
+      <div class="card card-accent p-8 relative" data-reveal style="box-shadow:0 0 0 1px var(--accent), 0 12px 40px -16px var(--accent-soft);">
+        <div class="absolute top-4 right-4 btn-pill" style="border-color:var(--accent); color:var(--accent);">recommended</div>
+        <div class="mono text-xs text-accent">school</div><h3 class="mt-4 text-2xl font-medium">学校合作</h3><p class="mt-2 mono text-xs text-fg-dim2">学校推荐 + 家长付费</p>
+        <div class="mt-8"><div class="display text-4xl">定制</div></div>
+        <ul class="mt-6 text-sm text-fg-dim space-y-2"><li>· 学校品牌呈现</li><li>· 教师共建包</li><li>· 校长 / 教务后台</li><li>· 数据安全合规</li></ul>
+      </div>
+      <div class="card p-8" data-reveal>
+        <div class="mono text-xs text-accent">group</div><h3 class="mt-4 text-2xl font-medium">教育集团</h3><p class="mt-2 mono text-xs text-fg-dim2">B2B2C 渠道授权</p>
+        <div class="mt-8"><div class="display text-4xl">定制</div></div>
+        <ul class="mt-6 text-sm text-fg-dim space-y-2"><li>· 集团品牌冠名</li><li>· 多校批量管理</li><li>· 私有部署可选</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL with image -->
+<section class="py-20 bg-bg-1">
+  <div class="container max-w-5xl">
+    <div class="feature-row" data-reveal>
+      <div class="img-wrap aspect-square img-vignette" data-reveal-clip>
+        <img src="https://picsum.photos/seed/zwy-qq-testimonial/520/520" alt="" />
+        <span class="ph-label">img · testimonial · 520×520 (家长肖像)</span>
+      </div>
+      <figure data-reveal>
+        <blockquote class="display text-3xl leading-snug">"我家孩子从'你帮我写完作业'变成'你猜我今天看到什么 ——'，这是<span class="text-accent">球球老师</span>带来的改变。"</blockquote>
+        <figcaption class="mt-8 flex items-center gap-3 mono text-xs text-fg-dim"><span class="w-8 h-px bg-fg-dim2"></span>家长用户 · 三年级 · 杭州某重点小学</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- CTA with full-bleed image background -->
+<section class="hero-with-image" style="min-height:480px;">
+  <div class="hero-image-bg">
+    <img src="https://picsum.photos/seed/zwy-qq-cta/2400/900" alt="" />
+  </div>
+  <div class="absolute inset-0 grid-bg pointer-events-none opacity-50"></div>
+  <div class="relative container py-24">
+    <div class="grid lg:grid-cols-[1.5fr_1fr] gap-12 items-end">
+      <div data-reveal>
+        <h2 class="display text-[clamp(36px,5.5vw,80px)] leading-[0.95]">让 AI 时代的孩子<br/><span class="text-accent">仍然会"提问"<span class="cursor"></span></span></h2>
+      </div>
+      <div data-reveal>
+        <p class="text-fg-dim leading-relaxed">我们正在和首批 12 所学校共建。如果你是校长、教务、或家委会成员 —— 来聊聊接入。</p>
+        <a href="contact.html#enterprise" class="mt-6 inline-flex btn-primary">预约学校接入 <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER (updated 5-column) -->
+<footer class="border-t border-line bg-bg-1">
+  <div class="container py-14">
+    <div class="grid md:grid-cols-6 gap-10">
+      <div class="md:col-span-2"><div class="flex items-center gap-2"><img src="https://www.zaowuyun.com/favicon.ico" class="w-5 h-5 rounded-sm" /><div class="mono text-base"><span class="text-fg">zaowuyun</span><span class="text-accent">_</span></div></div><p class="mt-4 text-sm text-fg-dim max-w-xs leading-relaxed">AI 应用中台。<br/>为每一个垂直行业，长出一个值得被信任的 AI 应用。</p></div>
+      <div><div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">我们做什么</div><ul class="space-y-2.5 text-sm text-fg-dim"><li><a href="solutions.html">解决方案中心</a></li><li><a href="platform.html">中台能力</a></li><li><a href="apps.html">应用矩阵</a></li><li><a href="apps-qiuqiu.html">球球老师</a></li></ul></div>
+      <div><div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">我们的洞察</div><ul class="space-y-2.5 text-sm text-fg-dim"><li><a href="cases.html">案例中心</a></li><li><a href="blog.html">行业洞察</a></li><li><a href="news.html">公司动态</a></li></ul></div>
+      <div><div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">开发者 & 高校</div><ul class="space-y-2.5 text-sm text-fg-dim"><li><a href="developers.html">开发者中心</a></li><li><a href="academy.html">高校合作</a></li><li><a href="https://www.zaowuyun.com/" target="_blank">登录控制台 ↗</a></li></ul></div>
+      <div><div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">关于</div><ul class="space-y-2.5 text-sm text-fg-dim"><li><a href="about.html">关于造物云</a></li><li><a href="contact.html">联系我们</a></li><li><a href="contact.html#enterprise">商务合作</a></li><li><a href="#">招贤纳士</a></li></ul></div>
+    </div>
+    <div class="mt-12 pt-6 border-t border-line flex flex-wrap items-center justify-between gap-4 mono text-xs text-fg-dim2"><div>© 2026 zaowuyun · 浙公网安备 33010602013219 号</div><div class="flex gap-5"><a href="#">隐私政策</a><a href="#">服务条款</a><a href="#">合规与安全</a></div></div>
+  </div>
+</footer>
+
+<script src="assets/zwy.js"></script>
+</body>
+</html>

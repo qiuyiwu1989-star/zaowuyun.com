@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>公司动态 — 造物云</title>
+<meta name="description" content="造物云的最新动态 · 产品发布 · 行业活动 · 媒体报道" />
+<link rel="icon" href="https://www.zaowuyun.com/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/zwy.css" />
+<script>(function(){try{var t=localStorage.getItem('zwy-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{bg:'var(--bg)','bg-1':'var(--bg-1)','bg-2':'var(--bg-2)','bg-3':'var(--bg-3)',line:'var(--line)','line-2':'var(--line-2)',fg:'var(--fg)','fg-dim':'var(--fg-dim)','fg-dim2':'var(--fg-dim2)','fg-dim3':'var(--fg-dim3)',accent:'var(--accent)','accent-hi':'var(--accent-hi)','accent-soft':'var(--accent-soft)','accent-fg':'var(--accent-fg)'},fontFamily:{sans:['Inter','sans-serif'],display:['"Space Grotesk"','Inter','sans-serif'],mono:['"JetBrains Mono"','monospace']}}}};</script>
+</head>
+<body class="bg-bg text-fg">
+
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl border-b border-line nav-bar">
+  <div class="container h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2"><img src="https://www.zaowuyun.com/favicon.ico" class="w-5 h-5 rounded-sm" /><span class="mono text-sm"><span class="text-fg">zaowuyun</span><span class="text-accent">_</span></span></a>
+        <nav class="hidden lg:flex items-center gap-1">
+      <a href="solutions.html" class="px-4 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.what_we_do">我们做什么</a>
+      <a href="cases.html" class="px-4 py-2 mono text-[13px] text-accent transition" data-i18n="nav.what_we_think">我们的洞察</a>
+      <a href="developers.html" class="px-4 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.developers">开发者</a>
+      <a href="about.html" class="px-4 py-2 mono text-[13px] text-fg-dim hover:text-fg transition" data-i18n="nav.who_we_are">关于造物云</a>
+    </nav>
+    <div class="flex items-center gap-2"><a href="https://www.zaowuyun.com/" target="_blank" class="hidden sm:inline mono text-[13px] text-fg-dim hover:text-fg">登录控制台</a><button id="lang-switch" class="lang-switch" aria-label="语言">EN</button>
+      <button id="theme-toggle" class="toggle" type="button"><svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg><svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button><a href="contact.html" class="btn-bracket">预约咨询<span>→</span></a></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative pt-36 pb-12 overflow-hidden noise">
+  <div class="hero-image-bg" style="opacity:.35;"><img src="https://picsum.photos/seed/zwy-news-hero/2400/1100" alt="" /></div>
+  <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+  <div class="absolute inset-0 accent-glow pointer-events-none"></div>
+  <div class="relative container">
+    <div class="sec-label mb-6" data-reveal><span class="num">▌</span>// news</div>
+    <h1 class="display text-[clamp(44px,7vw,100px)]" data-reveal>公司动态<span class="text-accent cursor"></span></h1>
+    <p class="mt-6 max-w-2xl text-fg-dim text-lg leading-relaxed" data-reveal>产品发布 · 行业活动 · 媒体报道 · 合作签约 · 团队动态。</p>
+  </div>
+</section>
+
+<!-- FILTER -->
+<section class="py-8 border-b border-line">
+  <div class="container">
+    <div class="flex flex-wrap items-center gap-2" data-reveal>
+      <span class="mono text-xs text-fg-dim2 mr-2">filter:</span>
+      <button class="btn-pill is-active">全部</button>
+      <button class="btn-pill">产品发布</button>
+      <button class="btn-pill">荣誉</button>
+      <button class="btn-pill">合作签约</button>
+      <button class="btn-pill">媒体报道</button>
+      <button class="btn-pill">活动</button>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="py-16">
+  <div class="container">
+    <a href="#" class="card p-10 lg:p-14 grid lg:grid-cols-[1.4fr_1fr] gap-8 group" data-reveal>
+      <div>
+        <div class="mono text-xs text-accent uppercase tracking-widest">产品发布 · 2026.05.10</div>
+        <h2 class="mt-4 display text-[clamp(28px,4vw,52px)] leading-snug">球球老师 v1.0 正式锁定 · 进入 12 所学校的家长付费名单</h2>
+        <p class="mt-6 text-fg-dim leading-relaxed">K12 儿童认知探索智能体首版上线。不刷题、不押宝，陪孩子做开放式探索。一学期内进入 12 所合作学校，覆盖 5000+ 儿童用户。</p>
+        <div class="mt-8 link-arrow">阅读全文 <span class="arr">→</span></div>
+      </div>
+      <div class="relative flex items-center justify-center p-8 rounded-sm" style="background: rgba(var(--surface-rgb),0.04); border:1px solid var(--line);">
+        <div class="text-center">
+          <div class="display text-6xl text-accent">12</div>
+          <div class="mt-2 mono text-sm text-fg-dim">合作学校</div>
+          <div class="mt-6 display text-6xl text-accent">5000+</div>
+          <div class="mt-2 mono text-sm text-fg-dim">活跃儿童</div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- NEWS GRID -->
+<section class="py-16">
+  <div class="container">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 stagger" data-reveal>
+      <a href="#" class="news-card" data-reveal>
+        <div class="mono text-[11px] text-accent uppercase tracking-widest">荣誉 · 2026.03</div>
+        <h4 class="mt-3 text-lg font-medium leading-snug">入选"AIGC 商业落地 TOP 50"</h4>
+        <p class="mt-3 text-sm text-fg-dim leading-relaxed">凭借 AI 商品摄影业务，造物云被评为 2025 年度 AIGC 商业落地代表企业之一。</p>
+        <div class="mt-5 mono text-[11px] text-fg-dim2">read more →</div>
+      </a>
+      <a href="#" class="news-card" data-reveal>
+        <div class="mono text-[11px] text-accent uppercase tracking-widest">合作签约 · 2026.02</div>
+        <h4 class="mt-3 text-lg font-medium leading-snug">与同济大学共建 AI 设计实验室</h4>
+        <p class="mt-3 text-sm text-fg-dim leading-relaxed">联合同济设计创意学院启动"AI 时代工业设计方法论"研究课题。</p>
+        <div class="mt-5 mono text-[11px] text-fg-dim2">read more →</div>
+      </a>
+      <a href="#" class="news-card" data-reveal>
+        <div class="mono text-[11px] text-accent uppercase tracking-widest">媒体报道 · 2026.01</div>
+        <h4 class="mt-3 text-lg font-medium leading-snug">36Kr 专访 ·"AI 应用中台是什么"</h4>
+        <p class="mt-3 text-sm text-fg-dim leading-relaxed">36Kr 深度专访造物云创始团队，解读"AI 应用中台"的产业落地路径。</p>
+        <div class="mt-5 mono text-[11px] text-fg-dim2">read more →</div>
+      </a>
+      <a href="#" class="news-card" data-reveal>
+        <div class="mono text-[11px] text-accent uppercase tracking-widest">活动 · 2025.12</div>
+        <h4 class="mt-3 text-lg font-medium leading-snug">首届"AI 时代商品创新峰会"圆满举办</h4>
+        <p class="mt-3 text-sm text-fg-dim leading-relaxed">在杭州举办首届行业峰会，超过 300 位品牌负责人、设计师、技术专家到场。</p>
+        <div class="mt-5 mono text-[11px] text-fg-dim2">read more →</div>
+      </a>
+      <a href="#" class="news-card" data-reveal>
+        <div class="mono text-[11px] text-accent uppercase tracking-widest">产品发布 · 2025.11</div>
+        <h4 class="mt-3 text-lg font-medium leading-snug">造物 GPT 2.0 · 行业大模型升级</h4>
+        <p class="mt-3 text-sm text-fg-dim leading-relaxed">自研工业设计领域大模型升级，新增多视角生成与设计风格控制能力。</p>
+        <div class="mt-5 mono text-[11px] text-fg-dim2">read more →</div>
+      </a>
+      <a href="#" class="news-card" data-reveal>
+        <div class="mono text-[11px] text-accent uppercase tracking-widest">合作签约 · 2025.10</div>
+        <h4 class="mt-3 text-lg font-medium leading-snug">中台与火山引擎深度合作</h4>
+        <p class="mt-3 text-sm text-fg-dim leading-relaxed">造物云 AI 应用中台与火山引擎在模型与算力层面达成深度合作。</p>
+        <div class="mt-5 mono text-[11px] text-fg-dim2">read more →</div>
+      </a>
+      <a href="#" class="news-card" data-reveal>
+        <div class="mono text-[11px] text-accent uppercase tracking-widest">媒体报道 · 2025.09</div>
+        <h4 class="mt-3 text-lg font-medium leading-snug">钛媒体专访 ·"6 个孵化品牌背后"</h4>
+        <p class="mt-3 text-sm text-fg-dim leading-relaxed">钛媒体走访造物云与孵化品牌团队，记录"AI 中台 + 行业 know-how"的产业链路。</p>
+        <div class="mt-5 mono text-[11px] text-fg-dim2">read more →</div>
+      </a>
+      <a href="#" class="news-card" data-reveal>
+        <div class="mono text-[11px] text-accent uppercase tracking-widest">荣誉 · 2025.06</div>
+        <h4 class="mt-3 text-lg font-medium leading-snug">浙江省专精特新企业认定</h4>
+        <p class="mt-3 text-sm text-fg-dim leading-relaxed">造物云获浙江省专精特新中小企业认定，入选省级培育名录。</p>
+        <div class="mt-5 mono text-[11px] text-fg-dim2">read more →</div>
+      </a>
+      <a href="#" class="news-card" data-reveal>
+        <div class="mono text-[11px] text-accent uppercase tracking-widest">活动 · 2025.05</div>
+        <h4 class="mt-3 text-lg font-medium leading-snug">中国国际工业设计博览会参展</h4>
+        <p class="mt-3 text-sm text-fg-dim leading-relaxed">造物云携 3D 云设计与造物 GPT 亮相博览会，演示从 idea 到 3D 模型的完整链路。</p>
+        <div class="mt-5 mono text-[11px] text-fg-dim2">read more →</div>
+      </a>
+    </div>
+
+    <div class="mt-12 flex justify-center" data-reveal>
+      <a href="#" class="btn-bracket">加载更多<span>↓</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- SUBSCRIBE -->
+<section class="py-20 bg-bg-1">
+  <div class="container max-w-3xl">
+    <div class="card p-10 text-center" data-reveal>
+      <div class="mono text-xs text-accent uppercase tracking-widest">subscribe_</div>
+      <h2 class="mt-4 display text-3xl">订阅我们的月报</h2>
+      <p class="mt-4 text-sm text-fg-dim leading-relaxed">每月一封 ——产品更新、行业洞察、合作机会。不打扰、可随时退订。</p>
+      <form class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input type="email" placeholder="your@email.com" class="flex-1 px-4 py-2.5 bg-bg-2 border border-line rounded-sm text-fg" style="font-family:inherit;" />
+        <button type="button" class="btn-primary">订阅 <span class="arr">→</span></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-line bg-bg-1">
+  <div class="container py-14">
+        <div class="grid md:grid-cols-6 gap-10">
+      <div class="md:col-span-2"><div class="flex items-center gap-2"><img src="https://www.zaowuyun.com/favicon.ico" class="w-5 h-5 rounded-sm" /><div class="mono text-base"><span class="text-fg">zaowuyun</span><span class="text-accent">_</span></div></div><p class="mt-4 text-sm text-fg-dim max-w-xs leading-relaxed">AI 应用中台。<br/>为每一个垂直行业，长出一个值得被信任的 AI 应用。</p><div class="mt-5 flex items-center gap-3"><span class="mono text-[10px] uppercase tracking-widest text-fg-dim2">backed by</span><img class="client-logo" style="height:20px;" src="https://cdn.zaowuyun.com/tmp/231010/bc3daf8121a04c4cdf05dbfa1780f9b8.jfif" alt="线性资本" /></div></div>
+      <div><div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">我们做什么</div><ul class="space-y-2.5 text-sm text-fg-dim"><li><a href="solutions.html">解决方案中心</a></li><li><a href="platform.html">中台能力</a></li><li><a href="apps.html">应用矩阵</a></li><li><a href="apps-qiuqiu.html">球球老师</a></li></ul></div>
+      <div><div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">我们的洞察</div><ul class="space-y-2.5 text-sm text-fg-dim"><li><a href="cases.html">案例中心</a></li><li><a href="blog.html">行业洞察</a></li><li><a href="news.html">公司动态</a></li></ul></div>
+      <div><div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">开发者 & 高校</div><ul class="space-y-2.5 text-sm text-fg-dim"><li><a href="developers.html">开发者中心</a></li><li><a href="academy.html">高校合作</a></li><li><a href="https://www.zaowuyun.com/" target="_blank">登录控制台 ↗</a></li></ul></div>
+      <div><div class="mono text-xs uppercase tracking-widest text-fg-dim2 mb-4">关于</div><ul class="space-y-2.5 text-sm text-fg-dim"><li><a href="about.html">关于造物云</a></li><li><a href="contact.html">联系我们</a></li><li><a href="contact.html#enterprise">商务合作</a></li><li><a href="#">招贤纳士</a></li></ul></div>
+    </div>
+    <div class="mt-12 pt-6 border-t border-line flex flex-wrap items-center justify-between gap-4 mono text-xs text-fg-dim2"><div>© 2026 zaowuyun · 浙公网安备 33010602013219 号</div><div class="flex gap-5"><a href="#">隐私政策</a><a href="#">服务条款</a><a href="#">合规与安全</a></div></div>
+  </div>
+</footer>
+
+<script src="assets/zwy.js"></script>
+</body>
+</html>
