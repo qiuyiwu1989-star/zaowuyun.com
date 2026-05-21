@@ -1,61 +1,82 @@
 /* =================================================================
-   ZAOWUYUN · AI 应用中台  ·  Design System  v2 (图文并茂版)
+   ZAOWUYUN · 企业 AI 中台 + 孵化平台  ·  Design System  v3
+   (Hume.ai-inspired · warm light first · soft pastel + periwinkle accent)
    ================================================================= */
 
-/* ---- THEME TOKENS ---- */
-:root[data-theme="dark"] {
-  --bg:          #0A0A0C;
-  --bg-1:        #16161A;
-  --bg-2:        #1C1C22;
-  --bg-3:        #22222B;
-  --line:        #2A2A35;
-  --line-2:      #393948;
-  --fg:          #FFFFFF;
-  --fg-dim:      #A1A1AA;
-  --fg-dim2:     #71717A;
-  --fg-dim3:     #52525B;
-  --accent:      #8B5CFF;
-  --accent-hi:   #A78BFF;
-  --accent-soft: rgba(139, 92, 255, 0.14);
-  --accent-fg:   #FFFFFF;
-  --surface-rgb: 255, 255, 255;
-  --grid-stroke: rgba(255,255,255,0.045);
-  --logo-filter: brightness(0) invert(1);
-  --logo-opacity: 0.55;
-  --logo-opacity-hover: 1;
-  --noise-mix:   overlay;
-  --code-bg:     #0e0e12;
-  --code-fg:     #d4d4d8;
-  --img-tint:    rgba(10,10,12,0.55);    /* image overlay for dark theme */
-  --img-shadow:  0 18px 48px -16px rgba(0,0,0,0.6);
-  color-scheme: dark;
+/* ---- SHARED · GRADIENTS + RADII + MOTION (theme-agnostic) ---- */
+:root {
+  --gradient-soft:  linear-gradient(135deg, #F0E0F0 0%, #FDE8E0 40%, #FFF0D8 70%, #EDD8F0 100%);
+  --gradient-warm:  linear-gradient(135deg, #FFD1A4 0%, #FFB5D6 50%, #BBABED 100%);
+  --gradient-cool:  linear-gradient(135deg, #EDD8F0 0%, #BBABED 50%, #A0B0F6 100%);
+  --gradient-dawn:  linear-gradient(135deg, #FFDCDC 0%, #EDD8F0 50%, #AB9EFC 100%);
+
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-xl:   28px;
+  --radius-2xl:  36px;
+  --radius-pill: 9999px;
+
+  --ease-soft:   cubic-bezier(.22,.61,.36,1);
+  --ease-emo:    cubic-bezier(.65,0,.35,1);
 }
+
+/* ---- LIGHT (warm cream · default) ---- */
 :root[data-theme="light"] {
-  --bg:          #FFFFFF;
-  --bg-1:        #FAFAFA;
-  --bg-2:        #F4F4F5;
-  --bg-3:        #E9E9EC;
-  --line:        #E5E5EA;
-  --line-2:      #D4D4D8;
-  --fg:          #0A0A0C;
-  --fg-dim:      #52525B;
-  --fg-dim2:     #71717A;
-  --fg-dim3:     #A1A1AA;
-  --accent:      #6102FF;
-  --accent-hi:   #4E02CC;
-  --accent-soft: rgba(97, 2, 255, 0.08);
-  --accent-fg:   #FFFFFF;
-  --surface-rgb: 0, 0, 0;
-  --grid-stroke: rgba(0,0,0,0.05);
-  --logo-filter: grayscale(1) brightness(0.35);
-  --logo-opacity: 0.55;
+  --bg:          #fff9f3;  /* hume cream */
+  --bg-1:        #fff3e8;
+  --bg-2:        #ffece0;
+  --bg-3:        #f5e3d8;
+  --line:        rgba(58, 38, 82, 0.06);
+  --line-2:      rgba(58, 38, 82, 0.14);
+  --fg:          #2a1f3a;  /* deep plum-brown, not black */
+  --fg-dim:      #635670;
+  --fg-dim2:     #8a7e95;
+  --fg-dim3:     #b3a7bd;
+  --accent:      #6c4cff;  /* refined soft purple — readable on cream */
+  --accent-hi:   #5538cc;
+  --accent-soft: rgba(108, 76, 255, 0.10);
+  --accent-fg:   #ffffff;
+  --surface-rgb: 58, 38, 82;   /* fg-ish for inset rings */
+  --grid-stroke: rgba(108, 76, 255, 0.04);
+  --logo-filter: grayscale(0.5) brightness(0.55);
+  --logo-opacity: 0.65;
   --logo-opacity-hover: 1;
   --noise-mix:   multiply;
-  --code-bg:     #f6f6f8;
-  --code-fg:     #18181b;
-  --img-tint:    rgba(255,255,255,0.4);
-  --img-shadow:  0 12px 32px -16px rgba(0,0,0,0.15);
+  --code-bg:     #f6ece0;
+  --code-fg:     #2a1f3a;
+  --img-tint:    rgba(255, 249, 243, 0.42);
+  --img-shadow:  0 20px 56px -24px rgba(58, 38, 82, 0.22);
   color-scheme: light;
+}
+
+/* ---- DARK (warm plum dark — re-skinned from harsh black) ---- */
+:root[data-theme="dark"] {
+  --bg:          #18121f;  /* warm plum-dark, not pitch black */
+  --bg-1:        #20192a;
+  --bg-2:        #2a2238;
+  --bg-3:        #342a44;
+  --line:        rgba(255, 244, 230, 0.07);
+  --line-2:      rgba(255, 244, 230, 0.14);
+  --fg:          #fff4e6;  /* warm cream text */
+  --fg-dim:      #cab9d6;
+  --fg-dim2:     #9485a4;
+  --fg-dim3:     #695a78;
+  --accent:      #AB9EFC;  /* hume periwinkle on dark */
+  --accent-hi:   #BBABED;
+  --accent-soft: rgba(171, 158, 252, 0.16);
+  --accent-fg:   #18121f;
+  --surface-rgb: 255, 244, 230;
+  --grid-stroke: rgba(255, 244, 230, 0.05);
+  --logo-filter: brightness(0) invert(1) sepia(0.1);
+  --logo-opacity: 0.6;
+  --logo-opacity-hover: 1;
+  --noise-mix:   overlay;
+  --code-bg:     #1a1322;
+  --code-fg:     #e5d4ec;
+  --img-tint:    rgba(24, 18, 31, 0.5);
+  --img-shadow:  0 20px 56px -16px rgba(0, 0, 0, 0.65);
+  color-scheme: dark;
 }
 
 html { background: var(--bg); }
@@ -95,17 +116,47 @@ img { display: block; max-width: 100%; }
   background: radial-gradient(circle at 50% 30%, var(--accent-soft) 0%, transparent 55%);
 }
 
-/* gradient orb (for decorative backgrounds) */
+/* gradient orb (for decorative backgrounds) — softer for v3 hume aesthetic */
 .orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.5;
+  filter: blur(110px);
+  opacity: 0.42;
   pointer-events: none;
 }
 .orb-accent { background: var(--accent); }
-.orb-blue { background: #5b8def; }
-.orb-pink { background: #ff5b9c; }
+.orb-blue { background: #A0B0F6; }
+.orb-pink { background: #FFB5D6; }
+.orb-peach { background: #FFD1A4; }
+.orb-lavender { background: #D2A7E9; }
+
+/* ============= FLUID GRADIENT SURFACES (v3) ============= */
+/* Soft pastel canvas — use as full-bleed hero / banner background */
+.fluid-gradient {
+  position: absolute; inset: 0;
+  background: var(--gradient-soft);
+  background-size: 240% 240%;
+  animation: fluid-shift 22s var(--ease-soft) infinite;
+  pointer-events: none;
+}
+.fluid-gradient.is-warm { background: var(--gradient-warm); background-size: 240% 240%; }
+.fluid-gradient.is-cool { background: var(--gradient-cool); background-size: 240% 240%; }
+.fluid-gradient.is-dawn { background: var(--gradient-dawn); background-size: 240% 240%; }
+:root[data-theme="dark"] .fluid-gradient { opacity: 0.55; mix-blend-mode: screen; }
+@keyframes fluid-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* Soft rounded container for hero / featured cards (v3) */
+.soft-surface {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 1px 0 0 rgba(var(--surface-rgb), 0.04) inset,
+              0 0 0 1px rgba(var(--surface-rgb), 0.05) inset;
+}
+.soft-surface.is-2xl { border-radius: var(--radius-2xl); }
 
 @keyframes orb-drift {
   0%, 100% { transform: translate(0, 0) scale(1); }
@@ -121,8 +172,8 @@ img { display: block; max-width: 100%; }
   font-family: 'JetBrains Mono', monospace; font-size: .8125rem; line-height: 1;
   color: var(--fg);
   border: 1px solid var(--line-2);
-  border-radius: 2px; background: transparent;
-  transition: all .18s ease; position: relative;
+  border-radius: var(--radius-pill); background: transparent;
+  transition: all .18s var(--ease-soft); position: relative;
   text-decoration: none;
 }
 .btn-bracket::before { content:"["; color:var(--fg-dim2); margin-right:.1rem; transition: all .18s ease; }
@@ -133,16 +184,17 @@ img { display: block; max-width: 100%; }
 
 .btn-primary {
   display:inline-flex; align-items:center; gap:.55rem;
-  padding:.85rem 1.25rem;
+  padding:.85rem 1.4rem;
   background:var(--accent); color:var(--accent-fg);
-  border-radius:2px;
+  border-radius: var(--radius-pill);
   font-family:'JetBrains Mono', monospace;
   font-size:.875rem; font-weight:500;
-  transition: background .15s ease, box-shadow .15s ease;
-  box-shadow: 0 4px 24px -8px var(--accent-soft);
+  transition: background .2s var(--ease-soft), box-shadow .2s var(--ease-soft), transform .2s var(--ease-soft);
+  box-shadow: 0 8px 28px -10px var(--accent-soft);
   text-decoration: none;
   border: 0; cursor: pointer;
 }
+.btn-primary:active { transform: translateY(1px); }
 .btn-primary:hover { background:var(--accent-hi); }
 .btn-primary .arr { transition: transform .2s ease; }
 .btn-primary:hover .arr { transform: translateX(4px); }
@@ -190,18 +242,19 @@ img { display: block; max-width: 100%; }
 .sec-label .num { color:var(--accent); margin-right:.5rem; }
 .hr-thin { height:1px; background:var(--line); }
 
-/* ============= CARDS ============= */
+/* ============= CARDS (v3: softer radius, inset rings) ============= */
 .card {
-  background: rgba(var(--surface-rgb), 0.03);
-  border: 1px solid rgba(var(--surface-rgb), 0.1);
+  background: rgba(var(--surface-rgb), 0.025);
+  border: 1px solid rgba(var(--surface-rgb), 0.06);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 4px;
-  transition: all .22s ease;
+  border-radius: var(--radius-md);
+  transition: all .22s var(--ease-soft);
 }
 .card:hover {
-  background: rgba(var(--surface-rgb), 0.08);
-  border-color: rgba(var(--surface-rgb), 0.2);
+  background: rgba(var(--surface-rgb), 0.06);
+  border-color: rgba(var(--surface-rgb), 0.14);
+  transform: translateY(-2px);
 }
 .card-accent:hover {
   border-color: var(--accent);
