@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>造物云 · 顶栏与插画风格对比</title>
+<meta name="description" content="造物云官网：透明吸顶顶栏 + Intercom 式 Mega Menu；插画三风格对比（几何线稿 / 手绘人物 / 深色渐变光晕）。">
+<style>
+/* ============================================================
+   造物云 · 顶栏 + 插画风格对比
+   token 沿用 design-system.html；明暗双主题
+   规范：不用 emoji；中文用弯引号 “”
+   ============================================================ */
+:root{
+  --bg:#07070F; --surf:rgba(255,255,255,.05); --surf2:rgba(255,255,255,.09);
+  --fg:#ECEEFF; --fg2:rgba(236,238,255,.52); --fg3:rgba(236,238,255,.28);
+  --accent:#7B80FF; --accent-deep:#5B5FE0; --acBg:rgba(123,128,255,.13);
+  --bdr:rgba(255,255,255,.08); --bdrBrt:rgba(255,255,255,.16);
+  --glass:rgba(255,255,255,.06); --glassTop:rgba(255,255,255,.16);
+  --teal:#38BDF8; --gold:#F4B740; --rose:#F472B6; --green:#34D399;
+  --serif:'Songti SC','STSong','Noto Serif SC','Source Han Serif CN','SimSun',serif;
+  --sans:'PingFang SC','Noto Sans SC','Microsoft YaHei','Source Han Sans CN',system-ui,sans-serif;
+  --mono:'SF Pro Display','SF Pro Text',ui-sans-serif,'Helvetica Neue',Arial,sans-serif;
+  --r-sm:8px; --r-md:12px; --r-lg:18px; --r-xl:22px; --r-pill:999px;
+  --t-fast:.15s; --t-base:.25s; --t-slow:.7s; --ease:cubic-bezier(.4,1,.6,1);
+  --heroBg:radial-gradient(ellipse 75% 60% at 70% 30%,rgba(123,128,255,.26),transparent 60%),radial-gradient(ellipse 50% 55% at 10% 85%,rgba(139,92,246,.14),transparent 55%),radial-gradient(ellipse 35% 45% at 90% 80%,rgba(56,189,248,.10),transparent 50%),#07070F;
+}
+[data-theme="light"]{
+  --bg:#F8F6F0; --surf:rgba(255,255,255,.82); --surf2:rgba(255,255,255,.96);
+  --fg:#18150E; --fg2:rgba(24,21,14,.50); --fg3:rgba(24,21,14,.32);
+  --accent:#3535B5; --accent-deep:#27278C; --acBg:rgba(53,53,181,.08);
+  --bdr:rgba(24,21,14,.09); --bdrBrt:rgba(24,21,14,.18);
+  --glass:rgba(255,255,255,.80); --glassTop:rgba(255,255,255,.98);
+  --teal:#0284C7; --gold:#B7791F; --rose:#BE185D; --green:#0E9F6E;
+  --heroBg:radial-gradient(ellipse 70% 55% at 68% 30%,rgba(110,100,255,.13),transparent 60%),radial-gradient(ellipse 45% 50% at 12% 80%,rgba(180,120,255,.07),transparent 55%),#F8F6F0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.7;
+  transition:background var(--t-base) var(--ease),color var(--t-base) var(--ease);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+
+/* ===================================================================
+   ① 透明吸顶顶栏 + Mega Menu（学 callbaba 透明 + Intercom 下拉）
+   - 顶部时近乎透明、悬浮胶囊圆角
+   - 滚动后切磨砂玻璃（16% 底 + blur48 + saturate180）
+   =================================================================== */
+header.nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:padding var(--t-base) var(--ease)}
+.nav-inner{max-width:1280px;margin:14px auto;padding:0 18px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:20px;
+  border-radius:var(--r-xl);
+  background:transparent;border:1px solid transparent;
+  transition:background var(--t-base) var(--ease),border-color var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease),backdrop-filter var(--t-base) var(--ease),margin var(--t-base) var(--ease);}
+/* 滚动后：磨砂玻璃 */
+header.nav.scrolled .nav-inner{
+  background:rgba(255,255,255,.10);
+  border-color:var(--bdr);
+  backdrop-filter:saturate(180%) blur(40px);-webkit-backdrop-filter:saturate(180%) blur(40px);
+  box-shadow:0 16px 50px -20px rgba(0,0,0,.5);
+  margin-top:8px;margin-bottom:8px;}
+[data-theme="light"] header.nav.scrolled .nav-inner{background:rgba(255,255,255,.55);box-shadow:0 16px 40px -22px rgba(0,0,0,.22)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;letter-spacing:-.01em;flex-shrink:0}
+.brand .mark{width:28px;height:28px}
+.nav-links{display:flex;align-items:center;gap:2px;font-size:14px;font-weight:500}
+.nav-links>div{position:relative}
+.nav-link{display:inline-flex;align-items:center;gap:5px;padding:9px 13px;border-radius:var(--r-sm);color:var(--fg2);cursor:pointer;
+  background:none;border:none;font-family:var(--sans);font-size:14px;font-weight:500;transition:background var(--t-fast),color var(--t-fast)}
+.nav-link:hover,.nav-link.open{background:var(--surf);color:var(--fg)}
+.nav-link .chev{transition:transform var(--t-base) var(--ease)}
+.nav-link.open .chev{transform:rotate(180deg)}
+.nav-cta{flex-shrink:0;display:flex;align-items:center;gap:8px}
+.btn-ghost{padding:8px 14px;border-radius:var(--r-pill);color:var(--fg2);font-size:13.5px;font-weight:600}
+.btn-ghost:hover{color:var(--fg)}
+.btn-solid{padding:9px 18px;border-radius:var(--r-pill);background:var(--accent);color:#fff;font-size:13.5px;font-weight:600;transition:background var(--t-base)}
+.btn-solid:hover{background:var(--accent-deep)}
+.theme-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--bdr);background:var(--surf);color:var(--fg2);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:color var(--t-fast),border-color var(--t-fast);flex-shrink:0}
+.theme-btn:hover{color:var(--fg);border-color:var(--bdrBrt)}
+
+/* Mega Menu 面板 */
+.mega{position:absolute;top:calc(100% + 14px);left:0;width:620px;
+  background:var(--glass);border:1px solid var(--bdr);border-radius:var(--r-xl);
+  box-shadow:0 28px 70px -22px rgba(0,0,0,.55),inset 0 1px 0 var(--glassTop);
+  backdrop-filter:saturate(180%) blur(28px);-webkit-backdrop-filter:saturate(180%) blur(28px);
+  padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:18px;
+  opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity var(--t-base) var(--ease),transform var(--t-base) var(--ease),visibility var(--t-base);}
+[data-theme="light"] .mega{box-shadow:0 28px 60px -24px rgba(0,0,0,.25),inset 0 1px 0 var(--glassTop)}
+.mega.open{opacity:1;visibility:visible;transform:translateY(0)}
+.mega .col-head{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--fg3);padding:6px 10px 10px}
+.mega a.item{display:flex;align-items:flex-start;gap:12px;padding:10px;border-radius:var(--r-md);transition:background var(--t-fast)}
+.mega a.item:hover{background:var(--surf)}
+.mega a.item .ic{width:34px;height:34px;border-radius:10px;background:var(--acBg);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent)}
+.mega a.item .tt{font-size:13.5px;font-weight:600;color:var(--fg);margin-bottom:2px}
+.mega a.item .dd{font-size:12px;color:var(--fg2);line-height:1.45}
+/* 右侧精选卡 */
+.mega .feat{background:linear-gradient(150deg,var(--acBg),transparent);border:1px solid var(--bdr);border-radius:var(--r-lg);padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+.mega .feat .tag{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--accent);margin-bottom:10px}
+.mega .feat h4{font-family:var(--serif);font-size:19px;font-weight:600;margin-bottom:8px}
+.mega .feat p{font-size:12.5px;color:var(--fg2);line-height:1.55;margin-bottom:14px}
+.mega .feat .go{font-size:13px;color:var(--accent);font-weight:600}
+
+@media(max-width:880px){.nav-links{display:none}.mega{width:90vw;left:auto;right:0}}
+
+/* ===================================================================
+   页面正文（用于演示滚动 + 展示插画）
+   =================================================================== */
+.hero{min-height:78vh;background:var(--heroBg);display:flex;flex-direction:column;justify-content:center;padding-top:120px}
+.kicker{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--accent);margin-bottom:16px}
+.hero h1{font-family:var(--serif);font-size:clamp(38px,6vw,64px);font-weight:600;line-height:1.12;margin-bottom:18px;max-width:760px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:17px;color:var(--fg2);max-width:600px;line-height:1.7}
+.hero .hint{margin-top:28px;font-family:var(--mono);font-size:12px;color:var(--fg3)}
+
+section.demo{padding:72px 0;border-top:1px solid var(--bdr)}
+.sec-head{margin-bottom:36px}
+.sec-no{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.1em}
+.sec-head h2{font-family:var(--serif);font-size:32px;font-weight:600;margin:8px 0 10px}
+.sec-head p{color:var(--fg2);font-size:14.5px;max-width:720px}
+
+/* 插画对比网格 */
+.ill-theme{margin-bottom:48px}
+.ill-theme>.lbl{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;border-bottom:1px solid var(--bdr);padding-bottom:10px}
+.ill-theme>.lbl h3{font-size:18px;font-weight:700}
+.ill-theme>.lbl span{font-family:var(--mono);font-size:11px;color:var(--fg3)}
+.ill-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:880px){.ill-row{grid-template-columns:1fr}}
+.ill-card{border:1px solid var(--bdr);border-radius:var(--r-lg);overflow:hidden;background:var(--surf);transition:transform var(--t-base) var(--ease),border-color var(--t-base)}
+.ill-card:hover{transform:translateY(-4px);border-color:var(--bdrBrt)}
+.ill-card .canvas{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.ill-card .canvas svg{width:100%;height:100%}
+.ill-card .meta{padding:14px 16px;border-top:1px solid var(--bdr)}
+.ill-card .meta .v{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--accent);margin-bottom:4px}
+.ill-card .meta .d{font-size:12.5px;color:var(--fg2);line-height:1.5}
+/* A 几何线稿底 */
+.bg-line{background:linear-gradient(150deg,rgba(123,128,255,.10),transparent)}
+/* B 手绘人物底（暖一点） */
+.bg-hand{background:linear-gradient(150deg,rgba(244,183,64,.12),rgba(244,114,182,.06))}
+/* C 深色渐变光晕底 */
+.bg-glow{background:radial-gradient(ellipse 70% 80% at 50% 30%,rgba(123,128,255,.35),transparent 60%),radial-gradient(ellipse 60% 60% at 75% 85%,rgba(56,189,248,.22),transparent 55%),#080611}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spinr{to{transform:rotate(-360deg)}}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes dash{to{stroke-dashoffset:-24}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+
+footer{border-top:1px solid var(--bdr);padding:28px 0;font-family:var(--mono);font-size:12px;color:var(--fg3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;background:var(--accent);color:#fff;font-size:13px;font-weight:600;padding:10px 20px;border-radius:999px;transition:opacity var(--t-base),transform var(--t-base);z-index:200}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- ============ ① 顶栏 ============ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <svg class="mark" viewBox="0 0 32 32" fill="none"><path d="M16 8L22.928 12V20L16 24L9.072 20V12L16 8Z" fill="#8501FF"/><path d="M16 24V8L22.928 12V20L16 24Z" fill="#AF59FF"/><path d="M16 16L22.928 12L16 8L9.072 12L16 16Z" fill="#CE99FF"/></svg>
+      造物云
+    </a>
+
+    <nav class="nav-links" id="navlinks">
+      <!-- 产品 mega -->
+      <div>
+        <button class="nav-link" data-menu="prod">产品
+          <svg class="chev" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M3 4.5L5.5 7L8 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <div class="mega" data-panel="prod">
+          <div>
+            <div class="col-head">核心产品</div>
+            <a class="item" href="#">
+              <span class="ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="1.8" fill="currentColor"/><path d="M8 2.5V4M8 12V13.5M2.5 8H4M12 8H13.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg></span>
+              <span><span class="tt">智核 · API HUB</span><span class="dd">50+ 模型统一接入，智能路由与成本管控</span></span>
+            </a>
+            <a class="item" href="#">
+              <span class="ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M5 6h6M5 8.5h4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg></span>
+              <span><span class="tt">AI 工作台</span><span class="dd">让最懂业务的人，亲手做专业 AI 应用</span></span>
+            </a>
+            <a class="item" href="#">
+              <span class="ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="5" cy="5" r="2.2" stroke="currentColor" stroke-width="1.2"/><circle cx="11" cy="5" r="2.2" stroke="currentColor" stroke-width="1.2"/><circle cx="8" cy="11" r="2.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 6.4 7 9.2M9.8 6.4 9 9.2" stroke="currentColor" stroke-width="1" stroke-dasharray="1.5 1.5"/></svg></span>
+              <span><span class="tt">知识管理</span><span class="dd">企业记忆中枢，让对话有业务背景</span></span>
+            </a>
+          </div>
+          <div class="feat">
+            <div>
+              <div class="tag">RECOMMENDED</div>
+              <h4>智核 · API HUB</h4>
+              <p>“AI 时代的电厂”——50+ 大模型统一接入，智能路由、灰度发布与成本管控。</p>
+            </div>
+            <span class="go">查看产品 →</span>
+          </div>
+        </div>
+      </div>
+      <!-- 解决方案 mega -->
+      <div>
+        <button class="nav-link" data-menu="sol">解决方案
+          <svg class="chev" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M3 4.5L5.5 7L8 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <div class="mega" data-panel="sol">
+          <div>
+            <div class="col-head">按场景</div>
+            <a class="item" href="#"><span class="ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 12V7l5-3 5 3v5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><rect x="6" y="9" width="4" height="3" stroke="currentColor" stroke-width="1.1"/></svg></span><span><span class="tt">智能客服</span><span class="dd">7×24 自动应答与转人工</span></span></a>
+            <a class="item" href="#"><span class="ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13l3-7 3 4 2-3 2 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><span class="tt">营销内容生成</span><span class="dd">批量产出合规营销素材</span></span></a>
+          </div>
+          <div>
+            <div class="col-head">按行业</div>
+            <a class="item" href="#"><span class="ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="3" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M6 6h4v4H6z" stroke="currentColor" stroke-width="1.1"/></svg></span><span><span class="tt">制造 · 质检</span><span class="dd">缺陷识别与产线提效</span></span></a>
+            <a class="item" href="#"><span class="ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M4 6l4-4 4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><span class="tt">零售 · 个性化</span><span class="dd">千人千面推荐</span></span></a>
+          </div>
+        </div>
+      </div>
+      <a class="nav-link" href="#">案例</a>
+      <a class="nav-link" href="#">关于</a>
+      <a class="nav-link" href="#">价格</a>
+    </nav>
+
+    <div class="nav-cta">
+      <button class="theme-btn" id="themeBtn" title="切换主题" aria-label="切换明暗主题"></button>
+      <a class="btn-ghost" href="#">登录</a>
+      <a class="btn-solid" href="#">预约演示</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<div class="hero" id="top">
+  <div class="wrap">
+    <div class="kicker">ZAOWUYUN · NAV + ILLUSTRATION REVIEW</div>
+    <h1>透明吸顶顶栏，<br>与<em>三种插画风格</em>对比。</h1>
+    <p>顶栏在页面顶部时近乎隐形、悬浮成胶囊；向下滚动后切换成磨砂玻璃（学 callbaba 的高透明度做法）。点击「产品 / 解决方案」展开 Intercom 式 Mega Menu。下方是同一批主题的三种插画风格，供你定调。</p>
+    <div class="hint">↓ 向下滚动看顶栏从透明变磨砂玻璃　·　点「产品」看下拉菜单</div>
+  </div>
+</div>
+
+<!-- ============ ② 插画风格对比 ============ -->
+<section class="demo">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">插画对比</span>
+      <h2>三种风格 · 同主题并排</h2>
+      <p>每一行是一个主题（智核·API枢纽 / 模型矩阵 / Agent 工作流 / 深脑推理），横向三列分别是 <b>A 几何线稿·抽象科技</b>、<b>B 手绘人物场景</b>、<b>C 深色渐变光晕</b>。全部纯 SVG / CSS，可随明暗主题变色、无版权。看顺哪一列，告诉我列号即可。</p>
+    </div>
+
+    <!-- 主题 1：API 枢纽 -->
+    <div class="ill-theme">
+      <div class="lbl"><h3>主题一 · 智核 API 枢纽</h3><span>来源 → 枢纽 → 模型 的路由</span></div>
+      <div class="ill-row">
+        <!-- A 几何线稿 -->
+        <div class="ill-card"><div class="canvas bg-line">
+          <svg viewBox="0 0 200 200" fill="none" style="color:var(--accent)">
+            <g opacity=".9">
+              <circle cx="100" cy="100" r="26" stroke="currentColor" stroke-width="1.4"/>
+              <circle cx="100" cy="100" r="9" fill="currentColor" opacity=".3"/>
+              <g stroke="currentColor" stroke-width="1" stroke-dasharray="3 4" style="animation:dash 1.5s linear infinite">
+                <line x1="100" y1="74" x2="100" y2="36"/><line x1="126" y1="100" x2="164" y2="100"/>
+                <line x1="100" y1="126" x2="100" y2="164"/><line x1="74" y1="100" x2="36" y2="100"/>
+                <line x1="119" y1="81" x2="146" y2="54"/><line x1="119" y1="119" x2="146" y2="146"/>
+                <line x1="81" y1="119" x2="54" y2="146"/><line x1="81" y1="81" x2="54" y2="54"/>
+              </g>
+              <circle cx="100" cy="32" r="6" stroke="currentColor" stroke-width="1.3"/>
+              <circle cx="168" cy="100" r="6" stroke="currentColor" stroke-width="1.3"/>
+              <circle cx="100" cy="168" r="6" stroke="currentColor" stroke-width="1.3"/>
+              <circle cx="32" cy="100" r="6" stroke="currentColor" stroke-width="1.3"/>
+              <circle cx="150" cy="50" r="5" stroke="currentColor" stroke-width="1.1"/>
+              <circle cx="150" cy="150" r="5" stroke="currentColor" stroke-width="1.1"/>
+              <circle cx="50" cy="150" r="5" stroke="currentColor" stroke-width="1.1"/>
+              <circle cx="50" cy="50" r="5" stroke="currentColor" stroke-width="1.1"/>
+            </g>
+          </svg>
+        </div><div class="meta"><div class="v">A · 几何线稿</div><div class="d">中心枢纽 + 八向虚线流，节点环绕。冷静、克制、技术深度感。</div></div></div>
+
+        <!-- B 手绘人物 -->
+        <div class="ill-card"><div class="canvas bg-hand">
+          <svg viewBox="0 0 200 200" fill="none">
+            <!-- 简笔人物在控制台前 -->
+            <rect x="40" y="120" width="120" height="8" rx="4" fill="var(--gold)" opacity=".5"/>
+            <rect x="64" y="74" width="72" height="46" rx="6" fill="none" stroke="var(--accent)" stroke-width="2.4"/>
+            <path d="M74 86h30M74 96h22M74 106h26" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+            <!-- 人 -->
+            <circle cx="46" cy="92" r="11" fill="var(--rose)" opacity=".85"/>
+            <path d="M30 128c0-12 7-20 16-20s16 8 16 20" fill="var(--rose)" opacity=".55"/>
+            <!-- 漂浮节点 -->
+            <circle cx="150" cy="58" r="7" fill="var(--teal)" opacity=".8" style="animation:floaty 3s ease-in-out infinite"/>
+            <circle cx="168" cy="92" r="5" fill="var(--gold)" opacity=".8" style="animation:floaty 3.6s ease-in-out infinite"/>
+          </svg>
+        </div><div class="meta"><div class="d v">B · 手绘人物</div><div class="d">业务专家在控制台前操作，暖色填充、亲和。偏消费、人情味强。</div></div></div>
+
+        <!-- C 深色渐变光晕 -->
+        <div class="ill-card"><div class="canvas bg-glow">
+          <svg viewBox="0 0 200 200" fill="none">
+            <defs><radialGradient id="g1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#A8B0FF"/><stop offset="100%" stop-color="#7B80FF" stop-opacity="0"/></radialGradient></defs>
+            <circle cx="100" cy="100" r="60" fill="url(#g1)" opacity=".5"/>
+            <circle cx="100" cy="100" r="14" fill="#CED3FF"/>
+            <g stroke="#9AA2FF" stroke-width="1" opacity=".8">
+              <ellipse cx="100" cy="100" rx="72" ry="28" style="animation:spin 22s linear infinite;transform-origin:100px 100px"/>
+              <ellipse cx="100" cy="100" rx="28" ry="72" style="animation:spinr 28s linear infinite;transform-origin:100px 100px"/>
+            </g>
+            <g fill="#fff"><circle cx="172" cy="100" r="3"/><circle cx="100" cy="28" r="3"/><circle cx="40" cy="140" r="2.5" opacity=".7"/><circle cx="150" cy="155" r="2.5" opacity=".7"/></g>
+          </svg>
+        </div><div class="meta"><div class="v">C · 深色光晕</div><div class="d">能量核心 + 双轨环绕 + 星点。河系/能量感，视觉最重、最有张力。</div></div></div>
+      </div>
+    </div>
+
+    <!-- 主题 2：模型矩阵 -->
+    <div class="ill-theme">
+      <div class="lbl"><h3>主题二 · 模型矩阵</h3><span>50+ 模型统一接入</span></div>
+      <div class="ill-row">
+        <div class="ill-card"><div class="canvas bg-line">
+          <svg viewBox="0 0 200 200" fill="none" style="color:var(--accent)">
+            <g stroke="currentColor" stroke-width="1.3">
+              <rect x="32" y="44" width="40" height="28" rx="4"/><rect x="80" y="44" width="40" height="28" rx="4"/><rect x="128" y="44" width="40" height="28" rx="4"/>
+              <rect x="32" y="86" width="40" height="28" rx="4"/><rect x="80" y="86" width="40" height="28" rx="4" stroke-width="2"/><rect x="128" y="86" width="40" height="28" rx="4"/>
+              <rect x="32" y="128" width="40" height="28" rx="4"/><rect x="80" y="128" width="40" height="28" rx="4"/><rect x="128" y="128" width="40" height="28" rx="4"/>
+            </g>
+            <circle cx="100" cy="100" r="6" fill="currentColor"/>
+          </svg>
+        </div><div class="meta"><div class="v">A · 几何线稿</div><div class="d">3×3 模型方格，中心高亮，干净的目录感。</div></div></div>
+
+        <div class="ill-card"><div class="canvas bg-hand">
+          <svg viewBox="0 0 200 200" fill="none">
+            <g opacity=".9"><rect x="40" y="50" width="48" height="34" rx="6" fill="var(--accent)" opacity=".75"/><rect x="112" y="50" width="48" height="34" rx="6" fill="var(--teal)" opacity=".75"/><rect x="40" y="116" width="48" height="34" rx="6" fill="var(--gold)" opacity=".75"/><rect x="112" y="116" width="48" height="34" rx="6" fill="var(--rose)" opacity=".75"/></g>
+            <circle cx="100" cy="100" r="13" fill="var(--fg)"/><circle cx="100" cy="100" r="13" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          </svg>
+        </div><div class="meta"><div class="v">B · 手绘人物</div><div class="d">彩色卡片拼贴，活泼。注意：此主题本身偏抽象，人物风优势不大。</div></div></div>
+
+        <div class="ill-card"><div class="canvas bg-glow">
+          <svg viewBox="0 0 200 200" fill="none">
+            <g style="animation:floaty 4s ease-in-out infinite">
+              <rect x="46" y="56" width="36" height="26" rx="5" fill="none" stroke="#9AA2FF" stroke-width="1.4"/><rect x="118" y="56" width="36" height="26" rx="5" fill="none" stroke="#7FD8FF" stroke-width="1.4"/>
+              <rect x="46" y="118" width="36" height="26" rx="5" fill="none" stroke="#FFD27F" stroke-width="1.4"/><rect x="118" y="118" width="36" height="26" rx="5" fill="none" stroke="#FF9ECF" stroke-width="1.4"/>
+            </g>
+            <circle cx="100" cy="100" r="40" fill="#7B80FF" opacity=".18"/>
+            <circle cx="100" cy="100" r="11" fill="#CED3FF"/>
+          </svg>
+        </div><div class="meta"><div class="v">C · 深色光晕</div><div class="d">悬浮模型卡 + 中心辉光，多彩描边在深底上发光。</div></div></div>
+      </div>
+    </div>
+
+    <!-- 主题 3：Agent 工作流 -->
+    <div class="ill-theme">
+      <div class="lbl"><h3>主题三 · Agent 工作流</h3><span>多智能体编排</span></div>
+      <div class="ill-row">
+        <div class="ill-card"><div class="canvas bg-line">
+          <svg viewBox="0 0 200 200" fill="none" style="color:var(--accent)">
+            <g stroke="currentColor" stroke-width="1.3">
+              <circle cx="40" cy="100" r="16"/><circle cx="100" cy="60" r="16"/><circle cx="100" cy="140" r="16"/><circle cx="160" cy="100" r="16"/>
+              <path d="M54 92 86 68M54 108 86 132M114 68 146 92M114 132 146 108" stroke-dasharray="3 4" style="animation:dash 1.4s linear infinite"/>
+            </g>
+            <g fill="currentColor" opacity=".5"><circle cx="40" cy="100" r="4"/><circle cx="100" cy="60" r="4"/><circle cx="100" cy="140" r="4"/><circle cx="160" cy="100" r="4"/></g>
+          </svg>
+        </div><div class="meta"><div class="v">A · 几何线稿</div><div class="d">四节点菱形编排 + 流动连线，清楚表达「协作」。</div></div></div>
+
+        <div class="ill-card"><div class="canvas bg-hand">
+          <svg viewBox="0 0 200 200" fill="none">
+            <g><circle cx="60" cy="80" r="14" fill="var(--accent)" opacity=".8"/><circle cx="140" cy="80" r="14" fill="var(--teal)" opacity=".8"/><circle cx="100" cy="135" r="14" fill="var(--gold)" opacity=".8"/></g>
+            <path d="M70 90 95 125M130 90 105 125M74 80h52" stroke="var(--rose)" stroke-width="2.4" stroke-linecap="round" opacity=".6"/>
+          </svg>
+        </div><div class="meta"><div class="v">B · 手绘人物</div><div class="d">三个彩色「智能体」头像协作，拟人化最自然。</div></div></div>
+
+        <div class="ill-card"><div class="canvas bg-glow">
+          <svg viewBox="0 0 200 200" fill="none">
+            <path d="M40 100 100 60 160 100 100 140Z" fill="#7B80FF" opacity=".14"/>
+            <g stroke="#9AA2FF" stroke-width="1.2" style="animation:dash 2s linear infinite" stroke-dasharray="3 4"><path d="M40 100 100 60M100 60 160 100M160 100 100 140M100 140 40 100"/></g>
+            <g fill="#CED3FF"><circle cx="40" cy="100" r="7"/><circle cx="100" cy="60" r="7"/><circle cx="160" cy="100" r="7"/><circle cx="100" cy="140" r="9"/></g>
+          </svg>
+        </div><div class="meta"><div class="v">C · 深色光晕</div><div class="d">菱形编排在深底发光，流动连线，科技张力强。</div></div></div>
+      </div>
+    </div>
+
+    <!-- 主题 4：深脑推理 -->
+    <div class="ill-theme">
+      <div class="lbl"><h3>主题四 · 深脑推理</h3><span>多路径情景分析</span></div>
+      <div class="ill-row">
+        <div class="ill-card"><div class="canvas bg-line">
+          <svg viewBox="0 0 200 200" fill="none" style="color:var(--accent)">
+            <path d="M55 150 Q50 90 100 70 Q150 90 145 150" stroke="currentColor" stroke-width="1.4" fill="none"/>
+            <path d="M70 150 Q66 105 100 92 Q134 105 130 150" stroke="currentColor" stroke-width="1" fill="none" opacity=".5"/>
+            <circle cx="100" cy="100" r="8" stroke="currentColor" stroke-width="1.3"/><circle cx="100" cy="100" r="3" fill="currentColor"/>
+            <g stroke="currentColor" stroke-width="1" stroke-dasharray="2 3"><line x1="100" y1="72" x2="100" y2="92"/><line x1="70" y1="78" x2="92" y2="95"/><line x1="130" y1="78" x2="108" y2="95"/></g>
+            <circle cx="70" cy="74" r="5" stroke="currentColor" stroke-width="1.1"/><circle cx="100" cy="68" r="5" stroke="currentColor" stroke-width="1.1"/><circle cx="130" cy="74" r="5" stroke="currentColor" stroke-width="1.1"/>
+          </svg>
+        </div><div class="meta"><div class="v">A · 几何线稿</div><div class="d">脑轮廓 + 节点突触，抽象表达「推理」。</div></div></div>
+
+        <div class="ill-card"><div class="canvas bg-hand">
+          <svg viewBox="0 0 200 200" fill="none">
+            <path d="M58 150 Q52 80 100 64 Q148 80 142 150" fill="var(--rose)" opacity=".5"/>
+            <g fill="var(--accent)"><circle cx="80" cy="100" r="6"/><circle cx="120" cy="100" r="6"/><circle cx="100" cy="120" r="6"/></g>
+            <g fill="var(--gold)" opacity=".9" style="animation:pulse 2s ease-in-out infinite"><circle cx="100" cy="78" r="5"/></g>
+          </svg>
+        </div><div class="meta"><div class="v">B · 手绘人物</div><div class="d">柔和脑形 + 跳动灵感点，暖。但「深脑」偏抽象，人物风一般。</div></div></div>
+
+        <div class="ill-card"><div class="canvas bg-glow">
+          <svg viewBox="0 0 200 200" fill="none">
+            <circle cx="100" cy="100" r="50" fill="#7B80FF" opacity=".16"/>
+            <path d="M60 145 Q55 80 100 64 Q145 80 140 145" stroke="#9AA2FF" stroke-width="1.3" fill="none"/>
+            <g fill="#CED3FF" style="animation:pulse 2.4s ease-in-out infinite"><circle cx="82" cy="98" r="5"/><circle cx="118" cy="98" r="5"/><circle cx="100" cy="118" r="5"/><circle cx="100" cy="78" r="6"/></g>
+            <g stroke="#7FD8FF" stroke-width="1" opacity=".7"><line x1="82" y1="98" x2="100" y2="78"/><line x1="118" y1="98" x2="100" y2="78"/><line x1="82" y1="98" x2="100" y2="118"/><line x1="118" y1="98" x2="100" y2="118"/></g>
+          </svg>
+        </div><div class="meta"><div class="v">C · 深色光晕</div><div class="d">辉光脑核 + 跳动突触 + 青色连线，最具「思考中」的动态感。</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>造物云 · 顶栏与插画风格对比 · v7</span>
+  <span>滚动看顶栏切换　·　点产品看 Mega Menu</span>
+</footer>
+
+<div class="toast" id="toast">已切换</div>
+
+<script>
+(function(){
+  'use strict';
+  var root=document.documentElement;
+  /* 主题切换 */
+  var icSun='<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="2.8" stroke="currentColor" stroke-width="1.4"/><path d="M7 1v1.6M7 11.4V13M1 7h1.6M11.4 7H13M3.2 3.2l1.1 1.1M9.7 9.7l1.1 1.1M3.2 10.8l1.1-1.1M9.7 4.3l1.1-1.1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>';
+  var icMoon='<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11.5 8.8A5.2 5.2 0 016 2.2 5.6 5.6 0 1011.5 8.8z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>';
+  var btn=document.getElementById('themeBtn');
+  function apply(t){ if(t==='light'){root.setAttribute('data-theme','light');btn.innerHTML=icMoon;} else {root.removeAttribute('data-theme');btn.innerHTML=icSun;} }
+  var saved=null; try{saved=localStorage.getItem('zwy-nav-theme');}catch(e){}
+  apply(saved||'dark');
+  btn.addEventListener('click',function(){var l=root.getAttribute('data-theme')==='light';var n=l?'dark':'light';apply(n);try{localStorage.setItem('zwy-nav-theme',n);}catch(e){}});
+
+  /* 顶栏滚动切磨砂玻璃 */
+  var nav=document.getElementById('nav');
+  function onScroll(){ if(window.scrollY>24) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+  /* Mega Menu 开合 */
+  var triggers=document.querySelectorAll('.nav-link[data-menu]');
+  var panels={}; document.querySelectorAll('.mega[data-panel]').forEach(function(p){panels[p.getAttribute('data-panel')]=p;});
+  var openKey=null;
+  function closeAll(){ openKey=null; triggers.forEach(function(t){t.classList.remove('open');}); for(var k in panels) panels[k].classList.remove('open'); }
+  triggers.forEach(function(t){
+    t.addEventListener('click',function(e){
+      e.stopPropagation();
+      var k=t.getAttribute('data-menu');
+      if(openKey===k){ closeAll(); return; }
+      closeAll(); openKey=k; t.classList.add('open'); panels[k].classList.add('open');
+    });
+  });
+  /* hover 也能展开（桌面） */
+  document.querySelectorAll('.nav-links>div').forEach(function(grp){
+    grp.addEventListener('mouseenter',function(){
+      var t=grp.querySelector('.nav-link[data-menu]'); if(!t)return; var k=t.getAttribute('data-menu');
+      closeAll(); openKey=k; t.classList.add('open'); panels[k].classList.add('open');
+    });
+    grp.addEventListener('mouseleave',closeAll);
+  });
+  document.addEventListener('click',closeAll);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeAll(); });
+})();
+</script>
+</body>
+</html>

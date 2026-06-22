@@ -1,0 +1,221 @@
+<!doctype html><html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>标记打磨 · 前后对照 · 造物云</title>
+<!--
+   造物云 · 标记打磨对照  logo-polish-compare
+   左=现行扁平版，右=打磨版（晶面渐变 + 顶面高光 + 谷线加深 + 暗底光晕）
+   参考 yongle.school/design-system.html 的「production orb」工艺水准：
+   渐变 + 高光 + 内阴影 + 光晕 + 微交互。此处把同等工艺移植到「晶体」语言上，
+   不照搬球体。确认后再回填 buildMark / 各页内联 SVG / assets。
+-->
+<style>
+:root{
+  --bg:#07070F; --bg2:#0d0d18; --surf:rgba(255,255,255,.05);
+  --fg:#ECEEFF; --fg2:#9aa0bd; --bdr:rgba(255,255,255,.10); --bdrBrt:rgba(255,255,255,.18);
+  --accent:#7B80FF; --paper:#EDE6D3;
+  --serif:'Songti SC','STSong','Noto Serif SC','Source Han Serif CN','SimSun',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;
+  --mono:'SF Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+header{padding:60px 0 26px;border-bottom:1px solid var(--bdr)}
+.kic{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--accent);font-family:var(--mono);text-transform:uppercase}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(28px,4.4vw,42px);letter-spacing:-.5px;margin:12px 0}
+.lead{color:var(--fg2);font-size:15.5px;max-width:720px}
+.lead b{color:var(--fg);font-weight:600}
+section{padding:46px 0;border-bottom:1px solid var(--bdr)}
+.sh{display:flex;align-items:baseline;gap:12px;margin-bottom:22px}
+.sh .n{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:700}
+.sh h2{font-family:var(--serif);font-weight:400;font-size:25px;letter-spacing:-.3px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:720px){.duo{grid-template-columns:1fr}}
+.card{border:1px solid var(--bdr);border-radius:18px;overflow:hidden;background:var(--bg2)}
+.card .stage{height:230px;display:flex;align-items:center;justify-content:center;gap:18px}
+.card .cap{display:flex;justify-content:space-between;align-items:baseline;padding:12px 16px;border-top:1px solid var(--bdr)}
+.card .cap .t{font-weight:600;font-size:14px}
+.card .cap .m{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--fg2);text-transform:uppercase}
+.bg-dark{background:#07070F}
+.bg-light{background:#F8F6F0}
+.bg-paper{background:var(--paper)}
+.bg-purple{background:linear-gradient(135deg,#7B80FF,#5B5FE0)}
+.bg-photo{background:linear-gradient(135deg,#2a1a4a,#0a0a18),url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2210%22 height=%2210%22><circle cx=%221%22 cy=%221%22 r=%221%22 fill=%22rgba(255,255,255,.06)%22/></svg>')}
+.ladder{display:flex;align-items:flex-end;justify-content:center;gap:26px;flex-wrap:wrap}
+.ladder .u{display:flex;flex-direction:column;align-items:center;gap:9px}
+.ladder .u .lb{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--fg2)}
+.lockup{display:flex;align-items:center;gap:14px}
+.lockup .wm svg{display:block;width:auto}
+.note{color:var(--fg2);font-size:13.5px;margin-top:14px}
+.note b{color:var(--fg)}
+.diffs{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 26px;margin-top:8px}
+@media(max-width:720px){.diffs{grid-template-columns:1fr}}
+.diffs li{font-size:13.5px;color:var(--fg2);padding-left:18px;position:relative}
+.diffs li::before{content:'→';position:absolute;left:0;color:var(--accent)}
+.diffs li b{color:var(--fg);font-weight:600}
+footer{padding:40px 0 80px;color:var(--fg2);font-size:13px}
+/* mark micro-interaction */
+.mk{display:block;overflow:visible;transition:transform .3s cubic-bezier(.4,1.4,.6,1)}
+.hoverable:hover .mk{transform:scale(1.06) translateY(-1px)}
+@keyframes haloPulse{0%,100%{opacity:.55}50%{opacity:.9}}
+</style></head>
+<body>
+
+<header><div class="wrap">
+  <div class="kic">ZAOWUYUN · MARK POLISH</div>
+  <h1>标记打磨 · 前后对照</h1>
+  <p class="lead">参考 <b>yongle.school</b> design-system 里那枚「production orb」的工艺水准——<b>渐变、高光、内阴影、光晕、微交互</b>——把同等精度移植到造物云的「晶体」语言上（不照搬球体）。左为现行扁平版，右为打磨版。满意后再回填到 <code>buildMark()</code> 与各页内联 SVG。</p>
+  <ul class="diffs">
+    <li><b>晶面渐变</b>：三面由纯色平涂改为各自的明暗渐变，光从左上来</li>
+    <li><b>顶面高光</b>：顶棱描一道近白细光 + 顶面小亮斑，像被切割面反光</li>
+    <li><b>谷线加深</b>：中心垂直交线压一道深紫，让立方更立体</li>
+    <li><b>暗底光晕</b>：深色背景后置一层柔紫光晕（缓慢呼吸），承托宝石</li>
+    <li><b>承托面微妙化</b>：白色底板加极淡上下渐变与内高光，像实体珐琅片</li>
+    <li><b>小尺寸守住</b>：20px 仍清晰，渐变自然收敛为近实色</li>
+  </ul>
+</div></header>
+
+<section><div class="wrap">
+  <div class="sh"><span class="n">01</span><h2>主版 · 深色（含 hover 缩放）</h2></div>
+  <div class="duo">
+    <div class="card"><div class="stage bg-dark hoverable"><span data-mk data-size="120"></span></div>
+      <div class="cap"><span class="t">现行 · 扁平</span><span class="m">FLAT</span></div></div>
+    <div class="card"><div class="stage bg-dark hoverable"><span data-mk data-size="120" data-polish data-glow></span></div>
+      <div class="cap"><span class="t">打磨 · 晶面 + 光晕</span><span class="m">POLISHED</span></div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sh"><span class="n">02</span><h2>尺寸阶梯 · 守住小尺寸</h2></div>
+  <div class="duo">
+    <div class="card"><div class="stage bg-dark"><div class="ladder">
+      <div class="u"><span data-mk data-size="20"></span><span class="lb">20</span></div>
+      <div class="u"><span data-mk data-size="28"></span><span class="lb">28</span></div>
+      <div class="u"><span data-mk data-size="40"></span><span class="lb">40</span></div>
+      <div class="u"><span data-mk data-size="64"></span><span class="lb">64</span></div>
+    </div></div><div class="cap"><span class="t">现行</span><span class="m">FLAT</span></div></div>
+    <div class="card"><div class="stage bg-dark"><div class="ladder">
+      <div class="u"><span data-mk data-size="20" data-polish></span><span class="lb">20</span></div>
+      <div class="u"><span data-mk data-size="28" data-polish></span><span class="lb">28</span></div>
+      <div class="u"><span data-mk data-size="40" data-polish></span><span class="lb">40</span></div>
+      <div class="u"><span data-mk data-size="64" data-polish data-glow></span><span class="lb">64</span></div>
+    </div></div><div class="cap"><span class="t">打磨</span><span class="m">POLISHED</span></div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sh"><span class="n">03</span><h2>背景适配 · 打磨版四底</h2></div>
+  <div class="duo">
+    <div class="card"><div class="stage bg-light"><span data-mk data-size="84" data-polish data-plate="white" data-hairline></span></div><div class="cap"><span class="t">浅底 · 白板 + 发丝线</span><span class="m">ON LIGHT</span></div></div>
+    <div class="card"><div class="stage bg-paper"><span data-mk data-size="84" data-polish data-plate="white" data-hairline></span></div><div class="cap"><span class="t">暖纸</span><span class="m">ON PAPER</span></div></div>
+    <div class="card"><div class="stage bg-purple"><span data-mk data-size="84" data-mono></span></div><div class="cap"><span class="t">品牌紫 · 单色白（不渐变）</span><span class="m">ON BRAND</span></div></div>
+    <div class="card"><div class="stage bg-photo"><span data-mk data-size="84" data-polish data-plate="white" data-glow></span></div><div class="cap"><span class="t">照片底 · 白板托</span><span class="m">ON PHOTO</span></div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sh"><span class="n">04</span><h2>组合锁定 · 与字标</h2></div>
+  <div class="duo">
+    <div class="card"><div class="stage bg-dark"><span class="lockup"><span data-mk data-size="44"></span><span class="wm" data-h="26" style="color:#ECEEFF"></span></span></div><div class="cap"><span class="t">现行</span><span class="m">FLAT</span></div></div>
+    <div class="card"><div class="stage bg-dark"><span class="lockup"><span data-mk data-size="44" data-polish data-glow></span><span class="wm" data-h="26" style="color:#ECEEFF"></span></span></div><div class="cap"><span class="t">打磨</span><span class="m">POLISHED</span></div></div>
+  </div>
+  <p class="note"><b>说明：</b>单色版（紫底白、印刷盖章、传真）保持纯色不加渐变——打磨只作用于会折光的「正片」彩色版，单色语言反而要保持极简可复制。</p>
+</div></section>
+
+<footer><div class="wrap">造物云 · 标记打磨对照 · 仅供决策预览，确认后回填 buildMark / 内联 SVG / assets/logo-mark.svg</div></footer>
+
+<script>
+const PLATE_D="M27.356405,6.5566244Q27.640217,6.7204833,27.900215,6.9199853Q28.16021,7.1194868,28.391941,7.3512182Q28.623672,7.5829496,28.823174,7.8429451Q29.022675,8.1029396,29.186533,8.3867512Q29.350391,8.6705627,29.475803,8.9733343Q29.601215,9.2761059,29.686035,9.5926561Q29.770855,9.9092064,29.813629,10.23412Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.813631,21.765881Q29.770855,22.090794,29.686037,22.407345Q29.601215,22.723896,29.475803,23.026669Q29.350391,23.329437,29.186531,23.613249Q29.022675,23.89706,28.823174,24.157059Q28.623672,24.417053,28.391941,24.648785Q28.16021,24.880516,27.900215,25.080017Q27.640217,25.279518,27.356405,25.443377L18.5,30.556623Q18.216188,30.720484,17.913418,30.845898Q17.610645,30.97131,17.294096,31.056129Q16.977547,31.140947,16.652632,31.183723Q16.327717,31.226498,16,31.226498Q15.672283,31.226498,15.347369,31.183723Q15.022456,31.140945,14.705906,31.056128Q14.389355,30.97131,14.086583,30.845898Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q4.3597822,25.279518,4.0997868,25.080017Q3.8397913,24.880516,3.6080601,24.648783Q3.3763289,24.417053,3.1768272,24.157059Q2.9773254,23.89706,2.8134668,23.613249Q2.6496081,23.329437,2.5241961,23.026669Q2.3987842,22.723896,2.3139648,22.407347Q2.2291453,22.090796,2.1863694,21.765881Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.1863689,10.23412Q2.2291448,9.9092064,2.3139644,9.5926561Q2.3987837,9.2761059,2.5241957,8.9733343Q2.6496074,8.6705627,2.8134661,8.3867512Q2.977325,8.1029396,3.1768267,7.8429446Q3.3763285,7.5829496,3.6080596,7.3512182Q3.8397908,7.1194868,4.0997868,6.9199853Q4.3597822,6.7204833,4.6435933,6.5566244L13.5,1.4433756Q13.783812,1.2795169,14.086583,1.1541051Q14.389355,1.0286931,14.705906,0.94387358Q15.022456,0.85905409,15.34737,0.8162784Q15.672283,0.77350271,16,0.77350271Q16.327717,0.77350277,16.652632,0.81627846Q16.977547,0.85905421,17.294096,0.9438737Q17.610645,1.0286932,17.913418,1.1541052Q18.216188,1.2795172,18.5,1.4433758L27.356405,6.5566244Z";
+const FACES={
+  top:'M16 8 L22.928 12 L16 16 L9.072 12 Z',
+  right:'M16 16 L22.928 12 L22.928 20 L16 24 Z',
+  left:'M9.072 12 L16 16 L16 24 L9.072 20 Z'
+};
+const HEX='M16 8 L22.928 12 L22.928 20 L16 24 L9.072 20 L9.072 12 Z';
+let U=0;
+
+/* ---- 扁平（现行） ---- */
+function flat(size,plate,hairline){
+  const hair=hairline?` stroke="rgba(24,21,14,.06)" stroke-width="0.4" stroke-linejoin="round"`:'';
+  const pl=plate?`<path d="${PLATE_D}" fill="#FFFFFF"${hair}/>`:'';
+  return `<svg class="mk" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:${size}px;height:${size}px">
+    ${pl}
+    <path d="${FACES.left}"  fill="#8501FF"/>
+    <path d="${FACES.right}" fill="#AF59FF"/>
+    <path d="${FACES.top}"   fill="#CE99FF"/>
+  </svg>`;
+}
+
+/* ---- 单色白（紫底） ---- */
+function mono(size){
+  return `<svg class="mk" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:${size}px;height:${size}px">
+    <path d="${FACES.left}"  fill="rgba(255,255,255,.6)"/>
+    <path d="${FACES.right}" fill="rgba(255,255,255,.84)"/>
+    <path d="${FACES.top}"   fill="#FFFFFF"/>
+  </svg>`;
+}
+
+/* ---- 打磨版 ---- */
+function polished(size,plate,hairline,glow){
+  const id=U++;
+  const hair=hairline?` stroke="rgba(24,21,14,.07)" stroke-width="0.4" stroke-linejoin="round"`:'';
+  let plate2='';
+  if(plate){
+    plate2=`<path d="${PLATE_D}" fill="#FFFFFF"${hair}/>
+      <path d="${PLATE_D}" fill="url(#pl${id})"/>`;
+  }
+  const glowEl=glow?`<g filter="url(#gl${id})"><path d="${HEX}" fill="#8E2BF0" opacity=".55"><animate attributeName="opacity" values=".42;.78;.42" dur="3.6s" repeatCount="indefinite"/></path></g>`:'';
+  return `<svg class="mk" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:${size}px;height:${size}px">
+  <defs>
+    <linearGradient id="ft${id}" x1=".25" y1="0" x2=".62" y2="1">
+      <stop offset="0" stop-color="#EEDCFF"/><stop offset=".55" stop-color="#D6AAFF"/><stop offset="1" stop-color="#C084FF"/>
+    </linearGradient>
+    <linearGradient id="fr${id}" x1=".2" y1="0" x2=".7" y2="1">
+      <stop offset="0" stop-color="#C078FF"/><stop offset="1" stop-color="#9533EC"/>
+    </linearGradient>
+    <linearGradient id="fl${id}" x1=".7" y1="0" x2=".2" y2="1">
+      <stop offset="0" stop-color="#9A35FF"/><stop offset="1" stop-color="#6700C2"/>
+    </linearGradient>
+    <linearGradient id="pl${id}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset=".5" stop-color="#FFFFFF" stop-opacity="0"/><stop offset="1" stop-color="#241840" stop-opacity=".07"/>
+    </linearGradient>
+    <radialGradient id="sp${id}" cx=".5" cy=".34" r=".5">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".85"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="gl${id}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="1.7"/></filter>
+  </defs>
+  ${glowEl}
+  ${plate2}
+  <path d="${FACES.left}"  fill="url(#fl${id})"/>
+  <path d="${FACES.right}" fill="url(#fr${id})"/>
+  <path d="${FACES.top}"   fill="url(#ft${id})"/>
+  <!-- 顶面亮斑 -->
+  <path d="M16 9 L18.0 10.4 L16 12.1 L14.0 10.4 Z" fill="url(#sp${id})"/>
+  <!-- 顶棱反光 -->
+  <path d="M16 8 L9.072 12" stroke="rgba(255,255,255,.55)" stroke-width=".55" stroke-linecap="round"/>
+  <path d="M16 8 L22.928 12" stroke="rgba(255,255,255,.4)" stroke-width=".55" stroke-linecap="round"/>
+  <!-- 中心谷线加深 -->
+  <path d="M16 16 L16 24" stroke="rgba(48,0,104,.28)" stroke-width=".5" stroke-linecap="round"/>
+  </svg>`;
+}
+
+function build(el){
+  const size=+(el.dataset.size||44);
+  if(el.dataset.mono!==undefined){ el.innerHTML=mono(size); return; }
+  const plate=el.dataset.plate!==undefined;
+  const hairline=el.dataset.hairline!==undefined;
+  const glow=el.dataset.glow!==undefined;
+  if(el.dataset.polish!==undefined) el.innerHTML=polished(size,plate,hairline,glow);
+  else el.innerHTML=flat(size,plate,hairline);
+}
+document.querySelectorAll('[data-mk]').forEach(build);
+
+/* 字标 */
+fetch('assets/logo-wordmark.svg').then(r=>r.text()).then(t=>{
+  document.querySelectorAll('.wm').forEach(w=>{
+    const h=+(w.dataset.h||22); w.innerHTML=t;
+    const s=w.querySelector('svg'); if(s){s.removeAttribute('height');s.style.height=h+'px';s.style.width='auto';s.style.display='block';}
+  });
+}).catch(()=>{});
+</script>
+</body></html>

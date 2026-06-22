@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{-webkit-font-smoothing:antialiased;}
+@keyframes spinRing{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+</style>
+</helmet>
+
+<div data-screen-label="造物云-案例" style="{{ rootStyle }}">
+
+  <!-- NAV -->
+  <header style="position:sticky;top:0;z-index:60;backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);background:var(--navBg);border-bottom:1px solid var(--navBdr);">
+    <div style="max-width:1280px;margin:0 auto;padding:0 var(--ph);height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+      <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--fg);flex-shrink:0;">
+        <div style="width:32px;height:32px;flex-shrink:0;transition:transform .25s ease,filter .25s ease;filter:drop-shadow(0 1px 4px rgba(0,0,0,.14));" style-hover="transform:scale(1.1);filter:drop-shadow(0 0 12px rgba(133,1,255,.65))"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M27.356405,6.5566244Q27.640217,6.7204833,27.900215,6.9199853Q28.16021,7.1194868,28.391941,7.3512182Q28.623672,7.5829496,28.823174,7.8429451Q29.022675,8.1029396,29.186533,8.3867512Q29.350391,8.6705627,29.475803,8.9733343Q29.601215,9.2761059,29.686035,9.5926561Q29.770855,9.9092064,29.813629,10.23412Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.813631,21.765881Q29.770855,22.090794,29.686037,22.407345Q29.601215,22.723896,29.475803,23.026669Q29.350391,23.329437,29.186531,23.613249Q29.022675,23.89706,28.823174,24.157059Q28.623672,24.417053,28.391941,24.648785Q28.16021,24.880516,27.900215,25.080017Q27.640217,25.279518,27.356405,25.443377L18.5,30.556623Q18.216188,30.720484,17.913418,30.845898Q17.610645,30.97131,17.294096,31.056129Q16.977547,31.140947,16.652632,31.183723Q16.327717,31.226498,16,31.226498Q15.672283,31.226498,15.347369,31.183723Q15.022456,31.140945,14.705906,31.056128Q14.389355,30.97131,14.086583,30.845898Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q4.3597822,25.279518,4.0997868,25.080017Q3.8397913,24.880516,3.6080601,24.648783Q3.3763289,24.417053,3.1768272,24.157059Q2.9773254,23.89706,2.8134668,23.613249Q2.6496081,23.329437,2.5241961,23.026669Q2.3987842,22.723896,2.3139648,22.407347Q2.2291453,22.090796,2.1863694,21.765881Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.1863689,10.23412Q2.2291448,9.9092064,2.3139644,9.5926561Q2.3987837,9.2761059,2.5241957,8.9733343Q2.6496074,8.6705627,2.8134661,8.3867512Q2.977325,8.1029396,3.1768267,7.8429446Q3.3763285,7.5829496,3.6080596,7.3512182Q3.8397908,7.1194868,4.0997868,6.9199853Q4.3597822,6.7204833,4.6435933,6.5566244L13.5,1.4433756Q13.783812,1.2795169,14.086583,1.1541051Q14.389355,1.0286931,14.705906,0.94387358Q15.022456,0.85905409,15.34737,0.8162784Q15.672283,0.77350271,16,0.77350271Q16.327717,0.77350277,16.652632,0.81627846Q16.977547,0.85905421,17.294096,0.9438737Q17.610645,1.0286932,17.913418,1.1541052Q18.216188,1.2795172,18.5,1.4433758L27.356405,6.5566244Z" fill="#FFFFFF"/><path d="M16,8L22.928203,12L22.928203,20L16,24L9.071797,20L9.071797,12L16,8Z" fill="#8501FF"/><path d="M15.999958,24.000038L15.999958,8.000038L22.928161,12.000038L22.928161,20.000038L15.999958,24.000038Z" fill="#AF59FF"/><path d="M15.99994,16L22.928144,12L15.99994,8L9.071738,12L15.99994,16Z" fill="#CE99FF"/></svg></div>
+        <span style="font-weight:900;font-size:18px;letter-spacing:-.02em;font-family:'Noto Sans SC',sans-serif;">造物云</span>
+      </a>
+      <div style="display:var(--navLinks);align-items:center;gap:4px;font-size:14px;font-weight:500;color:var(--fg2);">
+        <a href="index.html" style="text-decoration:none;color:var(--fg2);padding:8px 12px;border-radius:8px;" style-hover="background:var(--surf);color:var(--fg)">首页</a>
+        <a href="index.html#products" style="text-decoration:none;color:var(--fg2);padding:8px 12px;border-radius:8px;" style-hover="background:var(--surf);color:var(--fg)">产品</a>
+        <a href="cases.html" style="text-decoration:none;color:var(--fg);padding:8px 12px;border-radius:8px;background:var(--surf);">案例</a>
+        <a href="about.html" style="text-decoration:none;color:var(--fg2);padding:8px 12px;border-radius:8px;" style-hover="background:var(--surf);color:var(--fg)">关于我们</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+        <button onClick="{{ toggleDark }}" style="{{ toggleBtn }}">{{ themeLabel }}</button>
+        <a href="index.html#cta" style="{{ navCtaBtn }}">预约演示</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section style="max-width:1280px;margin:0 auto;padding:80px var(--ph) 56px;">
+    <div style="max-width:680px;">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 8px;border-radius:999px;background:var(--surf);border:1px solid var(--bdr);margin-bottom:22px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:block;"></span>
+        <span style="font-size:12px;font-weight:500;color:var(--fg2);letter-spacing:.04em;font-family:'Noto Sans SC',sans-serif;">客户案例</span>
+      </div>
+      <h1 style="font-family:'Noto Serif SC',serif;font-size:var(--heroFs);line-height:1.2;font-weight:600;letter-spacing:-.01em;color:var(--fg);margin:0 0 18px;">与 600+ 企业<br>共同发生的<span style="color:var(--accent);">改变</span>。</h1>
+      <p style="font-size:17px;color:var(--fg2);line-height:1.68;margin:0;max-width:520px;font-family:'Noto Sans SC',sans-serif;">从制造业质检到零售个性化，每一个案例都是 AI 改变真实业务流程的故事。</p>
+    </div>
+  </section>
+
+  <!-- FILTER TABS -->
+  <section style="max-width:1280px;margin:0 auto;padding:0 var(--ph) 36px;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+      <button onClick="{{ f0 }}" style="{{ ft0 }}">全部</button>
+      <button onClick="{{ f1 }}" style="{{ ft1 }}">制造</button>
+      <button onClick="{{ f2 }}" style="{{ ft2 }}">金融</button>
+      <button onClick="{{ f3 }}" style="{{ ft3 }}">零售</button>
+      <button onClick="{{ f4 }}" style="{{ ft4 }}">医疗</button>
+      <button onClick="{{ f5 }}" style="{{ ft5 }}">政务</button>
+    </div>
+  </section>
+
+  <!-- FEATURED CASE -->
+  <section style="max-width:1280px;margin:0 auto;padding:0 var(--ph) 36px;">
+    <div data-reveal style="{{ featuredCard }}">
+      <div style="display:grid;grid-template-columns:var(--featuredCols);gap:40px;align-items:center;">
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
+            <span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;color:var(--accent);font-family:'Space Grotesk',sans-serif;">FEATURED</span>
+            <span style="width:4px;height:4px;border-radius:50%;background:var(--bdrBrt);"></span>
+            <span style="background:rgba(52,211,153,.15);color:#34D399;padding:3px 10px;border-radius:999px;font-size:11.5px;font-weight:600;font-family:'Noto Sans SC',sans-serif;">制造</span>
+          </div>
+          <h2 style="font-family:'Noto Serif SC',serif;font-size:30px;font-weight:600;letter-spacing:-.01em;line-height:1.28;color:var(--fg);margin:0 0 14px;">海尔智慧工厂：AI 质检<br>让次品率下降 91%</h2>
+          <p style="font-size:15px;color:var(--fg2);line-height:1.7;margin:0 0 24px;font-family:'Noto Sans SC',sans-serif;">海尔旗下某家电生产线，每天产出 3 万+零件，人工质检误判率高达 8%。接入造物云视觉 · 3D 渲染模块后，AI 质检系统实时扫描每一件零件，两周内次品率从 8% 降至 0.7%，年节省质检人力成本超过 420 万元。</p>
+          <div style="display:flex;gap:28px;margin-bottom:28px;">
+            <div><div style="font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;color:var(--fg);">91%</div><div style="font-size:13px;color:var(--fg2);margin-top:4px;font-family:'Noto Sans SC',sans-serif;">次品率下降</div></div>
+            <div><div style="font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;color:var(--fg);">2周</div><div style="font-size:13px;color:var(--fg2);margin-top:4px;font-family:'Noto Sans SC',sans-serif;">从立项到上线</div></div>
+            <div><div style="font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;color:var(--fg);">420万</div><div style="font-size:13px;color:var(--fg2);margin-top:4px;font-family:'Noto Sans SC',sans-serif;">年节省成本(元)</div></div>
+          </div>
+          <a href="#" style="{{ readBtn }}">阅读完整案例 <span style="{{ btnIcon }}"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5L9 5.5 6 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        </div>
+        <div style="height:320px;border-radius:16px;background:var(--surf2);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;">
+          <svg viewBox="0 0 300 240" fill="none" style="width:240px;color:var(--accent);opacity:.5;">
+            <rect x="20" y="20" width="260" height="180" rx="8" stroke="currentColor" stroke-width="1"/>
+            <rect x="40" y="40" width="100" height="80" rx="4" stroke="currentColor" stroke-width=".8"/>
+            <rect x="160" y="40" width="100" height="80" rx="4" stroke="currentColor" stroke-width=".8"/>
+            <circle cx="90" cy="80" r="20" stroke="currentColor" stroke-width=".8"/>
+            <circle cx="210" cy="80" r="20" stroke="currentColor" stroke-width=".8" fill="currentColor" opacity=".15"/>
+            <path d="M80 72h20M85 80h10M80 88h20" stroke="currentColor" stroke-width=".6"/>
+            <path d="M200 72h20M205 80h10M200 88h20" stroke="currentColor" stroke-width=".6" opacity=".6"/>
+            <line x1="140" y1="80" x2="160" y2="80" stroke="currentColor" stroke-width=".8" stroke-dasharray="3 3"/>
+            <rect x="40" y="140" width="220" height="32" rx="4" stroke="currentColor" stroke-width=".8"/>
+            <rect x="48" y="148" width="80" height="16" rx="2" fill="currentColor" opacity=".2"/>
+            <rect x="136" y="148" width="40" height="16" rx="2" fill="currentColor" opacity=".1"/>
+            <rect x="184" y="148" width="68" height="16" rx="2" fill="currentColor" opacity=".08"/>
+            <text x="48" y="161" font-family="monospace" font-size="8" fill="currentColor" opacity=".5">91% accuracy</text>
+          </svg>
+          <div style="position:absolute;top:16px;right:16px;background:var(--glass);border:1px solid var(--bdr);border-radius:10px;padding:8px 12px;backdrop-filter:blur(12px);">
+            <div style="font-size:10px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">AI 置信度</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:#34D399;">99.3%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE GRID -->
+  <section style="max-width:1280px;margin:0 auto;padding:0 var(--ph) 80px;">
+    <div style="display:grid;grid-template-columns:var(--cols3);gap:16px;">
+
+      <a href="#" data-reveal style="{{ caseCard }};text-decoration:none;" style-hover="transform:translateY(-4px)">
+        <div style="height:160px;background:linear-gradient(150deg,rgba(99,102,241,.15),rgba(99,102,241,.04));border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 80 60" fill="none" style="width:90px;color:var(--accent);opacity:.5;"><rect x="8" y="8" width="28" height="42" rx="3" stroke="currentColor" stroke-width="1"/><rect x="44" y="20" width="28" height="30" rx="3" stroke="currentColor" stroke-width="1"/><line x1="36" y1="29" x2="44" y2="35" stroke="currentColor" stroke-width=".8" stroke-dasharray="2 2"/><circle cx="22" cy="25" r="6" stroke="currentColor" stroke-width=".8"/><circle cx="58" cy="35" r="5" stroke="currentColor" stroke-width=".8"/></svg>
+        </div>
+        <div style="padding:20px 22px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span style="background:rgba(99,102,241,.15);color:#818CF8;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Noto Sans SC',sans-serif;">金融</span><span style="font-size:11.5px;color:var(--fg3);font-family:'Space Grotesk',sans-serif;">启明金融</span></div>
+          <h3 style="font-size:17px;font-weight:700;color:var(--fg);line-height:1.45;margin:0 0 8px;font-family:'Noto Sans SC',sans-serif;">AI 智能风控：核审时间从 4 小时降至 8 分钟</h3>
+          <p style="font-size:13px;color:var(--fg2);line-height:1.6;margin:0;font-family:'Noto Sans SC',sans-serif;">部署造物云洞见 · 数据分析模块，实时多维风控模型替代人工审批。</p>
+          <div style="margin-top:16px;display:flex;gap:18px;padding-top:14px;border-top:1px solid var(--bdr);">
+            <div><div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--fg);">97%</div><div style="font-size:11.5px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">审批自动化率</div></div>
+            <div><div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--fg);">8min</div><div style="font-size:11.5px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">平均核审时间</div></div>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" data-reveal data-delay="100" style="{{ caseCard }};text-decoration:none;" style-hover="transform:translateY(-4px)">
+        <div style="height:160px;background:linear-gradient(150deg,rgba(245,158,11,.15),rgba(245,158,11,.04));border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 80 60" fill="none" style="width:90px;color:#F59E0B;opacity:.5;"><circle cx="40" cy="30" r="20" stroke="currentColor" stroke-width="1"/><circle cx="40" cy="30" r="8" stroke="currentColor" stroke-width=".8"/><line x1="40" y1="10" x2="40" y2="2" stroke="currentColor" stroke-width=".8"/><line x1="60" y1="30" x2="68" y2="30" stroke="currentColor" stroke-width=".8"/><line x1="40" y1="50" x2="40" y2="58" stroke="currentColor" stroke-width=".8"/><line x1="20" y1="30" x2="12" y2="30" stroke="currentColor" stroke-width=".8"/><circle cx="40" cy="2" r="3" fill="currentColor"/><circle cx="68" cy="30" r="3" fill="currentColor"/></svg>
+        </div>
+        <div style="padding:20px 22px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span style="background:rgba(245,158,11,.15);color:#F59E0B;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Noto Sans SC',sans-serif;">零售</span><span style="font-size:11.5px;color:var(--fg3);font-family:'Space Grotesk',sans-serif;">安踏集团</span></div>
+          <h3 style="font-size:17px;font-weight:700;color:var(--fg);line-height:1.45;margin:0 0 8px;font-family:'Noto Sans SC',sans-serif;">个性化推荐引擎将客均消费提升 34%</h3>
+          <p style="font-size:13px;color:var(--fg2);line-height:1.6;margin:0;font-family:'Noto Sans SC',sans-serif;">基于造物云智核 · 模型中台，实时处理用户行为数据，生成千人千面的商品推荐。</p>
+          <div style="margin-top:16px;display:flex;gap:18px;padding-top:14px;border-top:1px solid var(--bdr);">
+            <div><div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--fg);">+34%</div><div style="font-size:11.5px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">客均消费</div></div>
+            <div><div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--fg);">2.1x</div><div style="font-size:11.5px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">点击转化率</div></div>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" data-reveal data-delay="200" style="{{ caseCard }};text-decoration:none;" style-hover="transform:translateY(-4px)">
+        <div style="height:160px;background:linear-gradient(150deg,rgba(6,182,212,.15),rgba(6,182,212,.04));border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 80 60" fill="none" style="width:90px;color:#06B6D4;opacity:.5;"><rect x="5" y="40" width="12" height="16" rx="1.5" stroke="currentColor" stroke-width="1"/><rect x="22" y="28" width="12" height="28" rx="1.5" stroke="currentColor" stroke-width="1"/><rect x="39" y="18" width="12" height="38" rx="1.5" stroke="currentColor" stroke-width="1"/><rect x="56" y="8" width="12" height="48" rx="1.5" stroke="currentColor" stroke-width="1" fill="currentColor" opacity=".15"/><path d="M11 38 L28 26 L45 16 L62 6" stroke="currentColor" stroke-width=".8" stroke-dasharray="2 3"/></svg>
+        </div>
+        <div style="padding:20px 22px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span style="background:rgba(6,182,212,.15);color:#06B6D4;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Noto Sans SC',sans-serif;">医疗</span><span style="font-size:11.5px;color:var(--fg3);font-family:'Space Grotesk',sans-serif;">远见医疗</span></div>
+          <h3 style="font-size:17px;font-weight:700;color:var(--fg);line-height:1.45;margin:0 0 8px;font-family:'Noto Sans SC',sans-serif;">医疗影像报告智能生成，效率提升 5 倍</h3>
+          <p style="font-size:13px;color:var(--fg2);line-height:1.6;margin:0;font-family:'Noto Sans SC',sans-serif;">造物云知见 · 知识管理接入医学文献库，辅助医生生成标准化影像诊断报告。</p>
+          <div style="margin-top:16px;display:flex;gap:18px;padding-top:14px;border-top:1px solid var(--bdr);">
+            <div><div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--fg);">5x</div><div style="font-size:11.5px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">报告生成效率</div></div>
+            <div><div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--fg);">92%</div><div style="font-size:11.5px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">医生采纳率</div></div>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" data-reveal data-delay="0" style="{{ caseCard }};text-decoration:none;" style-hover="transform:translateY(-4px)">
+        <div style="height:160px;background:linear-gradient(150deg,rgba(168,85,247,.15),rgba(168,85,247,.04));border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 80 60" fill="none" style="width:90px;color:#A855F7;opacity:.5;"><circle cx="15" cy="30" r="8" stroke="currentColor" stroke-width="1"/><circle cx="40" cy="30" r="8" stroke="currentColor" stroke-width="1" fill="currentColor" opacity=".12"/><circle cx="65" cy="30" r="8" stroke="currentColor" stroke-width="1"/><line x1="23" y1="30" x2="32" y2="30" stroke="currentColor" stroke-width=".8" stroke-dasharray="2 2"/><line x1="48" y1="30" x2="57" y2="30" stroke="currentColor" stroke-width=".8" stroke-dasharray="2 2"/><text x="12" y="33" font-family="monospace" font-size="7" fill="currentColor" opacity=".6">AI</text><text x="60" y="46" font-family="monospace" font-size="6" fill="currentColor" opacity=".4">✓</text></svg>
+        </div>
+        <div style="padding:20px 22px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span style="background:rgba(168,85,247,.15);color:#A855F7;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Noto Sans SC',sans-serif;">政务</span><span style="font-size:11.5px;color:var(--fg3);font-family:'Space Grotesk',sans-serif;">某省政务办</span></div>
+          <h3 style="font-size:17px;font-weight:700;color:var(--fg);line-height:1.45;margin:0 0 8px;font-family:'Noto Sans SC',sans-serif;">政务智能问答日均服务 10 万市民</h3>
+          <p style="font-size:13px;color:var(--fg2);line-height:1.6;margin:0;font-family:'Noto Sans SC',sans-serif;">私有化部署造物云知见 · 知识管理，接入 5 万+政策文件，数据完全不出域。</p>
+          <div style="margin-top:16px;display:flex;gap:18px;padding-top:14px;border-top:1px solid var(--bdr);">
+            <div><div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--fg);">10万</div><div style="font-size:11.5px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">日均咨询量</div></div>
+            <div><div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--fg);">96%</div><div style="font-size:11.5px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">问题解决率</div></div>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" data-reveal data-delay="100" style="{{ caseCard }};text-decoration:none;" style-hover="transform:translateY(-4px)">
+        <div style="height:160px;background:linear-gradient(150deg,rgba(52,211,153,.15),rgba(52,211,153,.04));border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 80 60" fill="none" style="width:90px;color:#34D399;opacity:.5;"><path d="M10 50 Q20 20 40 25 Q60 30 70 10" stroke="currentColor" stroke-width="1" fill="none"/><circle cx="10" cy="50" r="3" fill="currentColor"/><circle cx="40" cy="25" r="3" fill="currentColor"/><circle cx="70" cy="10" r="3" fill="currentColor"/><line x1="10" y1="10" x2="10" y2="55" stroke="currentColor" stroke-width=".6"/><line x1="10" y1="55" x2="75" y2="55" stroke="currentColor" stroke-width=".6"/></svg>
+        </div>
+        <div style="padding:20px 22px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span style="background:rgba(52,211,153,.15);color:#34D399;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Noto Sans SC',sans-serif;">零售</span><span style="font-size:11.5px;color:var(--fg3);font-family:'Space Grotesk',sans-serif;">波司登</span></div>
+          <h3 style="font-size:17px;font-weight:700;color:var(--fg);line-height:1.45;margin:0 0 8px;font-family:'Noto Sans SC',sans-serif;">AI 选品系统将滞销库存率降低 28%</h3>
+          <p style="font-size:13px;color:var(--fg2);line-height:1.6;margin:0;font-family:'Noto Sans SC',sans-serif;">洞见 · 数据分析实时分析全渠道销售数据，辅助买手做出更精准的备货决策。</p>
+          <div style="margin-top:16px;display:flex;gap:18px;padding-top:14px;border-top:1px solid var(--bdr);">
+            <div><div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--fg);">-28%</div><div style="font-size:11.5px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">滞销库存率</div></div>
+            <div><div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--fg);">+18%</div><div style="font-size:11.5px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">毛利率提升</div></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- CTA card -->
+      <div data-reveal data-delay="200" style="{{ ctaCaseCard }}">
+        <h3 style="font-family:'Noto Serif SC',serif;font-size:22px;font-weight:600;color:var(--fg);margin:0 0 12px;line-height:1.3;">想看看造物云能为你的业务做什么？</h3>
+        <p style="font-size:14px;color:var(--fg2);line-height:1.65;margin:0 0 22px;font-family:'Noto Sans SC',sans-serif;">预约 30 分钟产品演示，我们会结合你的行业和场景来聊。</p>
+        <a href="index.html#cta" style="{{ readBtn }}">预约演示 <span style="{{ btnIcon }}"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5L9 5.5 6 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid var(--bdr);">
+    <div style="max-width:1280px;margin:0 auto;padding:24px var(--ph);">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">
+        <span>© 2026 杭州造物云技术有限公司</span>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;">
+          <a href="#" style="text-decoration:none;color:inherit;" style-hover="color:var(--fg)">服务条款</a>
+          <a href="#" style="text-decoration:none;color:inherit;" style-hover="color:var(--fg)">隐私政策</a>
+          <span>浙ICP备2021038972号-1</span>
+          <span>浙公网安备 33010602013219号</span>
+        </div>
+      </div>
+<template id="__bundler_thumbnail"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="80" fill="#07070F"/><polygon points="60,20 75,30 75,50 60,60 45,50 45,30" fill="#F59E0B" opacity=".9"/><polygon points="60,60 60,20 75,30 75,50" fill="#FCD34D" opacity=".7"/><polygon points="60,40 75,30 60,20 45,30" fill="#FEF3C7" opacity=".6"/></svg></template>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { dark: true, filter: 0, logoHovered: false, width: 1280 };
+
+  componentDidMount() {
+    const r = () => this.setState({ width: window.innerWidth });
+    r(); window.addEventListener('resize', r); this._r = r;
+    setTimeout(() => this._initReveal(), 200);
+  }
+  componentWillUnmount() { if (this._r) window.removeEventListener('resize', this._r); }
+
+  _initReveal() {
+    const els = document.querySelectorAll('[data-reveal]');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (!e.isIntersecting) return; const d = parseInt(e.target.getAttribute('data-delay') || '0'); setTimeout(() => { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }, d); obs.unobserve(e.target); });
+    }, { threshold: 0.08 });
+    els.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; el.style.transition = 'opacity .75s ease,transform .75s ease'; obs.observe(el); });
+  }
+
+  _logoMark() {
+    const h = this.state.logoHovered, d = this.state.dark, color = d ? '#8B8FFF' : '#2222C0';
+    return React.createElement('svg', { key: 'lm', width: 28, height: 28, viewBox: '0 0 28 28', fill: 'none', style: { flexShrink: 0 }, onMouseEnter: () => this.setState({ logoHovered: true }), onMouseLeave: () => this.setState({ logoHovered: false }) }, [
+      React.createElement('g', { key: 'r', style: { animation: `spinRing ${h ? '1.8s' : '12s'} linear infinite`, transformOrigin: '14px 14px' } }, [React.createElement('circle', { key: 'rc', cx: 14, cy: 14, r: 12, stroke: color, strokeWidth: h ? 1.2 : 1, strokeDasharray: '4 2.5', fill: 'none', style: { opacity: h ? 1 : .75 } })]),
+      React.createElement('circle', { key: 'n0', cx: 14, cy: 4.5, r: h ? 2.8 : 2.2, fill: color }),
+      React.createElement('circle', { key: 'n1', cx: 6.5, cy: 19.5, r: h ? 2.8 : 2.2, fill: color }),
+      React.createElement('circle', { key: 'n2', cx: 21.5, cy: 19.5, r: h ? 2.8 : 2.2, fill: color }),
+      React.createElement('line', { key: 'l0', x1: 14, y1: 4.5, x2: 6.5, y2: 19.5, stroke: color, strokeWidth: h ? 1 : .7, style: { opacity: h ? .85 : .5 } }),
+      React.createElement('line', { key: 'l1', x1: 14, y1: 4.5, x2: 21.5, y2: 19.5, stroke: color, strokeWidth: h ? 1 : .7, style: { opacity: h ? .85 : .5 } }),
+      React.createElement('line', { key: 'l2', x1: 6.5, y1: 19.5, x2: 21.5, y2: 19.5, stroke: color, strokeWidth: h ? 1 : .7, style: { opacity: h ? .85 : .5 } }),
+    ]);
+  }
+
+  get _vars() {
+    const d = this.state.dark;
+    return d ? { '--bg':'#0A0A14','--fg':'#F0F0FF','--fg2':'rgba(240,240,255,.55)','--fg3':'rgba(240,240,255,.32)','--accent':'#6366F1','--acBg':'rgba(99,102,241,.13)','--surf':'rgba(255,255,255,.05)','--surf2':'rgba(255,255,255,.08)','--bdr':'rgba(255,255,255,.08)','--bdrBrt':'rgba(255,255,255,.16)','--navBg':'rgba(10,10,20,.86)','--navBdr':'rgba(255,255,255,.07)','--glass':'rgba(255,255,255,.06)','--glassTop':'rgba(255,255,255,.12)' }
+      : { '--bg':'#F8F7F3','--fg':'#18150E','--fg2':'rgba(24,21,14,.52)','--fg3':'rgba(24,21,14,.34)','--accent':'#2222C0','--acBg':'rgba(34,34,192,.1)','--surf':'rgba(255,255,255,.72)','--surf2':'rgba(255,255,255,.95)','--bdr':'rgba(24,21,14,.1)','--bdrBrt':'rgba(24,21,14,.22)','--navBg':'rgba(248,247,243,.9)','--navBdr':'rgba(24,21,14,.1)','--glass':'rgba(255,255,255,.72)','--glassTop':'rgba(255,255,255,.9)' };
+  }
+
+  get _resp() {
+    const w = this.state.width || 1280, m = w < 768, t = w >= 768 && w < 1024;
+    return { '--ph': m ? '20px' : '48px', '--heroFs': m ? '36px' : '54px', '--navLinks': m ? 'none' : 'flex', '--cols3': m ? '1fr' : t ? 'repeat(2,1fr)' : 'repeat(3,1fr)', '--featuredCols': m ? '1fr' : '1.1fr .9fr' };
+  }
+
+  _filterTab(i) {
+    const a = this.state.filter === i, d = this.state.dark;
+    return { background: a ? (d ? '#6366F1' : '#18150E') : 'var(--surf)', border: a ? 'none' : '1px solid var(--bdr)', color: a ? '#fff' : 'var(--fg2)', fontSize: '13.5px', fontWeight: a ? '600' : '500', padding: '8px 18px', borderRadius: '999px', cursor: 'pointer', fontFamily: "'Noto Sans SC',sans-serif", transition: 'all .2s' };
+  }
+
+  _glassCard() {
+    const d = this.state.dark;
+    return { background: d ? 'rgba(255,255,255,.04)' : 'rgba(255,255,255,.72)', border: `1px solid ${d ? 'rgba(255,255,255,.08)' : 'rgba(24,21,14,.1)'}`, borderRadius: '18px', backdropFilter: 'saturate(180%) blur(16px)', WebkitBackdropFilter: 'saturate(180%) blur(16px)', boxShadow: d ? 'inset 0 1px 0 rgba(255,255,255,.1),0 8px 24px -10px rgba(0,0,0,.28)' : 'inset 0 1px 0 rgba(255,255,255,.88),0 6px 20px -8px rgba(0,0,0,.1)', overflow: 'hidden', transition: 'transform .2s ease' };
+  }
+
+  renderVals() {
+    const d = this.state.dark, gc = this._glassCard();
+    return {
+      rootStyle: { ...this._vars, ...this._resp, background: 'var(--bg)', color: 'var(--fg)', fontFamily: "'Noto Sans SC',system-ui,sans-serif", minHeight: '100vh', overflowX: 'hidden' },
+      logoMark: this._logoMark(),
+      toggleBtn: { background: 'var(--surf)', border: '1px solid var(--bdr)', cursor: 'pointer', fontSize: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', padding: '0' },
+      themeLabel: d ? '☀' : '◑',
+      toggleDark: () => this.setState(s => ({ dark: !s.dark })),
+      navCtaBtn: { textDecoration: 'none', background: d ? '#6366F1' : '#18150E', color: d ? '#fff' : '#F8F7F3', fontSize: '13px', fontWeight: '600', padding: '9px 18px', borderRadius: '999px', display: 'inline-flex', alignItems: 'center', fontFamily: "'Noto Sans SC',sans-serif" },
+      ft0: this._filterTab(0), ft1: this._filterTab(1), ft2: this._filterTab(2), ft3: this._filterTab(3), ft4: this._filterTab(4), ft5: this._filterTab(5),
+      f0: () => this.setState({ filter: 0 }), f1: () => this.setState({ filter: 1 }), f2: () => this.setState({ filter: 2 }), f3: () => this.setState({ filter: 3 }), f4: () => this.setState({ filter: 4 }), f5: () => this.setState({ filter: 5 }),
+      featuredCard: { ...gc, padding: '36px', borderRadius: '22px' },
+      caseCard: { ...gc },
+      ctaCaseCard: { ...gc, padding: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'center' },
+      readBtn: { textDecoration: 'none', background: d ? '#6366F1' : '#18150E', color: d ? '#fff' : '#F8F7F3', fontSize: '14.5px', fontWeight: '600', padding: '12px 16px 12px 20px', borderRadius: '999px', display: 'inline-flex', alignItems: 'center', gap: '9px', fontFamily: "'Noto Sans SC',sans-serif" },
+      btnIcon: { width: '24px', height: '24px', borderRadius: '50%', background: d ? 'rgba(255,255,255,.18)' : 'rgba(248,247,243,.22)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: '0' },
+    };
+  }
+}
+</script>
+</body>
+</html>

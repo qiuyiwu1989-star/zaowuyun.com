@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>造物云官网 v7 · 预览索引</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#07070F;color:#ECEEFF;font-family:'PingFang SC','Noto Sans SC','Microsoft YaHei',system-ui,sans-serif;
+    background-image:radial-gradient(ellipse 70% 55% at 70% 18%,rgba(123,128,255,.20),transparent 60%),radial-gradient(ellipse 45% 50% at 12% 85%,rgba(139,92,246,.12),transparent 55%);min-height:100vh}
+  .wrap{max-width:1080px;margin:0 auto;padding:72px 24px 96px}
+  .kic{font-size:11px;font-weight:700;letter-spacing:.16em;color:rgba(160,144,255,.85);font-family:ui-sans-serif,'Helvetica Neue',sans-serif}
+  h1{font-family:'Songti SC','STSong','Noto Serif SC',serif;font-size:40px;font-weight:600;letter-spacing:-.01em;margin:14px 0 14px;line-height:1.22}
+  .lead{font-size:16px;color:rgba(236,238,255,.55);line-height:1.7;max-width:640px}
+  .note{margin:20px 0 0;font-size:13px;color:rgba(236,238,255,.4);line-height:1.7;border-left:2px solid rgba(123,128,255,.4);padding-left:14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:44px}
+  a.card{display:block;text-decoration:none;color:inherit;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+    border-radius:18px;padding:24px 26px;transition:transform .2s ease,border-color .2s ease,background .2s ease;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.10)}
+  a.card:hover{transform:translateY(-4px);border-color:rgba(160,144,255,.45);background:rgba(255,255,255,.07)}
+  a.card .tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.1em;color:rgba(160,144,255,.85);
+    font-family:ui-sans-serif,sans-serif;margin-bottom:12px}
+  a.card.primary{grid-column:1/-1;background:linear-gradient(135deg,rgba(123,128,255,.16),rgba(139,92,246,.07));border-color:rgba(160,144,255,.30)}
+  a.card h2{font-size:19px;font-weight:700;margin-bottom:8px}
+  a.card.primary h2{font-size:24px;font-family:'Songti SC','STSong','Noto Serif SC',serif;font-weight:600}
+  a.card p{font-size:13.5px;color:rgba(236,238,255,.5);line-height:1.6}
+  a.card .arrow{margin-top:16px;font-size:13px;color:rgba(160,144,255,.9)}
+  footer{margin-top:56px;font-size:12px;color:rgba(236,238,255,.3);line-height:1.8}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="kic">ZAOWUYUN · OFFICIAL SITE · V7 PREVIEW</div>
+    <h1>造物云官网 v7 — 预览索引</h1>
+    <p class="lead">这是 daymug 设计稿 v7 的源码态预览，作为造物云新官网的储备方案。共一个首页 + 五个子页，统一紫蓝主色、玻璃拟态、明暗双主题。点进任意一页即可逐屏查看。</p>
+    <p class="note">说明：本批为「源码态预览」，靠运行时垫片在浏览器内渲染。下一轮我们会就此打磨、清理占位数据、统一字体与链接，并编译成正式静态官网。</p>
+
+    <div class="grid">
+      <a class="card primary" href="design-system.html">
+        <span class="tag">DESIGN SYSTEM · 整站设计系统</span>
+        <h2>造物云设计系统</h2>
+        <p>颜色 / 渐变 / 字体 / 间距 / 圆角阴影 / 动效 + 核心组件（按钮·卡片·徽章·表单·导航·页脚）的单一可信来源。token 提炼自 v7 首页，明暗双主题，色块与代码点击即复制。官网每一页都从这里长出来。</p>
+        <div class="arrow">打开设计系统 →</div>
+      </a>
+
+      <a class="card" href="logo-guide.html">
+        <span class="tag">BRAND · 标志使用规范</span>
+        <h2>标志使用规范（VI 标准）</h2>
+        <p>标志对外使用标准：构成 / 组合 / 安全距 / 最小尺寸 / 配色版本 / 背景适配 / 字标比例 / 微动画（含现场演示）/ 应用示范（App 图标·标签·头像·周边·顶栏·名片·启动页·封面）/ 错误用法 / 文件下载。核心原则“不拆标志”，明暗双主题，色值点击即复制。可直接交付给设计与外部合作方。</p>
+        <div class="arrow">打开使用规范 →</div>
+      </a>
+
+      <a class="card primary" href="vi-applications.html">
+        <span class="tag">BRAND · VI 应用物料库</span>
+        <h2>VI 应用物料库（In Use）</h2>
+        <p>把同一套标志放进真实物料看它怎么工作：名片（3 版）、办公印刷、工牌证件、数字标识（App 图标/favicon/头像/banner）、邮件签名、PPT 母版、社交内容（小红书封面 3 版/公众号头图）、壁纸、周边、线下展陈。30+ 物料、明暗双主题、纯 CSS/SVG 示意，给后续使用者一套可直接套用的样板。</p>
+        <div class="arrow">打开物料库 →</div>
+      </a>
+
+      <a class="card" href="logo-lab.html">
+        <span class="tag">BRAND · 标志实验室</span>
+        <h2>标志实验室（颜色 / 字号 / 微动画）</h2>
+        <p>品牌标三件事对照：浅色背景的组合关系（白底板会糊 → 裸宝石加深 / 墨色底板两套解法）、“造物云”字号收小、三种微动画现场跑（结晶造物 + 切面流光 + 悬停 3D 侧倾）。明暗双主题，可点选。</p>
+        <div class="arrow">打开标志实验室 →</div>
+      </a>
+
+      <a class="card" href="nav-lab.html">
+        <span class="tag">NAV · 顶栏与插画对比</span>
+        <h2>顶栏与插画风格对比</h2>
+        <p>透明吸顶顶栏 + Intercom 式 Mega Menu（滚动切磨砂玻璃）；插画三风格对比（几何线稿 / 手绘人物 / 深色渐变光晕）。token 沿用设计系统。</p>
+        <div class="arrow">查看 →</div>
+      </a>
+
+      <a class="card primary" href="index.html">
+        <span class="tag">HOMEPAGE · 首页主骨架</span>
+        <h2>造物云官网 v7 · 首页</h2>
+        <p>“智能是基础设施，不是选配功能。” 含产品 Tab 切换、数据计数、价值卡、动态中心、观点中心、CTA 与完整页脚。这一版最完整，作为整站设计系统的事实源。</p>
+        <div class="arrow">进入首页 →</div>
+      </a>
+
+      <a class="card" href="api-hub.html">
+        <span class="tag">PRODUCT · 产品深度页</span>
+        <h2>智核 · API HUB</h2>
+        <p>“AI 时代的电厂”——50+ 模型统一接入、智能路由、成本管控。含来源→枢纽→模型的动态路由图与实时降级日志，是全套里可视化最强的一页。</p>
+        <div class="arrow">查看 →</div>
+      </a>
+
+      <a class="card" href="workbench.html">
+        <span class="tag">PRODUCT · 产品深度页</span>
+        <h2>AI 工作台</h2>
+        <p>“让最懂业务的人，亲手做专业 AI 应用。” 含工作台界面模拟、四步流程、用户引言，叙事人文。</p>
+        <div class="arrow">查看 →</div>
+      </a>
+
+      <a class="card" href="products.html">
+        <span class="tag">CATALOG · 产品中心</span>
+        <h2>产品中心</h2>
+        <p>五大核心产品 + 工具产品矩阵总览。结构清晰，偏目录，后续可提升信息密度或并入首页。</p>
+        <div class="arrow">查看 →</div>
+      </a>
+
+      <a class="card" href="cases.html">
+        <span class="tag">CASES · 客户案例</span>
+        <h2>案例</h2>
+        <p>“与 600+ 企业共同发生的改变。” Featured 大卡 + 五行业案例卡，KPI 具体。公司真名待授权或改匿名。</p>
+        <div class="arrow">查看 →</div>
+      </a>
+
+      <a class="card" href="about.html">
+        <span class="tag">COMPANY · 关于我们</span>
+        <h2>关于我们</h2>
+        <p>使命愿景、价值观、发展时间线、联系方式。稳健标准，待清理占位联系数据。</p>
+        <div class="arrow">查看 →</div>
+      </a>
+    </div>
+
+    <footer>
+      © 2026 杭州造物云技术有限公司 · v7 预览 · 源码态渲染（support.js + image-slot.js）
+    </footer>
+  </div>
+</body>
+</html>

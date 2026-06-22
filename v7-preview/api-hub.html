@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{-webkit-font-smoothing:antialiased;}
+@keyframes spinRing{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulsOrb{0%,100%{box-shadow:0 0 0 0 rgba(108,126,255,.5)}70%{box-shadow:0 0 0 10px transparent}}
+@keyframes flowLine{from{stroke-dashoffset:20}to{stroke-dashoffset:0}}
+</style>
+</helmet>
+
+<div data-screen-label="造物云-API-HUB" style="{{ rootStyle }}">
+
+  <!-- NAV -->
+  <header style="position:sticky;top:0;z-index:60;backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);background:var(--navBg);border-bottom:1px solid var(--navBdr);">
+    <div style="max-width:1280px;margin:0 auto;padding:0 var(--ph);height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+      <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--fg);flex-shrink:0;">
+        <div style="width:32px;height:32px;flex-shrink:0;transition:transform .25s ease,filter .25s ease;" style-hover="transform:scale(1.1);filter:drop-shadow(0 0 12px rgba(133,1,255,.65))"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M27.356405,6.5566244Q27.640217,6.7204833,27.900215,6.9199853Q28.16021,7.1194868,28.391941,7.3512182Q28.623672,7.5829496,28.823174,7.8429451Q29.022675,8.1029396,29.186533,8.3867512Q29.350391,8.6705627,29.475803,8.9733343Q29.601215,9.2761059,29.686035,9.5926561Q29.770855,9.9092064,29.813629,10.23412Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.813631,21.765881Q29.770855,22.090794,29.686037,22.407345Q29.601215,22.723896,29.475803,23.026669Q29.350391,23.329437,29.186531,23.613249Q29.022675,23.89706,28.823174,24.157059Q28.623672,24.417053,28.391941,24.648785Q28.16021,24.880516,27.900215,25.080017Q27.640217,25.279518,27.356405,25.443377L18.5,30.556623Q18.216188,30.720484,17.913418,30.845898Q17.610645,30.97131,17.294096,31.056129Q16.977547,31.140947,16.652632,31.183723Q16.327717,31.226498,16,31.226498Q15.672283,31.226498,15.347369,31.183723Q15.022456,31.140945,14.705906,31.056128Q14.389355,30.97131,14.086583,30.845898Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q4.3597822,25.279518,4.0997868,25.080017Q3.8397913,24.880516,3.6080601,24.648783Q3.3763289,24.417053,3.1768272,24.157059Q2.9773254,23.89706,2.8134668,23.613249Q2.6496081,23.329437,2.5241961,23.026669Q2.3987842,22.723896,2.3139648,22.407347Q2.2291453,22.090796,2.1863694,21.765881Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.1863689,10.23412Q2.2291448,9.9092064,2.3139644,9.5926561Q2.3987837,9.2761059,2.5241957,8.9733343Q2.6496074,8.6705627,2.8134661,8.3867512Q2.977325,8.1029396,3.1768267,7.8429446Q3.3763285,7.5829496,3.6080596,7.3512182Q3.8397908,7.1194868,4.0997868,6.9199853Q4.3597822,6.7204833,4.6435933,6.5566244L13.5,1.4433756Q13.783812,1.2795169,14.086583,1.1541051Q14.389355,1.0286931,14.705906,0.94387358Q15.022456,0.85905409,15.34737,0.8162784Q15.672283,0.77350271,16,0.77350271Q16.327717,0.77350277,16.652632,0.81627846Q16.977547,0.85905421,17.294096,0.9438737Q17.610645,1.0286932,17.913418,1.1541052Q18.216188,1.2795172,18.5,1.4433758L27.356405,6.5566244Z" fill="#FFFFFF"/><path d="M16,8L22.928203,12L22.928203,20L16,24L9.071797,20L9.071797,12L16,8Z" fill="#8501FF"/><path d="M15.999958,24.000038L15.999958,8.000038L22.928161,12.000038L22.928161,20.000038L15.999958,24.000038Z" fill="#AF59FF"/><path d="M15.99994,16L22.928144,12L15.99994,8L9.071738,12L15.99994,16Z" fill="#CE99FF"/></svg></div>
+        <span style="font-weight:900;font-size:18px;letter-spacing:-.02em;font-family:'Noto Sans SC',sans-serif;">造物云</span>
+      </a>
+      <div style="display:var(--navLinks);align-items:center;gap:4px;font-size:14px;color:var(--fg2);">
+        <a href="products.html" style="text-decoration:none;color:var(--fg2);padding:8px 12px;border-radius:8px;" style-hover="background:var(--surf);color:var(--fg)">产品中心</a>
+        <a href="workbench.html" style="text-decoration:none;color:var(--fg2);padding:8px 12px;border-radius:8px;" style-hover="background:var(--surf);color:var(--fg)">AI 工作台</a>
+        <a href="api-hub.html" style="text-decoration:none;color:var(--fg);padding:8px 12px;border-radius:8px;background:var(--surf);">API HUB</a>
+        <a href="cases.html" style="text-decoration:none;color:var(--fg2);padding:8px 12px;border-radius:8px;" style-hover="background:var(--surf);color:var(--fg)">案例</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+        <button onClick="{{ toggleDark }}" style="{{ toggleBtn }}">{{ themeLabel }}</button>
+        <a href="index.html#cta" style="{{ navCtaBtn }}">免费试用</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <section style="position:relative;overflow:hidden;background:var(--heroBg);padding:90px var(--ph) 80px;">
+    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:var(--heroCols);gap:60px;align-items:center;">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:5px 16px 5px 8px;border-radius:999px;background:var(--glass);border:1px solid var(--bdr);backdrop-filter:blur(14px);margin-bottom:24px;animation:fadeUp .6s .1s both;">
+          <span style="width:18px;height:18px;border-radius:50%;background:var(--indigo);display:flex;align-items:center;justify-content:center;flex-shrink:0;animation:pulsOrb 2.5s infinite;"><span style="width:6px;height:6px;border-radius:50%;background:#fff;"></span></span>
+          <span style="font-size:12px;font-weight:600;color:var(--fg);letter-spacing:.04em;font-family:'Noto Sans SC',sans-serif;">智核 · API HUB</span>
+        </div>
+        <h1 style="font-family:'Noto Serif SC',serif;font-size:var(--heroFs);line-height:1.18;font-weight:600;letter-spacing:-.012em;color:var(--fg);margin:0 0 20px;animation:fadeUp .7s .2s both;">AI 时代的<br><em style="font-style:normal;color:var(--indigo);">电厂</em>。</h1>
+        <p style="font-size:var(--heroSub);color:var(--fg2);line-height:1.72;margin:0 0 22px;max-width:520px;font-family:'Noto Sans SC',sans-serif;animation:fadeUp .7s .32s both;">50+ 大模型统一接入，智能路由、成本管控与自动降级。让每一个 AI 应用背后的模型能力，像电力一样稳定、可计量、随取随用。</p>
+        <p style="font-size:15px;color:var(--fg3);line-height:1.65;margin:0 0 32px;max-width:480px;font-family:'Noto Sans SC',sans-serif;animation:fadeUp .7s .4s both;">无论你的 AI 工作台、Agent 流水线还是自研应用，都可以通过一个 API 接入全部能力——不绑定任何单一厂商。</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;animation:fadeUp .7s .5s both;">
+          <a href="#" style="{{ primaryBtn }}">查看接入文档 <span style="{{ btnIcon }}"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5L9 5.5 6 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <a href="index.html#cta" style="{{ secondaryBtn }}">预约演示</a>
+        </div>
+        <div style="margin-top:32px;display:flex;flex-wrap:wrap;gap:20px;font-size:13px;color:var(--fg3);animation:fadeUp .7s .6s both;">
+          <span style="display:flex;align-items:center;gap:6px;font-family:'Noto Sans SC',sans-serif;"><span style="width:5px;height:5px;border-radius:50%;background:#34D399;"></span>模型中立不绑定</span>
+          <span style="display:flex;align-items:center;gap:6px;font-family:'Noto Sans SC',sans-serif;"><span style="width:5px;height:5px;border-radius:50%;background:#34D399;"></span>99.9% 可用性 SLA</span>
+          <span style="display:flex;align-items:center;gap:6px;font-family:'Noto Sans SC',sans-serif;"><span style="width:5px;height:5px;border-radius:50%;background:#34D399;"></span>兼容 OpenAI 协议</span>
+          <span style="display:flex;align-items:center;gap:6px;font-family:'Noto Sans SC',sans-serif;"><span style="width:5px;height:5px;border-radius:50%;background:#34D399;"></span>支持国产模型</span>
+        </div>
+      </div>
+
+      <!-- Hero diagram -->
+      <div style="display:var(--heroIllust);position:relative;">
+        <div style="{{ heroDiagram }}">
+          <div style="padding:20px 22px;">
+            <div style="font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--indigo);font-family:'Space Grotesk',sans-serif;margin-bottom:16px;">API HUB — ROUTING ENGINE</div>
+            <!-- Central hub -->
+            <div style="display:flex;align-items:center;gap:0;margin-bottom:18px;">
+              <!-- Left: sources -->
+              <div style="display:flex;flex-direction:column;gap:6px;flex:1;">
+                <div style="{{ modelChip }};border-color:rgba(108,126,255,.3);"><span style="width:6px;height:6px;border-radius:50%;background:#6C7EFF;flex-shrink:0;"></span>你的 AI 工作台</div>
+                <div style="{{ modelChip }};border-color:rgba(6,182,212,.3);"><span style="width:6px;height:6px;border-radius:50%;background:#06B6D4;flex-shrink:0;"></span>Agent 流水线</div>
+                <div style="{{ modelChip }};border-color:rgba(52,211,153,.3);"><span style="width:6px;height:6px;border-radius:50%;background:#34D399;flex-shrink:0;"></span>自研应用</div>
+              </div>
+              <!-- Arrow + hub -->
+              <div style="display:flex;flex-direction:column;align-items:center;padding:0 12px;">
+                <svg width="60" height="80" viewBox="0 0 60 80" fill="none"><line x1="0" y1="20" x2="22" y2="40" stroke="var(--indigo)" stroke-width=".8" stroke-dasharray="3 3" style="animation:flowLine 1.5s linear infinite"/><line x1="0" y1="40" x2="22" y2="40" stroke="var(--indigo)" stroke-width=".8" stroke-dasharray="3 3" style="animation:flowLine 1.5s linear infinite .3s"/><line x1="0" y1="60" x2="22" y2="40" stroke="var(--indigo)" stroke-width=".8" stroke-dasharray="3 3" style="animation:flowLine 1.5s linear infinite .6s"/><circle cx="30" cy="40" r="8" fill="var(--indigo)" opacity=".9"/><line x1="38" y1="40" x2="60" y2="20" stroke="var(--indigo)" stroke-width=".8" stroke-dasharray="3 3" style="animation:flowLine 1.5s linear infinite"/><line x1="38" y1="40" x2="60" y2="40" stroke="var(--indigo)" stroke-width=".8" stroke-dasharray="3 3" style="animation:flowLine 1.5s linear infinite .2s"/><line x1="38" y1="40" x2="60" y2="60" stroke="var(--indigo)" stroke-width=".8" stroke-dasharray="3 3" style="animation:flowLine 1.5s linear infinite .4s"/><text x="25" y="44" fill="white" font-size="6" font-family="Space Grotesk, sans-serif" font-weight="700">API</text></svg>
+              </div>
+              <!-- Right: models -->
+              <div style="display:flex;flex-direction:column;gap:6px;flex:1;">
+                <div style="{{ modelChip }};border-color:rgba(99,102,241,.3);"><span style="width:6px;height:6px;border-radius:50%;background:#6366F1;flex-shrink:0;"></span>GPT-4o</div>
+                <div style="{{ modelChip }};border-color:rgba(168,85,247,.3);"><span style="width:6px;height:6px;border-radius:50%;background:#A855F7;flex-shrink:0;"></span>Claude 3.5</div>
+                <div style="{{ modelChip }};border-color:rgba(245,158,11,.3);"><span style="width:6px;height:6px;border-radius:50%;background:#F59E0B;flex-shrink:0;"></span>Qwen-Max</div>
+              </div>
+            </div>
+            <!-- Metrics row -->
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px solid var(--bdr);padding-top:14px;">
+              <div style="text-align:center;"><div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:var(--fg);">48ms</div><div style="font-size:10px;color:var(--fg3);margin-top:2px;">平均延迟</div></div>
+              <div style="text-align:center;"><div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#34D399;">↓42%</div><div style="font-size:10px;color:var(--fg3);margin-top:2px;">成本节省</div></div>
+              <div style="text-align:center;"><div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:var(--fg);">3.2M</div><div style="font-size:10px;color:var(--fg3);margin-top:2px;">今日调用</div></div>
+            </div>
+          </div>
+          <!-- Live feed -->
+          <div style="border-top:1px solid var(--bdr);padding:12px 22px;display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;align-items:center;gap:8px;"><span style="width:5px;height:5px;border-radius:50%;background:#34D399;flex-shrink:0;"></span><span style="font-size:11px;color:var(--fg2);font-family:'Space Grotesk',sans-serif;">GPT-4o → 32ms · ¥0.002</span></div>
+            <div style="display:flex;align-items:center;gap:8px;"><span style="width:5px;height:5px;border-radius:50%;background:#34D399;flex-shrink:0;"></span><span style="font-size:11px;color:var(--fg2);font-family:'Space Grotesk',sans-serif;">Qwen-Max → 21ms · ¥0.001 (fallback)</span></div>
+            <div style="display:flex;align-items:center;gap:8px;"><span style="width:5px;height:5px;border-radius:50%;background:#F59E0B;flex-shrink:0;animation:pulsOrb 1.2s infinite;"></span><span style="font-size:11px;color:var(--fg2);font-family:'Space Grotesk',sans-serif;">routing decision in progress...</span></div>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:-14px;right:12px;background:var(--glass);border:1px solid var(--bdr);backdrop-filter:blur(16px);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:8px;box-shadow:0 8px 24px -8px rgba(0,0,0,.24),inset 0 1px 0 var(--glassTop);animation:floatY 7s ease-in-out infinite;">
+          <span style="width:7px;height:7px;border-radius:50%;background:#34D399;box-shadow:0 0 0 3px rgba(52,211,153,.2);flex-shrink:0;"></span>
+          <span style="font-size:12px;font-weight:600;color:var(--fg);font-family:'Noto Sans SC',sans-serif;">自动降级已触发，无感切换完成</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MODEL GRID ═══ -->
+  <section style="max-width:1280px;margin:0 auto;padding:80px var(--ph) 72px;">
+    <div data-reveal style="text-align:center;margin-bottom:44px;">
+      <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--fg3);margin-bottom:12px;font-family:'Space Grotesk',sans-serif;">50+ MODELS</div>
+      <h2 style="font-family:'Noto Serif SC',serif;font-size:var(--h2Fs);font-weight:600;letter-spacing:-.015em;color:var(--fg);margin:0 0 14px;">一次接入，<br>全部模型随取随用。</h2>
+      <p style="font-size:16px;color:var(--fg2);max-width:480px;margin:0 auto;line-height:1.65;font-family:'Noto Sans SC',sans-serif;">不绑定任何单一模型厂商。新模型上线，你的应用自动可用，不改一行代码。</p>
+    </div>
+    <div style="display:grid;grid-template-columns:var(--modelGrid);gap:10px;">
+      <div data-reveal style="{{ modelCard }}" style-hover="border-color:rgba(99,102,241,.4);transform:translateY(-2px)"><div style="font-size:11px;font-weight:700;color:#6366F1;font-family:'Space Grotesk',sans-serif;margin-bottom:4px;">OpenAI</div><div style="font-size:13.5px;font-weight:600;color:var(--fg);">GPT-4o</div><div style="font-size:11px;color:var(--fg3);margin-top:2px;">128K · 旗舰推理</div></div>
+      <div data-reveal data-delay="40" style="{{ modelCard }}" style-hover="border-color:rgba(168,85,247,.4);transform:translateY(-2px)"><div style="font-size:11px;font-weight:700;color:#A855F7;font-family:'Space Grotesk',sans-serif;margin-bottom:4px;">Anthropic</div><div style="font-size:13.5px;font-weight:600;color:var(--fg);">Claude 3.5</div><div style="font-size:11px;color:var(--fg3);margin-top:2px;">200K · 长上下文</div></div>
+      <div data-reveal data-delay="80" style="{{ modelCard }}" style-hover="border-color:rgba(245,158,11,.4);transform:translateY(-2px)"><div style="font-size:11px;font-weight:700;color:#F59E0B;font-family:'Space Grotesk',sans-serif;margin-bottom:4px;">阿里云</div><div style="font-size:13.5px;font-weight:600;color:var(--fg);">Qwen-Max</div><div style="font-size:11px;color:var(--fg3);margin-top:2px;">国产旗舰</div></div>
+      <div data-reveal data-delay="120" style="{{ modelCard }}" style-hover="border-color:rgba(6,182,212,.4);transform:translateY(-2px)"><div style="font-size:11px;font-weight:700;color:#06B6D4;font-family:'Space Grotesk',sans-serif;margin-bottom:4px;">Meta</div><div style="font-size:13.5px;font-weight:600;color:var(--fg);">Llama 3.1</div><div style="font-size:11px;color:var(--fg3);margin-top:2px;">开源可私有</div></div>
+      <div data-reveal data-delay="160" style="{{ modelCard }}" style-hover="border-color:rgba(52,211,153,.4);transform:translateY(-2px)"><div style="font-size:11px;font-weight:700;color:#34D399;font-family:'Space Grotesk',sans-serif;margin-bottom:4px;">DeepSeek</div><div style="font-size:13.5px;font-weight:600;color:var(--fg);">DeepSeek R1</div><div style="font-size:11px;color:var(--fg3);margin-top:2px;">强推理能力</div></div>
+      <div data-reveal data-delay="200" style="{{ modelCard }}" style-hover="border-color:rgba(239,68,68,.4);transform:translateY(-2px)"><div style="font-size:11px;font-weight:700;color:#EF4444;font-family:'Space Grotesk',sans-serif;margin-bottom:4px;">百度</div><div style="font-size:13.5px;font-weight:600;color:var(--fg);">ERNIE 4.0</div><div style="font-size:11px;color:var(--fg3);margin-top:2px;">中文强项</div></div>
+      <div data-reveal data-delay="240" style="{{ modelCard }}" style-hover="border-color:rgba(108,126,255,.4);transform:translateY(-2px)"><div style="font-size:11px;font-weight:700;color:var(--indigo);font-family:'Space Grotesk',sans-serif;margin-bottom:4px;">Google</div><div style="font-size:13.5px;font-weight:600;color:var(--fg);">Gemini 1.5</div><div style="font-size:11px;color:var(--fg3);margin-top:2px;">多模态</div></div>
+      <div data-reveal data-delay="280" style="{{ modelCard }}" style-hover="border-color:rgba(168,85,247,.4);transform:translateY(-2px)"><div style="font-size:11px;font-weight:700;color:#A855F7;font-family:'Space Grotesk',sans-serif;margin-bottom:4px;">智谱</div><div style="font-size:13.5px;font-weight:600;color:var(--fg);">GLM-4</div><div style="font-size:11px;color:var(--fg3);margin-top:2px;">企业级国产</div></div>
+      <div data-reveal data-delay="320" style="{{ modelCard }};cursor:pointer;" style-hover="border-color:var(--indigo);transform:translateY(-2px)"><div style="font-size:11px;font-weight:700;color:var(--fg3);font-family:'Space Grotesk',sans-serif;margin-bottom:4px;">+ 42 MORE</div><div style="font-size:13.5px;font-weight:600;color:var(--fg2);">持续更新</div><div style="font-size:11px;color:var(--fg3);margin-top:2px;">新模型零等待</div></div>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURES ═══ -->
+  <section style="background:var(--surfSec);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);">
+    <div style="max-width:1280px;margin:0 auto;padding:80px var(--ph);">
+      <div data-reveal style="margin-bottom:48px;">
+        <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--fg3);margin-bottom:12px;font-family:'Space Grotesk',sans-serif;">CAPABILITIES</div>
+        <h2 style="font-family:'Noto Serif SC',serif;font-size:var(--h2Fs);font-weight:600;letter-spacing:-.015em;color:var(--fg);margin:0;">电厂级的稳定性，<br>精细到每一度电的可计量性。</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:var(--cols2);gap:16px;">
+        <div data-reveal style="{{ glassCard }};padding:28px 30px;" style-hover="transform:translateY(-3px)">
+          <div style="{{ featIcon }};background:rgba(108,126,255,.15);border-color:rgba(108,126,255,.25);">
+            <svg viewBox="0 0 20 20" fill="none" style="width:17px;color:var(--indigo);"><path d="M3 10h14M10 3l4 7-4 7-4-7 4-7z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:var(--fg);margin:0 0 8px;font-family:'Noto Sans SC',sans-serif;">智能路由 · 自动降级</h3>
+          <p style="font-size:13.5px;color:var(--fg2);line-height:1.65;margin:0;font-family:'Noto Sans SC',sans-serif;">根据任务类型、延迟要求与成本预算，自动路由至最优模型。主力模型异常时，秒级切换备用链路，调用方无感知。</p>
+        </div>
+        <div data-reveal data-delay="100" style="{{ glassCard }};padding:28px 30px;" style-hover="transform:translateY(-3px)">
+          <div style="{{ featIcon }};background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.25);">
+            <svg viewBox="0 0 20 20" fill="none" style="width:17px;color:#34D399;"><path d="M4 14l4-8 4 5 2-3 2 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:var(--fg);margin:0 0 8px;font-family:'Noto Sans SC',sans-serif;">全链路成本可视化</h3>
+          <p style="font-size:13.5px;color:var(--fg2);line-height:1.65;margin:0;font-family:'Noto Sans SC',sans-serif;">按应用、按部门、按模型三维拆解每一分调用成本。灰度发布新模型前先跑 A/B 测试，用数据说话再决策。</p>
+        </div>
+        <div data-reveal data-delay="100" style="{{ glassCard }};padding:28px 30px;" style-hover="transform:translateY(-3px)">
+          <div style="{{ featIcon }};background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.25);">
+            <svg viewBox="0 0 20 20" fill="none" style="width:17px;color:#F59E0B;"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.2"/><path d="M10 6v4l3 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:var(--fg);margin:0 0 8px;font-family:'Noto Sans SC',sans-serif;">速率限制 · 配额管理</h3>
+          <p style="font-size:13.5px;color:var(--fg2);line-height:1.65;margin:0;font-family:'Noto Sans SC',sans-serif;">为不同团队、应用或用户设置调用配额，防止突发流量打穿成本上限。限流策略灵活配置，不影响核心业务优先级。</p>
+        </div>
+        <div data-reveal data-delay="200" style="{{ glassCard }};padding:28px 30px;" style-hover="transform:translateY(-3px)">
+          <div style="{{ featIcon }};background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.25);">
+            <svg viewBox="0 0 20 20" fill="none" style="width:17px;color:#EF4444;"><rect x="3" y="5" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M7 5V4a3 3 0 016 0v1" stroke="currentColor" stroke-width="1.2"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;color:var(--fg);margin:0 0 8px;font-family:'Noto Sans SC',sans-serif;">企业级安全与审计</h3>
+          <p style="font-size:13.5px;color:var(--fg2);line-height:1.65;margin:0;font-family:'Noto Sans SC',sans-serif;">每一次 API 调用完整记录、可溯源。内容安全过滤、PII 脱敏、敏感词拦截，满足金融与政务级合规要求。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STATS ═══ -->
+  <section style="max-width:1280px;margin:0 auto;padding:80px var(--ph);">
+    <div data-reveal style="{{ glassCard }};padding:44px 52px;">
+      <div style="display:grid;grid-template-columns:var(--cols4);gap:28px;">
+        <div style="text-align:center;"><div style="font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:800;color:var(--indigo);line-height:1;">50+</div><div style="font-size:13.5px;color:var(--fg2);margin-top:8px;font-family:'Noto Sans SC',sans-serif;">已接入主流大模型</div></div>
+        <div style="text-align:center;"><div style="font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:800;color:var(--fg);line-height:1;">48<span style="font-size:22px;">ms</span></div><div style="font-size:13.5px;color:var(--fg2);margin-top:8px;font-family:'Noto Sans SC',sans-serif;">P50 推理延迟</div></div>
+        <div style="text-align:center;"><div style="font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:800;color:#34D399;line-height:1;">↓42%</div><div style="font-size:13.5px;color:var(--fg2);margin-top:8px;font-family:'Noto Sans SC',sans-serif;">接入后平均成本降幅</div></div>
+        <div style="text-align:center;"><div style="font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:800;color:var(--fg);line-height:1;">10亿+</div><div style="font-size:13.5px;color:var(--fg2);margin-top:8px;font-family:'Noto Sans SC',sans-serif;">日均模型调用量</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section style="max-width:1280px;margin:0 auto;padding:0 var(--ph) 80px;">
+    <div data-reveal style="{{ glassCard }};padding:52px 48px;display:grid;grid-template-columns:var(--ctaCols);gap:40px;align-items:center;">
+      <div>
+        <h2 style="font-family:'Noto Serif SC',serif;font-size:36px;font-weight:600;letter-spacing:-.015em;color:var(--fg);margin:0 0 14px;">中立 · 私有化 · 主权在你。</h2>
+        <p style="font-size:15.5px;color:var(--fg2);line-height:1.68;margin:0;font-family:'Noto Sans SC',sans-serif;">不绑死单一模型，数据不出门，部署在你自己的环境。你的 AI 能力，最终属于你自己，而不是某个云厂商的月账单。</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <a href="#" style="{{ primaryBtn }};justify-content:center;">查看接入文档 <span style="{{ btnIcon }}"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5L9 5.5 6 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a href="index.html#cta" style="{{ secondaryBtn }};justify-content:center;">预约产品演示</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid var(--bdr);">
+    <div style="max-width:1280px;margin:0 auto;padding:22px var(--ph);">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">
+        <span>© 2026 杭州造物云技术有限公司</span>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+          <a href="workbench.html" style="text-decoration:none;color:inherit;" style-hover="color:var(--fg)">AI 工作台 →</a>
+          <span>浙ICP备2021038972号-1</span>
+          <span>浙公网安备 33010602013219号</span>
+        </div>
+      </div>
+<template id="__bundler_thumbnail"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="80" fill="#07070F"/><polygon points="60,20 75,30 75,50 60,60 45,50 45,30" fill="#6C7EFF" opacity=".9"/><polygon points="60,60 60,20 75,30 75,50" fill="#818CF8" opacity=".7"/><polygon points="60,40 75,30 60,20 45,30" fill="#C4B5FD" opacity=".6"/></svg></template>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { dark: true, width: 1280 };
+  componentDidMount() {
+    const r = () => this.setState({ width: window.innerWidth });
+    r(); window.addEventListener('resize', r); this._r = r;
+    setTimeout(() => this._initReveal(), 200);
+  }
+  componentWillUnmount() { if (this._r) window.removeEventListener('resize', this._r); }
+  _initReveal() {
+    const els = document.querySelectorAll('[data-reveal]');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (!e.isIntersecting) return; const d = parseInt(e.target.getAttribute('data-delay') || '0'); setTimeout(() => { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }, d); obs.unobserve(e.target); });
+    }, { threshold: 0.08 });
+    els.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(24px)'; el.style.transition = 'opacity .75s cubic-bezier(.4,0,.2,1),transform .75s cubic-bezier(.4,0,.2,1)'; obs.observe(el); });
+  }
+  get _vars() {
+    const d = this.state.dark;
+    return d ? {
+      '--bg':'#07070F','--fg':'#ECEEFF','--fg2':'rgba(236,238,255,.54)','--fg3':'rgba(236,238,255,.3)',
+      '--indigo':'#6C7EFF','--acBg':'rgba(108,126,255,.15)',
+      '--surf':'rgba(255,255,255,.055)','--surf2':'rgba(255,255,255,.09)','--surfSec':'rgba(255,255,255,.02)',
+      '--bdr':'rgba(255,255,255,.09)','--bdrBrt':'rgba(255,255,255,.18)',
+      '--navBg':'rgba(7,7,15,.9)','--navBdr':'rgba(255,255,255,.08)',
+      '--glass':'rgba(255,255,255,.06)','--glassTop':'rgba(255,255,255,.15)',
+      '--heroBg':'radial-gradient(ellipse 72% 62% at 68% 36%,rgba(108,126,255,.26),transparent 60%),radial-gradient(ellipse 42% 48% at 12% 78%,rgba(6,182,212,.14),transparent 55%),#07070F',
+    } : {
+      '--bg':'#F8F7F3','--fg':'#18150E','--fg2':'rgba(24,21,14,.52)','--fg3':'rgba(24,21,14,.34)',
+      '--indigo':'#2222C0','--acBg':'rgba(34,34,192,.1)',
+      '--surf':'rgba(255,255,255,.72)','--surf2':'rgba(255,255,255,.95)','--surfSec':'rgba(240,242,252,.5)',
+      '--bdr':'rgba(24,21,14,.1)','--bdrBrt':'rgba(24,21,14,.22)',
+      '--navBg':'rgba(248,247,243,.9)','--navBdr':'rgba(24,21,14,.1)',
+      '--glass':'rgba(255,255,255,.72)','--glassTop':'rgba(255,255,255,.9)',
+      '--heroBg':'radial-gradient(ellipse 72% 62% at 68% 36%,rgba(34,34,192,.1),transparent 60%),#F8F7F3',
+    };
+  }
+  get _resp() {
+    const w = this.state.width || 1280, m = w < 768, t = w >= 768 && w < 1024;
+    return {
+      '--ph': m ? '20px' : '48px',
+      '--heroFs': m ? '44px' : t ? '58px' : '72px',
+      '--heroSub': m ? '15px' : '17px',
+      '--h2Fs': m ? '30px' : '40px',
+      '--heroCols': m ? '1fr' : '1fr 1fr',
+      '--heroIllust': m ? 'none' : 'block',
+      '--navLinks': m ? 'none' : 'flex',
+      '--cols2': m ? '1fr' : 'repeat(2,1fr)',
+      '--cols4': m ? 'repeat(2,1fr)' : 'repeat(4,1fr)',
+      '--modelGrid': m ? 'repeat(2,1fr)' : t ? 'repeat(3,1fr)' : 'repeat(5,1fr) .6fr',
+      '--ctaCols': m ? '1fr' : '1.4fr .6fr',
+    };
+  }
+  _glassCard() {
+    const d = this.state.dark;
+    return { background: d ? 'rgba(255,255,255,.05)' : 'rgba(255,255,255,.75)', border: `1px solid ${d ? 'rgba(255,255,255,.1)' : 'rgba(24,21,14,.1)'}`, borderRadius: '20px', backdropFilter: 'saturate(180%) blur(18px)', WebkitBackdropFilter: 'saturate(180%) blur(18px)', boxShadow: d ? 'inset 0 1px 0 rgba(255,255,255,.12),0 8px 28px -10px rgba(0,0,0,.32)' : 'inset 0 1px 0 rgba(255,255,255,.9),0 6px 20px -8px rgba(0,0,0,.1)', transition: 'transform .2s ease' };
+  }
+  renderVals() {
+    const d = this.state.dark, gc = this._glassCard();
+    const modelCard = { ...gc, padding: '16px 18px', borderRadius: '14px', transition: 'transform .2s ease,border-color .2s ease' };
+    return {
+      rootStyle: { ...this._vars, ...this._resp, background: 'var(--bg)', color: 'var(--fg)', fontFamily: "'Noto Sans SC',system-ui,sans-serif", minHeight: '100vh', overflowX: 'hidden' },
+      toggleBtn: { background: 'var(--surf)', border: '1px solid var(--bdr)', cursor: 'pointer', fontSize: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', padding: '0', color: 'var(--fg2)' },
+      themeLabel: d ? '☀' : '◑',
+      toggleDark: () => this.setState(s => ({ dark: !s.dark })),
+      navCtaBtn: { textDecoration: 'none', background: 'var(--indigo)', color: '#fff', fontSize: '13px', fontWeight: '600', padding: '9px 18px', borderRadius: '999px', display: 'inline-flex', alignItems: 'center', fontFamily: "'Noto Sans SC',sans-serif" },
+      primaryBtn: { textDecoration: 'none', background: 'var(--indigo)', color: '#fff', fontSize: '15px', fontWeight: '600', padding: '13px 16px 13px 22px', borderRadius: '999px', boxShadow: d ? '0 14px 32px -12px rgba(108,126,255,.6)' : '0 14px 32px -12px rgba(34,34,192,.35)', display: 'inline-flex', alignItems: 'center', gap: '10px', fontFamily: "'Noto Sans SC',sans-serif" },
+      secondaryBtn: { textDecoration: 'none', background: 'var(--glass)', border: '1px solid var(--bdr)', backdropFilter: 'blur(14px)', color: 'var(--fg)', fontSize: '15px', fontWeight: '600', padding: '13px 22px', borderRadius: '999px', display: 'inline-flex', alignItems: 'center', fontFamily: "'Noto Sans SC',sans-serif" },
+      btnIcon: { width: '26px', height: '26px', borderRadius: '50%', background: 'rgba(255,255,255,.2)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: '0' },
+      glassCard: gc,
+      heroDiagram: { ...gc, borderRadius: '18px', overflow: 'hidden' },
+      modelCard,
+      modelChip: { display: 'flex', alignItems: 'center', gap: '7px', padding: '7px 10px', borderRadius: '8px', background: 'var(--surf)', border: '1px solid transparent', fontSize: '12px', color: 'var(--fg2)', fontFamily: "'Noto Sans SC',sans-serif", fontWeight: '500' },
+      featIcon: { width: '38px', height: '38px', borderRadius: '11px', border: '1px solid', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px', flexShrink: '0' },
+    };
+  }
+}
+</script>
+</body>
+</html>

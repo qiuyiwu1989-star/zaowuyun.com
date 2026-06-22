@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>造物云 VI 应用物料库 · In Use</title>
+<style>
+/* ============ tokens ============ */
+:root{
+  --accent:#7B80FF; --accent-deep:#5B5FE0;
+  --gem1:#8501FF; --gem2:#AF59FF; --gem3:#CE99FF;
+  --mono:'SF Pro Display','SF Pro Text',ui-sans-serif,'Helvetica Neue',Arial,sans-serif; /* 拉丁/小字栈，沿用 design-system.html §04 字体系统 */
+  --serif:'Songti SC','STSong','Noto Serif SC','Source Han Serif CN','SimSun',serif;
+  --sans:'PingFang SC','Noto Sans SC','Microsoft YaHei','Source Han Sans CN',system-ui,sans-serif;
+}
+html[data-theme="dark"]{
+  --bg:#07070F; --bg2:#0d0d18; --surf:rgba(255,255,255,.05); --surf2:rgba(255,255,255,.085);
+  --fg:#ECEEFF; --fg2:rgba(236,238,255,.55); --fg3:rgba(236,238,255,.30);
+  --bdr:rgba(255,255,255,.10); --bdr2:rgba(255,255,255,.06);
+  --acc:#A293FF; --pageglow:radial-gradient(ellipse 70% 50% at 72% 12%,rgba(123,128,255,.16),transparent 60%),radial-gradient(ellipse 45% 45% at 8% 88%,rgba(139,92,246,.10),transparent 55%);
+}
+html[data-theme="light"]{
+  --bg:#F4EFE6; --bg2:#ECE6DA; --surf:rgba(255,255,255,.78); --surf2:#fff;
+  --fg:#1A1712; --fg2:rgba(26,23,18,.56); --fg3:rgba(26,23,18,.34);
+  --bdr:rgba(26,23,18,.12); --bdr2:rgba(26,23,18,.07);
+  --acc:#5535C0; --pageglow:radial-gradient(ellipse 60% 45% at 78% 6%,rgba(123,80,220,.07),transparent 60%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);background-image:var(--pageglow);background-attachment:fixed;color:var(--fg);
+  font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 120px}
+
+/* ============ top bar ============ */
+.top{position:sticky;top:0;z-index:50;backdrop-filter:saturate(150%) blur(16px);
+  background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--bdr2)}
+.top .in{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:18px}
+.lock{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:inherit}
+.lock .mk{width:26px;height:26px;display:block}
+.lock .wm{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:.04em}
+.top .sp{flex:1}
+.top a.bk{font-size:12.5px;color:var(--fg2);text-decoration:none}
+.top a.bk:hover{color:var(--acc)}
+.tg{display:inline-flex;border:1px solid var(--bdr);border-radius:999px;overflow:hidden;font-size:11.5px}
+.tg button{appearance:none;border:0;background:transparent;color:var(--fg2);padding:6px 13px;cursor:pointer;font-family:var(--sans);font-weight:600;letter-spacing:.04em}
+.tg button.on{background:var(--accent);color:#fff}
+
+/* ============ hero ============ */
+.hero{padding:66px 0 22px}
+.kic{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;color:var(--acc)}
+h1{font-family:var(--serif);font-weight:600;font-size:42px;letter-spacing:-.01em;margin:14px 0 16px;line-height:1.2}
+.lead{font-size:16px;color:var(--fg2);max-width:680px;line-height:1.75}
+.meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px}
+.meta b{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.05em;color:var(--fg2);
+  border:1px solid var(--bdr);border-radius:999px;padding:6px 13px}
+
+/* ============ section ============ */
+section{margin-top:64px;scroll-margin-top:80px}
+.sh{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--bdr);padding-bottom:14px;margin-bottom:26px}
+.sh .n{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--acc)}
+.sh h2{font-family:var(--serif);font-weight:600;font-size:25px;letter-spacing:.01em}
+.sh .en{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--fg3);margin-left:auto;text-transform:uppercase}
+.sub{font-size:14px;color:var(--fg2);max-width:760px;margin:-10px 0 26px;line-height:1.7}
+.sub b{color:var(--fg);font-weight:600}
+
+/* item grid */
+.grid{display:grid;gap:22px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:920px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+.item{display:flex;flex-direction:column;gap:11px}
+.stage{position:relative;border-radius:16px;border:1px solid var(--bdr2);overflow:hidden;
+  display:flex;align-items:center;justify-content:center;padding:30px;min-height:200px}
+.cap b{font-size:13.5px;font-weight:600;display:block}
+.cap span{font-size:12px;color:var(--fg2);line-height:1.55}
+.cap .v{font-family:var(--mono);font-size:10.5px;color:var(--acc);letter-spacing:.04em}
+
+/* backdrops */
+.bd-paper{background:linear-gradient(160deg,#efe9dc,#e3dcca)}
+.bd-grey{background:#E7E5DE}
+.bd-dark{background:radial-gradient(130% 100% at 50% 0,#241d46,#0b0a16 74%)}
+.bd-ink{background:#0b0b16}
+.bd-fab{background:linear-gradient(155deg,#ece5d4,#d9d0ba)}
+.bd-violet{background:linear-gradient(140deg,#7B80FF,#6a18d6 92%)}
+.bd-soft{background:var(--bg2)}
+
+/* ============ logo render helpers ============ */
+.gem{display:inline-block;line-height:0}
+/* 浅底承托阴影：完整标志(白底板)在浅色背景上需投影抬起，见 logo-guide §06 */
+.mkel{filter:drop-shadow(0 2px 7px rgba(24,21,14,.22)) drop-shadow(0 1px 2px rgba(24,21,14,.10))}
+.lockup{display:inline-flex;align-items:center;gap:.5em}
+.lockup .wm2{font-family:var(--serif);font-weight:600;letter-spacing:.05em}
+.lockup-v{display:inline-flex;flex-direction:column;align-items:center;gap:.45em}
+
+/* ============ business cards ============ */
+.card{aspect-ratio:86/54;border-radius:11px;box-shadow:0 18px 34px -16px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.12);
+  position:relative;overflow:hidden;width:100%}
+.cardrow{display:flex;gap:16px}
+.cardrow .card{width:50%}
+/* front A : paper */
+.cA-f{background:#FBF8F2;color:#1A1712;padding:15px 17px;display:flex;flex-direction:column;justify-content:space-between}
+.cA-f .lk{display:flex;align-items:center;gap:7px}
+.cA-f .lk .wm2{font-family:var(--serif);font-weight:600;font-size:15px;letter-spacing:.05em}
+.cA-f .nm{font-family:var(--serif);font-size:16px;font-weight:600}
+.cA-f .nm small{font-family:var(--sans);font-weight:400;font-size:9.5px;color:#8a8475;letter-spacing:.02em;margin-left:6px}
+.cA-f .ct{font-size:8.5px;color:#6f6a5d;line-height:1.7;font-family:var(--mono);letter-spacing:.01em}
+.cA-b{background:linear-gradient(145deg,#8E92FF,#7A00E6);display:flex;align-items:center;justify-content:center}
+/* version B : ink + foil */
+.cB-f{background:#0c0b16;color:#ECEEFF;padding:15px 17px;display:flex;flex-direction:column;justify-content:space-between}
+.cB-f .lk{display:flex;align-items:center;gap:7px}
+.cB-f .lk .wm2{font-family:var(--serif);font-weight:600;font-size:15px;letter-spacing:.05em;
+  background:linear-gradient(120deg,#CE99FF,#fff,#AF59FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cB-f .nm{font-size:15px;font-weight:600;font-family:var(--serif)}
+.cB-f .nm small{font-family:var(--sans);font-weight:400;font-size:9.5px;color:rgba(236,238,255,.5);margin-left:6px}
+.cB-f .ct{font-size:8.5px;color:rgba(236,238,255,.5);line-height:1.7;font-family:var(--mono)}
+.cB-b{background:#0c0b16;display:flex;align-items:center;justify-content:center;position:relative}
+.cB-b::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 50% 45%,rgba(133,1,255,.35),transparent 70%)}
+/* version C : editorial warm */
+.cC-f{background:#F4EFE6;color:#1A1712;padding:0;display:flex}
+.cC-f .bar{width:34%;background:linear-gradient(160deg,#8E92FF,#7A00E6);display:flex;align-items:center;justify-content:center}
+.cC-f .bdy{flex:1;padding:14px 15px;display:flex;flex-direction:column;justify-content:space-between}
+.cC-f .bdy .wm2{font-family:var(--serif);font-weight:600;font-size:13px;letter-spacing:.06em;color:#5535C0}
+.cC-f .nm{font-family:var(--serif);font-size:17px;font-weight:600}
+.cC-f .nm small{display:block;font-family:var(--sans);font-weight:400;font-size:9px;color:#8a8475;margin-top:2px;letter-spacing:.08em}
+.cC-f .ct{font-size:8.5px;color:#6f6a5d;line-height:1.7;font-family:var(--mono)}
+.cC-b{background:#F4EFE6;display:flex;align-items:center;justify-content:center;color:#c8bfa9;font-family:var(--serif);font-size:11px;letter-spacing:.3em}
+
+/* ============ stationery ============ */
+.a4{aspect-ratio:210/297;background:#fff;border-radius:6px;box-shadow:0 16px 30px -14px rgba(0,0,0,.4);
+  padding:13% 11% 9%;display:flex;flex-direction:column;color:#2a2722;width:78%;margin:0 auto}
+.a4 .hd{display:flex;align-items:center;gap:7px;padding-bottom:7%;border-bottom:1.5px solid #efece4}
+.a4 .hd .wm2{font-family:var(--serif);font-weight:600;font-size:12px;letter-spacing:.05em}
+.a4 .ln{height:5px;background:#f0ede5;border-radius:3px;margin-top:11px}
+.a4 .ln.s{width:62%}
+.a4 .bdy{flex:1;padding-top:8%}
+.a4 .ft{font-family:var(--mono);font-size:6.5px;color:#b3ad9f;letter-spacing:.04em;border-top:1px solid #f0ede5;padding-top:5%}
+.env{aspect-ratio:220/110;background:#FBF8F2;border-radius:7px;box-shadow:0 14px 26px -14px rgba(0,0,0,.36);
+  position:relative;overflow:hidden;width:92%;display:flex;align-items:flex-start;padding:14px 16px}
+.env::before{content:"";position:absolute;top:0;left:0;right:0;height:42%;
+  background:linear-gradient(#fff,#f6f2e9);border-bottom:1px solid #ece6d8;
+  clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%)}
+.env .ret{display:flex;align-items:center;gap:6px;position:relative;z-index:2}
+.env .ret .wm2{font-family:var(--serif);font-weight:600;font-size:11px}
+.env .ret small{display:block;font-family:var(--mono);font-size:6.5px;color:#9a9384;margin-top:3px}
+
+/* ============ badge ============ */
+.lanyard{width:120px;display:flex;flex-direction:column;align-items:center}
+.lanyard .strap{width:30px;height:54px;background:repeating-linear-gradient(135deg,#6a18d6 0 7px,#7B80FF 7px 14px);border-radius:3px 3px 0 0}
+.lanyard .clip{width:10px;height:9px;background:#cdcdd6;border-radius:2px}
+.badge{width:120px;aspect-ratio:55/86;background:#fff;border-radius:9px;box-shadow:0 14px 28px -12px rgba(0,0,0,.5);
+  margin-top:-2px;overflow:hidden;color:#1A1712;display:flex;flex-direction:column}
+.badge .bh{background:linear-gradient(145deg,#8E92FF,#7A00E6);padding:11px 0 9px;display:flex;flex-direction:column;align-items:center;gap:5px}
+.badge .bh .wm2{font-family:var(--serif);font-weight:600;font-size:10px;color:#fff;letter-spacing:.06em}
+.badge .bb{flex:1;padding:11px 9px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px}
+.badge .av{width:40px;height:40px;border-radius:50%;background:linear-gradient(150deg,#cfd2ff,#a99bff);margin-bottom:4px}
+.badge .bn{font-family:var(--serif);font-weight:600;font-size:13px}
+.badge .br{font-size:8px;color:#8a8475;font-family:var(--mono)}
+.badge .bq{margin-top:auto;width:30px;height:30px;background:
+  repeating-conic-gradient(#1A1712 0 25%,#fff 0 50%) 50%/8px 8px;border-radius:3px}
+
+/* ============ app icons ============ */
+.appgrid{display:flex;gap:16px;align-items:flex-end}
+.appic{border-radius:24%;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 12px 24px -8px rgba(80,20,180,.5),inset 0 1px 0 rgba(255,255,255,.25)}
+.appic.v{background:radial-gradient(120% 120% at 30% 20%,#9a4dff,#6a00d6 80%)}
+.appic.d{background:linear-gradient(150deg,#15131f,#0a0913)}
+.appic.p{background:#fff;box-shadow:0 12px 24px -10px rgba(0,0,0,.25),inset 0 0 0 1px #eee}
+.fav{display:flex;gap:20px;align-items:flex-end}
+.fav .f{display:flex;flex-direction:column;align-items:center;gap:7px}
+.fav .f .box{background:#fff;border-radius:5px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.fav .f small{font-family:var(--mono);font-size:9.5px;color:var(--fg3)}
+
+/* browser tab */
+.chrome{width:100%;max-width:340px;border-radius:11px;overflow:hidden;border:1px solid rgba(0,0,0,.10);
+  box-shadow:0 16px 32px -16px rgba(0,0,0,.3);background:#fff}
+.chrome .bar{display:flex;align-items:center;gap:8px;padding:8px 11px;background:#eceae4}
+.chrome .dots{display:flex;gap:5px}.chrome .dots i{width:9px;height:9px;border-radius:50%;background:#cfccc2}
+.chrome .tab{margin-left:4px;display:flex;align-items:center;gap:7px;background:#fff;border-radius:7px 7px 0 0;padding:6px 12px;font-size:11.5px;color:#2a2722}
+.chrome .tab .x{color:#a8a499}
+.chrome .addr{padding:8px 13px;font-family:var(--mono);font-size:11px;color:#9a948a;background:#fff;border-top:1px solid #f0eee8}
+.chrome .addr b{color:#2a2722;font-family:var(--sans);font-weight:600}
+
+/* avatars + banner */
+.ava{border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(120% 120% at 35% 25%,#9a4dff,#6a00d6 82%);box-shadow:0 10px 22px rgba(80,20,180,.4),inset 0 1px 0 rgba(255,255,255,.25)}
+.avarow{display:flex;align-items:center;gap:22px}
+.banner{width:100%;border-radius:12px;overflow:hidden;border:1px solid var(--bdr2)}
+.banner .cover{aspect-ratio:1500/420;background:radial-gradient(130% 160% at 80% 0,#2a2350,#0b0a16 72%);
+  display:flex;align-items:center;padding:0 9%;position:relative}
+.banner .cover .slogan{font-family:var(--serif);color:#ECEEFF;font-size:clamp(13px,2.4vw,21px);font-weight:600;line-height:1.35}
+.banner .cover .slogan b{color:#C9C2FF}
+.banner .cover .mk{position:absolute;right:8%;top:50%;transform:translateY(-50%);opacity:.9}
+.banner .row{display:flex;align-items:flex-end;gap:14px;padding:0 22px 14px;background:var(--surf);margin-top:-26px}
+.banner .row .ava{border:3px solid var(--bg);position:relative;z-index:2}
+.banner .row .who b{font-size:14px}.banner .row .who span{font-size:11.5px;color:var(--fg2);font-family:var(--mono)}
+
+/* ============ email signature ============ */
+.sig{background:#fff;color:#2a2722;border-radius:12px;padding:22px 24px;width:100%;max-width:430px;
+  box-shadow:0 14px 30px -16px rgba(0,0,0,.3);display:flex;gap:16px;align-items:center}
+.sig .l{padding-right:16px;border-right:2px solid #ece7db;display:flex;flex-direction:column;align-items:center;gap:6px}
+.sig .l .wm2{font-family:var(--serif);font-weight:600;font-size:11px;color:#5535C0}
+.sig .r .nm{font-family:var(--serif);font-size:16px;font-weight:600}
+.sig .r .ti{font-size:11px;color:#8a8475;margin:2px 0 9px}
+.sig .r .ct{font-family:var(--mono);font-size:10px;color:#6f6a5d;line-height:1.8}
+.sig .r .ct b{color:#5535C0}
+
+/* ============ slides ============ */
+.slide{aspect-ratio:16/9;border-radius:11px;overflow:hidden;width:100%;position:relative;box-shadow:0 14px 30px -16px rgba(0,0,0,.4)}
+.sl-cover{background:radial-gradient(130% 120% at 78% 0,#2a2350,#0a0913 72%);color:#ECEEFF;padding:9% 8%;display:flex;flex-direction:column;justify-content:space-between}
+.sl-cover h3{font-family:var(--serif);font-size:clamp(15px,3vw,26px);font-weight:600;line-height:1.3}
+.sl-cover h3 b{color:#C9C2FF}
+.sl-cover .ft{display:flex;align-items:center;justify-content:space-between}
+.sl-cover .ft .lk{display:flex;align-items:center;gap:7px;font-family:var(--serif);font-weight:600;font-size:13px}
+.sl-cover .ft .pg{font-family:var(--mono);font-size:10px;color:rgba(236,238,255,.4)}
+.sl-inner{background:#fff;color:#1A1712;padding:7% 8%;display:flex;flex-direction:column}
+.sl-inner .kt{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:#7B80FF}
+.sl-inner h4{font-family:var(--serif);font-size:clamp(13px,2.4vw,20px);font-weight:600;margin:7px 0 3%}
+.sl-inner .cols{display:flex;gap:6%;flex:1}
+.sl-inner .cols .c{flex:1;border-top:2.5px solid #7B80FF;padding-top:8px}
+.sl-inner .cols .c b{font-size:11px}.sl-inner .cols .c p{font-size:9px;color:#8a8475;margin-top:4px;line-height:1.6}
+.sl-inner .ft{margin-top:auto;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #f0ede5;padding-top:3%}
+.sl-inner .ft .lk{display:flex;align-items:center;gap:6px;font-family:var(--serif);font-weight:600;font-size:10px}
+.sl-inner .ft .pg{font-family:var(--mono);font-size:8px;color:#b3ad9f}
+
+/* ============ xiaohongshu covers ============ */
+.xhs{aspect-ratio:3/4;border-radius:14px;overflow:hidden;position:relative;box-shadow:0 16px 32px -16px rgba(0,0,0,.45);width:100%}
+/* knowledge card */
+.xhs-k{background:linear-gradient(165deg,#15122a,#070610);color:#ECEEFF;padding:30px 24px;display:flex;flex-direction:column}
+.xhs-k .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#A293FF;border:1px solid rgba(162,147,255,.4);border-radius:999px;padding:5px 13px;align-self:flex-start}
+.xhs-k h3{font-family:var(--serif);font-size:30px;font-weight:600;line-height:1.28;margin-top:auto}
+.xhs-k h3 b{background:linear-gradient(110deg,#CE99FF,#7B80FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.xhs-k .sub2{font-size:13px;color:rgba(236,238,255,.6);margin-top:14px;line-height:1.7}
+.xhs-k .lk{margin-top:22px;display:flex;align-items:center;gap:8px;font-family:var(--serif);font-weight:600;font-size:14px;opacity:.85}
+/* product launch */
+.xhs-p{background:linear-gradient(150deg,#7B80FF,#6a00d6 96%);color:#fff;padding:30px 24px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.xhs-p .new{font-family:var(--mono);font-size:11px;letter-spacing:.2em;background:rgba(255,255,255,.18);border-radius:999px;padding:6px 15px}
+.xhs-p .mkw{margin:auto 0;display:flex;flex-direction:column;align-items:center;gap:14px}
+.xhs-p h3{font-family:var(--serif);font-size:27px;font-weight:600;line-height:1.3}
+.xhs-p .pill{margin-top:6px;font-size:12px;background:rgba(0,0,0,.18);border-radius:999px;padding:6px 16px}
+/* data card */
+.xhs-d{background:#F4EFE6;color:#1A1712;padding:30px 24px;display:flex;flex-direction:column}
+.xhs-d .kt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#5535C0}
+.xhs-d h3{font-family:var(--serif);font-size:23px;font-weight:600;line-height:1.3;margin:9px 0 auto}
+.xhs-d .big{font-family:var(--serif);font-size:62px;font-weight:600;color:#5535C0;line-height:1}
+.xhs-d .big small{font-size:20px;margin-left:4px}
+.xhs-d .bl{font-size:13px;color:#8a8475;margin-top:6px}
+.xhs-d .lk{margin-top:20px;display:flex;align-items:center;gap:8px;font-family:var(--serif);font-weight:600;font-size:13px;color:#5535C0}
+
+/* ============ wechat banner ============ */
+.wx{aspect-ratio:900/383;border-radius:12px;overflow:hidden;position:relative;width:100%;box-shadow:0 14px 30px -16px rgba(0,0,0,.4)}
+.wx-h{background:radial-gradient(120% 200% at 85% 0,#2a2350,#0a0913 70%);color:#ECEEFF;display:flex;align-items:center;padding:0 7%}
+.wx-h .t{font-family:var(--serif);font-size:clamp(15px,3.4vw,27px);font-weight:600;line-height:1.3}
+.wx-h .t b{color:#C9C2FF}
+.wx-h .mk{position:absolute;right:7%;top:50%;transform:translateY(-50%)}
+.wx2{display:flex;gap:14px}
+.wx2 .wx{flex:1}
+.wx-s{background:#F4EFE6;color:#1A1712;display:flex;align-items:center;gap:5%;padding:0 6%}
+.wx-s .lk{display:flex;align-items:center;gap:7px;font-family:var(--serif);font-weight:600;font-size:13px;color:#5535C0}
+.wx-s .tx{font-size:11px;color:#8a8475;border-left:1.5px solid #d8d1c0;padding-left:5%}
+
+/* ============ wallpaper ============ */
+.phone{width:150px;aspect-ratio:9/19.5;border-radius:26px;padding:7px;background:#15131c;box-shadow:0 22px 44px -18px rgba(0,0,0,.6)}
+.phone .scr{width:100%;height:100%;border-radius:20px;overflow:hidden;position:relative;
+  background:radial-gradient(120% 90% at 50% 18%,#3a2d6e,#0a0913 70%);display:flex;flex-direction:column;align-items:center}
+.phone .notch{position:absolute;top:7px;left:50%;transform:translateX(-50%);width:46px;height:5px;border-radius:3px;background:rgba(255,255,255,.2)}
+.phone .time{margin-top:46px;font-family:var(--serif);font-size:38px;font-weight:500;color:#fff;letter-spacing:.02em}
+.phone .date{font-size:10px;color:rgba(255,255,255,.6);margin-top:2px}
+.phone .mk{margin-top:auto;margin-bottom:14px;opacity:.85}
+.phone .wmk{font-family:var(--serif);font-size:11px;color:rgba(255,255,255,.55);letter-spacing:.3em;margin-bottom:20px}
+
+/* ============ merch ============ */
+.tote{width:150px;aspect-ratio:5/6;background:linear-gradient(155deg,#ece5d4,#d9d0ba);border-radius:3px;position:relative;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 14px 28px -14px rgba(0,0,0,.3)}
+.tote::before,.tote::after{content:"";position:absolute;top:-26px;width:14px;height:46px;border:5px solid #c8bda4;border-bottom:0;border-radius:40px 40px 0 0}
+.tote::before{left:30px}.tote::after{right:30px}
+.tee{width:170px;aspect-ratio:1/1;position:relative;display:flex;align-items:flex-start;justify-content:center}
+.tee .body{position:absolute;inset:0;background:#15131c;
+  clip-path:polygon(30% 8%,38% 2%,62% 2%,70% 8%,92% 18%,84% 36%,74% 30%,74% 98%,26% 98%,26% 30%,16% 36%,8% 18%);
+  border-radius:6px}
+.tee .body.light{background:#efe9dc}
+.tee .print{position:relative;z-index:2;margin-top:34%;display:flex;flex-direction:column;align-items:center;gap:7px}
+.mug{width:130px;aspect-ratio:1/0.92;position:relative;display:flex;align-items:center;justify-content:center}
+.mug .cup{position:absolute;left:8px;right:30px;top:0;bottom:0;background:linear-gradient(#fff,#f1eee8);border-radius:8px 8px 12px 12px;box-shadow:0 12px 24px -12px rgba(0,0,0,.3)}
+.mug .handle{position:absolute;right:14px;top:24%;width:34px;height:46%;border:9px solid #fff;border-radius:0 40px 40px 0;border-left:0}
+.mug .print{position:relative;z-index:2;margin-right:22px}
+.pins{display:flex;gap:18px;align-items:center}
+.pin{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 18px -6px rgba(0,0,0,.35),inset 0 0 0 3px rgba(255,255,255,.35),inset 0 -6px 14px rgba(0,0,0,.18)}
+.pin.v{background:radial-gradient(120% 120% at 32% 24%,#9a4dff,#6a00d6 82%)}
+.pin.p{background:#FBF8F2}
+.sticker{width:84px;height:84px;border-radius:18px;background:#fff;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 18px -6px rgba(0,0,0,.28);position:relative;transform:rotate(-7deg)}
+.sticker::after{content:"";position:absolute;inset:5px;border:1.5px dashed #d8d1c0;border-radius:14px}
+
+/* ============ rollup + signage ============ */
+.rollup{width:108px;display:flex;flex-direction:column;align-items:center}
+.rollup .panel{width:100%;aspect-ratio:80/200;border-radius:5px 5px 0 0;overflow:hidden;
+  background:radial-gradient(120% 70% at 50% 8%,#2a2350,#0a0913 70%);color:#ECEEFF;
+  padding:20px 14px;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:0 16px 30px -16px rgba(0,0,0,.5)}
+.rollup .panel .lk{display:flex;align-items:center;gap:6px;font-family:var(--serif);font-weight:600;font-size:11px}
+.rollup .panel h3{font-family:var(--serif);font-size:15px;font-weight:600;line-height:1.3;margin-top:30px}
+.rollup .panel h3 b{color:#C9C2FF}
+.rollup .panel .mk{margin-top:auto}
+.rollup .panel .qr{width:32px;height:32px;margin-top:14px;background:repeating-conic-gradient(#fff 0 25%,transparent 0 50%) 50%/7px 7px;border-radius:3px;opacity:.8}
+.rollup .foot{width:60%;height:8px;background:#2a2733;border-radius:0 0 4px 4px}
+.signage{width:100%;aspect-ratio:16/7;border-radius:10px;overflow:hidden;position:relative;
+  background:#141019;display:flex;align-items:center;justify-content:center}
+.signage::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 120% at 50% 0,rgba(123,128,255,.3),transparent 65%)}
+.signage .lk{position:relative;z-index:2;display:flex;align-items:center;gap:14px;color:#ECEEFF}
+.signage .lk .wm2{font-family:var(--serif);font-weight:600;font-size:30px;letter-spacing:.1em;
+  text-shadow:0 0 24px rgba(123,128,255,.6)}
+.signage .lk .mk{filter:drop-shadow(0 0 14px rgba(133,1,255,.7))}
+
+/* ============ footer ============ */
+.foot{margin-top:80px;border-top:1px solid var(--bdr);padding-top:26px;font-size:12.5px;color:var(--fg3);line-height:1.9}
+.foot a{color:var(--acc);text-decoration:none}
+.note{font-size:13px;color:var(--fg2);border-left:2px solid var(--accent);padding-left:14px;margin-top:14px;line-height:1.7}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.toc a{font-family:var(--mono);font-size:11px;color:var(--fg2);text-decoration:none;border:1px solid var(--bdr);border-radius:999px;padding:6px 13px}
+.toc a:hover{border-color:var(--accent);color:var(--acc)}
+</style>
+</head>
+<body>
+
+<!-- ====== logo symbols ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-mark" viewBox="0 0 32 32">
+    <path d="M27.356405,6.5566244Q28.16021,7.1194868,28.823174,7.8429451Q29.350391,8.6705627,29.686035,9.5926561Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.686037,22.407345Q29.350391,23.329437,28.823174,24.157059Q28.16021,24.880516,27.356405,25.443377L18.5,30.556623Q17.610645,30.97131,16.652632,31.183723Q15.672283,31.226498,14.705906,31.056128Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q3.8397913,24.880516,3.1768272,24.157059Q2.6496081,23.329437,2.3139648,22.407347Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.3139644,9.5926561Q2.6496074,8.6705627,3.1768267,7.8429446Q3.8397908,7.1194868,4.6435933,6.5566244L13.5,1.4433756Q14.389355,1.0286931,15.34737,0.8162784Q16.327717,0.77350277,17.294096,0.9438737Q18.216188,1.2795172,18.5,1.4433758L27.356405,6.5566244Z" fill="#FFFFFF"/>
+    <path d="M16,8L22.928203,12L22.928203,20L16,24L9.071797,20L9.071797,12L16,8Z" fill="#8501FF"/>
+    <path d="M15.999958,24.000038L15.999958,8.000038L22.928161,12.000038L22.928161,20.000038L15.999958,24.000038Z" fill="#AF59FF"/>
+    <path d="M15.99994,16L22.928144,12L15.99994,8L9.071738,12L15.99994,16Z" fill="#CE99FF"/>
+  </symbol>
+  <symbol id="i-gem" viewBox="0 0 32 32">
+    <path d="M16,8L22.928203,12L22.928203,20L16,24L9.071797,20L9.071797,12L16,8Z" fill="#8501FF"/>
+    <path d="M15.999958,24.000038L15.999958,8.000038L22.928161,12.000038L22.928161,20.000038L15.999958,24.000038Z" fill="#AF59FF"/>
+    <path d="M15.99994,16L22.928144,12L15.99994,8L9.071738,12L15.99994,16Z" fill="#CE99FF"/>
+  </symbol>
+  <symbol id="i-mono" viewBox="0 0 32 32">
+    <path d="M16,8 L22.928,12 L22.928,20 L16,24 L9.072,20 L9.072,12 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M16,8 L16,24 M9.072,12 L16,16 L22.928,12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+  </symbol>
+</svg>
+
+<!-- ====== top bar ====== -->
+<div class="top"><div class="in">
+  <a class="lock" href="preview.html"><svg class="mk"><use href="#i-mark"/></svg><span class="wm">造物云</span></a>
+  <span class="sp"></span>
+  <a class="bk" href="logo-guide.html">标志规范</a>
+  <a class="bk" href="design-system.html">设计系统</a>
+  <div class="tg"><button id="t-d" class="on" onclick="setTheme('dark')">深色</button><button id="t-l" onclick="setTheme('light')">浅色</button></div>
+</div></div>
+
+<div class="wrap">
+
+<!-- ====== hero ====== -->
+<header class="hero">
+  <div class="kic">BRAND VI · APPLICATIONS · IN USE</div>
+  <h1>VI 应用物料库</h1>
+  <p class="lead">把同一套品牌标识放进真实物料里看它怎么工作——名片、办公印刷、数字标识、社交内容、周边与线下。每件都从<b>设计系统的 token</b> 与<b>标志使用规范</b>长出来：小尺寸用单标记、浅底加承托、单色印刷走墨色镂空、深紫场景用反白。给后续使用者一套可直接套用的样板。</p>
+  <div class="meta"><b>明暗双主题</b><b>名片 3 版</b><b>小红书封面 3 版</b><b>30+ 物料</b><b>纯 CSS / SVG 示意</b></div>
+  <p class="note">说明：以下均为<b>示意排版</b>，用于演示标志在各介质上的用法与版式逻辑，非最终成品文件。真实物料请按这套比例与留白套用，标志始终在四个配色版本里择一，不重绘、不拆解。</p>
+  <nav class="toc">
+    <a href="#card">01 名片</a><a href="#paper">02 办公印刷</a><a href="#badge">03 工牌证件</a>
+    <a href="#digital">04 数字标识</a><a href="#mail">05 邮件签名</a><a href="#slide">06 演示文稿</a>
+    <a href="#social">07 社交内容</a><a href="#wall">08 壁纸</a><a href="#merch">09 周边</a><a href="#offline">10 线下展陈</a>
+  </nav>
+</header>
+
+<!-- 01 名片 -->
+<section id="card">
+  <div class="sh"><span class="n">01</span><h2>名片</h2><span class="en">Business Card</span></div>
+  <p class="sub">标准 <b>90 × 54mm</b>。三套方案对应三种气质：<b>A 经典暖纸</b>稳重通用，<b>B 墨黑烫彩</b>用于高管与对外，<b>C 编辑色块</b>偏年轻团队。每套正反面成对——正面放信息，背面放标志，互为承托。</p>
+  <div class="grid g3">
+
+    <div class="item">
+      <div class="stage bd-grey">
+        <div class="cardrow">
+          <div class="card cA-f">
+            <div class="lk"><svg class="mk mkel" style="width:18px;height:18px"><use href="#i-mark"/></svg><span class="wm2">造物云</span></div>
+            <div>
+              <div class="nm">邱懿武<small>产品设计 Lead</small></div>
+              <div class="ct" style="margin-top:6px">qiuyiwu@zaowuyun.com<br>+86 138 0000 0000<br>zaowuyun.com · 杭州</div>
+            </div>
+          </div>
+          <div class="card cA-b"><svg style="width:30px;height:30px"><use href="#i-mark"/></svg></div>
+        </div>
+      </div>
+      <div class="cap"><b>A · 经典暖纸 <span class="v">v1</span></b><span>正面米白纸 + 裸晶体横向组合；背面品牌紫满版居中反白。</span></div>
+    </div>
+
+    <div class="item">
+      <div class="stage bd-ink">
+        <div class="cardrow">
+          <div class="card cB-f">
+            <div class="lk"><svg class="mk" style="width:18px;height:18px"><use href="#i-mark"/></svg><span class="wm2">造物云</span></div>
+            <div>
+              <div class="nm">邱懿武<small>Founder</small></div>
+              <div class="ct" style="margin-top:6px">qiuyiwu@zaowuyun.com<br>zaowuyun.com</div>
+            </div>
+          </div>
+          <div class="card cB-b"><svg style="width:34px;height:34px;position:relative;z-index:2"><use href="#i-mark"/></svg></div>
+        </div>
+      </div>
+      <div class="cap"><b>B · 墨黑烫彩 <span class="v">v2</span></b><span>哑黑卡纸，字标走渐变烫印效果，背面晶体打紫光。对外 / 高管用。</span></div>
+    </div>
+
+    <div class="item">
+      <div class="stage bd-grey">
+        <div class="cardrow">
+          <div class="card cC-f">
+            <div class="bar"><svg style="width:26px;height:26px"><use href="#i-mark"/></svg></div>
+            <div class="bdy">
+              <span class="wm2">造物云</span>
+              <div class="nm">邱懿武<small>PRODUCT DESIGN</small></div>
+              <div class="ct">qiuyiwu@zaowuyun.com<br>zaowuyun.com · 杭州</div>
+            </div>
+          </div>
+          <div class="card cC-b">ZAOWUYUN</div>
+        </div>
+      </div>
+      <div class="cap"><b>C · 编辑色块 <span class="v">v3</span></b><span>左侧紫色块嵌标记 + 右侧编辑式信息；背面浅底排字。团队 / 年轻气质。</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 02 办公印刷 -->
+<section id="paper">
+  <div class="sh"><span class="n">02</span><h2>办公印刷</h2><span class="en">Stationery</span></div>
+  <p class="sub">信纸、信封等事务用品保持<b>极简</b>：标志只在版头小尺寸出现一次，主体留给内容。统一以 1.5px 细线分隔版头版尾，页脚用等宽字注信息。</p>
+  <div class="grid g3">
+    <div class="item">
+      <div class="stage bd-grey" style="padding:22px">
+        <div class="a4">
+          <div class="hd"><svg class="mkel" style="width:15px;height:15px"><use href="#i-mark"/></svg><span class="wm2">造物云</span></div>
+          <div class="bdy"><div class="ln"></div><div class="ln s"></div><div class="ln"></div><div class="ln" style="width:78%"></div><div class="ln s"></div></div>
+          <div class="ft">杭州造物云技术有限公司 · zaowuyun.com · 杭州市西湖区</div>
+        </div>
+      </div>
+      <div class="cap"><b>信纸 Letterhead</b><span>A4。版头横向组合左对齐，正文区净空，页尾等宽字注公司信息。</span></div>
+    </div>
+    <div class="item">
+      <div class="stage bd-grey">
+        <div class="env">
+          <div class="ret"><svg class="mkel" style="width:15px;height:15px"><use href="#i-mark"/></svg><div><span class="wm2">造物云</span><small>杭州市西湖区 · zaowuyun.com</small></div></div>
+        </div>
+      </div>
+      <div class="cap"><b>信封 Envelope</b><span>DL 标准。寄件信息置左上角，封盖留白，整体克制。</span></div>
+    </div>
+    <div class="item">
+      <div class="stage bd-grey">
+        <div style="width:140px;background:#FBF8F2;border-radius:4px 4px 8px 8px;box-shadow:0 14px 26px -14px rgba(0,0,0,.34);overflow:hidden">
+          <div style="background:linear-gradient(145deg,#8E92FF,#7A00E6);padding:11px 13px;display:flex;align-items:center;gap:6px">
+            <svg style="width:15px;height:15px"><use href="#i-mark"/></svg><span class="wm2" style="font-family:var(--serif);font-weight:600;font-size:12px;color:#fff">造物云</span>
+          </div>
+          <div style="padding:14px 13px">
+            <div style="height:4px;background:#ece7db;border-radius:3px;margin-bottom:9px"></div>
+            <div style="height:4px;background:#ece7db;border-radius:3px;width:70%;margin-bottom:9px"></div>
+            <div style="height:4px;background:#ece7db;border-radius:3px;margin-bottom:9px"></div>
+            <div style="height:4px;background:#ece7db;border-radius:3px;width:55%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="cap"><b>便签 Notepad</b><span>顶部紫条嵌反白标志，下方书写区。会议 / 速记用。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 工牌 -->
+<section id="badge">
+  <div class="sh"><span class="n">03</span><h2>工牌 / 证件</h2><span class="en">Badge &amp; Lanyard</span></div>
+  <p class="sub">员工证、活动证件、访客牌共用一套模版：<b>顶部紫色头</b>嵌反白标志，下方头像 + 姓名 + 工号，底部留二维码核验位。挂绳用品牌紫斜纹。</p>
+  <div class="grid g4">
+    <div class="item">
+      <div class="stage bd-soft">
+        <div class="lanyard"><div class="strap"></div><div class="clip"></div>
+          <div class="badge">
+            <div class="bh"><svg style="width:18px;height:18px"><use href="#i-mark"/></svg><span class="wm2">造物云</span></div>
+            <div class="bb"><div class="av"></div><div class="bn">邱懿武</div><div class="br">PRODUCT · No.0001</div><div class="bq"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="cap"><b>员工证</b><span>挂绳品牌紫斜纹；证件顶紫头 + 头像 + 工号 + 核验码。</span></div>
+    </div>
+    <div class="item">
+      <div class="stage bd-soft">
+        <div class="badge" style="margin-top:0">
+          <div class="bh" style="background:#0c0b16"><svg style="width:18px;height:18px"><use href="#i-mark"/></svg><span class="wm2">造物云</span></div>
+          <div class="bb"><div style="font-family:var(--mono);font-size:8px;color:#A293FF;letter-spacing:.1em;margin-top:6px">VISITOR · 访客</div><div class="bn" style="margin-top:6px">来宾</div><div class="br">2026 · 当日有效</div><div class="bq"></div></div>
+        </div>
+      </div>
+      <div class="cap"><b>访客牌</b><span>墨色头区别于员工证，标注 VISITOR 与有效期。</span></div>
+    </div>
+    <div class="item" style="grid-column:span 2">
+      <div class="stage bd-violet" style="min-height:auto;padding:0;align-items:stretch">
+        <div style="flex:1;padding:26px 28px;display:flex;flex-direction:column;justify-content:center;color:#fff">
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:.16em;opacity:.85">CONFERENCE PASS</div>
+          <div style="font-family:var(--serif);font-size:22px;font-weight:600;margin:8px 0 14px;line-height:1.3">造物云开发者大会<br>2026</div>
+          <div style="display:flex;align-items:center;gap:8px;opacity:.95"><svg style="width:20px;height:20px"><use href="#i-mark"/></svg><span class="wm2" style="font-family:var(--serif);font-weight:600">造物云</span></div>
+        </div>
+        <div style="width:88px;background:rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center">
+          <div style="width:46px;height:46px;background:repeating-conic-gradient(#fff 0 25%,transparent 0 50%) 50%/9px 9px;border-radius:4px"></div>
+        </div>
+      </div>
+      <div class="cap"><b>活动证件 / 横版</b><span>大会、展会用横版胸卡；满版品牌紫，右侧核验码。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 数字标识 -->
+<section id="digital">
+  <div class="sh"><span class="n">04</span><h2>数字标识</h2><span class="en">Digital Identity</span></div>
+  <p class="sub">屏幕上的标志：App 图标满版晶体、favicon 逐级简化、社交头像圆形裁切、主页 banner 用横向组合 + 主张。尺寸越小越简化，到 16px 只剩裸晶体。</p>
+
+  <h3 style="font-size:13px;color:var(--fg2);margin:0 0 16px;font-weight:600">App 图标 · 三种背景版本</h3>
+  <div class="grid g3" style="margin-bottom:34px">
+    <div class="item"><div class="stage bd-dark"><div class="appgrid">
+      <div class="appic v" style="width:96px;height:96px"><svg style="width:54px;height:54px"><use href="#i-gem"/></svg></div>
+    </div></div><div class="cap"><b>主图标 · 紫晶满版</b><span>iOS / Android 默认。超椭圆圆角即图标形状，晶体居中。</span></div></div>
+    <div class="item"><div class="stage bd-dark"><div class="appgrid">
+      <div class="appic d" style="width:96px;height:96px"><svg style="width:50px;height:50px"><use href="#i-mark"/></svg></div>
+    </div></div><div class="cap"><b>暗色版</b><span>深色系产品线用墨底 + 白壳晶体，保持识别。</span></div></div>
+    <div class="item"><div class="stage bd-grey"><div class="appgrid">
+      <div class="appic p" style="width:96px;height:96px"><svg style="width:52px;height:52px"><use href="#i-gem"/></svg></div>
+    </div></div><div class="cap"><b>浅色版</b><span>白底裸晶体，用于浅色界面与商店列表。</span></div></div>
+  </div>
+
+  <h3 style="font-size:13px;color:var(--fg2);margin:0 0 16px;font-weight:600">Favicon 系统 + 浏览器标签</h3>
+  <div class="grid g2" style="margin-bottom:34px">
+    <div class="item"><div class="stage bd-grey"><div class="fav">
+      <div class="f"><div class="box" style="width:48px;height:48px"><svg style="width:30px;height:30px"><use href="#i-gem"/></svg></div><small>48</small></div>
+      <div class="f"><div class="box" style="width:32px;height:32px"><svg style="width:21px;height:21px"><use href="#i-gem"/></svg></div><small>32</small></div>
+      <div class="f"><div class="box" style="width:16px;height:16px"><svg style="width:12px;height:12px"><use href="#i-gem"/></svg></div><small>16</small></div>
+    </div></div><div class="cap"><b>Favicon 16 / 32 / 48</b><span>逐级简化的单标记，白底裸晶体，去发丝描边保证小尺寸清晰。</span></div></div>
+    <div class="item"><div class="stage bd-grey"><div class="chrome">
+      <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="tab"><svg style="width:14px;height:14px"><use href="#i-gem"/></svg>造物云 · 智能基础设施<span class="x">✕</span></div></div>
+      <div class="addr"><b>zaowuyun.com</b>/products</div>
+    </div></div><div class="cap"><b>浏览器标签</b><span>标签页用 16px favicon + 站点名，地址栏域名加粗。</span></div></div>
+  </div>
+
+  <h3 style="font-size:13px;color:var(--fg2);margin:0 0 16px;font-weight:600">社交头像 + 主页横幅</h3>
+  <div class="grid g2">
+    <div class="item"><div class="stage bd-ink"><div class="avarow">
+      <span class="ava" style="width:72px;height:72px"><svg style="width:40px;height:40px"><use href="#i-mark"/></svg></span>
+      <span class="ava" style="width:50px;height:50px"><svg style="width:28px;height:28px"><use href="#i-mark"/></svg></span>
+      <span class="ava" style="width:34px;height:34px"><svg style="width:19px;height:19px"><use href="#i-mark"/></svg></span>
+    </div></div><div class="cap"><b>社交头像</b><span>圆形裁切，单标记居中留 1X 净空，多平台多尺寸统一。</span></div></div>
+    <div class="item"><div class="banner">
+      <div class="cover"><div class="slogan">智能是基础设施，<br><b>不是选配功能。</b></div><svg class="mk" style="width:42px;height:42px"><use href="#i-mark"/></svg></div>
+      <div class="row"><span class="ava" style="width:54px;height:54px"><svg style="width:30px;height:30px"><use href="#i-mark"/></svg></span><span class="who"><b>造物云</b><br><span>@zaowuyun · 官方</span></span></div>
+    </div><div class="cap"><b>主页横幅 Banner</b><span>横幅放主张 + 角标，头像压在交界处，社媒主页统一形象。</span></div></div>
+  </div>
+</section>
+
+<!-- 05 邮件签名 -->
+<section id="mail">
+  <div class="sh"><span class="n">05</span><h2>邮件签名</h2><span class="en">Email Signature</span></div>
+  <p class="sub">对外邮件统一签名档：<b>左标志、右信息</b>，中间一道分隔线。姓名用宋体，联系方式用等宽字，链接走品牌紫。HTML 邮件与纯文本两版。</p>
+  <div class="grid g2">
+    <div class="item"><div class="stage bd-grey"><div class="sig">
+      <div class="l"><svg style="width:30px;height:30px"><use href="#i-mark"/></svg><span class="wm2">造物云</span></div>
+      <div class="r"><div class="nm">邱懿武</div><div class="ti">产品设计 Lead · 造物云</div>
+        <div class="ct">qiuyiwu@zaowuyun.com<br>+86 138 0000 0000<br><b>zaowuyun.com</b></div></div>
+    </div></div><div class="cap"><b>HTML 签名</b><span>左侧标志锁版 + 右侧两栏信息，分隔线 2px 暖灰。</span></div></div>
+    <div class="item"><div class="stage bd-ink"><div class="sig" style="background:#0c0b16;color:#ECEEFF">
+      <div class="l" style="border-right-color:rgba(255,255,255,.12)"><svg style="width:30px;height:30px"><use href="#i-mark"/></svg><span class="wm2" style="color:#C9C2FF">造物云</span></div>
+      <div class="r"><div class="nm" style="color:#ECEEFF">邱懿武</div><div class="ti" style="color:rgba(236,238,255,.5)">Founder · 造物云</div>
+        <div class="ct" style="color:rgba(236,238,255,.55)">qiuyiwu@zaowuyun.com<br><b style="color:#A293FF">zaowuyun.com</b></div></div>
+    </div></div><div class="cap"><b>深色签名</b><span>暗色邮件客户端版本，字标用浅紫保证对比度。</span></div></div>
+  </div>
+</section>
+
+<!-- 06 演示文稿 -->
+<section id="slide">
+  <div class="sh"><span class="n">06</span><h2>演示文稿</h2><span class="en">Slides</span></div>
+  <p class="sub">PPT / Keynote 模版：<b>封面</b>深紫光晕大字主张，标志锁右下；<b>内页</b>白底高信息密度，2.5px 紫色顶线分栏，页脚固定小标志 + 页码。封面抢气势，内页让内容。</p>
+  <div class="grid g2">
+    <div class="item"><div class="stage bd-soft" style="padding:22px"><div class="slide sl-cover">
+      <div class="kic" style="color:#A293FF;font-size:10px">ZAOWUYUN · 2026 KEYNOTE</div>
+      <h3>智能是基础设施，<br><b>不是选配功能。</b></h3>
+      <div class="ft"><span class="lk"><svg style="width:20px;height:20px"><use href="#i-mark"/></svg><span class="wm2">造物云</span></span><span class="pg">01 / 28</span></div>
+    </div></div><div class="cap"><b>封面母版</b><span>深紫光晕 + 宋体主张占主，标志与页码锁底。</span></div></div>
+    <div class="item"><div class="stage bd-soft" style="padding:22px"><div class="slide sl-inner">
+      <div class="kt">PRODUCT MATRIX</div><h4>三平台 · 五能力产品</h4>
+      <div class="cols"><div class="c"><b>智核 API HUB</b><p>统一接入 50+ 模型，智能路由与成本管控。</p></div><div class="c"><b>AI 工作台</b><p>让最懂业务的人，亲手做专业 AI 应用。</p></div><div class="c"><b>多模态中台</b><p>企业资产统一管理与向量检索。</p></div></div>
+      <div class="ft"><span class="lk"><svg class="mkel" style="width:14px;height:14px"><use href="#i-mark"/></svg><span class="wm2">造物云</span></span><span class="pg">12 / 28</span></div>
+    </div></div><div class="cap"><b>内页母版</b><span>白底紫顶线分栏，页脚小标志 + 页码，高信息密度。</span></div></div>
+  </div>
+</section>
+
+<!-- 07 社交内容 -->
+<section id="social">
+  <div class="sh"><span class="n">07</span><h2>社交内容</h2><span class="en">Social</span></div>
+  <p class="sub">对外内容物料统一调性：<b>小红书封面 3 版</b>（知识卡 / 产品发布 / 数据卡）走 3:4 竖图；<b>公众号</b>头图 2.35:1 与次图。母题不变——深紫场景、宋体大字、晶体点缀。</p>
+
+  <h3 style="font-size:13px;color:var(--fg2);margin:0 0 16px;font-weight:600">小红书封面 · 三种内容型</h3>
+  <div class="grid g3" style="margin-bottom:34px">
+    <div class="item"><div class="stage bd-soft" style="padding:20px"><div class="xhs xhs-k">
+      <span class="tag">AI 认知 · 01</span>
+      <h3>为什么说<br><b>智能是水电</b>，<br>不是奢侈品？</h3>
+      <div class="sub2">从成本曲线看 AI 基础设施的拐点 —— 三个数字讲明白。</div>
+      <div class="lk"><svg style="width:18px;height:18px"><use href="#i-mark"/></svg><span class="wm2">造物云</span></div>
+    </div></div><div class="cap"><b>知识卡 <span class="v">v1</span></b><span>深色底 + 渐变标题 + 副题钩子，左下角小标志署名。</span></div></div>
+
+    <div class="item"><div class="stage bd-soft" style="padding:20px"><div class="xhs xhs-p">
+      <span class="new">NEW · 新品发布</span>
+      <div class="mkw"><svg style="width:60px;height:60px"><use href="#i-mark"/></svg><h3>智核 API HUB<br>正式上线</h3><span class="pill">50+ 模型 · 一个接口</span></div>
+      <div class="wm2" style="font-family:var(--serif);font-weight:600">造物云</div>
+    </div></div><div class="cap"><b>产品发布 <span class="v">v2</span></b><span>满版品牌紫，标志居中放大，发布信息醒目。</span></div></div>
+
+    <div class="item"><div class="stage bd-soft" style="padding:20px"><div class="xhs xhs-d">
+      <span class="kt">DATA · 数据说话</span>
+      <h3>接入造物云后，<br>团队做出第一个<br>AI 应用只用了</h3>
+      <div><span class="big">3<small>天</small></span><div class="bl">而过去这通常需要 3 个月。</div></div>
+      <div class="lk"><svg class="mkel" style="width:18px;height:18px"><use href="#i-mark"/></svg><span class="wm2">造物云</span></div>
+    </div></div><div class="cap"><b>数据卡 <span class="v">v3</span></b><span>暖纸底 + 巨大数字，对比叙事，案例 / KPI 用。</span></div></div>
+  </div>
+
+  <h3 style="font-size:13px;color:var(--fg2);margin:0 0 16px;font-weight:600">公众号头图 + 次图</h3>
+  <div class="grid" style="grid-template-columns:1fr">
+    <div class="item"><div class="stage bd-soft" style="padding:22px"><div class="wx wx-h">
+      <div class="t">当“智能”成为<br><b>每个应用的底层能力</b></div>
+      <svg class="mk" style="width:40px;height:40px"><use href="#i-mark"/></svg>
+    </div></div><div class="cap"><b>公众号头条头图 · 2.35:1</b><span>深紫光晕 + 宋体主张，标志锁右侧，整体克制。</span></div></div>
+  </div>
+  <div class="wx2" style="margin-top:22px">
+    <div class="item" style="flex:1"><div class="stage bd-soft" style="padding:18px"><div class="wx wx-s">
+      <div class="lk"><svg class="mkel" style="width:18px;height:18px"><use href="#i-mark"/></svg><span class="wm2">造物云</span></div><div class="tx">本周产品动态<br>与行业观察</div>
+    </div></div><div class="cap"><b>次条次图</b><span>暖纸底 + 标志 + 栏目名，统一系列形象。</span></div></div>
+    <div class="item" style="flex:1"><div class="stage bd-soft" style="padding:18px"><div class="wx wx-s" style="background:#0c0b16;color:#ECEEFF">
+      <div class="lk" style="color:#A293FF"><svg style="width:18px;height:18px"><use href="#i-mark"/></svg><span class="wm2">造物云</span></div><div class="tx" style="color:rgba(236,238,255,.6);border-left-color:rgba(255,255,255,.18)">技术深度<br>系列解读</div>
+    </div></div><div class="cap"><b>次条 · 深色变体</b><span>同结构换深色底，区分内容系列。</span></div></div>
+  </div>
+</section>
+
+<!-- 08 壁纸 -->
+<section id="wall">
+  <div class="sh"><span class="n">08</span><h2>壁纸 / 锁屏</h2><span class="en">Wallpaper</span></div>
+  <p class="sub">设备壁纸把品牌做成<b>氛围</b>而非标识——深紫光晕从顶部漫下，标志与字标只在底部轻点，不干扰图标与时钟。手机锁屏、桌面、会议屏共用一套底色逻辑。</p>
+  <div class="grid g4">
+    <div class="item"><div class="stage bd-soft"><div class="phone">
+      <div class="scr"><div class="notch"></div><div class="time">9:41</div><div class="date">6月21日 周六</div>
+        <svg class="mk" style="width:30px;height:30px"><use href="#i-mark"/></svg><div class="wmk">造物云</div></div>
+    </div></div><div class="cap"><b>手机锁屏</b><span>顶部紫光晕，底部小标志 + 字标，留出时钟与通知区。</span></div></div>
+    <div class="item" style="grid-column:span 3"><div class="stage bd-soft" style="padding:22px">
+      <div style="width:100%;aspect-ratio:16/9;border-radius:11px;overflow:hidden;background:radial-gradient(110% 90% at 78% 0,#332a63,#08070f 70%);position:relative;display:flex;align-items:center;justify-content:center">
+        <div style="position:absolute;left:8%;bottom:9%;display:flex;align-items:center;gap:10px;color:rgba(236,238,255,.55)"><svg style="width:24px;height:24px"><use href="#i-mark"/></svg><span class="wm2" style="font-family:var(--serif);font-size:15px;letter-spacing:.2em">造物云</span></div>
+        <div style="font-family:var(--serif);color:rgba(236,238,255,.16);font-size:clamp(20px,6vw,64px);font-weight:600">智能 · 基础设施</div>
+      </div>
+    </div><div class="cap"><b>桌面 / 会议屏壁纸</b><span>16:9 横版，大字做底纹水印，标志锁左下角。</span></div></div>
+  </div>
+</section>
+
+<!-- 09 周边 -->
+<section id="merch">
+  <div class="sh"><span class="n">09</span><h2>周边</h2><span class="en">Merch</span></div>
+  <p class="sub">实物周边以<b>单色印刷</b>为主：棉麻、金属、纸面上标志走<b>墨色镂空版</b>，不糊成实心块；徽章与贴纸可用满色晶体。少即是多，一件物料只放一枚标志。</p>
+  <div class="grid g4">
+    <div class="item"><div class="stage bd-fab"><div class="tote"><span style="color:#1A1712;display:flex;flex-direction:column;align-items:center;gap:8px"><svg style="width:42px;height:42px"><use href="#i-mono"/></svg><span class="wm2" style="font-family:var(--serif);font-weight:600;font-size:13px;letter-spacing:.1em">造物云</span></span></div></div><div class="cap"><b>帆布袋</b><span>棉麻底单色丝印，墨色镂空标志 + 字标。</span></div></div>
+    <div class="item"><div class="stage bd-dark"><div class="tee"><div class="body"></div><div class="print"><svg style="width:38px;height:38px;color:#ECEEFF"><use href="#i-mono"/></svg></div></div></div><div class="cap"><b>T 恤 · 深色</b><span>黑 / 深紫 T，胸前白色镂空标记，背后可放主张。</span></div></div>
+    <div class="item"><div class="stage bd-grey"><div class="mug"><div class="cup"></div><div class="handle"></div><div class="print"><svg style="width:30px;height:30px;color:#5535C0"><use href="#i-mono"/></svg></div></div></div><div class="cap"><b>马克杯</b><span>白瓷单色印，紫色镂空标记居中。</span></div></div>
+    <div class="item"><div class="stage bd-soft"><div class="pins">
+      <div class="pin v"><svg style="width:34px;height:34px"><use href="#i-gem"/></svg></div>
+      <div class="sticker"><svg style="width:40px;height:40px"><use href="#i-gem"/></svg></div>
+    </div></div><div class="cap"><b>徽章 / 贴纸</b><span>金属徽章满色晶体；模切贴纸白底裸晶体 + 虚线刀版。</span></div></div>
+  </div>
+</section>
+
+<!-- 10 线下 -->
+<section id="offline">
+  <div class="sh"><span class="n">10</span><h2>线下展陈</h2><span class="en">Offline</span></div>
+  <p class="sub">展会、活动、前台等大尺寸场景：<b>易拉宝</b>竖版讲一句主张 + 标志 + 引流码；<b>门头 / 前台背景墙</b>用发光大字标，标志做主角、字标拉开字距，营造空间品牌感。</p>
+  <div class="grid g4">
+    <div class="item"><div class="stage bd-soft"><div class="rollup">
+      <div class="panel"><span class="lk"><svg style="width:16px;height:16px"><use href="#i-mark"/></svg><span class="wm2">造物云</span></span>
+        <h3>智能是基础设施，<br><b>不是选配功能</b></h3>
+        <svg class="mk" style="width:48px;height:48px"><use href="#i-mark"/></svg>
+        <div class="qr"></div>
+        <div style="font-family:var(--mono);font-size:7px;color:rgba(236,238,255,.5);margin-top:7px">扫码了解 · zaowuyun.com</div>
+      </div><div class="foot"></div>
+    </div></div><div class="cap"><b>易拉宝 / 展架</b><span>80×200 竖版，顶标志 + 中主张 + 底引流码。</span></div></div>
+    <div class="item" style="grid-column:span 3"><div class="stage bd-soft" style="padding:24px">
+      <div class="signage"><div class="lk"><svg class="mk" style="width:54px;height:54px"><use href="#i-mark"/></svg><span class="wm2">造物云</span></div></div>
+    </div><div class="cap"><b>门头 / 前台背景墙</b><span>发光大字标 + 拉开字距的字标，标志做空间主角。</span></div></div>
+  </div>
+</section>
+
+<footer class="foot">
+  <p><b style="color:var(--fg)">用一句话收口：</b>场景再多，标志只有一枚。按尺寸与底色在四个配色版本里择一，<b style="color:var(--fg)">不重绘、不拆解</b>。需要新物料，按本页对应版式套用即可。</p>
+  <p style="margin-top:14px">配套：<a href="logo-guide.html">标志使用规范</a> · <a href="design-system.html">设计系统（token / 组件）</a> · <a href="logo-lab.html">标志实验室</a> · <a href="preview.html">v7 预览索引</a></p>
+  <p style="margin-top:14px;color:var(--fg3)">© 2026 杭州造物云技术有限公司 · VI 应用物料库 · 示意排版，非最终物料</p>
+</footer>
+
+</div>
+
+<script>
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('t-d').classList.toggle('on',t==='dark');
+  document.getElementById('t-l').classList.toggle('on',t==='light');
+  try{localStorage.setItem('zwy-vi-theme',t)}catch(e){}
+}
+try{var s=localStorage.getItem('zwy-vi-theme');if(s)setTheme(s)}catch(e){}
+
+/* ====== 字标注入：logo 锁版里的“造物云”一律用字标 SVG（与 logo-guide 同源 assets/logo-wordmark.svg）；
+   prose（公司全名 / 标题 / 浏览器标签 / 社媒账号名 / 版权）保持文字，不转 ====== */
+(function(){
+  function fill(svgText){
+    document.querySelectorAll('.wm,.wm2,.wmk').forEach(function(w){
+      var fs=parseFloat(getComputedStyle(w).fontSize)||16;
+      w.innerHTML=svgText;
+      var svg=w.querySelector('svg');
+      if(svg){
+        svg.removeAttribute('height'); svg.removeAttribute('width');
+        svg.style.height=fs+'px'; svg.style.width='auto';
+        svg.style.display='block'; svg.style.verticalAlign='middle';
+      }
+    });
+  }
+  fetch('assets/logo-wordmark.svg').then(function(r){return r.text();}).then(fill).catch(function(){});
+})();
+</script>
+</body>
+</html>

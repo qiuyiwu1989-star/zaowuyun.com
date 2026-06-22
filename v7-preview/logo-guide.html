@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>标志使用规范 · Logo Guidelines · 造物云</title>
+<meta name="description" content="造物云品牌标志的使用标准：构成、组合、安全距、最小尺寸、配色版本、背景适配、字标比例、错误用法红线与文件下载。token 沿用 design-system.html。">
+<style>
+/* ============================================================
+   造物云 · 标志使用规范  logo-guide
+   token 沿用 design-system.html / logo-lab.html；明暗双主题
+   规范：不用 emoji；中文用弯引号 “”
+   ============================================================ */
+:root{
+  --bg:#07070F; --bg2:#0d0d18; --surf:rgba(255,255,255,.05); --surf2:rgba(255,255,255,.09);
+  --fg:#ECEEFF; --fg2:rgba(236,238,255,.52); --fg3:rgba(236,238,255,.30);
+  --accent:#7B80FF; --accent-deep:#5B5FE0; --acBg:rgba(123,128,255,.13);
+  --bdr:rgba(255,255,255,.10); --bdrBrt:rgba(255,255,255,.18);
+  --ok:#34D399; --warn:#F4B740; --bad:#F472B6;
+  --serif:'Songti SC','STSong','Noto Serif SC','Source Han Serif CN','SimSun',serif;
+  --sans:'PingFang SC','Noto Sans SC','Microsoft YaHei','Source Han Sans CN',system-ui,sans-serif;
+  --mono:'SF Pro Display','SF Pro Text',ui-sans-serif,'Helvetica Neue',Arial,sans-serif; /* 拉丁/小字栈，沿用 design-system.html §04 字体系统 */
+  --r-sm:8px; --r-md:12px; --r-lg:18px; --r-xl:24px;
+  --t-base:.25s; --ease:cubic-bezier(.4,1,.6,1);
+}
+[data-theme="light"]{
+  --bg:#F8F6F0; --bg2:#FBFAF6; --surf:rgba(24,21,14,.04); --surf2:rgba(24,21,14,.07);
+  --fg:#18150E; --fg2:rgba(24,21,14,.52); --fg3:rgba(24,21,14,.34);
+  --accent:#3535B5; --accent-deep:#27278C; --acBg:rgba(53,53,181,.07);
+  --bdr:rgba(24,21,14,.11); --bdrBrt:rgba(24,21,14,.20);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.7;
+  transition:background var(--t-base) var(--ease),color var(--t-base) var(--ease);padding-bottom:90px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,44px)}
+a{color:inherit}
+
+/* header */
+.top{padding:60px 0 24px;border-bottom:1px solid var(--bdr)}
+.kic{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--accent);font-family:var(--mono);text-transform:uppercase}
+.top h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5vw,50px);letter-spacing:-.5px;margin:12px 0 14px;line-height:1.08}
+.top p{color:var(--fg2);font-size:15.5px;max-width:700px}
+.top .meta{margin-top:22px;display:flex;gap:22px;flex-wrap:wrap;font-size:12.5px;color:var(--fg3);font-family:var(--mono)}
+
+/* sticky nav */
+.tbar{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--bdr);padding:10px 0;margin-bottom:8px}
+.tbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.tnav{display:flex;gap:2px;flex-wrap:wrap}
+.tnav a{font-size:12.5px;color:var(--fg2);padding:6px 10px;border-radius:999px;transition:.18s;white-space:nowrap}
+.tnav a:hover{background:var(--surf);color:var(--fg)}
+.toggle{display:inline-flex;border:1px solid var(--bdrBrt);border-radius:999px;overflow:hidden;flex-shrink:0}
+.toggle button{font-family:var(--sans);font-size:12.5px;border:none;background:transparent;color:var(--fg2);padding:6px 14px;cursor:pointer;transition:.18s}
+.toggle button.on{background:var(--fg);color:var(--bg)}
+
+/* section */
+section{padding:56px 0;border-bottom:1px solid var(--bdr)}
+.sh{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
+.sh .n{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:700}
+.sh h2{font-family:var(--serif);font-weight:400;font-size:28px;letter-spacing:-.3px}
+.sh .en{font-family:var(--mono);font-size:11px;color:var(--fg3);letter-spacing:.12em;text-transform:uppercase}
+.sub{color:var(--fg2);font-size:15px;max-width:780px;margin-bottom:26px;line-height:1.72}
+.sub b{color:var(--fg);font-weight:600}
+h3.t{font-family:var(--serif);font-weight:400;font-size:20px;margin:34px 0 14px}
+
+/* grids */
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:860px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+/* cell */
+.cell{border:1px solid var(--bdr);border-radius:var(--r-lg);overflow:hidden;background:var(--surf)}
+.cell .stage{min-height:150px;display:flex;align-items:center;justify-content:center;gap:14px;position:relative;padding:24px}
+.cell .meta{padding:13px 16px;border-top:1px solid var(--bdr);background:var(--bg2)}
+.cell .meta .nm{font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cell .meta .ds{font-size:12.5px;color:var(--fg2);margin-top:4px;line-height:1.55}
+.pill{font-size:10.5px;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:999px;font-family:var(--mono)}
+.pill.ok{color:var(--ok);background:color-mix(in srgb,var(--ok) 16%,transparent)}
+.pill.warn{color:var(--warn);background:color-mix(in srgb,var(--warn) 18%,transparent)}
+.pill.bad{color:var(--bad);background:color-mix(in srgb,var(--bad) 16%,transparent)}
+.pill.line{color:var(--fg2);background:var(--surf2)}
+
+/* fixed stage backgrounds (independent of page theme) */
+.bg-dark{background:#07070F}
+.bg-light{background:#F8F6F0}
+.bg-cream{background:#FBFAF6}
+.bg-purple{background:linear-gradient(135deg,#7B80FF,#8501FF)}
+.bg-ink{background:#18150E}
+.bg-grey{background:#E7E5DE}
+.bg-photo{background:linear-gradient(135deg,#5b6cb0,#c08b6a 60%,#2b2230);}
+
+/* the mark */
+.mk{display:block;overflow:visible}
+.f-top,.f-right,.f-left{transform-box:fill-box;transform-origin:center}
+.mk-elevated{filter:drop-shadow(0 2px 7px rgba(24,21,14,.22)) drop-shadow(0 1px 2px rgba(24,21,14,.10))}
+
+/* lockup */
+.lock{display:inline-flex;align-items:center;gap:10px}
+.lock.vert{flex-direction:column;gap:12px}
+.wm{display:inline-block;color:inherit;line-height:0}
+.wm svg{display:block}
+
+/* clear space diagram */
+.cs-stage{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:var(--csx,40px)}
+.cs-guide{position:absolute;inset:0;border:1px dashed color-mix(in srgb,var(--accent) 70%,transparent);border-radius:6px;pointer-events:none}
+.cs-inner{position:relative;border:1px solid var(--bdrBrt);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;padding:6px}
+.cs-tag{position:absolute;font-family:var(--mono);font-size:10.5px;color:var(--accent);background:var(--bg);padding:0 5px}
+.cs-tag.tt{top:-9px;left:50%;transform:translateX(-50%)}
+.cs-tag.ll{left:-12px;top:50%;transform:translateY(-50%) rotate(-90deg)}
+
+/* size ruler */
+.ruler{display:flex;align-items:flex-end;gap:30px;flex-wrap:wrap;padding:24px}
+.ruler .u{display:flex;flex-direction:column;align-items:center;gap:10px}
+.ruler .u .lb{font-family:var(--mono);font-size:11px;color:var(--fg2)}
+.ruler .u .lb b{color:var(--fg)}
+
+/* spec list */
+.spec{display:grid;grid-template-columns:150px 1fr;gap:8px 22px;font-size:14px;margin-top:8px}
+.spec dt{color:var(--fg2)}
+.spec dd{color:var(--fg)}
+@media(max-width:560px){.spec{grid-template-columns:110px 1fr}}
+
+/* do / dont list */
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:6px}
+@media(max-width:680px){.rules{grid-template-columns:1fr}}
+.rules h4{font-size:14px;font-weight:700;letter-spacing:.02em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.rules ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.rules li{font-size:13.5px;color:var(--fg2);line-height:1.55;padding-left:20px;position:relative}
+.rules li b{color:var(--fg);font-weight:600}
+.rules .do li::before{content:"+";position:absolute;left:0;color:var(--ok);font-weight:700;font-family:var(--mono)}
+.rules .dont li::before{content:"✕";position:absolute;left:0;color:var(--bad);font-weight:700;font-size:11px;top:1px}
+
+/* misuse swatches */
+.bad-stage{position:relative}
+.bad-stage::after{content:"✕";position:absolute;top:10px;right:12px;color:var(--bad);font-weight:700;font-size:15px}
+
+/* ===== 动画现场预览 showcase ===== */
+.showcase{display:flex;align-items:center;gap:34px;flex-wrap:wrap;border:1px solid var(--bdrBrt);border-radius:var(--r-xl);
+  padding:30px 32px;background:linear-gradient(135deg,var(--acBg),transparent 70%);margin-top:26px}
+.showcase .live{display:flex;align-items:center;gap:16px;min-width:200px}
+.lockc{display:inline-flex;align-items:center;gap:12px}
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.hint{font-size:12px;color:var(--fg3);font-family:var(--mono);margin-top:10px}
+
+/* ===== 应用示范 mockups ===== */
+.apps{display:grid;gap:16px}
+.apps.sm{grid-template-columns:repeat(4,1fr)}
+.apps.lg{grid-template-columns:repeat(2,1fr)}
+@media(max-width:880px){.apps.sm{grid-template-columns:repeat(2,1fr)}.apps.lg{grid-template-columns:1fr}}
+.mock{border:1px solid var(--bdr);border-radius:var(--r-lg);overflow:hidden;background:var(--surf)}
+.mock .scene{position:relative;min-height:178px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;overflow:hidden}
+.mock .cap{padding:11px 15px;border-top:1px solid var(--bdr);background:var(--bg2)}
+.mock .cap b{font-size:13px;font-weight:600;display:block}
+.mock .cap span{font-size:12px;color:var(--fg2);line-height:1.5}
+.sc-wall{background:radial-gradient(120% 90% at 50% 0,#2a2350,#0c0b18 72%)}
+.sc-grey{background:#E7E5DE}
+.sc-fabric{background:linear-gradient(160deg,#ece5d4,#dcd4bf)}
+.sc-dark{background:#0b0b16}
+
+/* app icon */
+.ic-lbl{font-size:12px;color:#fff;font-weight:500;letter-spacing:.02em;text-shadow:0 1px 4px rgba(0,0,0,.45)}
+
+/* browser chrome */
+.chrome{width:100%;max-width:328px;border-radius:11px;overflow:hidden;border:1px solid rgba(0,0,0,.12);box-shadow:0 14px 30px rgba(0,0,0,.20);background:#fff}
+.chrome .bar{display:flex;align-items:center;gap:8px;padding:8px 11px;background:#eceae4}
+.chrome .dots{display:flex;gap:5px}
+.chrome .dots i{width:9px;height:9px;border-radius:50%;background:#cfccc2;display:block}
+.chrome .tab{margin-left:4px;display:flex;align-items:center;gap:7px;background:#fff;border-radius:7px 7px 0 0;padding:6px 11px;font-size:11.5px;color:#2a2722}
+.chrome .tab .x{margin-left:3px;color:#a8a499;font-size:12px}
+.chrome .addr{padding:8px 13px;font-family:var(--mono);font-size:11px;color:#888;background:#fff;border-top:1px solid #eee}
+.chrome .addr b{color:#2a2722;font-weight:600;font-family:var(--sans)}
+
+/* avatar */
+.ava{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(150deg,#8E92FF,#7A00E6);box-shadow:0 8px 20px rgba(80,40,180,.42),inset 0 1px 0 rgba(255,255,255,.28)}
+.ava-row{display:flex;align-items:center;gap:13px}
+.ava-row .who b{font-size:13.5px;color:#fff;display:block}
+.ava-row .who span{font-size:11.5px;color:rgba(255,255,255,.55)}
+
+/* tote */
+.tote{position:relative;width:118px;height:116px;background:#efe9da;border-radius:5px 5px 12px 12px;box-shadow:0 12px 24px rgba(60,50,30,.18);display:flex;align-items:center;justify-content:center}
+.tote::before,.tote::after{content:"";position:absolute;top:-24px;width:26px;height:40px;border:7px solid #e1d9c4;border-bottom:none;border-radius:15px 15px 0 0}
+.tote::before{left:24px}.tote::after{right:24px}
+
+/* website header */
+.site{width:100%;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.10);background:linear-gradient(#11111d,#0c0c16)}
+.site .hd{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.07)}
+.site .hd nav{display:flex;gap:15px;font-size:12px;color:rgba(236,238,255,.6)}
+.site .hd .act{display:flex;gap:9px;align-items:center}
+.site .hd .gh{font-size:11.5px;color:rgba(236,238,255,.72)}
+.site .hd .pp{font-size:11.5px;color:#fff;background:linear-gradient(135deg,#7B80FF,#8501FF);padding:5px 12px;border-radius:999px;font-weight:600}
+.site .bd{padding:20px 16px 24px}
+.site .bd h4{font-family:var(--serif);font-size:18px;color:#ECEEFF;font-weight:400}
+.site .bd p{font-size:11.5px;color:rgba(236,238,255,.45);margin-top:6px}
+@media(max-width:600px){.site .hd nav{display:none}}
+
+/* business card */
+.cards{position:relative;width:236px;height:152px}
+.card-f,.card-b{position:absolute;width:202px;height:120px;border-radius:10px;box-shadow:0 14px 28px rgba(0,0,0,.24)}
+.card-b{right:0;top:0;background:linear-gradient(150deg,#7B80FF,#7A00E6);display:flex;align-items:center;justify-content:center}
+.card-f{left:0;bottom:0;background:#FBFAF6;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between}
+.card-f .top{display:flex;align-items:center;gap:9px}
+.card-f .nm{font-size:13px;color:#18150E;font-weight:600}
+.card-f .nm small{display:block;font-size:10.5px;color:rgba(24,21,14,.55);font-weight:400;margin-top:2px}
+.card-f .ct{font-family:var(--mono);font-size:8.5px;color:rgba(24,21,14,.5);line-height:1.75}
+
+/* phone splash */
+.phone{width:118px;height:210px;border-radius:24px;border:5px solid #1c1c28;background:#0b0b16;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:16px;box-shadow:0 18px 36px rgba(0,0,0,.34);position:relative;overflow:hidden}
+.phone .lbar{position:absolute;bottom:24px;width:62px;height:3px;border-radius:2px;background:rgba(255,255,255,.13);overflow:hidden}
+.phone .lbar i{position:absolute;left:-42%;width:42%;height:100%;border-radius:2px;background:linear-gradient(90deg,transparent,#9a8cff,transparent);animation:loadbar 1.6s var(--ease) infinite}
+@keyframes loadbar{to{left:108%}}
+
+/* slide cover */
+.slide{width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.10);
+  background:radial-gradient(120% 100% at 82% 4%,#241f48,#0a0a14 70%);padding:22px 24px;display:flex;flex-direction:column;justify-content:space-between}
+.slide h4{font-family:var(--serif);font-size:clamp(17px,3.2vw,25px);font-weight:400;color:#ECEEFF;line-height:1.32;letter-spacing:-.01em}
+.slide .ft{display:flex;align-items:center;justify-content:space-between}
+.slide .ft .pg{font-family:var(--mono);font-size:11px;color:rgba(236,238,255,.4)}
+
+/* notes / swatch / code */
+.note{border-left:2px solid var(--accent);padding:6px 0 6px 16px;color:var(--fg2);font-size:14px;margin-top:24px;line-height:1.72}
+.note b{color:var(--fg)}
+.swatch-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:6px}
+.sw{border:1px solid var(--bdr);border-radius:var(--r-md);overflow:hidden;background:var(--surf);cursor:pointer;transition:.2s}
+.sw:hover{transform:translateY(-2px);border-color:var(--bdrBrt)}
+.sw .chip{height:62px}
+.sw .m{padding:9px 12px}
+.sw .m .nm{font-size:12.5px;font-weight:600}
+.sw .m .vr{font-family:var(--mono);font-size:10.5px;color:var(--fg3);margin-top:2px}
+code{font-family:var(--mono);font-size:12.5px;background:var(--surf);padding:1px 6px;border-radius:5px;color:var(--accent)}
+
+/* downloads */
+.dl{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
+.dlc{flex:1;min-width:220px;border:1px solid var(--bdr);border-radius:var(--r-lg);background:var(--surf);padding:20px 22px;display:flex;flex-direction:column;gap:12px}
+.dlc .hd{display:flex;align-items:center;gap:12px}
+.dlc .hd .nm{font-size:14px;font-weight:600}
+.dlc .hd .nm small{display:block;font-family:var(--mono);font-size:11px;color:var(--fg3);font-weight:400}
+.btn{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--bg);background:var(--fg);border:none;
+  padding:9px 16px;border-radius:999px;cursor:pointer;transition:.18s;display:inline-flex;align-items:center;gap:7px;text-decoration:none}
+.btn:hover{background:var(--accent);color:#fff}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--bdrBrt)}
+.btn.ghost:hover{background:var(--surf)}
+
+footer{padding:36px 0;color:var(--fg3);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(20px);background:var(--fg);color:var(--bg);
+  font-size:13px;padding:9px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:.25s;z-index:90}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <div class="kic">ZAOWUYUN · LOGO GUIDELINES</div>
+  <h1>标志使用规范</h1>
+  <p>造物云品牌标志的<b>对外使用标准</b>。这里规定标志怎么用才对——构成、组合、安全距、最小尺寸、配色版本、背景适配、字标比例、错误用法与文件下载。所有取值与令牌沿用 <code>design-system.html</code>；探索与决策过程见 <a href="logo-lab.html" style="color:var(--accent)">标志实验室</a>。</p>
+  <div class="meta">
+    <span>版本 1.0</span><span>2026-06-21</span><span>明暗双主题</span><span>色值点击即复制</span>
+  </div>
+</div></header>
+
+<div class="tbar"><div class="wrap">
+  <nav class="tnav">
+    <a href="#anatomy">构成</a>
+    <a href="#lockup">组合</a>
+    <a href="#clearspace">安全距</a>
+    <a href="#minsize">最小尺寸</a>
+    <a href="#color">配色版本</a>
+    <a href="#background">背景适配</a>
+    <a href="#wordmark">字标比例</a>
+    <a href="#motion">微动画</a>
+    <a href="#apps">应用示范</a>
+    <a href="#misuse">错误用法</a>
+    <a href="#download">下载</a>
+  </nav>
+  <div class="toggle" id="themeToggle">
+    <button data-theme="dark" class="on">深色</button>
+    <button data-theme="light">浅色</button>
+  </div>
+</div></div>
+
+<main class="wrap">
+
+<!-- ========== 01 构成 ========== -->
+<section id="anatomy">
+  <div class="sh"><span class="n">01</span><h2>标志构成</h2><span class="en">Anatomy</span></div>
+  <p class="sub">造物云标志由两部分组成：<b>标记（Mark）</b>与<b>字标（Wordmark）</b>。标记是一颗由三个菱形面拼成的<b>等距立方／晶体</b>，承载两个品牌词——<b>“造物”</b>（一个物被构建出来）与<b>“晶体”</b>（会折光的精工感）；外层白色圆角超椭圆底板是它的<b>承托面</b>，不是可选装饰，与宝石是一个整体。字标为衬线“造物云”三字。</p>
+  <div class="grid g2">
+    <div class="cell">
+      <div class="stage bg-dark"><span class="mkslot" data-plate="white" data-pal="brand" data-size="120"></span></div>
+      <div class="meta"><div class="nm">标记 Mark <span class="pill line">主元素</span></div>
+        <div class="ds">白圆角底板 + 三面紫色晶体。顶面最亮、左面最深，形成自上而下的受光。三面缺一不可。</div></div>
+    </div>
+    <div class="cell">
+      <div class="stage bg-dark"><span class="wm" data-h="44"></span></div>
+      <div class="meta"><div class="nm">字标 Wordmark <span class="pill line">辅助元素</span></div>
+        <div class="ds">衬线“造物云”，取色 <code>currentColor</code>，随背景明暗自动反相。单独使用须保证可读，不与标记等高。</div></div>
+    </div>
+  </div>
+  <dl class="spec">
+    <dt>晶体三面</dt><dd>顶面 <span class="ic" data-c="#CE99FF"></span><code>#CE99FF</code> · 右面 <span class="ic" data-c="#AF59FF"></span><code>#AF59FF</code> · 左面 <span class="ic" data-c="#8501FF"></span><code>#8501FF</code></dd>
+    <dt>承托底板</dt><dd>白色超椭圆圆角方 <code>#FFFFFF</code>（深底自带边界；浅底改用承托阴影，见 06）</dd>
+    <dt>画布</dt><dd>32 × 32 viewBox，标记主体居中，四周留有出血余量</dd>
+    <dt>字体</dt><dd>衬线（Songti / Source Han Serif 系），字标为定制描边路径，非系统字现排</dd>
+  </dl>
+</section>
+
+<!-- ========== 02 组合 ========== -->
+<section id="lockup">
+  <div class="sh"><span class="n">02</span><h2>标准组合</h2><span class="en">Lockups</span></div>
+  <p class="sub">三种合规组合，按场景择一使用。<b>横向组合</b>为默认主组合；空间狭长或居中场景用<b>竖向组合</b>；图标位、favicon、App 图标等只放<b>单标记</b>。组合内部的比例与间距是固定的，不可各自缩放。</p>
+  <div class="grid g3">
+    <div class="cell">
+      <div class="stage bg-dark"><span class="lock"><span class="mkslot" data-plate="white" data-pal="brand" data-size="40"></span><span class="wm" data-h="22"></span></span></div>
+      <div class="meta"><div class="nm">横向组合 <span class="pill ok">默认·主</span></div>
+        <div class="ds">标记 + 字标左右排列。顶栏、页脚、署名首选。字标视高 ≈ 标记 ×0.62。</div></div>
+    </div>
+    <div class="cell">
+      <div class="stage bg-dark"><span class="lock vert"><span class="mkslot" data-plate="white" data-pal="brand" data-size="56"></span><span class="wm" data-h="20"></span></span></div>
+      <div class="meta"><div class="nm">竖向组合 <span class="pill line">居中场景</span></div>
+        <div class="ds">标记在上、字标在下、整体居中。封面、加载页、海报中轴线使用。</div></div>
+    </div>
+    <div class="cell">
+      <div class="stage bg-dark"><span class="mkslot" data-plate="white" data-pal="brand" data-size="64"></span></div>
+      <div class="meta"><div class="nm">单标记 <span class="pill line">图标位</span></div>
+        <div class="ds">favicon、App 图标、头像位、水印只用标记，不带字。需保证识别度时优先它。</div></div>
+    </div>
+  </div>
+  <p class="note"><b>比例锁定：</b>横向组合中，字标视高固定为标记的 <b>0.62 倍</b>、图字间距 <b>10px</b>（标记 40px 时）。整组缩放时三者等比变化，<b>不可单独拉伸字标或标记</b>。详见第 07 节。</p>
+</section>
+
+<!-- ========== 03 安全距 ========== -->
+<section id="clearspace">
+  <div class="sh"><span class="n">03</span><h2>安全距</h2><span class="en">Clear Space</span></div>
+  <p class="sub">标志四周必须留出最小空白，任何文字、图形、边界、其他标志都不得侵入。安全距定义为 <b>X = 标记高度的 1/4</b>，上下左右各留 <b>1X</b>。空间越大越好，但不可小于 1X。</p>
+  <div class="grid g2">
+    <div class="cell">
+      <div class="stage bg-dark">
+        <div class="cs-stage" style="--csx:30px">
+          <div class="cs-guide"></div>
+          <span class="cs-tag tt">1X</span><span class="cs-tag ll">1X</span>
+          <div class="cs-inner"><span class="mkslot" data-plate="white" data-pal="brand" data-size="80"></span></div>
+        </div>
+      </div>
+      <div class="meta"><div class="nm">单标记安全距 <span class="pill ok">≥ 1X</span></div>
+        <div class="ds">X = 标记高度 ÷ 4。虚线为最小净空边界，实线内为标志占位。</div></div>
+    </div>
+    <div class="cell">
+      <div class="stage bg-dark">
+        <div class="cs-stage" style="--csx:22px">
+          <div class="cs-guide"></div>
+          <span class="cs-tag tt">1X</span><span class="cs-tag ll">1X</span>
+          <div class="cs-inner"><span class="lock"><span class="mkslot" data-plate="white" data-pal="brand" data-size="44"></span><span class="wm" data-h="24"></span></span></div>
+        </div>
+      </div>
+      <div class="meta"><div class="nm">组合安全距 <span class="pill ok">≥ 1X</span></div>
+        <div class="ds">横向组合同样以标记高度的 1/4 为 X，对整组留净空。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 04 最小尺寸 ========== -->
+<section id="minsize">
+  <div class="sh"><span class="n">04</span><h2>最小尺寸</h2><span class="en">Minimum Size</span></div>
+  <p class="sub">小于最小尺寸，晶体三面会糊成一团、字标不可读。下列为允许的最小呈现尺寸；低于此值请改用更简的形式（如组合降为单标记）。</p>
+  <div class="cell">
+    <div class="stage bg-dark" style="justify-content:flex-start">
+      <div class="ruler">
+        <div class="u"><span class="mkslot" data-plate="white" data-pal="brand" data-size="20"></span><span class="lb"><b>20px</b><br>单标记·屏幕</span></div>
+        <div class="u"><span class="lock"><span class="mkslot" data-plate="white" data-pal="brand" data-size="24"></span><span class="wm" data-h="15"></span></span><span class="lb"><b>24px</b> 高<br>横向组合·屏幕</span></div>
+        <div class="u"><span class="lock vert"><span class="mkslot" data-plate="white" data-pal="brand" data-size="40"></span><span class="wm" data-h="14"></span></span><span class="lb"><b>40px</b> 标记<br>竖向组合·屏幕</span></div>
+      </div>
+    </div>
+    <div class="meta"><div class="nm">屏幕最小值</div><div class="ds">实际显示尺寸，非源文件尺寸。下方为印刷换算。</div></div>
+  </div>
+  <dl class="spec">
+    <dt>单标记 · 屏幕</dt><dd>≥ 20px</dd>
+    <dt>单标记 · 印刷</dt><dd>≥ 8mm</dd>
+    <dt>横向组合 · 屏幕</dt><dd>整体高 ≥ 24px</dd>
+    <dt>横向组合 · 印刷</dt><dd>整体高 ≥ 10mm</dd>
+    <dt>favicon</dt><dd>16 / 32 / 48px 用专门简化的单标记，去掉发丝描边</dd>
+  </dl>
+</section>
+
+<!-- ========== 05 配色版本 ========== -->
+<section id="color">
+  <div class="sh"><span class="n">05</span><h2>配色版本</h2><span class="en">Color Variants</span></div>
+  <p class="sub">标志有四个合规配色版本。优先用<b>品牌全彩</b>；纯色印刷或单色场景用<b>墨色／反白单色版</b>；大面积品牌紫底用<b>反白版</b>。任何情况下三个面之间的明度顺序（顶亮、左深）必须保留。</p>
+  <div class="grid g4">
+    <div class="cell">
+      <div class="stage bg-dark"><span class="mkslot" data-plate="white" data-pal="brand" data-size="64"></span></div>
+      <div class="meta"><div class="nm">品牌全彩 <span class="pill ok">首选</span></div>
+        <div class="ds">白底板 + 紫三面。深底直接用。</div></div>
+    </div>
+    <div class="cell">
+      <div class="stage bg-purple"><span class="mkslot" data-plate="purple" data-pal="mono" data-size="64"></span></div>
+      <div class="meta"><div class="nm">反白 <span class="pill line">紫底</span></div>
+        <div class="ds">品牌紫底上用白色晶体，三面以透明度区分明度。</div></div>
+    </div>
+    <div class="cell">
+      <div class="stage bg-cream"><span class="mkslot" data-plate="ink" data-pal="monoInk" data-size="64"></span></div>
+      <div class="meta"><div class="nm">单色·墨 <span class="pill line">单色印刷</span></div>
+        <div class="ds">需要单色（黑白报、盖章、传真）时，墨色底板把晶体镂空留白，三面只以墨线勾勒——不做整枚实心填充，避免在低精度场景糊成一团黑。</div></div>
+    </div>
+    <div class="cell">
+      <div class="stage bg-light"><span class="mkslot" data-plate="white" data-pal="brand" data-elevate="1" data-hairline="1" data-size="64"></span></div>
+      <div class="meta"><div class="nm">浅底全彩 <span class="pill ok">推荐</span></div>
+        <div class="ds">浅底用全彩 + 承托阴影 + 发丝边，标志保持完整（见 06）。</div></div>
+    </div>
+  </div>
+
+  <h3 class="t">色值</h3>
+  <div class="swatch-row" id="swatches">
+    <div class="sw" data-v="#8501FF"><div class="chip" style="background:#8501FF"></div><div class="m"><div class="nm">晶体·左面</div><div class="vr">#8501FF</div></div></div>
+    <div class="sw" data-v="#AF59FF"><div class="chip" style="background:#AF59FF"></div><div class="m"><div class="nm">晶体·右面</div><div class="vr">#AF59FF</div></div></div>
+    <div class="sw" data-v="#CE99FF"><div class="chip" style="background:#CE99FF"></div><div class="m"><div class="nm">晶体·顶面</div><div class="vr">#CE99FF</div></div></div>
+    <div class="sw" data-v="#FFFFFF"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--bdr)"></div><div class="m"><div class="nm">承托底板</div><div class="vr">#FFFFFF</div></div></div>
+    <div class="sw" data-v="#18150E"><div class="chip" style="background:#18150E"></div><div class="m"><div class="nm">单色·墨</div><div class="vr">#18150E</div></div></div>
+    <div class="sw" data-v="#7B80FF"><div class="chip" style="background:#7B80FF"></div><div class="m"><div class="nm">品牌强调·深色</div><div class="vr">#7B80FF</div></div></div>
+    <div class="sw" data-v="#3535B5"><div class="chip" style="background:#3535B5"></div><div class="m"><div class="nm">品牌强调·浅色</div><div class="vr">#3535B5</div></div></div>
+  </div>
+  <p class="note">点击任意色块复制色值。强调色 <code>#7B80FF</code>／<code>#3535B5</code> 用于界面文字与控件，标志本体的紫只用上面三面的固定值，<b>不要用强调色替换晶体面色</b>。</p>
+</section>
+
+<!-- ========== 06 背景适配 ========== -->
+<section id="background">
+  <div class="sh"><span class="n">06</span><h2>背景适配</h2><span class="en">Backgrounds</span></div>
+  <p class="sub">核心原则——<b>不拆标志</b>。深、浅、紫各种背景都用<b>同一枚完整标志</b>（白底板 + 紫晶体）；浅底只是多给整枚标志加一层承托阴影 + 0.5px 发丝描边，把整张圆角卡片抬离底色，<b>标志本身始终完整</b>。标志文件不变，浅色场景由页面样式补这层阴影。</p>
+  <div class="grid g4">
+    <div class="cell">
+      <div class="stage bg-dark"><span class="mkslot" data-plate="white" data-pal="brand" data-size="56"></span></div>
+      <div class="meta"><div class="nm">深底 <span class="pill ok">直接用</span></div><div class="ds">白板自带边界，最理想。</div></div>
+    </div>
+    <div class="cell">
+      <div class="stage bg-light"><span class="mkslot" data-plate="white" data-pal="brand" data-elevate="1" data-hairline="1" data-size="56"></span></div>
+      <div class="meta"><div class="nm">浅底 <span class="pill ok">承托阴影</span></div><div class="ds">完整标志 + 投影 + 发丝边，整体浮起。</div></div>
+    </div>
+    <div class="cell">
+      <div class="stage bg-purple"><span class="mkslot" data-plate="purple" data-pal="mono" data-size="56"></span></div>
+      <div class="meta"><div class="nm">品牌紫底 <span class="pill ok">反白</span></div><div class="ds">紫渐变底用白色晶体，完整一枚。</div></div>
+    </div>
+    <div class="cell bad-stage">
+      <div class="stage bg-photo"><span class="mkslot" data-plate="white" data-pal="brand" data-size="56"></span></div>
+      <div class="meta"><div class="nm">杂乱图底 <span class="pill bad">先加底</span></div><div class="ds">照片／杂色上须先垫纯色卡片或暗化遮罩，再放标志。</div></div>
+    </div>
+  </div>
+  <p class="note"><b>一句话：</b>深、浅、紫都用同一枚完整标志；浅底加承托阴影 + 发丝边，<b>绝不为了适配浅底而扔掉白底板、只留半颗宝石</b>——那样标志就散架了。背景越花，越要先给标志一块干净的承托区。</p>
+</section>
+
+<!-- ========== 07 字标比例 ========== -->
+<section id="wordmark">
+  <div class="sh"><span class="n">07</span><h2>字标比例</h2><span class="en">Wordmark Ratio</span></div>
+  <p class="sub">横向组合里，图标当主、文字当注脚。<b>字标视高 = 标记视高 × 0.62</b>，图字间距随尺寸等比。字标与标记几乎等高会让组合显“胖”、重心压在字上——这是常见错误。</p>
+  <div class="grid g2">
+    <div class="cell">
+      <div class="stage" style="background:var(--bg2)"><span class="lock"><span class="mkslot" data-plate="adapt" data-size="44"></span><span class="wm" data-h="29"></span></span></div>
+      <div class="meta"><div class="nm">字标 ≈ 标记 ×1.0 <span class="pill bad">偏大</span></div><div class="ds">文字与图标等高，组合显胖、重心在字上。</div></div>
+    </div>
+    <div class="cell">
+      <div class="stage" style="background:var(--bg2)"><span class="lock"><span class="mkslot" data-plate="adapt" data-size="44"></span><span class="wm" data-h="22"></span></span></div>
+      <div class="meta"><div class="nm">字标 ≈ 标记 ×0.62 <span class="pill ok">推荐</span></div><div class="ds">图标领衔、文字克制，组合更挺、留白更稳。</div></div>
+    </div>
+  </div>
+  <dl class="spec">
+    <dt>标记视高</dt><dd>28–40px（顶栏常用）</dd>
+    <dt>字标视高</dt><dd>标记 × 0.62</dd>
+    <dt>图字间距</dt><dd>标记 40px 时 10px，随尺寸等比</dd>
+    <dt>字标取色</dt><dd><code>currentColor</code>——深底浅字、浅底深字自动切换</dd>
+  </dl>
+</section>
+
+<!-- ========== 08 微动画 ========== -->
+<section id="motion">
+  <div class="sh"><span class="n">08</span><h2>微动画规范</h2><span class="en">Motion</span></div>
+  <p class="sub">动画落在两个品牌词上——<b>“造物”=被构建出来</b>、<b>“晶体”=会折光</b>，而不是随便旋转。标准组合：载入跑一次 <b>结晶造物</b>（三面错位飞入拼成立方），常驻 <b>切面流光</b>（高光绕三面缓行，极淡），鼠标悬停叠加 <b>3D 侧倾</b>。全部遵循 <code>prefers-reduced-motion</code>，系统开启“减少动态”时降级为静态。</p>
+  <div class="grid g3">
+    <div class="cell">
+      <div class="stage" style="background:var(--bg2)"><span class="mkslot anim-on" data-anim="assemble" data-plate="adapt" data-size="72"></span></div>
+      <div class="meta"><div class="nm">结晶造物 <span class="pill ok">载入·一次</span></div><div class="ds">三面飞入拼成立方，0.66s。用于首屏／载入。</div></div>
+    </div>
+    <div class="cell">
+      <div class="stage" style="background:var(--bg2)"><span class="mkslot" data-anim="shimmer" data-plate="adapt" data-size="72"></span></div>
+      <div class="meta"><div class="nm">切面流光 <span class="pill ok">常驻·极淡</span></div><div class="ds">高光绕三面，3.4s 循环。传递“在运转”。</div></div>
+    </div>
+    <div class="cell">
+      <div class="stage" style="background:var(--bg2)"><span class="mkslot anim-float anim-tilt" data-plate="adapt" data-size="72"></span></div>
+      <div class="meta"><div class="nm">悬浮微旋 <span class="pill line">悬停反馈</span></div><div class="ds">轻浮动 + 悬停 3D 侧倾。鼠标移上来看。</div></div>
+    </div>
+  </div>
+  <h3 class="t">现场演示 · 推荐组合</h3>
+  <p class="sub" style="margin-bottom:0">A 结晶造物（载入一次）＋ B 切面流光（常驻）＋ C 悬停 3D 侧倾，三者叠加的成品。点按钮重放或开关，悬停标志看侧倾；右上角切到浅色页可验证浅底承托。</p>
+  <div class="showcase">
+    <div class="live">
+      <span class="lockc">
+        <span id="motionMark" class="mkslot anim-tilt" data-plate="adapt" data-size="66"></span>
+        <span class="wm" data-h="23" style="color:var(--fg)"></span>
+      </span>
+    </div>
+    <div>
+      <div class="controls">
+        <button class="btn" id="mReplay">↻ 重放结晶造物</button>
+        <button class="btn ghost" id="mShim">切面流光：开</button>
+        <button class="btn ghost" id="mFloat">悬浮微旋：关</button>
+      </div>
+      <p class="hint">悬停标志看 3D 侧倾 · 全部遵循 prefers-reduced-motion，系统开“减少动态”时自动降级为静态</p>
+    </div>
+  </div>
+  <p class="note">完整对照与现场参数调试在 <a href="logo-lab.html" style="color:var(--accent)">标志实验室 →</a>。落地时把动画逻辑封进 <code>brand.js</code>，各页用 <code>&lt;span class="mkslot"&gt;</code> 一行复用。</p>
+</section>
+
+<!-- ========== 09 应用示范 ========== -->
+<section id="apps">
+  <div class="sh"><span class="n">09</span><h2>应用示范</h2><span class="en">In Use</span></div>
+  <p class="sub">同一枚标志放进真实场景看它怎么工作——<b>图标位、网页、印刷、周边</b>。每个场景都从前面的规范长出来：小尺寸用单标记、浅底加承托、单色印刷走<b>墨色镂空版</b>、深紫场景用反白。下面均为示意排版，非最终物料。</p>
+
+  <h3 class="t">小尺寸 · 图标位</h3>
+  <div class="apps sm">
+    <div class="mock">
+      <div class="scene sc-wall">
+        <span class="mkslot" data-plate="purple" data-pal="mono" data-elevate="1" data-size="78"></span>
+        <span class="ic-lbl">造物云</span>
+      </div>
+      <div class="cap"><b>App 图标</b><span>iOS · Android。紫晶体满版，超椭圆圆角即图标自身形状。</span></div>
+    </div>
+    <div class="mock">
+      <div class="scene sc-grey">
+        <div class="chrome">
+          <div class="bar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <div class="tab"><span class="mkslot" data-plate="none" data-pal="deep" data-size="16"></span>造物云<span class="x">✕</span></div>
+          </div>
+          <div class="addr"><b>zaowuyun.com</b>/products</div>
+        </div>
+      </div>
+      <div class="cap"><b>浏览器标签 / Favicon</b><span>16·32·48px 用简化单标记，白底上裸晶体，去发丝边。</span></div>
+    </div>
+    <div class="mock">
+      <div class="scene sc-dark">
+        <div class="ava-row">
+          <span class="ava"><span class="mkslot" data-plate="none" data-pal="mono" data-size="44"></span></span>
+          <span class="who"><b>造物云</b><span>@zaowuyun · 官方</span></span>
+        </div>
+      </div>
+      <div class="cap"><b>社交头像</b><span>圆形裁切，单标记居中，四周留 1X 净空。</span></div>
+    </div>
+    <div class="mock">
+      <div class="scene sc-fabric">
+        <div class="tote"><span class="mkslot" data-plate="ink" data-pal="monoInk" data-size="56"></span></div>
+      </div>
+      <div class="cap"><b>周边 · 帆布袋</b><span>单色丝印，棉麻底走墨色镂空版，不糊成实心块。</span></div>
+    </div>
+  </div>
+
+  <h3 class="t">大尺寸 · 网页 · 印刷 · 启动</h3>
+  <div class="apps lg">
+    <div class="mock">
+      <div class="scene sc-dark">
+        <div class="site">
+          <div class="hd">
+            <span class="lockc" style="color:#ECEEFF"><span class="mkslot" data-plate="white" data-pal="brand" data-size="28"></span><span class="wm" data-h="18"></span></span>
+            <nav><span>产品</span><span>解决方案</span><span>文档</span><span>价格</span></nav>
+            <div class="act"><span class="gh">登录</span><span class="pp">免费开始</span></div>
+          </div>
+          <div class="bd"><h4>智能是基础设施，不是选配功能。</h4><p>横向组合居左，字标视高 ≈ 标记 ×0.62，主行动按钮用品牌紫。</p></div>
+        </div>
+      </div>
+      <div class="cap"><b>网站顶栏</b><span>横向组合 + 导航 + 主行动按钮，深色直接用完整标志。</span></div>
+    </div>
+
+    <div class="mock">
+      <div class="scene sc-dark">
+        <div class="cards">
+          <div class="card-b"><span class="mkslot" data-plate="none" data-pal="mono" data-size="42"></span></div>
+          <div class="card-f">
+            <div class="top"><span class="mkslot" data-plate="white" data-pal="brand" data-elevate="1" data-hairline="1" data-size="26"></span><span class="wm" data-h="15" style="color:#18150E"></span></div>
+            <div>
+              <div class="nm">邱懿武<small>产品设计 · Product Design</small></div>
+            </div>
+            <div class="ct">qiuyiwu@zaowuyun.com<br>zaowuyun.com · 杭州</div>
+          </div>
+        </div>
+      </div>
+      <div class="cap"><b>名片</b><span>正面浅底横向组合 + 承托阴影；背面品牌紫满版反白。</span></div>
+    </div>
+
+    <div class="mock">
+      <div class="scene sc-wall">
+        <div class="phone">
+          <span class="lockc" style="flex-direction:column;gap:13px;color:#ECEEFF">
+            <span class="mkslot splash-mark anim-on" data-anim="assemble" data-plate="white" data-pal="brand" data-size="54"></span>
+            <span class="wm" data-h="18"></span>
+          </span>
+          <div class="lbar"><i></i></div>
+        </div>
+      </div>
+      <div class="cap"><b>启动页 / 加载</b><span>载入跑一次「结晶造物」+ 常驻「切面流光」。实时演示。</span></div>
+    </div>
+
+    <div class="mock">
+      <div class="scene sc-dark">
+        <div class="slide">
+          <h4>智能是基础设施，<br>不是选配功能。</h4>
+          <div class="ft">
+            <span class="lockc" style="color:#ECEEFF"><span class="mkslot" data-plate="white" data-pal="brand" data-size="24"></span><span class="wm" data-h="15"></span></span>
+            <span class="pg">造物云 · 2026</span>
+          </div>
+        </div>
+      </div>
+      <div class="cap"><b>演示封面 / 文档</b><span>主张大字占主，标志锁定在角落，不抢内容。</span></div>
+    </div>
+  </div>
+  <p class="note"><b>一句话：</b>场景再多，标志只有一枚——按尺寸与底色在<b>四个配色版本</b>里择一，<b>不重绘、不拆解</b>。需要新物料按这套排版套用即可。</p>
+</section>
+
+<!-- ========== 09 错误用法 ========== -->
+<section id="misuse">
+  <div class="sh"><span class="n">10</span><h2>错误用法</h2><span class="en">Misuse</span></div>
+  <p class="sub">以下是标志的红线。下方示例均为<b>反例</b>，请勿照做。</p>
+  <div class="grid g4">
+    <div class="cell bad-stage">
+      <div class="stage bg-dark"><span class="mkslot" data-plate="white" data-pal="brand" data-size="56" style="transform:scaleX(1.5)"></span></div>
+      <div class="meta"><div class="nm">拉伸变形 <span class="pill bad">禁</span></div><div class="ds">不可单轴拉伸、压扁，须等比缩放。</div></div>
+    </div>
+    <div class="cell bad-stage">
+      <div class="stage bg-dark"><span class="mkslot" data-plate="white" data-pal="wrong" data-size="56"></span></div>
+      <div class="meta"><div class="nm">改晶体色 <span class="pill bad">禁</span></div><div class="ds">不可替换三面紫色或打乱明度顺序。</div></div>
+    </div>
+    <div class="cell bad-stage">
+      <div class="stage bg-dark"><span class="mkslot" data-plate="white" data-pal="brand" data-size="56" style="transform:rotate(24deg)"></span></div>
+      <div class="meta"><div class="nm">随意旋转 <span class="pill bad">禁</span></div><div class="ds">标记保持正置，不作任意角度旋转。</div></div>
+    </div>
+    <div class="cell bad-stage">
+      <div class="stage bg-light"><span class="mkslot" data-plate="none" data-pal="deep" data-size="56"></span></div>
+      <div class="meta"><div class="nm">拆掉底板 <span class="pill bad">禁</span></div><div class="ds">浅底不可扔白底板只留半颗宝石，须用承托阴影。</div></div>
+    </div>
+  </div>
+  <div class="rules" style="margin-top:30px">
+    <div class="do">
+      <h4 style="color:var(--ok)">应该</h4>
+      <ul>
+        <li>整组<b>等比</b>缩放，保持内部比例</li>
+        <li>留足<b>≥ 1X</b> 安全距</li>
+        <li>浅底加<b>承托阴影 + 发丝边</b>，保持标志完整</li>
+        <li>杂底先垫<b>纯色卡片或暗化遮罩</b></li>
+        <li>用规定的<b>四个配色版本</b></li>
+      </ul>
+    </div>
+    <div class="dont">
+      <h4 style="color:var(--bad)">禁止</h4>
+      <ul>
+        <li>拉伸、压扁、任意旋转、加描边光晕投影特效</li>
+        <li>替换或重排晶体三面的颜色与明度</li>
+        <li>为适配浅底而<b>拆掉白底板</b>、只留宝石</li>
+        <li>把标志放在<b>低对比或杂乱</b>的底上</li>
+        <li>字标与标记等高，或单独缩放其一</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 10 下载 ========== -->
+<section id="download" style="border-bottom:none">
+  <div class="sh"><span class="n">11</span><h2>文件下载</h2><span class="en">Assets</span></div>
+  <p class="sub">官方矢量源文件。请勿自行重绘、转描或截图位图使用。需要其他格式（PDF / EPS / PNG @2x）请向品牌负责人索取。</p>
+  <div class="dl">
+    <div class="dlc">
+      <div class="hd">
+        <span class="mkslot" data-plate="white" data-pal="brand" data-size="44"></span>
+        <span class="nm">标记 Mark<small>logo-mark.svg</small></span>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="assets/logo-mark.svg" download>下载 SVG</a>
+        <a class="btn ghost" href="assets/logo-mark.svg" target="_blank" rel="noopener">查看</a>
+      </div>
+    </div>
+    <div class="dlc">
+      <div class="hd">
+        <span class="wm" data-h="26"></span>
+        <span class="nm">字标 Wordmark<small>logo-wordmark.svg · currentColor</small></span>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="assets/logo-wordmark.svg" download>下载 SVG</a>
+        <a class="btn ghost" href="assets/logo-wordmark.svg" target="_blank" rel="noopener">查看</a>
+      </div>
+    </div>
+  </div>
+  <p class="note">字标为 <code>currentColor</code> 单路径，置入时用 CSS <code>color</code> 控制颜色即可自动适配深浅背景。标记的浅底承托阴影、明暗切换、微动画逻辑统一收在站点 <code>brand.js</code>，本规范页与 <code>design-system.html</code> 的 <code>#logo</code> 段为单一可信来源。</p>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <span>造物云 · 标志使用规范 v1.0 · 2026-06-21</span>
+  <span>token 源自 design-system.html · 不用 emoji · 弯引号 “”</span>
+</footer>
+
+<div class="toast" id="toast">已复制</div>
+
+<script>
+/* ============ 品牌标 builder（与 logo-lab 同源） ============ */
+const FACES = {
+  top:  'M16 8 L22.928 12 L16 16 L9.072 12 Z',
+  right:'M16 16 L22.928 12 L22.928 20 L16 24 Z',
+  left: 'M9.072 12 L16 16 L16 24 L9.072 20 Z'
+};
+const PLATE_D = "M27.356405,6.5566244Q27.640217,6.7204833,27.900215,6.9199853Q28.16021,7.1194868,28.391941,7.3512182Q28.623672,7.5829496,28.823174,7.8429451Q29.022675,8.1029396,29.186533,8.3867512Q29.350391,8.6705627,29.475803,8.9733343Q29.601215,9.2761059,29.686035,9.5926561Q29.770855,9.9092064,29.813629,10.23412Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.813631,21.765881Q29.770855,22.090794,29.686037,22.407345Q29.601215,22.723896,29.475803,23.026669Q29.350391,23.329437,29.186531,23.613249Q29.022675,23.89706,28.823174,24.157059Q28.623672,24.417053,28.391941,24.648785Q28.16021,24.880516,27.900215,25.080017Q27.640217,25.279518,27.356405,25.443377L18.5,30.556623Q18.216188,30.720484,17.913418,30.845898Q17.610645,30.97131,17.294096,31.056129Q16.977547,31.140947,16.652632,31.183723Q16.327717,31.226498,16,31.226498Q15.672283,31.226498,15.347369,31.183723Q15.022456,31.140945,14.705906,31.056128Q14.389355,30.97131,14.086583,30.845898Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q4.3597822,25.279518,4.0997868,25.080017Q3.8397913,24.880516,3.6080601,24.648783Q3.3763289,24.417053,3.1768272,24.157059Q2.9773254,23.89706,2.8134668,23.613249Q2.6496081,23.329437,2.5241961,23.026669Q2.3987842,22.723896,2.3139648,22.407347Q2.2291453,22.090796,2.1863694,21.765881Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.1863689,10.23412Q2.2291448,9.9092064,2.3139644,9.5926561Q2.3987837,9.2761059,2.5241957,8.9733343Q2.6496074,8.6705627,2.8134661,8.3867512Q2.977325,8.1029396,3.1768267,7.8429446Q3.3763285,7.5829496,3.6080596,7.3512182Q3.8397908,7.1194868,4.0997868,6.9199853Q4.3597822,6.7204833,4.6435933,6.5566244L13.5,1.4433756Q13.783812,1.2795169,14.086583,1.1541051Q14.389355,1.0286931,14.705906,0.94387358Q15.022456,0.85905409,15.34737,0.8162784Q15.672283,0.77350271,16,0.77350271Q16.327717,0.77350277,16.652632,0.81627846Q16.977547,0.85905421,17.294096,0.9438737Q17.610645,1.0286932,17.913418,1.1541052Q18.216188,1.2795172,18.5,1.4433758L27.356405,6.5566244Z";
+
+const PAL = {
+  brand:  {top:'#CE99FF',right:'#AF59FF',left:'#8501FF',st:'none',sw:0},
+  deep:   {top:'#AB76F0',right:'#8A3CE6',left:'#6B04CC',st:'rgba(70,0,160,.22)',sw:.4},
+  mono:   {top:'#FFFFFF',right:'rgba(255,255,255,.84)',left:'rgba(255,255,255,.6)',st:'none',sw:0},
+  monoInk:{top:'rgba(24,21,14,.55)',right:'rgba(24,21,14,.78)',left:'#18150E',st:'none',sw:0},
+  wrong:  {top:'#34D399',right:'#F59E0B',left:'#38BDF8',st:'none',sw:0}   /* 反例：乱配色 */
+};
+
+let uid=0;
+function buildMark(opts){
+  let {plate='none', pal='brand', size=44, anim='', elevate=false, hairline=false} = opts;
+  let usePlate=plate, usePal=pal, useElevate=elevate, useHair=hairline;
+  if(plate==='adapt'){
+    const light=document.documentElement.getAttribute('data-theme')==='light';
+    usePlate='white'; usePal='brand';
+    if(light){ useElevate=true; useHair=true; }
+  }
+  /* 单色·墨：单色印刷／盖章／传真版——墨色底板把晶体「镂空」留白，
+     三面只用墨线勾勒，不做实心填充，避免整枚糊成一团黑。 */
+  if(usePal==='monoInk'){
+    const INK='#18150E';
+    const HEX='M16 8 L22.928 12 L22.928 20 L16 24 L9.072 20 L9.072 12 Z'; /* 立方外轮廓六边形 */
+    const Y='M16 16 L22.928 12 M16 16 L9.072 12 M16 16 L16 24';            /* 三面交线（Y） */
+    const m='ko'+(uid++);
+    const cls=`mk ${anim} ${useElevate?'mk-elevated':''}`.replace(/\s+/g,' ').trim();
+    return `<svg class="${cls}" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:${size}px;height:${size}px">
+    <defs><mask id="${m}" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
+      <rect width="32" height="32" fill="#000"/>
+      <path d="${PLATE_D}" fill="#fff"/>
+      <path d="${HEX}" fill="#000"/>
+    </mask></defs>
+    <path d="${PLATE_D}" fill="${INK}" mask="url(#${m})"/>
+    <path d="${Y}" stroke="${INK}" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </svg>`;
+  }
+  const p=PAL[usePal]||PAL.brand;
+  let defs='', plateEl='';
+  if(usePlate==='white'){
+    const hair=useHair?` stroke="rgba(24,21,14,.06)" stroke-width="0.4" stroke-linejoin="round"`:'';
+    plateEl=`<path d="${PLATE_D}" fill="#FFFFFF"${hair}/>`;
+  } else if(usePlate==='ink'){
+    plateEl=`<path d="${PLATE_D}" fill="#18150E"/>`;
+  } else if(usePlate==='purple'){
+    defs=`<defs><linearGradient id="pg${uid}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8E92FF"/><stop offset="1" stop-color="#7A00E6"/></linearGradient></defs>`;
+    plateEl=`<path d="${PLATE_D}" fill="url(#pg${uid})"/>`; uid++;
+  }
+  const stroke=p.sw?`stroke="${p.st}" stroke-width="${p.sw}" stroke-linejoin="round"`:'';
+  const cls=`mk ${anim} ${useElevate?'mk-elevated':''}`.replace(/\s+/g,' ').trim();
+  return `<svg class="${cls}" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:${size}px;height:${size}px">
+    ${defs}${plateEl}
+    <path class="f-left"  d="${FACES.left}"  fill="${p.left}"  ${stroke}/>
+    <path class="f-right" d="${FACES.right}" fill="${p.right}" ${stroke}/>
+    <path class="f-top"   d="${FACES.top}"   fill="${p.top}"   ${stroke}/>
+  </svg>`;
+}
+
+function renderMarks(){
+  document.querySelectorAll('.mkslot').forEach(slot=>{
+    slot.innerHTML=buildMark({
+      plate: slot.dataset.plate||'none',
+      pal:   slot.dataset.pal,
+      size:  +(slot.dataset.size||44),
+      anim:  slot.dataset.anim?('anim-'+slot.dataset.anim):'',
+      elevate: slot.dataset.elevate==='1',
+      hairline: slot.dataset.hairline==='1'
+    });
+    const svg=slot.querySelector('svg'); if(!svg)return;
+    if(slot.classList.contains('anim-float')) svg.classList.add('anim-float');
+    if(slot.classList.contains('anim-tilt'))  svg.classList.add('anim-tilt');
+    if(slot.classList.contains('anim-on') && slot.dataset.anim==='assemble') svg.classList.add('anim-assemble');
+  });
+  // 小色点（构成节的 .ic）
+  document.querySelectorAll('.ic').forEach(s=>{
+    s.style.cssText='display:inline-block;width:11px;height:11px;border-radius:3px;vertical-align:-1px;margin-right:4px;border:1px solid var(--bdr);background:'+s.dataset.c;
+  });
+}
+
+/* ============ 字标注入 ============ */
+const WORD_URL='assets/logo-wordmark.svg';
+function injectWord(svgText){
+  document.querySelectorAll('.wm').forEach(w=>{
+    const h=+(w.dataset.h||18);
+    w.innerHTML=svgText;
+    const svg=w.querySelector('svg');
+    if(svg){ svg.removeAttribute('height'); svg.style.height=h+'px'; svg.style.width='auto'; svg.style.display='block'; }
+  });
+}
+fetch(WORD_URL).then(r=>r.text()).then(injectWord)
+ .catch(()=>{ document.querySelectorAll('.wm').forEach(w=>{w.innerHTML='<span style="font-family:var(--serif);font-weight:600;font-size:'+(+(w.dataset.h||18)+2)+'px">造物云</span>';}); });
+
+/* ============ 微动画 keyframes（注入，复用 lab 方案）============ */
+const animCSS=document.createElement('style');
+animCSS.textContent=`
+@keyframes asmL{from{opacity:0;transform:translate(-6px,4px)}to{opacity:1;transform:none}}
+@keyframes asmR{from{opacity:0;transform:translate(6px,4px)}to{opacity:1;transform:none}}
+@keyframes asmT{from{opacity:0;transform:translate(0,-7px)}to{opacity:1;transform:none}}
+.anim-assemble .f-left{animation:asmL .62s var(--ease) both}
+.anim-assemble .f-right{animation:asmR .62s var(--ease) .12s both}
+.anim-assemble .f-top{animation:asmT .66s var(--ease) .26s both}
+@keyframes shim{0%,74%,100%{filter:brightness(1)}14%{filter:brightness(1.24)}}
+.anim-shimmer .f-top{animation:shim 3.4s var(--ease) infinite}
+.anim-shimmer .f-right{animation:shim 3.4s var(--ease) infinite 1.13s}
+.anim-shimmer .f-left{animation:shim 3.4s var(--ease) infinite 2.26s}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(-2.5deg)}}
+.anim-float{animation:floaty 4.2s ease-in-out infinite}
+.anim-tilt{transition:transform .4s var(--ease)}
+.cell:hover .anim-tilt,.dlc:hover .anim-tilt{transform:perspective(320px) rotateY(20deg) rotateX(-7deg)}
+@media (prefers-reduced-motion: reduce){
+  .anim-assemble .f-left,.anim-assemble .f-right,.anim-assemble .f-top,
+  .anim-shimmer .f-top,.anim-shimmer .f-right,.anim-shimmer .f-left,.anim-float,
+  .phone .lbar i{animation:none!important}
+  .anim-tilt,.cell:hover .anim-tilt{transition:none;transform:none!important}
+}`;
+document.head.appendChild(animCSS);
+const RM=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// shimmer 常驻：渲染后给标注了 shimmer 的 svg 挂类
+function applyShimmer(){
+  if(RM)return;
+  document.querySelectorAll('.mkslot[data-anim="shimmer"] svg').forEach(s=>s.classList.add('anim-shimmer'));
+}
+
+/* ============ 主题切换 ============ */
+const tt=document.getElementById('themeToggle');
+tt.addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b)return;
+  [...tt.children].forEach(x=>x.classList.toggle('on',x===b));
+  document.documentElement.setAttribute('data-theme',b.dataset.theme);
+  renderMarks(); applyShimmer(); applyMotionState();
+});
+
+/* ============ 色值复制 ============ */
+const toast=document.getElementById('toast');
+function showToast(t){ toast.textContent=t; toast.classList.add('on'); clearTimeout(showToast._t); showToast._t=setTimeout(()=>toast.classList.remove('on'),1100); }
+document.getElementById('swatches').addEventListener('click',e=>{
+  const sw=e.target.closest('.sw'); if(!sw)return;
+  const v=sw.dataset.v;
+  navigator.clipboard?.writeText(v).then(()=>showToast('已复制 '+v)).catch(()=>showToast(v));
+});
+
+renderMarks(); applyShimmer();
+
+/* ============ 动画现场演示：推荐组合 + 启动页 ============ */
+let mShimOn=true, mFloatOn=false;
+function applyMotionState(){
+  if(RM) return;
+  const mk=document.getElementById('motionMark');
+  if(mk){ const s=mk.querySelector('svg'); if(s){ s.classList.toggle('anim-shimmer',mShimOn); s.classList.toggle('anim-float',mFloatOn); s.classList.add('anim-tilt'); } }
+  // 启动页：载入跑一次结晶 + 常驻流光
+  document.querySelectorAll('.splash-mark svg').forEach(s=>s.classList.add('anim-assemble','anim-shimmer'));
+}
+function bindMotion(){
+  const mk=document.getElementById('motionMark');
+  const rep=document.getElementById('mReplay'), sh=document.getElementById('mShim'), fl=document.getElementById('mFloat');
+  rep&&rep.addEventListener('click',()=>{ const s=mk&&mk.querySelector('svg'); if(!s)return; s.classList.remove('anim-assemble'); void s.offsetWidth; s.classList.add('anim-assemble'); });
+  sh&&sh.addEventListener('click',()=>{ mShimOn=!mShimOn; sh.textContent='切面流光：'+(mShimOn?'开':'关'); applyMotionState(); });
+  fl&&fl.addEventListener('click',()=>{ mFloatOn=!mFloatOn; fl.textContent='悬浮微旋：'+(mFloatOn?'开':'关'); applyMotionState(); });
+  if(!RM){ const s=mk&&mk.querySelector('svg'); if(s) s.classList.add('anim-assemble'); }
+  applyMotionState();
+}
+if(!RM){ bindMotion(); }
+else{ document.querySelectorAll('.showcase .controls').forEach(c=>c.style.display='none'); }
+</script>
+</body>
+</html>
