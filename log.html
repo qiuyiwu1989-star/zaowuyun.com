@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>造物云 · 人机交互产品日志</title>
+<!-- 产品日志/索引页(非首页)。收录造物云所有 demo / 定位文档,可按“分区”“时间”双维度切换。沿用 home-2026-D 暖纸编辑式令牌。 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF9F5; --bg-soft:#F0EEE6; --ink:#141413; --ink-soft:#3b3a37;
+  --muted:#6f6e67; --muted-2:#9a988f; --line:rgba(20,20,19,.11); --line-2:rgba(20,20,19,.18);
+  --clay:#B23A1E; --clay-soft:#f3e6df; --maxw:1180px;
+  --serif:"Instrument Serif","Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,serif;
+  --sans:"Inter","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.55;font-size:16px;padding:0 0 90px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+a{color:inherit;text-decoration:none}
+.serif{font-family:var(--serif);font-weight:400}
+.label{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--clay);font-weight:500}
+
+/* header */
+.top{padding:64px 0 30px;border-bottom:1px solid var(--line)}
+.top h1{font-family:var(--serif);font-weight:400;font-size:clamp(38px,5.2vw,68px);line-height:1.03;letter-spacing:-1px;margin-top:14px}
+.top p{color:var(--ink-soft);font-size:18px;margin-top:18px;max-width:680px}
+
+/* controls */
+.bar{position:sticky;top:0;z-index:20;background:rgba(250,249,245,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:6px}
+.bar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:999px;overflow:hidden}
+.seg button{font-family:var(--sans);font-size:14px;border:none;background:transparent;color:var(--muted);padding:9px 20px;cursor:pointer;transition:.18s}
+.seg button.on{background:var(--ink);color:var(--bg)}
+.count{font-size:13px;color:var(--muted-2)}
+
+/* zone group */
+.zone{margin-top:46px}
+.zone-h{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line-2);padding-bottom:12px;margin-bottom:4px}
+.zone-h h2{font-family:var(--serif);font-weight:400;font-size:30px;letter-spacing:-.3px}
+.zone-h .zn{font-size:13px;color:var(--muted-2)}
+.zone-h .zd{margin-left:auto;font-size:13px;color:var(--muted-2)}
+
+/* rows */
+.row{display:grid;grid-template-columns:108px 1fr auto;gap:24px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line);transition:.18s}
+.row:hover{background:var(--bg-soft)}
+.row .date{font-size:13px;color:var(--muted-2);font-variant-numeric:tabular-nums;padding-top:4px}
+.row .main h3{font-family:var(--serif);font-size:23px;font-weight:400}
+.row .main h3 a:hover{color:var(--clay)}
+.row .main .note{font-size:14.5px;color:var(--muted);margin-top:6px;max-width:760px}
+.row .main .tags{margin-top:10px;display:flex;gap:7px;flex-wrap:wrap}
+.tag{font-size:11.5px;letter-spacing:.5px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 11px;background:var(--bg)}
+.tag.rec{color:var(--clay);border-color:var(--clay);background:var(--clay-soft)}
+.tag.doc{color:#5b6b4f;border-color:#cdd6c2;background:#eef1e8}
+.tag.live{color:#3a5a78;border-color:#c3d2e0;background:#e9f0f6}
+.row .go{font-size:14px;color:var(--clay);font-weight:500;white-space:nowrap;padding-top:4px}
+.row .go::after{content:" →"}
+.row.muted .go{color:var(--muted-2)}
+
+/* timeline view tweak */
+.flat .zone-h{display:none}
+.flat .zone{margin-top:0}
+
+footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);font-size:13px;color:var(--muted-2);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+@media(max-width:760px){
+  .wrap{padding:0 22px}
+  .row{grid-template-columns:1fr;gap:6px}
+  .row .date{padding-top:0}
+  .row .go{padding-top:6px}
+  .zone-h .zd{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="label">造物云 · Product Log</div>
+    <h1>人机交互产品日志</h1>
+    <p>造物云这条线上所有 demo、首页方案与定位文档的总账。可按<strong>分区</strong>看(同类聚在一起),也可按<strong>时间</strong>看(产品是怎么一步步长出来的)。新产物都登记在此。</p>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="wrap bar-inner">
+    <div class="seg" id="seg">
+      <button data-mode="zone" class="on">按分区</button>
+      <button data-mode="time">按时间</button>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+</div>
+
+<main class="wrap" id="list"></main>
+
+<footer class="wrap">
+  <span>© 2026 造物云 · 人机交互产品日志</span>
+  <span>非首页 · 这是日志/索引</span>
+</footer>
+
+<script>
+// 单一事实源:每条产物一行。date=YYYY-MM-DD;zone=分区;tags=标记。新产物往这里加。
+const ZONES = ["官网 v7 · daymug 储备","定位策略","首页 · 2026 重做","首页 · 早期实验","现役官网"];
+const ITEMS = [
+  // —— 官网 v7 · daymug 储备 ——
+  {t:"VI 应用物料库",f:"https://zwy.alimq.com/v7-preview/vi-applications.html",z:"官网 v7 · daymug 储备",d:"2026-06-21",rec:true,
+   note:"把同一套标志放进真实物料看它怎么工作(In Use):名片3版(经典暖纸/墨黑烫彩/编辑色块,正反成对) → 办公印刷(信纸/信封/便签) → 工牌证件(员工证/访客牌/活动横版) → 数字标识(App图标3版/favicon系统/浏览器标签/社交头像/主页banner) → 邮件签名(明暗) → PPT封面+内页母版 → 社交内容(小红书封面3版:知识卡/产品发布/数据卡,公众号头图+次图) → 壁纸(锁屏/桌面) → 周边(帆布袋/T恤/马克杯/徽章贴纸) → 线下展陈(易拉宝/门头前台)。30+物料,纯CSS/SVG示意,内联logo自包含,明暗双主题。配套 logo-guide 的可套用样板,给后续使用者。",tags:["品牌","VI","物料","推荐","最新"]},
+  {t:"标志使用规范",f:"https://zwy.alimq.com/v7-preview/logo-guide.html",z:"官网 v7 · daymug 储备",d:"2026-06-21",rec:true,
+   note:"标志对外使用标准(VI):构成/解剖 → 三种标准组合 → 安全距(≥1X) → 最小尺寸(屏幕/印刷) → 四个配色版本 → 背景适配(核心:不拆标志) → 字标0.62比例 → 微动画规范 → 错误用法红线 → 矢量文件下载。明暗双主题,色值点击即复制。lab 是探索决策,guide 是可交付规范,二者互补。",tags:["品牌","规范","推荐","最新"]},
+  {t:"标志实验室",f:"https://zwy.alimq.com/v7-preview/logo-lab.html",z:"官网 v7 · daymug 储备",d:"2026-06-21",rec:true,
+   note:"品牌标三件事对照:① 浅色背景组合关系(白底板会糊→给裸宝石加深/墨色底板两套解法)② “造物云”字号收到图标0.62倍 ③ 微动画(结晶造物+切面流光+悬停3D侧倾,贴“造物/晶体”品牌词)。明暗双主题现场预览,遵循 prefers-reduced-motion。",tags:["品牌","推荐","最新"]},
+  {t:"顶栏与插画风格对比",f:"https://zwy.alimq.com/v7-preview/nav-lab.html",z:"官网 v7 · daymug 储备",d:"2026-06-21",
+   note:"透明吸顶顶栏 + Intercom 式 Mega Menu(滚动切磨砂玻璃);插画三风格对比(几何线稿/手绘人物/深色渐变光晕)。token 沿用设计系统。",tags:["导航","实验"]},
+  {t:"造物云设计系统",f:"https://zwy.alimq.com/v7-preview/design-system.html",z:"官网 v7 · daymug 储备",d:"2026-06-21",rec:true,
+   note:"整站设计系统单一可信来源:配色/渐变/字体/间距/圆角阴影/动效 + 核心组件(按钮·卡片·徽章·表单·导航·页脚)。token 提炼自 v7 首页,明暗双主题,色块与代码点击即复制。参照永乐 design-system 结构。",tags:["设计系统","推荐","最新"]},
+  {t:"v7 预览索引",f:"https://zwy.alimq.com/v7-preview/preview.html",z:"官网 v7 · daymug 储备",d:"2026-06-21",rec:true,
+   note:"daymug v7 设计稿储备的总入口:一个首页 + 五个子页 + 设计系统。源码态预览,靠运行时垫片(support.js/image-slot.js)在浏览器内渲染。",tags:["索引","推荐"]},
+  {t:"v7 首页",f:"https://zwy.alimq.com/v7-preview/index.html",z:"官网 v7 · daymug 储备",d:"2026-06-21",
+   note:"“智能是基础设施,不是选配功能。”最完整的一版,作为整站设计系统事实源:产品 Tab、数据计数、价值卡、动态/观点中心、CTA、完整页脚。",tags:["首页","储备"]},
+  {t:"v7 · 智核 API HUB",f:"https://zwy.alimq.com/v7-preview/api-hub.html",z:"官网 v7 · daymug 储备",d:"2026-06-21",
+   note:"“AI 时代的电厂”——50+ 模型统一接入。含来源→枢纽→模型动态路由图 + 实时降级日志,全套可视化最强一页,作为产品深度页模板。",tags:["产品","储备"]},
+  {t:"v7 · AI 工作台",f:"https://zwy.alimq.com/v7-preview/workbench.html",z:"官网 v7 · daymug 储备",d:"2026-06-21",
+   note:"“让最懂业务的人,亲手做专业 AI 应用。”含工作台界面模拟、四步流程、用户引言,叙事人文。待去 emoji。",tags:["产品","储备"]},
+  {t:"v7 · 产品中心",f:"https://zwy.alimq.com/v7-preview/products.html",z:"官网 v7 · daymug 储备",d:"2026-06-21",
+   note:"五大核心产品 + 工具产品矩阵总览。结构清晰偏目录,后续可提升信息密度或并入首页。",tags:["储备"]},
+  {t:"v7 · 案例",f:"https://zwy.alimq.com/v7-preview/cases.html",z:"官网 v7 · daymug 储备",d:"2026-06-21",
+   note:"“与 600+ 企业共同发生的改变。”Featured 大卡 + 五行业案例卡,KPI 具体。公司真名待授权或匿名化。",tags:["储备"]},
+  {t:"v7 · 关于我们",f:"https://zwy.alimq.com/v7-preview/about.html",z:"官网 v7 · daymug 储备",d:"2026-06-21",
+   note:"使命愿景、价值观、发展时间线、联系方式。稳健标准,待清理占位联系数据。",tags:["储备"]},
+  {t:"标记打磨 · 前后对照",f:"https://zwy.alimq.com/v7-preview/logo-polish-compare.html",z:"官网 v7 · daymug 储备",d:"2026-06-21",
+   note:"品牌标志打磨的前后对照页:旧版 vs 调整后并排,逐项标注改了什么(切面/字标比例/微动画)。决策留痕,配合 logo-lab/logo-guide 一起看。",tags:["品牌","实验"]},
+
+  // —— 定位策略 ——
+  {t:"战略诊断与定位 v3",f:"战略诊断与定位-v3.md",z:"定位策略",d:"2026-06-19",rec:true,
+   note:"第四轮“产品打头”定位:多产品的企业 AI 落地公司;旗舰=企业 AI 工作台(给业务专家,非编程工具);弱化造物母题、不锁垂直、客户信任为不变量、复用率为唯一健康指标。",tags:["文档","定位","最新"]},
+  {t:"战略诊断与定位 v2",f:"战略诊断与定位-v2.md",z:"定位策略",d:"2026-06-18",
+   note:"造物引擎 / 卖结果 / 自营产业 / Services-as-Software / Palantir“类目唯一”框架。已被 v3 收敛。",tags:["文档","定位"]},
+  {t:"DAM 产品规划",f:"DAM产品规划.md",z:"定位策略",d:"2026-06-17",
+   note:"多模态资产中台规划:把企业图文/文档/生成资产统一管理+向量检索,喂养上层 AI 应用。",tags:["文档","产品"]},
+  {t:"定位 v1",f:"定位.md",z:"定位策略",d:"2026-06-02",
+   note:"高 IP 产品化咨询 / 你自己的 AI 中台 / AI 时代的 ERP / 数字项目经理。最初一版推演。",tags:["文档","定位"]},
+  {t:"官网策划 v1",f:"官网策划.md",z:"定位策略",d:"2026-06-02",
+   note:"v1 首页信息架构脚本。",tags:["文档","官网"]},
+
+  // —— 首页 · 2026 重做 ——
+  {t:"首页 D · 暖纸编辑式",f:"home-2026-D-editorial.html",z:"首页 · 2026 重做",d:"2026-06-19",rec:true,
+   note:"推荐版。Grounded in opendesign.cc 真实令牌:Anthropic 暖中性 × Cosmos 衬线赭红 × Aesop 克制直角。最像可信赖机构,贴大集团一号位。旗舰产品已接 ai.zaowuyun.com。",tags:["首页","推荐"]},
+  {t:"首页 v5 · 卖结果",f:"home-v5-results.html",z:"首页 · 2026 重做",d:"2026-06-19",
+   note:"“不卖 AI 工具,卖落地结果。”v3 定位落到首页的结果导向版,A–E 之外的并行尝试。",tags:["首页","草稿"]},
+  {t:"首页 E · 深色荧光",f:"home-2026-E-ideo.html",z:"首页 · 2026 重做",d:"2026-06-18",
+   note:"血统 IDEO(深底+荧光黄+Didone 满幅衬线)× Stripe Press。设计胆识最强的备选。",tags:["首页"]},
+  {t:"首页方案对比 · chooser",f:"home-2026-index.html",z:"首页 · 2026 重做",d:"2026-06-18",
+   note:"A–E 五版并排对比页,带血统说明与共用定位要素。",tags:["首页","索引"]},
+  {t:"首页 A · 信任打头",f:"home-2026-A-trust.html",z:"首页 · 2026 重做",d:"2026-06-18",
+   note:"客户信任墙打头、机构权威。方向对,D 即其升级。",tags:["首页","草稿"]},
+  {t:"首页 B · 核心价值(渐变)",f:"home-2026-B-value.html",z:"首页 · 2026 重做",d:"2026-06-18",
+   note:"captions 流光渐变 SaaS 风。主张锋利但视觉偏通用,留作对照。",tags:["首页","草稿"]},
+  {t:"首页 C · 多产品矩阵(霓虹)",f:"home-2026-C-matrix.html",z:"首页 · 2026 重做",d:"2026-06-18",
+   note:"暗色霓虹产品星座。结构好但视觉通用,已被 E 取代。",tags:["首页","草稿"]},
+
+  // —— 首页 · 早期实验 ——
+  {t:"首页 v4 · captions DNA",f:"home-v4-captions.html",z:"首页 · 早期实验",d:"2026-06-03",
+   note:"captions.ai 渐变基因首页实验。",tags:["首页","历史"]},
+  {t:"首页 v3 · 飞轮",f:"home-v3-flywheel.html",z:"首页 · 早期实验",d:"2026-06-02",
+   note:"复利飞轮叙事版。",tags:["首页","历史"]},
+  {t:"首页 v2 · 编辑式",f:"home-v2-editorial.html",z:"首页 · 早期实验",d:"2026-06-02",
+   note:"早期编辑式排版尝试。",tags:["首页","历史"]},
+  {t:"首页 v1 · 终端",f:"home-v1-terminal.html",z:"首页 · 早期实验",d:"2026-06-02",
+   note:"终端/极客气质首版。",tags:["首页","历史"]},
+
+  // —— 现役官网 ——
+  {t:"现役官网首页",f:"index.html",z:"现役官网",d:"2026-06-02",note:"当前线上首页。",tags:["现役"]},
+  {t:"平台 platform",f:"platform.html",z:"现役官网",d:"2026-06-02",note:"平台页。",tags:["现役"]},
+  {t:"解决方案 solutions",f:"solutions.html",z:"现役官网",d:"2026-06-02",note:"解决方案总览。",tags:["现役"]},
+  {t:"快消解决方案 FMCG",f:"solutions-fmcg.html",z:"现役官网",d:"2026-06-02",note:"快消行业方案。",tags:["现役"]},
+  {t:"客户案例 cases",f:"cases.html",z:"现役官网",d:"2026-06-02",note:"案例页。",tags:["现役"]},
+  {t:"关于 about",f:"about.html",z:"现役官网",d:"2026-06-02",note:"关于我们。",tags:["现役"]},
+  {t:"方法论 method",f:"method.html",z:"现役官网",d:"2026-06-02",note:"方法论页。",tags:["现役"]},
+  {t:"应用矩阵 apps",f:"apps.html",z:"现役官网",d:"2026-06-02",note:"AI 应用中台应用矩阵总览。",tags:["现役"]},
+  {t:"球球老师 apps-qiuqiu",f:"apps-qiuqiu.html",z:"现役官网",d:"2026-06-02",note:"K12 儿童认知探索智能体「球球老师」产品页。",tags:["现役"]},
+  {t:"开发者中心 developers",f:"developers.html",z:"现役官网",d:"2026-06-02",note:"AI 中台 API 开发者中心。",tags:["现役"]},
+  {t:"高校联合实验室 academy",f:"academy.html",z:"现役官网",d:"2026-06-02",note:"高校 & 联合实验室。",tags:["现役"]},
+  {t:"思想 · 智能体管理学 theory",f:"theory.html",z:"现役官网",d:"2026-06-02",note:"思想页:AI 时代的管理学正在被重写。",tags:["现役"]},
+  {t:"教育生态 education",f:"education.html",z:"现役官网",d:"2026-06-02",note:"把 AI 接进 K12 的教育生态。",tags:["现役"]},
+  {t:"行业洞察 blog",f:"blog.html",z:"现役官网",d:"2026-06-02",note:"行业洞察 Blog。",tags:["现役"]},
+  {t:"公司动态 news",f:"news.html",z:"现役官网",d:"2026-06-02",note:"公司动态资讯。",tags:["现役"]},
+  {t:"联系我们 contact",f:"contact.html",z:"现役官网",d:"2026-06-02",note:"预约 30 分钟咨询的联系页。",tags:["现役"]},
+];
+
+const list=document.getElementById('list'), countEl=document.getElementById('count');
+function tagHtml(tags){return (tags||[]).map(x=>{
+  let c='tag'; if(x==='推荐'||x==='最新')c+=' rec'; else if(x==='文档')c+=' doc'; else if(x==='现役')c+=' live';
+  return `<span class="${c}">${x}</span>`;}).join('');}
+function rowHtml(it){
+  const muted = (it.tags||[]).some(x=>x==='历史'||x==='现役')?' muted':'';
+  return `<div class="row${muted}">
+    <div class="date">${it.d}</div>
+    <div class="main">
+      <h3><a href="${it.f}">${it.t}</a></h3>
+      <div class="note">${it.note}</div>
+      <div class="tags">${tagHtml(it.tags)}</div>
+    </div>
+    <a class="go" href="${it.f}">打开</a>
+  </div>`;}
+function render(mode){
+  countEl.textContent = `共 ${ITEMS.length} 条`;
+  if(mode==='time'){
+    const sorted=[...ITEMS].sort((a,b)=> a.d<b.d?1:a.d>b.d?-1:0);
+    list.className='wrap flat';
+    list.innerHTML=`<div class="zone"><div class="zone-h"></div>${sorted.map(rowHtml).join('')}</div>`;
+    return;
+  }
+  list.className='wrap';
+  list.innerHTML=ZONES.map(z=>{
+    const xs=ITEMS.filter(i=>i.z===z).sort((a,b)=> a.d<b.d?1:a.d>b.d?-1:0);
+    if(!xs.length)return'';
+    const ds=xs.map(i=>i.d).sort();
+    return `<section class="zone"><div class="zone-h">
+        <h2>${z}</h2><span class="zn">${xs.length} 件</span>
+        <span class="zd">${ds[0]} – ${ds[ds.length-1]}</span>
+      </div>${xs.map(rowHtml).join('')}</section>`;
+  }).join('');
+}
+document.getElementById('seg').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b)return;
+  [...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));
+  render(b.dataset.mode);
+});
+render('zone');
+</script>
+</body>
+</html>
