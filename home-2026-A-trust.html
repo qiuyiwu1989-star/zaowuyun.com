@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>造物云 · 企业 AI 落地解决方案</title>
+<!-- 版本 A：信任打头 · 机构权威。买家=大集团一号位,先解决“凭什么信你”,产品作为“靠什么做到”随后出场。旗舰产品名暂用占位“工作台”。 -->
+<style>
+:root{
+  --ink:#16202a; --ink-2:#55636e; --ink-3:#8a97a1;
+  --paper:#f7f4ee; --paper-2:#efeae1; --white:#fff;
+  --line:#e4ddd1; --line-2:#d8cfc0;
+  --accent:#b8472f;      /* 赭红 */
+  --accent-2:#1f4e5f;    /* 深青 */
+  --maxw:1180px;
+  --serif:"Songti SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+a{color:inherit;text-decoration:none}
+section{position:relative}
+.serif{font-family:var(--serif)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(247,244,238,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:19px;letter-spacing:.5px}
+.brand .mk{width:26px;height:26px;border-radius:6px;background:var(--accent);position:relative}
+.brand .mk::after{content:"";position:absolute;inset:7px;border:2px solid var(--paper);border-radius:2px}
+.nav-links{display:flex;gap:30px}
+.nav-links a{font-size:14.5px;color:var(--ink-2);transition:.2s}
+.nav-links a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;padding:12px 22px;border-radius:4px;font-size:14px;font-weight:600;border:none;background:var(--ink);color:#fff;transition:.2s;font-family:var(--sans)}
+.btn:hover{background:var(--accent)}
+.btn-line{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
+.btn-line:hover{background:#fff;border-color:var(--ink)}
+
+/* hero */
+.hero{padding:96px 0 56px}
+.eyebrow{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:28px}
+.hero h1{font-size:clamp(38px,5.4vw,68px);line-height:1.18;font-weight:700;letter-spacing:-.5px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .sub{max-width:660px;margin:30px 0 0;font-size:clamp(17px,2vw,20px);color:var(--ink-2)}
+.hero .cta{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap}
+
+/* logo wall */
+.trust{padding:44px 0 64px}
+.trust .cap{font-size:13px;letter-spacing:2px;color:var(--ink-3);text-transform:uppercase;margin-bottom:26px}
+.logos{display:grid;grid-template-columns:repeat(7,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.logos .lg{padding:30px 6px;text-align:center;font-size:20px;font-weight:700;color:var(--ink);letter-spacing:1px;border-right:1px solid var(--line);transition:.25s;font-family:var(--serif)}
+.logos .lg:last-child{border-right:none}
+.logos .lg:hover{background:#fff;color:var(--accent)}
+.trust .note{margin-top:18px;font-size:14px;color:var(--ink-3)}
+
+/* generic band */
+.band{padding:104px 0}
+.band.paper2{background:var(--paper-2)}
+.band.dark{background:var(--ink);color:#e9eef1}
+.kicker{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:700}
+.h2{font-family:var(--serif);font-size:clamp(28px,3.8vw,46px);font-weight:700;letter-spacing:-.5px;margin-top:14px;line-height:1.25}
+.lead{font-size:17.5px;color:var(--ink-2);margin-top:18px;max-width:680px}
+.band.dark .lead{color:#aebcc6}
+.band.dark .kicker{color:#e89c6a}
+
+/* who we are - two col */
+.who{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+.who .stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px}
+.who .stat{background:var(--paper);padding:28px}
+.who .stat .n{font-family:var(--serif);font-size:40px;font-weight:700;color:var(--accent);line-height:1}
+.who .stat .l{font-size:14px;color:var(--ink-2);margin-top:10px}
+
+/* value wedge */
+.wedge{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.wedge .panel{background:#fff;border:1px solid var(--line);border-radius:6px;padding:8px}
+.wedge .row{display:flex;align-items:center;gap:16px;padding:18px 20px;border-bottom:1px solid var(--paper-2)}
+.wedge .row:last-child{border-bottom:none}
+.wedge .row .ar{font-family:var(--serif);color:var(--accent);font-size:22px;flex:none;width:40px}
+.wedge .row .tx b{display:block;font-size:15.5px}
+.wedge .row .tx span{font-size:13.5px;color:var(--ink-2)}
+
+/* products */
+.prod{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:52px}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:8px;padding:36px;transition:.25s;position:relative}
+.pcard:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 26px 50px rgba(40,30,20,.08)}
+.pcard .idx{font-family:var(--serif);font-size:14px;color:var(--accent);font-weight:700}
+.pcard .flag{position:absolute;top:24px;right:24px;font-size:11px;letter-spacing:1px;color:#fff;background:var(--accent);padding:4px 10px;border-radius:3px}
+.pcard h3{font-size:22px;margin-top:14px;font-weight:700}
+.pcard .role{font-size:13px;color:var(--ink-3);margin-top:4px}
+.pcard p{font-size:14.5px;color:var(--ink-2);margin-top:14px}
+.pcard .more{font-size:13.5px;color:var(--accent);font-weight:600;margin-top:18px;display:inline-block}
+
+/* why us - dark */
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:46px 56px;margin-top:54px}
+.why-item .t{font-family:var(--serif);font-size:21px;font-weight:700;display:flex;gap:12px;align-items:baseline}
+.why-item .t .no{font-size:14px;color:#e89c6a}
+.why-item p{font-size:15px;color:#aebcc6;margin-top:10px}
+
+/* methodology strip */
+.quals{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
+.qual{padding:9px 18px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;color:var(--ink-2);background:#fff}
+
+/* cta */
+.ctaband{padding:120px 0;text-align:center}
+.ctaband h2{font-family:var(--serif);font-size:clamp(30px,4.4vw,52px);font-weight:700;letter-spacing:-.5px;line-height:1.2}
+.ctaband p{font-size:17px;color:var(--ink-2);margin:20px auto 0;max-width:560px}
+.ctaband .cta{display:flex;gap:14px;justify-content:center;margin-top:38px;flex-wrap:wrap}
+
+/* footer */
+footer{background:var(--ink);color:#9fb0bc;padding:64px 0 36px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px}
+.foot-grid h5{color:#fff;font-size:14px;margin-bottom:14px;letter-spacing:1px}
+.foot-grid a{display:block;color:#9fb0bc;font-size:14px;padding:5px 0}
+.foot-grid a:hover{color:#fff}
+.foot-bot{margin-top:46px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:#71828f}
+
+@media(max-width:920px){
+  .nav-links{display:none}
+  .logos{grid-template-columns:repeat(2,1fr)}
+  .logos .lg{border-bottom:1px solid var(--line)}
+  .who,.wedge,.prod,.why-grid{grid-template-columns:1fr;gap:32px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand"><span class="mk"></span>造物云</div>
+    <nav class="nav-links">
+      <a href="#who">关于我们</a>
+      <a href="#value">核心价值</a>
+      <a href="#products">产品</a>
+      <a href="#why">为什么是我们</a>
+      <a href="#clients">客户</a>
+    </nav>
+    <button class="btn">预约咨询 →</button>
+  </div>
+</header>
+
+<!-- HERO：信任打头 -->
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">企业级 AI 落地解决方案</div>
+    <h1 class="serif">中国领先的企业，<br>正在用造物云<em>把 AI 真正落地</em>。</h1>
+    <p class="sub">我们不卖零散工具，而是把自研的 AI 工作台、应用与方法论，部署进你的业务——让你公司里<b>最懂业务的人</b>，也能亲手做出专业的 AI 应用。</p>
+    <div class="cta">
+      <button class="btn">预约 30 分钟咨询 →</button>
+      <button class="btn btn-line">查看客户案例</button>
+    </div>
+  </div>
+</section>
+
+<!-- 信任墙 -->
+<section class="trust" id="clients">
+  <div class="wrap">
+    <div class="cap">他们选择与造物云一起落地 AI</div>
+    <div class="logos">
+      <div class="lg">海尔</div>
+      <div class="lg">利丰</div>
+      <div class="lg">安踏</div>
+      <div class="lg">波司登</div>
+      <div class="lg">光明</div>
+      <div class="lg">星巴克</div>
+      <div class="lg">苏泊尔</div>
+    </div>
+    <div class="note">家电 · 供应链 · 服饰 · 食品 · 餐饮零售 · 厨电 —— 跨行业头部企业的共同选择。</div>
+  </div>
+</section>
+
+<!-- 我们是谁 -->
+<section class="band paper2" id="who">
+  <div class="wrap who">
+    <div>
+      <div class="kicker">我们是谁</div>
+      <h2 class="h2">一家有自研产品的<br>企业 AI 落地公司</h2>
+    </div>
+    <div>
+      <p class="lead">不靠人头堆项目。每一次落地，都跑在我们自己的 AI 工作台和方法论上——做一次，沉淀一次，下一家更快、更省、更准。这是我们和传统外包、集成商最根本的不同。</p>
+      <div class="stat-row">
+        <div class="stat"><div class="n">12<span style="font-size:20px">年</span></div><div class="l">设计 × 商业 × AI 的造物经验</div></div>
+        <div class="stat"><div class="n">7+</div><div class="l">世界 500 强级头部客户</div></div>
+        <div class="stat"><div class="n">浙大</div><div class="l">人工智能 / 设计血脉孵化</div></div>
+        <div class="stat"><div class="n">多产品</div><div class="l">工作台 · 应用中心 · 资产中台</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 核心价值 wedge -->
+<section class="band" id="value">
+  <div class="wrap">
+    <div class="kicker">核心价值</div>
+    <h2 class="h2" style="margin-bottom:48px">让懂业务的人，<br>自己做出专业的 AI 应用</h2>
+    <div class="wedge">
+      <div>
+        <p class="lead" style="margin-top:0">AI 真正的瓶颈，从来不是“怎么做”，而是“做什么、什么才算好”——而这恰恰握在你那些最懂业务的人手里。过去这份判断要排队等技术部门，慢、贵、还走样。</p>
+        <p class="lead">造物云把这条路打通：业务专家说人话，平台把判断直接变成能跑的 AI 应用。每做一个，就进了全公司可复用的应用与技能库，越攒越厚。</p>
+      </div>
+      <div class="panel">
+        <div class="row"><span class="ar serif">01</span><div class="tx"><b>业务专家提出判断</b><span>“选品该看哪些维度”“这条文案像不像我们品牌”</span></div></div>
+        <div class="row"><span class="ar serif">02</span><div class="tx"><b>平台编译成 AI 应用</b><span>无需写代码，所想即所得，当场可用</span></div></div>
+        <div class="row"><span class="ar serif">03</span><div class="tx"><b>沉淀进应用 / 技能中心</b><span>全公司复用，复用率逐季上升</span></div></div>
+        <div class="row"><span class="ar serif">04</span><div class="tx"><b>越用越懂你的公司</b><span>资产留在你的环境，越往后越离不开</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 产品矩阵 -->
+<section class="band paper2" id="products">
+  <div class="wrap">
+    <div class="kicker">我们的产品</div>
+    <h2 class="h2">一套相互咬合的<br>AI 落地产品</h2>
+    <div class="prod">
+      <div class="pcard">
+        <span class="flag">旗舰</span>
+        <div class="idx">产品 01</div>
+        <h3>AI 工作台</h3>
+        <div class="role">企业自己的 AI 生产平台</div>
+        <p>部署在你的环境、数据不出门、模型中立可接国产。业务人员不写代码，也能把判断做成专业 AI 应用。</p>
+        <span class="more">了解工作台 →</span>
+      </div>
+      <div class="pcard">
+        <div class="idx">产品 02</div>
+        <h3>应用 · 插件 · 技能中心</h3>
+        <div class="role">越攒越厚的复利资产</div>
+        <p>每个业务专家造出的应用与技能，沉淀成全公司可复用的资产库——这是越用越离不开的根。</p>
+        <span class="more">了解应用中心 →</span>
+      </div>
+      <div class="pcard">
+        <div class="idx">产品 03</div>
+        <h3>多模态资产中台</h3>
+        <div class="role">DAM · 让企业的图文资产可被 AI 检索调用</div>
+        <p>把企业沉淀的海量素材、文档、生成资产统一管理、向量检索，喂养上层每一个 AI 应用。</p>
+        <span class="more">了解资产中台 →</span>
+      </div>
+      <div class="pcard">
+        <div class="idx">产品 04</div>
+        <h3>落地交付与共创</h3>
+        <div class="role">围着产品的服务，把 AI 接进你的核心流程</div>
+        <p>行业模板定制、全员培训、深度共创。先拿我们自己练——我们就用这套，孵化了一批自有应用。</p>
+        <span class="more">了解服务 →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 为什么是我们 dark -->
+<section class="band dark" id="why">
+  <div class="wrap">
+    <div class="kicker">为什么是我们</div>
+    <h2 class="h2" style="color:#fff">工具谁都能买，<br>判断与方法是我们的</h2>
+    <div class="why-grid">
+      <div class="why-item"><div class="t"><span class="no">01</span>大客户验证过的能力</div><p>海尔、星巴克、安踏、波司登、利丰、光明、苏泊尔——能搞定世界级大集团的落地，本身就是最硬的资历。</p></div>
+      <div class="why-item"><div class="t"><span class="no">02</span>浙大血脉的方法论</div><p>设计与人工智能的机构级传承，把“造什么、什么叫好”的判断编码成可复用方法——机构级、难抄、能育人。</p></div>
+      <div class="why-item"><div class="t"><span class="no">03</span>模型盲区里的判断力</div><p>模型擅长执行，不擅长品味与商业判断。12 年造新物种的经验，正压在模型最弱、最值钱的那一格。</p></div>
+      <div class="why-item"><div class="t"><span class="no">04</span>中立 · 私有化 · 主权在你</div><p>不绑死单一模型，数据不出门，部署在你自己的环境。你的 AI 能力，最终属于你自己。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 资质条 -->
+<section class="band">
+  <div class="wrap" style="text-align:center">
+    <div class="kicker">机构背书</div>
+    <h2 class="h2" style="margin-bottom:8px">值得托付的底色</h2>
+    <div class="quals" style="justify-content:center">
+      <span class="qual">浙大孵化团队</span>
+      <span class="qual">AIGC TOP 50</span>
+      <span class="qual">专精特新</span>
+      <span class="qual">国家高新技术企业</span>
+      <span class="qual">线性资本被投</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="ctaband paper2">
+  <div class="wrap">
+    <div class="kicker">下一步</div>
+    <h2 class="serif">带一个想落地的场景，<br>来和我们聊三十分钟</h2>
+    <p>不卖方案、不发资料包——直接带你看，业务专家如何亲手把判断变成能跑的 AI 应用。</p>
+    <div class="cta">
+      <button class="btn">预约 30 分钟咨询 →</button>
+      <button class="btn btn-line">查看更多案例</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="color:#fff;margin-bottom:14px"><span class="mk"></span>造物云</div>
+        <p style="font-size:14px;color:#9fb0bc;max-width:300px">有自研产品的企业 AI 落地公司。<br>让最懂业务的人，自己做出专业的 AI 应用。</p>
+      </div>
+      <div><h5>产品</h5><a href="#products">AI 工作台</a><a href="#products">应用 · 技能中心</a><a href="#products">多模态资产中台</a><a href="#products">落地与共创</a></div>
+      <div><h5>了解</h5><a href="#who">关于我们</a><a href="#why">为什么是我们</a><a href="#clients">客户案例</a></div>
+      <div><h5>联系</h5><a href="#">预约咨询</a><a href="#">商务合作</a><a href="#">加入我们</a></div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 造物云 · 浙大孵化团队</span>
+      <span>数据不出门 · 模型中立 · 业务专家可用</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

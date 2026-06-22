@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>造物云 · 让懂业务的人，自己做出专业的 AI 应用</title>
+<!-- 版本 B：核心价值打头 · 业务专家自己造。沿用 captions 流光渐变 DNA,现代、提气。旗舰产品名暂用占位“工作台”。 -->
+<style>
+:root{
+  --air:#f3fbff; --sky:#a6ecff; --sea:#00c8f0; --cloud:#ffd2dc; --peach:#ffca9f; --sun:#f99f3f;
+  --ink:#0f1a24; --ink-2:#4a5a66; --line:#e6eef2; --white:#fff; --maxw:1140px; --r:22px;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+}
+@property --angle{syntax:"<angle>";initial-value:0deg;inherits:false}
+@keyframes rotate{to{--angle:360deg}}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes hueDrift{to{filter:blur(60px) saturate(1.15) hue-rotate(360deg)}}
+@keyframes floatMesh{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-3%,2%) scale(1.08)}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--air);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.62}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+section{position:relative}
+
+.skywash{position:absolute;top:0;left:0;right:0;height:1100px;z-index:0;pointer-events:none;
+  -webkit-mask-image:linear-gradient(180deg,#000 0,#000 40%,transparent 88%);mask-image:linear-gradient(180deg,#000 0,#000 40%,transparent 88%)}
+.skywash::before,.skywash::after{content:"";position:absolute;inset:-15%;filter:blur(60px) saturate(1.15);will-change:filter,transform}
+.skywash::before{background:
+  radial-gradient(42% 48% at 12% 18%,#ffd6a3,transparent 62%),
+  radial-gradient(46% 52% at 82% 12%,#ffc2d4,transparent 62%),
+  radial-gradient(52% 58% at 62% 40%,#b9e8ff,transparent 66%),
+  radial-gradient(48% 54% at 30% 58%,#ffd0e6,transparent 62%);
+  animation:hueDrift 40s linear infinite,floatMesh 26s ease-in-out infinite}
+.skywash::after{background:
+  radial-gradient(50% 55% at 88% 35%,#c7d4ff,transparent 64%),
+  radial-gradient(46% 50% at 20% 30%,#ffe1a8,transparent 62%),
+  radial-gradient(54% 60% at 50% 62%,#b8f3e6,transparent 66%);
+  opacity:.85;mix-blend-mode:multiply;animation:hueDrift 40s linear infinite reverse,floatMesh 32s ease-in-out infinite reverse}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;margin-top:14px;padding:0 22px;border-radius:999px;
+  background:rgba(255,255,255,.6);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.7);box-shadow:0 8px 30px rgba(20,80,120,.06)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:.5px}
+.brand .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--sea),var(--cloud) 55%,var(--sun));box-shadow:0 4px 14px rgba(0,180,220,.4)}
+.nav-links{display:flex;gap:6px}
+.nav-links a{padding:8px 14px;border-radius:999px;font-size:14px;color:var(--ink-2);transition:.2s}
+.nav-links a:hover{background:rgba(255,255,255,.7);color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;padding:11px 22px;border-radius:999px;font-size:14px;font-weight:600;border:none;background:var(--ink);color:#fff;transition:transform .2s,box-shadow .2s;font-family:var(--sans)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(15,26,36,.25)}
+.btn-ghost{background:rgba(255,255,255,.75);color:var(--ink);border:1px solid var(--line)}
+.btn-ghost:hover{box-shadow:0 10px 24px rgba(20,80,120,.12)}
+
+/* hero */
+.hero{padding:78px 0 70px;text-align:center;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:26px;padding:7px 16px;border-radius:999px;font-size:13px;color:var(--ink-2);background:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.8);backdrop-filter:blur(10px)}
+.eyebrow .pulse{width:8px;height:8px;border-radius:50%;background:var(--sea)}
+h1{font-size:clamp(40px,6.4vw,78px);line-height:1.08;font-weight:800;letter-spacing:-1.5px}
+.grad-text{background:linear-gradient(108deg,#00b0e0 0,#ff7d9a 50%,var(--sun) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sub{max-width:700px;margin:28px auto 0;font-size:clamp(17px,2vw,21px);color:var(--ink-2)}
+.cta-row{display:flex;gap:14px;justify-content:center;margin-top:38px;flex-wrap:wrap}
+.hero-anim{animation:rise .8s ease both}.d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}
+
+/* hero flow panel */
+.glass-panel{position:relative;max-width:940px;margin:60px auto 0;padding:2px;border-radius:28px;background:linear-gradient(var(--angle),#9af1ff 12%,var(--cloud) 52%,var(--sun) 90%);animation:rotate 7s linear infinite;box-shadow:0 40px 90px rgba(30,120,160,.18)}
+.glass-inner{border-radius:26px;background:rgba(255,255,255,.82);backdrop-filter:blur(24px);padding:34px;display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:14px;align-items:center}
+.flow-step{text-align:left}
+.flow-step .k{font-size:12px;color:var(--sea);font-weight:700;letter-spacing:1px}
+.flow-step .t{font-size:16px;font-weight:700;margin-top:6px}
+.flow-step .d{font-size:12.5px;color:var(--ink-2);margin-top:4px}
+.flow-arrow{color:#b9cdd6;font-size:18px;text-align:center}
+
+/* trust strip */
+.trust{padding:18px 0 86px;text-align:center}
+.trust .cap{font-size:13px;color:var(--ink-2);letter-spacing:1px;margin-bottom:20px}
+.logo-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.logo-row .lg{padding:11px 22px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.85);backdrop-filter:blur(8px);font-size:16px;font-weight:700;color:var(--ink);transition:.2s}
+.logo-row .lg:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(20,80,120,.12)}
+
+/* bands */
+.band{padding:96px 0}.band.white{background:#fff}
+.tag{font-size:13px;font-weight:700;letter-spacing:2px;color:var(--sea);text-transform:uppercase}
+.h2{font-size:clamp(28px,4vw,46px);font-weight:800;letter-spacing:-.6px;margin-top:12px;line-height:1.16}
+.lead{font-size:17px;color:var(--ink-2);margin-top:14px;max-width:660px}
+.center{text-align:center}.center .lead{margin-left:auto;margin-right:auto}
+
+/* engine 2-col */
+.engine{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:52px}
+.ecard{padding:2px;border-radius:var(--r);background:linear-gradient(160deg,rgba(154,241,255,.6),rgba(255,202,159,.6))}
+.ecard .inner{background:#fff;border-radius:calc(var(--r) - 2px);padding:36px;height:100%}
+.ecard .lbl{font-size:12px;font-weight:700;letter-spacing:1px;color:var(--sea)}
+.ecard h3{font-size:24px;margin-top:10px}
+.ecard p{font-size:14.5px;color:var(--ink-2);margin-top:12px}
+.ecard ul{margin-top:16px;display:flex;flex-direction:column;gap:9px}
+.ecard li{list-style:none;display:flex;gap:10px;font-size:14px;color:var(--ink-2)}
+.ecard li .c{color:var(--sea);font-weight:800;flex:none}
+
+/* badges */
+.badges{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:44px}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:999px;font-size:14px;font-weight:600;background:rgba(255,255,255,.85);border:1px solid var(--line)}
+.badge .g{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--sea),var(--sun))}
+
+/* products grid */
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:50px}
+.pg{padding:28px;border-radius:var(--r);background:#fff;border:1px solid var(--line);transition:.25s;position:relative}
+.pg:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(20,80,120,.1)}
+.pg .ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:20px;font-weight:800;color:var(--sea);background:linear-gradient(135deg,var(--air),var(--sky));margin-bottom:16px}
+.pg h4{font-size:17.5px}.pg .role{font-size:12px;color:#9fb0bc;margin-top:3px}.pg p{font-size:13.5px;color:var(--ink-2);margin-top:10px}
+.pg .flag{position:absolute;top:20px;right:20px;font-size:10.5px;color:#fff;background:linear-gradient(135deg,var(--sea),var(--sun));padding:3px 9px;border-radius:999px;letter-spacing:.5px}
+
+/* why */
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px}
+.wc{padding:30px;border-radius:var(--r);background:linear-gradient(170deg,#fff,var(--air));border:1px solid var(--line)}
+.wc .n{font-size:13px;color:var(--sea);font-weight:700;letter-spacing:1px}
+.wc h4{font-size:19px;margin-top:10px}.wc p{font-size:14px;color:var(--ink-2);margin-top:10px}
+
+/* cta */
+.cta-band{padding:110px 0;text-align:center;position:relative;overflow:hidden}
+.cta-card{position:relative;padding:2px;border-radius:34px;max-width:900px;margin:0 auto;background:linear-gradient(var(--angle),#9af1ff,var(--cloud),var(--sun));animation:rotate 8s linear infinite;box-shadow:0 40px 100px rgba(30,120,160,.2)}
+.cta-card .inner{background:rgba(255,255,255,.92);backdrop-filter:blur(24px);border-radius:32px;padding:60px 40px}
+.cta-card h2{font-size:clamp(30px,4.5vw,50px);font-weight:800;letter-spacing:-.5px;line-height:1.18}
+.cta-card p{font-size:16px;color:var(--ink-2);margin:18px auto 0;max-width:540px}
+
+/* footer */
+footer{background:#0f1a24;color:#cdd9e0;padding:64px 0 36px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px}
+.foot-grid h5{color:#fff;font-size:14px;margin-bottom:14px}
+.foot-grid a{display:block;color:#9fb3bf;font-size:14px;padding:5px 0}.foot-grid a:hover{color:#fff}
+.foot-bot{margin-top:42px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:#7f95a3}
+
+@media(max-width:920px){
+  .nav-links{display:none}
+  .glass-inner{grid-template-columns:1fr;gap:18px}.flow-arrow{transform:rotate(90deg)}
+  .engine,.why,.pgrid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="skywash"></div>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <div class="brand"><span class="dot"></span>造物云</div>
+      <nav class="nav-links">
+        <a href="#how">怎么做到</a>
+        <a href="#products">产品</a>
+        <a href="#why">为什么是我们</a>
+        <a href="#clients">客户</a>
+      </nav>
+      <button class="btn">预约演示 →</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO：核心价值打头 -->
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow hero-anim d1"><span class="pulse"></span>企业 AI 落地 · 部署在你自己的环境</div>
+    <h1 class="hero-anim d2">让懂业务的人，<br>自己做出<span class="grad-text">专业的 AI 应用</span></h1>
+    <p class="sub hero-anim d3">不用写代码，不用排队等技术部。造物云把你最懂业务的那个人的判断，直接变成能跑的 AI 应用——做一个、存一个、全公司越用越聪明。</p>
+    <div class="cta-row hero-anim d4">
+      <button class="btn">预约 30 分钟演示 →</button>
+      <button class="btn btn-ghost">看业务专家怎么造应用</button>
+    </div>
+
+    <div class="glass-panel hero-anim d4">
+      <div class="glass-inner">
+        <div class="flow-step"><div class="k">01 判断</div><div class="t">业务专家说人话</div><div class="d">“该看哪些维度、像不像我们”</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="k">02 编译</div><div class="t">平台变成应用</div><div class="d">无需代码，当场可用</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="k">03 沉淀</div><div class="t">进应用 / 技能库</div><div class="d">全公司复用</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="k">04 进化</div><div class="t">越用越懂你</div><div class="d">资产留在你这儿</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 信任 strip -->
+<section class="trust" id="clients">
+  <div class="wrap">
+    <div class="cap">海尔 · 利丰 · 安踏 · 波司登 · 光明 · 星巴克 · 苏泊尔 等头部企业，与造物云一起落地 AI</div>
+    <div class="logo-row">
+      <span class="lg">海尔</span><span class="lg">利丰</span><span class="lg">安踏</span><span class="lg">波司登</span>
+      <span class="lg">光明</span><span class="lg">星巴克</span><span class="lg">苏泊尔</span>
+    </div>
+  </div>
+</section>
+
+<!-- 怎么做到：引擎 -->
+<section class="band white" id="how">
+  <div class="wrap">
+    <div class="center">
+      <div class="tag">我们换了个做法</div>
+      <div class="h2">不是再给你一个工具——<br>是给你一座，人人能用的 AI 造物工厂</div>
+      <p class="lead center">全世界的 AI 编程工具都为程序员而做。造物云为<b>业务专家</b>而做：把判断变成应用这件事，第一次不再需要技术部门排队。</p>
+    </div>
+    <div class="engine">
+      <div class="ecard"><div class="inner">
+        <div class="lbl">底座</div>
+        <h3>AI 工作台</h3>
+        <p>企业自己的 AI 生产平台，业务人员用自然语言就能搭出专业应用。</p>
+        <ul>
+          <li><span class="c">✓</span>部署在你的环境，数据不出门</li>
+          <li><span class="c">✓</span>模型中立，可接国产、不锁一家、不用翻墙</li>
+          <li><span class="c">✓</span>面向业务专家，不只程序员</li>
+        </ul>
+      </div></div>
+      <div class="ecard"><div class="inner">
+        <div class="lbl">复利</div>
+        <h3>应用 · 插件 · 技能中心</h3>
+        <p>每个人造出的应用与技能，沉淀成全公司的可复用资产，越攒越厚。</p>
+        <ul>
+          <li><span class="c">✓</span>造一个、存一个，复用率逐季上升</li>
+          <li><span class="c">✓</span>失败也进库，下次自动预警不重犯</li>
+          <li><span class="c">✓</span>资产长在你公司，越用越离不开</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="badges">
+      <span class="badge"><span class="g"></span>数据不出门 · 私有化</span>
+      <span class="badge"><span class="g"></span>模型中立 · 可接国产</span>
+      <span class="badge"><span class="g"></span>业务专家可用</span>
+    </div>
+  </div>
+</section>
+
+<!-- 多产品 -->
+<section class="band" id="products">
+  <div class="wrap">
+    <div class="center">
+      <div class="tag">不止一个产品</div>
+      <div class="h2">一套相互咬合的 AI 落地产品</div>
+    </div>
+    <div class="pgrid">
+      <div class="pg"><span class="flag">旗舰</span><div class="ico">台</div><h4>AI 工作台</h4><div class="role">企业自己的 AI 生产平台</div><p>业务专家不写代码，也能做出专业 AI 应用。</p></div>
+      <div class="pg"><div class="ico">用</div><h4>应用 · 技能中心</h4><div class="role">越攒越厚的复利资产</div><p>全公司可复用的应用、插件与技能库。</p></div>
+      <div class="pg"><div class="ico">资</div><h4>多模态资产中台</h4><div class="role">DAM · 资产可被 AI 调用</div><p>海量图文素材统一管理、向量检索，喂养上层应用。</p></div>
+      <div class="pg"><div class="ico">达</div><h4>落地交付与共创</h4><div class="role">把 AI 接进核心流程</div><p>行业模板、全员培训、深度共创。先拿自己练。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 为什么是我们 -->
+<section class="band white" id="why">
+  <div class="wrap">
+    <div class="center">
+      <div class="tag">为什么是我们</div>
+      <div class="h2">工具谁都能买，<br>判断与方法是我们的</div>
+    </div>
+    <div class="why">
+      <div class="wc"><div class="n">不变量 01</div><h4>大客户验证过</h4><p>海尔、星巴克、安踏等世界级大集团选择我们——能搞定它们的落地，是最硬的资历。</p></div>
+      <div class="wc"><div class="n">不变量 02</div><h4>浙大血脉方法论</h4><p>设计与人工智能的机构级传承，把“造什么、什么叫好”编码成可复用、能育人的方法。</p></div>
+      <div class="wc"><div class="n">不变量 03</div><h4>压在模型盲区上</h4><p>模型擅长执行、不擅长品味与商业判断。12 年造新物种的经验，正补在它最弱的那一格。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="wrap">
+    <div class="cta-card">
+      <div class="inner">
+        <div class="tag">下一步</div>
+        <h2>带一个想造的应用，<br>来聊三十分钟</h2>
+        <p>不卖方案、不发资料包——直接带你看，业务专家如何亲手把判断变成能跑的 AI 应用。</p>
+        <div class="cta-row"><button class="btn" style="padding:15px 34px;font-size:16px">预约 30 分钟演示 →</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px"><span class="dot"></span>造物云</div>
+        <p style="font-size:14px;color:#9fb3bf;max-width:300px">让懂业务的人，自己做出专业的 AI 应用。<br>浙大孵化团队 · 有自研产品的企业 AI 落地公司。</p>
+      </div>
+      <div><h5>产品</h5><a href="#products">AI 工作台</a><a href="#products">应用 · 技能中心</a><a href="#products">多模态资产中台</a><a href="#products">落地与共创</a></div>
+      <div><h5>了解</h5><a href="#how">怎么做到</a><a href="#why">为什么是我们</a><a href="#clients">客户案例</a></div>
+      <div><h5>联系</h5><a href="#">预约演示</a><a href="#">商务合作</a><a href="#">加入我们</a></div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 造物云 · 浙大孵化团队</span>
+      <span>数据不出门 · 模型中立 · 业务专家可用</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

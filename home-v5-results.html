@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>造物云 — 企业 AI 落地的产品公司</title>
+<meta name="description" content="不卖 AI 工具,交付 AI 结果。用自研 AI 中台与应用矩阵,帮企业把 AI 变成业务结果。" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --gradient-dawn:linear-gradient(135deg,#FFDCDC 0%,#EDD8F0 50%,#AB9EFC 100%);
+  --gradient-warm:linear-gradient(135deg,#FFD1A4 0%,#FFB5D6 50%,#BBABED 100%);
+}
+:root[data-theme="light"]{
+  --bg:#fff9f3; --bg-1:#fff3e8; --bg-2:#ffece0; --bg-3:#f5e3d8;
+  --line:rgba(58,38,82,.08); --line-2:rgba(58,38,82,.15);
+  --fg:#2a1f3a; --fg-dim:#635670; --fg-dim2:#8a7e95; --fg-dim3:#b3a7bd;
+  --accent:#6c4cff; --accent-hi:#5538cc; --accent-soft:rgba(108,76,255,.10); --accent-fg:#fff;
+  --grid-stroke:rgba(108,76,255,.05); --card:#fffdfa; color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bg:#18121f; --bg-1:#20192a; --bg-2:#2a2238; --bg-3:#342a44;
+  --line:rgba(255,244,230,.08); --line-2:rgba(255,244,230,.15);
+  --fg:#fff4e6; --fg-dim:#cab9d6; --fg-dim2:#9485a4; --fg-dim3:#695a78;
+  --accent:#AB9EFC; --accent-hi:#BBABED; --accent-soft:rgba(171,158,252,.16); --accent-fg:#18121f;
+  --grid-stroke:rgba(255,244,230,.05); --card:#20192a; color-scheme:dark;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--bg);scroll-behavior:smooth}
+body{font-family:'Inter','Noto Sans SC',ui-sans-serif,system-ui,'PingFang SC','Microsoft YaHei',sans-serif;color:var(--fg);background:var(--bg);letter-spacing:-.005em;-webkit-font-smoothing:antialiased;line-height:1.6;transition:background-color .25s,color .25s}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.display{font-family:'Space Grotesk','Inter',sans-serif;font-weight:600;letter-spacing:-.035em;line-height:.98}
+::selection{background:var(--accent);color:var(--accent-fg)}
+a{color:inherit;text-decoration:none}
+.container{max-width:1180px;margin:0 auto;padding:0 28px}
+.sec-label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--fg-dim2);text-transform:uppercase}
+.sec-label .num{color:var(--accent)}
+.accent{color:var(--accent)}
+.dim{color:var(--fg-dim)}
+
+/* NAV */
+header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(18px);background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--line)}
+.nav{height:62px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:14px}
+.brand b{font-weight:600}
+.brand .u{color:var(--accent)}
+.nav-links{display:flex;gap:4px}
+.nav-links a{padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--fg-dim);transition:color .2s}
+.nav-links a:hover{color:var(--fg)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.toggle{width:34px;height:34px;border:1px solid var(--line-2);border-radius:9px;background:transparent;color:var(--fg-dim);cursor:pointer;display:grid;place-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:9999px;font-size:14px;font-weight:500;cursor:pointer;transition:.2s;white-space:nowrap}
+.btn-primary{background:var(--accent);color:var(--accent-fg)}
+.btn-primary:hover{background:var(--accent-hi)}
+.btn-ghost{border:1px solid var(--line-2);color:var(--fg)}
+.btn-ghost:hover{border-color:var(--accent)}
+@media(max-width:880px){.nav-links{display:none}}
+
+/* HERO */
+.hero{position:relative;padding:160px 0 90px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;background:var(--grid-stroke);
+  background-image:linear-gradient(to right,var(--grid-stroke) 1px,transparent 1px),linear-gradient(to bottom,var(--grid-stroke) 1px,transparent 1px);
+  background-size:64px 64px;mask-image:radial-gradient(ellipse at 50% 20%,#000 0%,#000 50%,transparent 82%);-webkit-mask-image:radial-gradient(ellipse at 50% 20%,#000 0%,#000 50%,transparent 82%)}
+.orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.4;z-index:0}
+.orb-1{width:460px;height:460px;background:var(--gradient-dawn);top:-120px;right:4%}
+.orb-2{width:320px;height:320px;background:var(--gradient-warm);bottom:-100px;left:2%;opacity:.3}
+.hero-inner{position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--fg-dim);border:1px solid var(--line-2);padding:6px 14px;border-radius:9999px;margin-bottom:28px}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+h1.hero-h{font-family:'Space Grotesk','Noto Sans SC',sans-serif;font-weight:700;font-size:clamp(40px,7vw,92px);line-height:1.02;letter-spacing:-.04em;max-width:14ch}
+.hero-h .accent{display:inline-block}
+.hero-sub{margin-top:30px;font-size:clamp(17px,2vw,21px);color:var(--fg-dim);max-width:60ch;line-height:1.65}
+.hero-sub b{color:var(--fg);font-weight:600}
+.hero-cta{margin-top:40px;display:flex;gap:14px;flex-wrap:wrap}
+.kpis{margin-top:64px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:760px}
+.kpi .n{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(26px,3.4vw,40px);color:var(--fg)}
+.kpi .l{font-size:13px;color:var(--fg-dim2);margin-top:4px}
+@media(max-width:680px){.kpis{grid-template-columns:repeat(2,1fr);gap:24px 18px}}
+
+section{position:relative}
+.block{padding:96px 0}
+.block-1{background:var(--bg-1)}
+.head{max-width:0}
+.h2{font-family:'Space Grotesk','Noto Sans SC',sans-serif;font-weight:600;font-size:clamp(28px,4vw,48px);letter-spacing:-.03em;line-height:1.08}
+.lead{margin-top:18px;font-size:18px;color:var(--fg-dim);max-width:62ch}
+.mt-head{margin-bottom:48px}
+
+/* pain cards */
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px}
+.pain{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px}
+.pain .x{font-family:'Space Grotesk';color:var(--accent);font-size:20px;margin-bottom:14px}
+.pain h4{font-size:18px;font-weight:600;margin-bottom:10px}
+.pain p{font-size:14.5px;color:var(--fg-dim)}
+.pain-foot{margin-top:30px;font-size:20px;color:var(--fg);font-weight:500;text-align:center;font-family:'Noto Sans SC',sans-serif}
+.pain-foot .accent{font-weight:700}
+@media(max-width:820px){.pain-grid{grid-template-columns:1fr}}
+
+/* paradigm */
+.para{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:14px}
+.para .col{border-radius:18px;padding:34px;border:1px solid var(--line)}
+.para .old{background:transparent}
+.para .new{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 35%,transparent)}
+.para .tag{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-dim2);margin-bottom:16px}
+.para .new .tag{color:var(--accent)}
+.para .big{font-family:'Space Grotesk','Noto Sans SC',sans-serif;font-weight:600;font-size:24px;line-height:1.25;margin-bottom:14px}
+.para ul{list-style:none}
+.para li{font-size:15px;color:var(--fg-dim);padding:7px 0 7px 22px;position:relative}
+.para li::before{content:"→";position:absolute;left:0;color:var(--accent)}
+.para .old li::before{content:"✕";color:var(--fg-dim3)}
+@media(max-width:820px){.para{grid-template-columns:1fr}}
+
+/* stack */
+.stack{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+.layer{border:1px solid var(--line);border-radius:14px;padding:20px 26px;display:flex;align-items:center;gap:22px;background:var(--card);transition:.2s}
+.layer:hover{border-color:var(--accent);transform:translateX(4px)}
+.layer .lv{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);width:74px;flex-shrink:0}
+.layer .nm{font-family:'Space Grotesk','Noto Sans SC',sans-serif;font-weight:600;font-size:18px;width:130px;flex-shrink:0}
+.layer .ds{font-size:14.5px;color:var(--fg-dim)}
+.layer.core{background:linear-gradient(100deg,var(--accent-soft),transparent);border-color:color-mix(in srgb,var(--accent) 30%,transparent)}
+.layer.core .nm{color:var(--accent)}
+.layer.base{opacity:.62}
+.layer.base .nm{color:var(--fg-dim)}
+@media(max-width:760px){.layer{flex-wrap:wrap;gap:6px 16px}.layer .nm{width:auto}}
+
+/* is/isnt */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:14px;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.cmp .ch{padding:22px 28px;font-family:'Space Grotesk','Noto Sans SC',sans-serif;font-weight:600;font-size:18px;border-bottom:1px solid var(--line)}
+.cmp .is{background:var(--accent-soft);color:var(--accent)}
+.cmp .isnt{color:var(--fg-dim2);border-left:1px solid var(--line)}
+.cmp .row{padding:16px 28px;font-size:15px;border-bottom:1px solid var(--line)}
+.cmp .row.isnt{color:var(--fg-dim);border-left:1px solid var(--line)}
+.cmp .row .mk{color:var(--accent);margin-right:8px}
+.cmp .row.isnt .mk{color:var(--fg-dim3)}
+@media(max-width:760px){.cmp{grid-template-columns:1fr}.cmp .isnt,.cmp .row.isnt{border-left:none}}
+
+/* moats */
+.moat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px}
+.moat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px;position:relative}
+.moat .no{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+.moat h4{font-size:19px;font-weight:600;margin:14px 0 12px;font-family:'Space Grotesk','Noto Sans SC',sans-serif}
+.moat p{font-size:14.5px;color:var(--fg-dim)}
+@media(max-width:820px){.moat-grid{grid-template-columns:1fr}}
+
+/* wedge */
+.wedge{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.steps{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+.step{display:flex;gap:16px;align-items:flex-start}
+.step .b{width:30px;height:30px;border-radius:8px;background:var(--accent-soft);color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:13px;display:grid;place-items:center;flex-shrink:0;margin-top:2px}
+.step .t{font-size:15.5px;color:var(--fg-dim)}
+.step .t b{color:var(--fg)}
+.wedge-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px}
+.wedge-card .label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.wedge-card h3{font-family:'Space Grotesk','Noto Sans SC',sans-serif;font-weight:700;font-size:30px;margin-bottom:14px}
+.wedge-card p{font-size:15px;color:var(--fg-dim)}
+@media(max-width:820px){.wedge{grid-template-columns:1fr;gap:30px}}
+
+/* business model */
+.bm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px}
+.bm{border:1px solid var(--line);border-radius:18px;padding:28px;background:var(--card)}
+.bm .t{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--fg-dim2);text-transform:uppercase;letter-spacing:.08em}
+.bm h4{font-size:19px;font-weight:600;margin:10px 0 10px;font-family:'Space Grotesk','Noto Sans SC',sans-serif}
+.bm.main{border-color:color-mix(in srgb,var(--accent) 40%,transparent);background:var(--accent-soft)}
+.bm.main .t{color:var(--accent)}
+.bm p{font-size:14px;color:var(--fg-dim)}
+@media(max-width:820px){.bm-grid{grid-template-columns:1fr}}
+
+/* proof badges */
+.badges{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.badge{border:1px solid var(--line-2);border-radius:9999px;padding:9px 18px;font-size:13.5px;color:var(--fg-dim);font-family:'JetBrains Mono',monospace}
+.badge .accent{font-weight:600}
+
+/* CTA */
+.cta{padding:110px 0;text-align:center;position:relative;overflow:hidden}
+.cta .orb{width:540px;height:540px;background:var(--gradient-dawn);top:-180px;left:50%;transform:translateX(-50%);opacity:.32}
+.cta h2{font-family:'Space Grotesk','Noto Sans SC',sans-serif;font-weight:700;font-size:clamp(30px,5vw,60px);line-height:1.05;position:relative;z-index:2}
+.cta p{margin:22px auto 0;max-width:48ch;color:var(--fg-dim);font-size:18px;position:relative;z-index:2}
+.cta .hero-cta{justify-content:center;position:relative;z-index:2}
+
+footer{border-top:1px solid var(--line);background:var(--bg-1);padding:48px 0;font-size:13.5px;color:var(--fg-dim2)}
+.foot-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:24px}
+.foot-tag{max-width:40ch;color:var(--fg-dim);line-height:1.6}
+.mono-note{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--fg-dim3)}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease,cubic-bezier(.22,.61,.36,1)),transform .7s cubic-bezier(.22,.61,.36,1)}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#top" class="brand"><b>zaowuyun</b><span class="u">_</span></a>
+    <nav class="nav-links">
+      <a href="#paradigm">怎么做</a>
+      <a href="#stack">能力</a>
+      <a href="#moat">为什么是我们</a>
+      <a href="#wedge">第一刀</a>
+      <a href="#bm">合作</a>
+    </nav>
+    <div class="nav-right">
+      <button class="toggle" id="themeBtn" aria-label="切换主题">◐</button>
+      <a href="#cta" class="btn btn-primary">带个想法来聊<span>→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="container hero-inner">
+    <div class="eyebrow reveal"><span class="dot"></span>企业 AI 落地的产品公司 · 浙江大学人工智能学院背景</div>
+    <h1 class="hero-h display reveal">不卖 AI 工具,<br/><span class="accent">交付 AI 结果。</span></h1>
+    <p class="hero-sub reveal">我们用自研的 AI 中台与应用矩阵,帮企业把 AI 真正落地到<b>业务结果</b>上。<br/>不卖工具、不卖人头——卖<b>可复用的 AI 能力</b>和<b>确定的结果</b>。</p>
+    <div class="hero-cta reveal">
+      <a href="#cta" class="btn btn-primary">带一个想做的产品来聊<span>→</span></a>
+      <a href="#stack" class="btn btn-ghost">看我们的能力栈</a>
+    </div>
+    <div class="kpis reveal">
+      <div class="kpi"><div class="n">6 年</div><div class="l">服务头部品牌</div></div>
+      <div class="kpi"><div class="n">自研</div><div class="l">AI 中台 + 应用矩阵</div></div>
+      <div class="kpi"><div class="n">−92%</div><div class="l">单项目工时压缩</div></div>
+      <div class="kpi"><div class="n">13 所</div><div class="l">高校联合实验室</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="block" id="pain">
+  <div class="container">
+    <div class="mt-head reveal">
+      <div class="sec-label"><span class="num">01_</span> // 你现在卡在哪</div>
+      <h2 class="h2" style="margin-top:14px">买了一堆 AI,业务还是没跑起来</h2>
+    </div>
+    <div class="pain-grid">
+      <div class="pain reveal"><div class="x">✕</div><h4>工具串不起来</h4><p>买了一堆 AI 工具和账号,各管一段,拼不成一条能跑的业务流。</p></div>
+      <div class="pain reveal"><div class="x">✕</div><h4>外包又慢又贵</h4><p>找设计公司、代运营、MCN,周期长、不可控,沉淀不下来。</p></div>
+      <div class="pain reveal"><div class="x">✕</div><h4>不知道该造什么</h4><p>AI 能帮你"怎么做",但"该做什么、什么叫好"——它给不了答案。</p></div>
+    </div>
+    <p class="pain-foot reveal">单点 AI 化,<span class="accent">老板感觉不到价值。</span></p>
+  </div>
+</section>
+
+<!-- PARADIGM -->
+<section class="block block-1" id="paradigm">
+  <div class="container">
+    <div class="mt-head reveal">
+      <div class="sec-label"><span class="num">02_</span> // 我们换了个做法</div>
+      <h2 class="h2" style="margin-top:14px">我们对<span class="accent">结果</span>负责</h2>
+      <p class="lead">全球一线创投已经看清:AI 真正要替代的不是软件,是服务与人力。赢家不卖工具,卖结果。我们也是。</p>
+    </div>
+    <div class="para">
+      <div class="col old reveal">
+        <div class="tag">别人 · 卖工具</div>
+        <div class="big">给你一套 AI 工具,<br/>结果你自己扛</div>
+        <ul>
+          <li>按席位、按项目、按人头收费</li>
+          <li>交付完工具和 PPT 就走</li>
+          <li>能不能跑出结果,与他无关</li>
+        </ul>
+      </div>
+      <div class="col new reveal">
+        <div class="tag">造物云 · 卖结果</div>
+        <div class="big">把整条业务跑在我们的<br/>AI 引擎上,我们交付结果</div>
+        <ul>
+          <li>按交付物、按业务指标结算</li>
+          <li>中台越跑越懂你,会进化</li>
+          <li>结果跑不出来,是我们的事</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="block" id="stack">
+  <div class="container">
+    <div class="mt-head reveal">
+      <div class="sec-label"><span class="num">03_</span> // 我们卖的到底是什么</div>
+      <h2 class="h2" style="margin-top:14px">中台是产品,结果是交付,判断是护城河</h2>
+    </div>
+    <div class="stack">
+      <div class="layer core reveal"><div class="lv">判断内核</div><div class="nm">造什么</div><div class="ds">"该造什么、什么叫好"——设计 × 商业判断。这是模型的盲区,也是我们的命根。</div></div>
+      <div class="layer reveal"><div class="lv">③ 结果</div><div class="nm">落地结果</div><div class="ds">应用上线、业务指标、增长——我们交付与共创的,是这个结果本身。</div></div>
+      <div class="layer reveal"><div class="lv">② 应用</div><div class="nm">应用矩阵</div><div class="ds">自研的 AI 应用,可复用、会进化,覆盖产品、内容、营销各环节。</div></div>
+      <div class="layer reveal"><div class="lv">① 中台</div><div class="nm">AI 中台</div><div class="ds">自研中台:资产、检索、编排、记忆——每一次交付都沉淀进来,越用越厚。</div></div>
+      <div class="layer base reveal"><div class="lv">⓪ 基建</div><div class="nm">大模型 / Agent</div><div class="ds">我们骑在 coding agent 与大模型之上,专注上层——不和大厂拼基建。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- IS / ISN'T -->
+<section class="block block-1" id="isisnt">
+  <div class="container">
+    <div class="mt-head reveal">
+      <div class="sec-label"><span class="num">04_</span> // 我们是 / 我们不是</div>
+      <h2 class="h2" style="margin-top:14px">同样是给企业交付,<br/>我们刻意不做那一种</h2>
+    </div>
+    <div class="cmp reveal">
+      <div class="ch is">我们是</div>
+      <div class="ch isnt">我们不是</div>
+      <div class="row"><span class="mk">✦</span>有自研中台+应用的产品公司</div>
+      <div class="row isnt"><span class="mk">✕</span>按人头按项目的解决方案商 / 外包</div>
+      <div class="row"><span class="mk">✦</span>对业务结果负责</div>
+      <div class="row isnt"><span class="mk">✕</span>交付完工具和 PPT 就走</div>
+      <div class="row"><span class="mk">✦</span>在一个垂直里最懂"该造什么"</div>
+      <div class="row isnt"><span class="mk">✕</span>什么行业都接的通用集成商</div>
+      <div class="row"><span class="mk">✦</span>骑在 coding agent 之上、专注上层</div>
+      <div class="row isnt"><span class="mk">✕</span>自己造大模型、和大厂拼基建</div>
+      <div class="row" style="border-bottom:none"><span class="mk">✦</span>自己先做成 AI 原生组织样板</div>
+      <div class="row isnt" style="border-bottom:none"><span class="mk">✕</span>只会讲 AI、自己却不用 AI 的咨询</div>
+    </div>
+  </div>
+</section>
+
+<!-- MOAT -->
+<section class="block" id="moat">
+  <div class="container">
+    <div class="mt-head reveal">
+      <div class="sec-label"><span class="num">05_</span> // 为什么是我们</div>
+      <h2 class="h2" style="margin-top:14px">模型会"怎么造",<br/>不会"造什么、什么叫好"</h2>
+      <p class="lead">护城河从来不在模型——模型谁都能用,版本优势几周就蒸发。真正的墙,是模型周围的三件事。</p>
+    </div>
+    <div class="moat-grid">
+      <div class="moat reveal"><div class="no">// 01</div><h4>判断与品味</h4><p>浙大人工智能学院血脉 + 多年产品创新实战。"造什么、什么叫好",正是模型的盲区、我们的强项。</p></div>
+      <div class="moat reveal"><div class="no">// 02</div><h4>会进化的造物引擎</h4><p>每交付一次,中台、应用、方法就厚一分。我们只盯一个健康指标:复用率。</p></div>
+      <div class="moat reveal"><div class="no">// 03</div><h4>前向部署的切换成本</h4><p>把中台硬接进你的核心业务流程,6–12 个月后,它已经是你公司的一部分。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WEDGE -->
+<section class="block block-1" id="wedge">
+  <div class="container">
+    <div class="mt-head reveal">
+      <div class="sec-label"><span class="num">06_</span> // 第一刀</div>
+      <h2 class="h2" style="margin-top:14px">先打穿消费品 / 产品创新</h2>
+    </div>
+    <div class="wedge">
+      <div class="reveal">
+        <p class="lead" style="margin-top:0;margin-bottom:8px">你有渠道、有资金,想做个新品或做 AI 化,但缺"又快、又准、又会卖"地把它从 0 落地的能力。我们接管这条本就外包、又最吃判断的链:</p>
+        <div class="steps">
+          <div class="step"><div class="b">1</div><div class="t"><b>产品定义</b> — 该造什么,卖给谁,凭什么赢</div></div>
+          <div class="step"><div class="b">2</div><div class="t"><b>设计与视觉</b> — 工业设计、包装、品牌的一致表达</div></div>
+          <div class="step"><div class="b">3</div><div class="t"><b>内容与素材</b> — 商品图、视频、营销内容批量生成</div></div>
+          <div class="step"><div class="b">4</div><div class="t"><b>上市与增长</b> — 投放、复盘、迭代,跑成业务结果</div></div>
+        </div>
+      </div>
+      <div class="wedge-card reveal">
+        <div class="label">扩张路径</div>
+        <h3>窄口楔入,<br/>宽面扩张</h3>
+        <p>在消费品里筑墙、立标杆 → 沿"产品创新"能力外溢到家居、食品、美妆、工业 → 再谈横向。和我们对标的 Palantir 一样:先把一个垂直做到独一档,再扩张。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="block" id="proof">
+  <div class="container">
+    <div class="mt-head reveal">
+      <div class="sec-label"><span class="num">07_</span> // 先拿自己练</div>
+      <h2 class="h2" style="margin-top:14px">我们自己,就是第一个跑通的样板</h2>
+      <p class="lead">在自研中台上,我们孵化过一批消费品牌、服务过头部客户——不是要做品牌商,而是证明这台引擎真的能把产品从 0 造出来、卖出去。</p>
+    </div>
+    <div class="badges reveal">
+      <span class="badge"><span class="accent">21</span> 家头部品牌客户</span>
+      <span class="badge"><span class="accent">6</span> 个自孵化品牌(引擎实证)</span>
+      <span class="badge"><span class="accent">AIGC</span> 商业落地 TOP 50</span>
+      <span class="badge">国家高新技术企业</span>
+      <span class="badge">浙江省专精特新</span>
+      <span class="badge">线性资本 投资</span>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS MODEL -->
+<section class="block block-1" id="bm">
+  <div class="container">
+    <div class="mt-head reveal">
+      <div class="sec-label"><span class="num">08_</span> // 怎么合作</div>
+      <h2 class="h2" style="margin-top:14px">卖结果,不卖人头</h2>
+    </div>
+    <div class="bm-grid">
+      <div class="bm main reveal"><div class="t">主 · 推荐</div><h4>卖结果</h4><p>按交付物、按业务指标结算。我们对结果负责,你为确定性买单。</p></div>
+      <div class="bm reveal"><div class="t">补充</div><h4>共创分成</h4><p>你出渠道与供应链,我们出 AI 造物能力,共建一个产品、分享上行。</p></div>
+      <div class="bm reveal"><div class="t">墙 · 长期</div><h4>能力订阅</h4><p>把跑通的中台与应用,以 license 形式开放给你的团队持续用。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <div class="orb"></div>
+  <div class="container">
+    <h2 class="display">带一个你想造的产品来。<br/>我们聊结果,不聊方案。</h2>
+    <p>不发资料包、不卖方案 PPT。一次对话,看我们能不能替你把它造出来、卖出去。</p>
+    <div class="hero-cta">
+      <a href="#" class="btn btn-primary">预约 30 分钟<span>→</span></a>
+      <a href="#" class="btn btn-ghost">看案例</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-top">
+      <div class="brand"><b>zaowuyun</b><span class="u">_</span></div>
+      <div class="foot-tag">企业 AI 落地的产品公司。<br/>不卖工具,交付结果。</div>
+    </div>
+    <div class="mono-note">© 2026 zaowuyun · 定位 demo v5(home-v5-results)· 浙江大学人工智能学院背景 · backed by 线性资本</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  try{var saved=localStorage.getItem('zwy-demo-theme');if(saved)root.setAttribute('data-theme',saved);}catch(e){}
+  btn.addEventListener('click',function(){
+    var t=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',t);
+    try{localStorage.setItem('zwy-demo-theme',t);}catch(e){}
+  });
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=(i%4*40)+'ms';io.observe(el);});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>造物云 — 你自己的 AI 中台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{
+  colors:{paper:'#faf8f3',paper2:'#f1eee6',ink:'#1a1a18',ink2:'#54524c',line:'#e0dccf',acc:'#9a2b1e'},
+  fontFamily:{serif:['"Noto Serif SC"','serif'],sans:['"Noto Sans SC"','sans-serif']}
+}}}
+</script>
+<style>
+  body{background:#faf8f3}
+  .rule{height:1px;background:#e0dccf}
+  .lead{font-feature-settings:"palt"}
+  .underacc{background:linear-gradient(transparent 62%,#9a2b1e22 62%)}
+  a.btn{background:#1a1a18;color:#faf8f3}
+  a.btn:hover{background:#9a2b1e}
+  .num{font-family:"Noto Serif SC";color:#9a2b1e}
+</style>
+</head>
+<body class="bg-paper text-ink font-sans antialiased">
+
+<header class="fixed top-0 inset-x-0 z-50 bg-paper/90 backdrop-blur border-b border-line">
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <div class="font-serif text-lg font-bold tracking-wide">造物云</div>
+    <nav class="hidden md:flex gap-7 text-sm text-ink2">
+      <a href="#how" class="hover:text-acc">主张</a>
+      <a href="#wedge" class="hover:text-acc">数字项目经理</a>
+      <a href="#proof" class="hover:text-acc">案例</a>
+      <a href="#why" class="hover:text-acc">关于我们</a>
+    </nav>
+    <a href="#cta" class="btn px-4 py-1.5 rounded-sm text-sm">预约对话</a>
+  </div>
+</header>
+
+<!-- hero -->
+<section class="pt-40 pb-20">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-sm tracking-[.2em] text-acc mb-8">浙大孵化　·　21+ 头部企业验证</div>
+    <h1 class="font-serif font-bold leading-[1.15] text-[clamp(38px,6.5vw,76px)] lead">
+      你自己的 AI 中台。<br/>这是 <span class="underacc">AI 时代的 ERP</span>。
+    </h1>
+    <p class="mt-10 max-w-2xl text-ink2 text-xl leading-loose">
+      把你整条业务流程跑在上面,部署在你自己的环境、数据不出门。以 coding agent 为大脑,用你每天的文件直接学习——<span class="text-ink font-medium">越跑越懂你的公司,越用越离不开。</span>
+    </p>
+    <div class="rule my-10 max-w-2xl"></div>
+    <p class="font-serif text-2xl text-ink leading-relaxed max-w-2xl">别人给你一堆串不起来的 AI 工具;<br/>我们给你一个<span class="text-acc">会进化</span>的中台。</p>
+    <div class="mt-10 flex flex-wrap gap-5 items-center">
+      <a href="#cta" class="btn px-7 py-3 rounded-sm">预约 30 分钟战略对话</a>
+      <a href="#how" class="text-ink2 hover:text-acc border-b border-ink2/40 pb-0.5">看它怎么跑 ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- pain -->
+<section class="py-20 bg-paper2 border-y border-line">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="num text-sm tracking-widest mb-3">壹</div>
+    <h2 class="font-serif text-3xl md:text-4xl font-semibold mb-12">为什么你的 AI,还没产生价值</h2>
+    <div class="grid md:grid-cols-3 gap-10">
+      <div><div class="num text-2xl mb-3">01</div><h3 class="font-serif text-xl mb-3">工具零散,串不起来</h3><p class="text-ink2 leading-loose text-[15px]">买了一堆 AI,各用各的,数据不通。</p></div>
+      <div><div class="num text-2xl mb-3">02</div><h3 class="font-serif text-xl mb-3">知识库,没人用</h3><p class="text-ink2 leading-loose text-[15px]">几百万砸进去,你不去问它,它什么都不会告诉你。</p></div>
+      <div><div class="num text-2xl mb-3">03</div><h3 class="font-serif text-xl mb-3">ERP 里只有数据</h3><p class="text-ink2 leading-loose text-[15px]">业务不在上面跑,还停在人脑和飞书表格里。</p></div>
+    </div>
+    <p class="mt-14 font-serif text-2xl md:text-3xl text-ink">单点的 AI 化,<span class="text-acc">老板根本感觉不到价值。</span></p>
+  </div>
+</section>
+
+<!-- claim + flywheel -->
+<section id="how" class="py-24">
+  <div class="max-w-5xl mx-auto px-6 grid lg:grid-cols-[1.3fr_1fr] gap-16 items-center">
+    <div>
+      <div class="num text-sm tracking-widest mb-3">贰</div>
+      <h2 class="font-serif font-semibold text-[clamp(28px,4vw,46px)] leading-snug">
+        不是再给你一个工具。<br/>是把你整条业务流程,<br/><span class="text-acc">跑在一个会自己进化的中台上。</span>
+      </h2>
+      <p class="mt-8 text-ink2 text-lg leading-loose">立项 → 开发 → 生产 → 运营 → 销售 → 数据 → 复盘 → 回到立项。每一环嵌入 AI,<span class="text-ink font-medium">人只守关键决策闸。</span></p>
+    </div>
+    <div class="flex justify-center">
+      <svg viewBox="0 0 280 280" class="w-64 h-64">
+        <circle cx="140" cy="140" r="112" fill="none" stroke="#e0dccf" stroke-width="1.5"/>
+        <g font-family="Noto Serif SC" font-size="15" fill="#1a1a18" text-anchor="middle">
+          <text x="140" y="40">场景</text><text x="248" y="146">数据</text>
+          <text x="140" y="256">模型</text><text x="36" y="146">更好的场景</text>
+        </g>
+        <g stroke="#9a2b1e" stroke-width="1.5" fill="none" marker-end="url(#m)">
+          <path d="M178 50 A112 112 0 0 1 234 112"/><path d="M236 180 A112 112 0 0 1 180 236"/>
+          <path d="M100 238 A112 112 0 0 1 44 178"/><path d="M44 102 A112 112 0 0 1 100 48"/>
+        </g>
+        <defs><marker id="m" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#9a2b1e"/></marker></defs>
+        <circle cx="140" cy="140" r="4" fill="#9a2b1e"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- mechanism -->
+<section class="py-20 bg-paper2 border-y border-line">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="num text-sm tracking-widest mb-3">叁</div>
+    <h2 class="font-serif text-3xl font-semibold mb-12">它怎么跑起来</h2>
+    <div class="grid md:grid-cols-4 gap-8">
+      <div><h3 class="font-serif text-xl mb-2">文件</h3><p class="text-ink2 text-[15px] leading-loose">你的专业知识,AI 大权限调度。</p></div>
+      <div><h3 class="font-serif text-xl mb-2">大脑</h3><p class="text-ink2 text-[15px] leading-loose">Claude 思考 · Codex 执行,统一账号、不翻墙。</p></div>
+      <div><h3 class="font-serif text-xl mb-2">手</h3><p class="text-ink2 text-[15px] leading-loose">应用与插件,你的人自己也能做。</p></div>
+      <div><h3 class="font-serif text-xl mb-2">自动化</h3><p class="text-ink2 text-[15px] leading-loose">设好目标,它通宵自己跑,你早上看结果。</p></div>
+    </div>
+    <div class="rule my-10"></div>
+    <div class="flex flex-wrap gap-x-10 gap-y-3 text-[15px] text-ink">
+      <span>○　数据不出门,部署在你内网</span>
+      <span>○　不做知识库,文件即记忆</span>
+      <span>○　中立,不锁任何模型 / agent</span>
+    </div>
+  </div>
+</section>
+
+<!-- wedge -->
+<section id="wedge" class="py-24">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="num text-sm tracking-widest mb-3">肆 · 第一刀</div>
+    <h2 class="font-serif font-semibold text-[clamp(26px,3.6vw,42px)] leading-snug max-w-3xl">
+      给做实体产品的公司,一个<span class="text-acc">从立项到复盘、从头串到尾</span>的数字项目经理。
+    </h2>
+    <p class="mt-8 text-ink2 text-lg leading-loose max-w-2xl">立项 · 设计配色 · 开发生产 · 运营销售 · 数据复盘——一条线,从头串到尾。</p>
+    <div class="mt-10 grid md:grid-cols-2 gap-10">
+      <div class="border-l-2 border-acc pl-5"><h3 class="font-serif text-xl mb-2">失败库,自动预警</h3><p class="text-ink2 leading-loose text-[15px]">这款产品之前踩过的坑,立项时自动提醒你,别重犯。</p></div>
+      <div class="border-l-2 border-acc pl-5"><h3 class="font-serif text-xl mb-2">30 个产品同时开发</h3><p class="text-ink2 leading-loose text-[15px]">不用再招 30 个人盯——AI 顺着流程帮你盯。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- compounding -->
+<section class="py-20 bg-paper2 border-y border-line">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="num text-sm tracking-widest mb-3">伍</div>
+    <h2 class="font-serif text-3xl font-semibold mb-10">为什么越用越离不开</h2>
+    <div class="grid md:grid-cols-3 gap-10 mb-12 text-ink2 text-[15px] leading-loose">
+      <p>失败案例进失败库,下一款自动预警不重犯。</p>
+      <p>每跑一轮,整个系统更健壮一轮。</p>
+      <p>通宵自动跑,把认知一点点攒在你公司里。</p>
+    </div>
+    <p class="font-serif text-2xl md:text-3xl">可持续进化,<span class="text-acc">才是企业最大的价值。</span></p>
+  </div>
+</section>
+
+<!-- proof -->
+<section id="proof" class="py-24">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="num text-sm tracking-widest mb-3">陆 · 真在跑</div>
+    <h2 class="font-serif text-3xl font-semibold mb-10">21+ 头部企业,真有人用</h2>
+    <div class="flex flex-wrap items-center gap-x-12 gap-y-5 mb-14 opacity-80" style="filter:grayscale(1)">
+      <img class="h-7" src="https://cdn.zaowuyun.com/tmp/231008/ff02a685c86758e6ccaa2ab7d75f272d.png" alt="海尔"/>
+      <img class="h-7" src="https://cdn.zaowuyun.com/tmp/231008/36d5916e6ca66851284bbc0a619a4407.png" alt="欧莱雅"/>
+      <img class="h-7" src="https://cdn.zaowuyun.com/tmp/231008/32111fd08b0094832f5bf37383f49abf.png" alt="苏泊尔"/>
+      <img class="h-7" src="https://cdn.zaowuyun.com/tmp/231008/aad86976fd959cd7ed5ed72459f16c0c.png" alt="天猫"/>
+      <img class="h-7" src="https://cdn.zaowuyun.com/tmp/231008/0d46388fddba133ad0678267ccd7700d.png" alt="京东"/>
+      <img class="h-7" src="https://cdn.zaowuyun.com/tmp/231008/9cf18759df89bf87cc59b4a1a7a1b71a.png" alt="顾家"/>
+    </div>
+    <div class="grid md:grid-cols-3 gap-10">
+      <div><div class="text-acc text-sm mb-2">标杆 · 深度共创</div><div class="font-serif text-2xl mb-2">品唤 youforyou</div><p class="text-ink2 text-[15px] leading-loose">把选品与品牌判断,沉淀成会进化的中台资产。</p></div>
+      <div><div class="text-acc text-sm mb-2">消费电子</div><div class="font-serif text-5xl mb-2">-60%</div><p class="text-ink2 text-[15px] leading-loose">设计周期 -60%,判断沉淀为可复用资产。</p></div>
+      <div><div class="text-acc text-sm mb-2">快消 · 双 11</div><div class="font-serif text-5xl mb-2">-92%</div><p class="text-ink2 text-[15px] leading-loose">主图工时 -92%,1 天交付;经验沉淀进中台。</p></div>
+    </div>
+    <div class="rule my-10"></div>
+    <div class="flex flex-wrap gap-x-8 gap-y-2 text-sm text-ink2">
+      <span>浙大孵化</span><span>·</span><span>AIGC 商业落地 TOP 50</span><span>·</span><span>浙江省专精特新</span><span>·</span><span>国家高新技术企业</span><span>·</span><span>线性资本投资</span>
+    </div>
+  </div>
+</section>
+
+<!-- why -->
+<section id="why" class="py-24 bg-ink text-paper">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-sm tracking-widest mb-6" style="color:#e08a7d">柒 · 工具谁都能用,方法是我们的</div>
+    <h2 class="font-serif font-semibold text-[clamp(30px,4.5vw,52px)] leading-snug">我们更像医生,<br/>不是软件商。</h2>
+    <p class="mt-8 text-paper/80 text-xl leading-loose">
+      coding agent 全世界都在用,工具会贬值。难的是——<span class="text-paper">怎么把 AI 接进你这门生意</span>。这套方法,来自浙大设计系近 20 年培养数字产品人才的血脉。治好的案例越多,越准。
+    </p>
+    <p class="mt-6 text-paper/80 text-lg leading-loose">我们还把你的人,<span class="text-paper">教成 AI 时代的产品经理</span>——让 AI 真正长在你公司里,而不是又一个外包。</p>
+  </div>
+</section>
+
+<!-- cta -->
+<section id="cta" class="py-24">
+  <div class="max-w-5xl mx-auto px-6">
+    <p class="text-acc font-serif text-xl mb-5">投 1 块钱在 AI 上,目标换回 100 块营收。</p>
+    <h2 class="font-serif font-bold text-[clamp(32px,5vw,60px)] leading-snug">不知道从哪开始?先来 30 分钟。</h2>
+    <div class="mt-10 grid md:grid-cols-3 gap-8 max-w-3xl">
+      <div class="border-t-2 border-ink pt-4"><div class="font-serif text-xl">¥1999 试用</div><p class="text-ink2 text-sm mt-2">先看效果。</p></div>
+      <div class="border-t-2 border-ink pt-4"><div class="font-serif text-xl">2 万/年 · 中台接入</div><p class="text-ink2 text-sm mt-2">业务流跑起来。</p></div>
+      <div class="border-t-2 border-ink pt-4"><div class="font-serif text-xl">定制共建</div><p class="text-ink2 text-sm mt-2">长成你的护城河。</p></div>
+    </div>
+    <div class="mt-12 flex flex-wrap gap-6 items-center">
+      <a href="mailto:hello@zaowuyun.com" class="btn px-8 py-3 rounded-sm text-lg">预约 30 分钟</a>
+      <span class="text-sm text-ink2">不卖方案,不发资料包　·　hello@zaowuyun.com　·　wechat: zaowuyun-ai</span>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-line py-10">
+  <div class="max-w-5xl mx-auto px-6 flex flex-wrap justify-between gap-4 text-sm text-ink2">
+    <div>© 2026 造物云 · 浙大孵化</div>
+    <div class="flex gap-6"><a href="#how" class="hover:text-acc">中台</a><a href="#proof" class="hover:text-acc">案例</a><a href="#why" class="hover:text-acc">关于</a><a href="#cta" class="hover:text-acc">联系</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
