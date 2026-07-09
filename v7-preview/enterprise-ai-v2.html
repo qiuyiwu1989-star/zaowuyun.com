@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>为什么是企业 AI（卖点版）· 造物云</title>
+<link rel="preconnect" href="https://fonts.font.im" crossorigin>
+<link href="https://fonts.font.im/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F8F6F0; --paper:#FCFAF5; --ink:#18150E;
+    --ink2:rgba(24,21,14,.56); --ink3:rgba(24,21,14,.34);
+    --line:rgba(24,21,14,.10); --line2:rgba(24,21,14,.16);
+    --teal:#06B6D4; --tealDeep:#0E7C90; --tealBg:rgba(6,182,212,.10);
+    --purple:#8501FF; --edge:#A69E8C; --edgeDeep:#6f6754; --edgeBg:rgba(166,158,140,.12);
+    --sans:'Noto Sans SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+    --mono:'Space Grotesk',ui-sans-serif,'SF Pro Display',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+    background-image:radial-gradient(ellipse 60% 50% at 78% 6%,rgba(6,182,212,.06),transparent 60%),
+                     radial-gradient(ellipse 40% 40% at 8% 94%,rgba(133,1,255,.05),transparent 55%);}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  /* ── header ── */
+  header{padding:64px 0 8px}
+  .kicker{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--teal);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  .kicker::before{content:"";width:26px;height:1.5px;background:var(--teal);display:inline-block}
+  h1{font-size:clamp(30px,5.2vw,50px);font-weight:900;letter-spacing:-.02em;line-height:1.12}
+  h1 em{font-style:normal;color:var(--teal)}
+  .lead{margin-top:20px;max-width:700px;font-size:clamp(15px,2vw,17.5px);color:var(--ink2);line-height:1.8}
+  .lead b{color:var(--ink);font-weight:700}
+
+  /* ── spine: 加法 vs 复利 ── */
+  .spine{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:44px}
+  @media(max-width:760px){.spine{grid-template-columns:1fr}}
+  .sp{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:24px 26px;position:relative;overflow:hidden}
+  .sp.ent{border-color:rgba(6,182,212,.28);box-shadow:0 24px 60px -34px rgba(6,182,212,.35)}
+  .sp .lab{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;margin-bottom:12px}
+  .sp.per .lab{background:var(--edgeBg);color:var(--edgeDeep)}
+  .sp.ent .lab{background:var(--tealBg);color:var(--tealDeep)}
+  .sp .lab .dot{width:7px;height:7px;border-radius:50%}
+  .sp.per .lab .dot{background:var(--edge)}
+  .sp.ent .lab .dot{background:var(--teal)}
+  .sp h3{font-size:19px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+  .sp h3 b{font-family:var(--mono);font-weight:700}
+  .sp.per h3 b{color:var(--edgeDeep)} .sp.ent h3 b{color:var(--tealDeep)}
+  .sp p{font-size:13.5px;color:var(--ink2);margin-top:2px}
+  .sp svg{display:block;width:100%;height:74px;margin-top:14px}
+
+  /* ── pillars ── */
+  .parthead{margin:66px 0 6px}
+  .parthead .pk{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+  .parthead h2{font-size:clamp(24px,3.6vw,34px);font-weight:900;letter-spacing:-.02em;line-height:1.16}
+  .parthead h2 em{font-style:normal;color:var(--teal)}
+  .parthead p{margin-top:12px;max-width:720px;font-size:15px;color:var(--ink2);line-height:1.8}
+
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+  @media(max-width:920px){.pillars{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.pillars{grid-template-columns:1fr}}
+  .pill{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 22px 20px;
+    display:flex;flex-direction:column;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+  .pill:hover{transform:translateY(-4px);box-shadow:0 22px 48px -30px rgba(6,182,212,.45);border-color:rgba(6,182,212,.3)}
+  .pill .ic{width:42px;height:42px;border-radius:12px;background:var(--tealBg);border:1px solid rgba(6,182,212,.22);
+    display:flex;align-items:center;justify-content:center;color:var(--tealDeep);margin-bottom:14px}
+  .pill .no{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--ink3);letter-spacing:.08em}
+  .pill h3{font-size:17px;font-weight:800;letter-spacing:-.01em;margin:2px 0 12px}
+  .pill h3 s{font-family:var(--mono);font-weight:600;font-size:11px;color:var(--ink3);text-decoration:none;display:block;letter-spacing:.06em;margin-top:2px}
+  .row{display:flex;gap:9px;font-size:13px;line-height:1.55;padding:7px 0}
+  .row .mk{flex-shrink:0;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:800;margin-top:1px}
+  .row.per .mk{background:var(--edgeBg);color:var(--edgeDeep)}
+  .row.ent .mk{background:var(--tealBg);color:var(--tealDeep)}
+  .row.per{color:var(--ink3)} .row.ent{color:var(--ink2)}
+  .row.ent b{color:var(--ink);font-weight:700}
+  .pill .sell{margin-top:auto;padding-top:14px;border-top:1px dashed var(--line2);font-size:12.5px;
+    font-weight:700;color:var(--tealDeep);line-height:1.55}
+
+  /* ── flywheel ── */
+  .flyband{margin-top:64px;background:var(--paper);border:1px solid var(--line);border-radius:22px;
+    padding:30px 30px;display:grid;grid-template-columns:300px 1fr;gap:34px;align-items:center;
+    box-shadow:0 30px 70px -46px rgba(24,21,14,.4)}
+  @media(max-width:820px){.flyband{grid-template-columns:1fr;gap:20px}}
+  .flysvg{width:100%;max-width:300px;margin:0 auto;display:block}
+  .flysvg .ring{animation:spin 26s linear infinite;transform-origin:150px 150px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .flyband h3{font-size:clamp(20px,2.6vw,26px);font-weight:900;letter-spacing:-.02em;line-height:1.22}
+  .flyband h3 em{font-style:normal;color:var(--teal)}
+  .flyband p{margin-top:12px;font-size:14px;color:var(--ink2);line-height:1.8;max-width:560px}
+  .flyband p b{color:var(--ink);font-weight:700}
+  .flyband .note{margin-top:14px;font-size:12.5px;color:var(--ink3)}
+
+  /* ── luban trust anchor ── */
+  .luban{margin-top:34px;background:linear-gradient(100deg,#0E0A1E,#141026);border-radius:20px;
+    padding:30px 32px;color:#fff;box-shadow:0 30px 70px -40px rgba(14,10,30,.9)}
+  .luban .lk{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:#7ee0ee;font-weight:600;margin-bottom:12px}
+  .luban h3{font-size:clamp(18px,2.4vw,23px);font-weight:800;line-height:1.4}
+  .luban h3 em{font-style:normal;color:#4bd6ec}
+  .luban p{font-size:13.5px;color:rgba(255,255,255,.66);margin-top:12px;max-width:680px;line-height:1.75}
+  .luban p b{color:#fff;font-weight:700}
+  .brands{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .brands span{font-size:12px;font-weight:700;color:#e7f7fb;background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 14px}
+
+  /* ── close / CTA ── */
+  .close{margin-top:40px;text-align:center;padding:10px 0 8px}
+  .close .big{font-size:clamp(20px,3vw,28px);font-weight:900;letter-spacing:-.02em;line-height:1.3;max-width:760px;margin:0 auto}
+  .close .big em{font-style:normal;color:var(--teal)}
+  .three{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:26px 0 4px}
+  .three .t{flex:1;min-width:190px;max-width:240px;background:var(--paper);border:1px solid var(--line);
+    border-radius:16px;padding:18px 18px;text-align:left}
+  .three .t .tn{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--tealDeep);letter-spacing:.08em}
+  .three .t .tt{font-size:15px;font-weight:800;margin:6px 0 4px}
+  .three .t .td{font-size:12.5px;color:var(--ink2);line-height:1.6}
+  .cta{margin-top:30px}
+  .cta a{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:800;color:#fff;background:var(--teal);
+    border-radius:999px;padding:14px 28px;text-decoration:none;box-shadow:0 14px 30px -12px rgba(6,182,212,.6);transition:transform .18s}
+  .cta a:hover{transform:translateY(-2px)}
+
+  footer{padding:44px 0 60px;color:var(--ink3);font-size:12.5px;display:flex;gap:16px;flex-wrap:wrap}
+  footer a{color:var(--ink2);text-decoration:none;border-bottom:1px solid var(--line2)}
+  footer a:hover{color:var(--ink)}
+
+  .flysvg text{font-family:var(--sans)}
+  @media(prefers-reduced-motion:reduce){.flysvg .ring{animation:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">造物云 · AI 工作台</div>
+    <h1>个人提效是加法，<br><em>企业中心</em>是复利。</h1>
+    <p class="lead">很多人已经用上了一堆智能体，效率确实涨了。但那份效率是<b>借来的</b>——借模型、借工具、借个人的手艺，用完即散、人走带走。站在企业的角度，AI 一定要被<b>收编成一个云端的、共用的、有管理的、垂直化的中心</b>：让效率从「一次性的加法」，变成「可累积、可复用、可治理、越用越值钱的复利」。</p>
+  </header>
+
+  <!-- ══ 主脊：加法 vs 复利 ══ -->
+  <div class="spine">
+    <div class="sp per">
+      <span class="lab"><span class="dot"></span>个人 · 散用智能体</span>
+      <h3>效率 = <b>加法</b>，还会蒸发</h3>
+      <p>线性、一次性、绑在人身上。今天调好的，明天要重来；人一走，清零。</p>
+      <svg viewBox="0 0 320 74" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="6" y1="54" x2="314" y2="54" stroke="rgba(24,21,14,.10)" stroke-width="1"/>
+        <path d="M6 50 L314 46" fill="none" stroke="var(--edge)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 7"/>
+        <circle cx="314" cy="46" r="3.5" fill="var(--edge)"/>
+      </svg>
+    </div>
+    <div class="sp ent">
+      <span class="lab"><span class="dot"></span>企业 · 收编成中心</span>
+      <h3>效率 = <b>复利</b>，越用越厚</h3>
+      <p>沉淀成组织资产，形成飞轮。今天的每一次使用，都在垫高明天的起点。</p>
+      <svg viewBox="0 0 320 74" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="6" y1="54" x2="314" y2="54" stroke="rgba(24,21,14,.10)" stroke-width="1"/>
+        <path d="M6 60 C120 58 210 40 314 8" fill="none" stroke="var(--teal)" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="314" cy="8" r="4" fill="var(--teal)"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ══ 六支柱 ══ -->
+  <div class="parthead">
+    <div class="pk">Six Reasons</div>
+    <h2>中心化，到底<em>好在哪</em>。</h2>
+    <p>六根支柱，每一根都是「个人散用 ✕ / 企业中心 ✓」的一次分野——也是六个可以直接对外讲的卖点。</p>
+  </div>
+
+  <div class="pillars">
+
+    <div class="pill">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" fill="none"><path d="M4 6.5C4 5 6 4 9 4s5 1 5 2.5M4 6.5V17c0 1.5 2 2.5 5 2.5M4 6.5C4 8 6 9 9 9m5-2.5V17c0 1.5-2 2.5-5 2.5M14 6.5C14 8 12 9 9 9m0 0v10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14 9.5c0-1.5 2-2.5 5-2.5s5 1 5 2.5V19c0 1.5-2 2.5-5 2.5s-5-1-5-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".5"/></svg></div>
+      <div class="no">01</div>
+      <h3>知识沉淀<s>Knowledge · 越用越厚</s></h3>
+      <div class="row per"><span class="mk">✕</span><span>调好的提示词、跑通的工作流、踩过的坑，都留在个人本地，用完即散、人走带走。</span></div>
+      <div class="row ent"><span class="mk">✓</span><span>全部沉淀成 <b>企业资产</b>，越用越厚，后人站在前人肩上。</span></div>
+      <div class="sell">每一次高质量对话都在给公司攒资产，而不是打水漂。</div>
+    </div>
+
+    <div class="pill">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" fill="none"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 20c0-3 2.2-4.5 5-4.5S13 17 13 20M11 20c0-3 2.2-4.5 5-4.5s5 1.5 5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="no">02</div>
+      <h3>协作复用<s>Reuse · 一次调优全员受益</s></h3>
+      <div class="row per"><span class="mk">✕</span><span>各做各的，重复造轮子；张三调好的，李四完全不知道。</span></div>
+      <div class="row ent"><span class="mk">✓</span><span>共享 Agent／模板／知识库，最佳实践在组织里 <b>横向扩散</b>。</span></div>
+      <div class="sell">让最会用 AI 的那个人，成为所有人的起点。</div>
+    </div>
+
+    <div class="pill">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" fill="none"><path d="M12 3l7 3v5c0 4.2-2.8 7.5-7 9-4.2-1.5-7-4.8-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="no">03</div>
+      <h3>治理可控<s>Governance · 数据/成本/合规</s></h3>
+      <div class="row per"><span class="mk">✕</span><span>影子 AI：机密粘进公网模型，无审计无权限；各买各的订阅，成本失控。</span></div>
+      <div class="row ent"><span class="mk">✓</span><span>统一网关＋权限＋审计＋数据主权；用量成本 <b>可视可控</b>，集中议价。</span></div>
+      <div class="sell">AI 进每个业务环节，数据、权限、成本一件都不失控。</div>
+    </div>
+
+    <div class="pill">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M8 12h8M8 8.5h5M8 15.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="no">04</div>
+      <h3>垂直深度<s>Depth · 懂行·接系统</s></h3>
+      <div class="row per"><span class="mk">✕</span><span>通用 Agent 一碰你行业的私有数据和真实业务流程，就露怯。</span></div>
+      <div class="row ent"><span class="mk">✓</span><span>注入 <b>行业 know-how ＋ 私有数据 ＋ 业务流程</b>，做垂直深度的 Agent。</span></div>
+      <div class="sell">不是又一个聊天框，是懂你这行、接你系统的 AI。</div>
+    </div>
+
+    <div class="pill">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.5"/></svg></div>
+      <div class="no">05</div>
+      <h3>判断回流<s>Moat · 越用越聪明</s></h3>
+      <div class="row per"><span class="mk">✕</span><span>个人用一万次，还是那个通用模型——原地踏步。</span></div>
+      <div class="row ent"><span class="mk">✓</span><span>人的纠偏与偏好持续回流，沉淀成企业 <b>专有的判断资产</b>。</span></div>
+      <div class="sell">模型谁都能买，越用越懂你业务的判断，只有中心攒得下。</div>
+    </div>
+
+    <div class="pill">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" fill="none"><path d="M4 20V9l8-5 8 5v11" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M4 20h16M9.5 20v-5h5v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="no">06</div>
+      <h3>组织资产<s>Continuity · 不随人流失</s></h3>
+      <div class="row per"><span class="mk">✕</span><span>能力绑在人身上，人走清零；模型下线／涨价，个人硬扛。</span></div>
+      <div class="row ent"><span class="mk">✓</span><span>中立层，模型可替换，能力沉淀在平台，<b>业务连续性</b>有保障。</span></div>
+      <div class="sell">把 AI 从「招来的人」，变成「买下的地基」。</div>
+    </div>
+
+  </div>
+
+  <!-- ══ 飞轮 ══ -->
+  <div class="flyband">
+    <svg class="flysvg" viewBox="0 0 300 300" aria-hidden="true">
+      <g class="ring">
+        <circle cx="150" cy="150" r="104" fill="none" stroke="rgba(6,182,212,.28)" stroke-width="2" stroke-dasharray="4 10" stroke-linecap="round"/>
+        <path d="M150 46 l-9 -7 l0 14 Z" fill="var(--teal)"/>
+        <path d="M254 150 l7 -9 l-14 0 Z" fill="var(--teal)"/>
+        <path d="M150 254 l9 7 l0 -14 Z" fill="var(--teal)"/>
+        <path d="M46 150 l-7 9 l14 0 Z" fill="var(--teal)"/>
+      </g>
+      <circle cx="150" cy="150" r="46" fill="var(--tealBg)" stroke="rgba(6,182,212,.4)" stroke-width="1.5"/>
+      <text x="150" y="146" text-anchor="middle" font-family="var(--sans)" font-size="14" font-weight="800" fill="var(--tealDeep)">复利</text>
+      <text x="150" y="163" text-anchor="middle" font-family="var(--sans)" font-size="10" fill="var(--ink3)">飞轮</text>
+      <g font-family="var(--sans)" font-size="11.5" font-weight="700" fill="var(--ink)">
+        <text x="150" y="30" text-anchor="middle">更多人用</text>
+        <text x="286" y="154" text-anchor="end">更多沉淀</text>
+        <text x="150" y="284" text-anchor="middle">Agent 更懂业务</text>
+        <text x="14" y="154" text-anchor="start">更好用</text>
+      </g>
+    </svg>
+    <div>
+      <h3>个人版是一条<em>水平线</em>，<br>中心版是一条<em>向上的曲线</em>。</h3>
+      <p><b>更多人用 → 更多提示词/工作流/判断沉淀 → Agent 更懂业务、更好用 → 更多人愿意用</b>。这个飞轮，个人散用根本转不起来——它没有沉淀的地方，也没有回流的通道。</p>
+      <div class="note">这也是「走路 vs 开车」差距的底层来源：不是谁更努力，是有没有复利结构。</div>
+    </div>
+  </div>
+
+  <!-- ══ 鲁班信任锚 ══ -->
+  <div class="luban">
+    <div class="lk">PROVEN PLAYBOOK · 同一招</div>
+    <h3>这套打法，<em>鲁班已经跑通过</em>。</h3>
+    <p>鲁班做的不是「一个 3D 软件」——是把<b>散落在各个设计师电脑里的 3D 设计能力与资产，收编上云、变成企业共用、有管理的中心</b>。价值才长了出来。AI 工作台是<b>一模一样的招式</b>，只是收编对象从「3D 资产」换成「AI 应用 + 智能体 + 人的判断」。</p>
+    <div class="brands"><span>海尔</span><span>苏泊尔</span><span>顾家</span></div>
+  </div>
+
+  <!-- ══ 收敛卖点 + CTA ══ -->
+  <div class="close">
+    <div class="big">把 AI 沉淀成<em>组织的资产</em>，<br>而不是让它在个人手里蒸发。</div>
+    <div class="three">
+      <div class="t"><div class="tn">01 · 沉淀</div><div class="tt">知识越用越厚</div><div class="td">提示词、工作流、判断，全部变成可复用的组织记忆。</div></div>
+      <div class="t"><div class="tn">02 · 可控</div><div class="tt">不失控的 AI</div><div class="td">数据、权限、成本、合规，进每个环节但一件不失控。</div></div>
+      <div class="t"><div class="tn">03 · 护城河</div><div class="tt">越用越懂你</div><div class="td">判断持续回流，沉淀成对手买不走的专有资产。</div></div>
+    </div>
+    <div class="cta"><a href="index.html#cta">预约演示 · 看它怎么在你公司跑起来 →</a></div>
+  </div>
+
+  <footer>
+    <a href="workbench.html">← AI 工作台</a>
+    <a href="index.html">造物云官网</a>
+    <span>造物云 · 为什么是企业 AI（卖点结构版 v2）</span>
+  </footer>
+
+</div>
+</body>
+</html>

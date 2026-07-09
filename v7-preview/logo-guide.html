@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>标志使用规范 · Logo Guidelines · 造物云</title>
 <meta name="description" content="造物云品牌标志的使用标准：构成、组合、安全距、最小尺寸、配色版本、背景适配、字标比例、错误用法红线与文件下载。token 沿用 design-system.html。">
+<!-- 品牌字体 · 思源黑体 + Space Grotesk · 国内可达镜像 font.im -->
+<link rel="preconnect" href="https://fonts.font.im" crossorigin>
+<link href="https://fonts.font.im/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    造物云 · 标志使用规范  logo-guide
@@ -17,9 +20,12 @@
   --accent:#7B80FF; --accent-deep:#5B5FE0; --acBg:rgba(123,128,255,.13);
   --bdr:rgba(255,255,255,.10); --bdrBrt:rgba(255,255,255,.18);
   --ok:#34D399; --warn:#F4B740; --bad:#F472B6;
-  --serif:'Songti SC','STSong','Noto Serif SC','Source Han Serif CN','SimSun',serif;
-  --sans:'PingFang SC','Noto Sans SC','Microsoft YaHei','Source Han Sans CN',system-ui,sans-serif;
-  --mono:'SF Pro Display','SF Pro Text',ui-sans-serif,'Helvetica Neue',Arial,sans-serif; /* 拉丁/小字栈，沿用 design-system.html §04 字体系统 */
+  /* 字体 · 思源黑体为唯一品牌字体；标题靠字重，拉丁走 Space Grotesk。单一事实源 design-system.html §04 */
+  --sans:'Source Han Sans SC','Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+  --display:var(--sans);
+  --latin:'Space Grotesk',ui-sans-serif,'SF Pro Display','Helvetica Neue',Arial,sans-serif;
+  --mono:var(--latin); /* 兼容旧引用：kicker/小字/编号走拉丁字 */
+  --serif:var(--display); /* 兼容别名（已弃用衬线）：旧 var(--serif) 标题渲染为思源黑体 */
   --r-sm:8px; --r-md:12px; --r-lg:18px; --r-xl:24px;
   --t-base:.25s; --ease:cubic-bezier(.4,1,.6,1);
 }
@@ -39,7 +45,7 @@ a{color:inherit}
 /* header */
 .top{padding:60px 0 24px;border-bottom:1px solid var(--bdr)}
 .kic{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--accent);font-family:var(--mono);text-transform:uppercase}
-.top h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5vw,50px);letter-spacing:-.5px;margin:12px 0 14px;line-height:1.08}
+.top h1{font-family:var(--display);font-weight:800;font-size:clamp(32px,5vw,50px);letter-spacing:-.02em;margin:12px 0 14px;line-height:1.08}
 .top p{color:var(--fg2);font-size:15.5px;max-width:700px}
 .top .meta{margin-top:22px;display:flex;gap:22px;flex-wrap:wrap;font-size:12.5px;color:var(--fg3);font-family:var(--mono)}
 
@@ -58,11 +64,11 @@ a{color:inherit}
 section{padding:56px 0;border-bottom:1px solid var(--bdr)}
 .sh{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
 .sh .n{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:700}
-.sh h2{font-family:var(--serif);font-weight:400;font-size:28px;letter-spacing:-.3px}
+.sh h2{font-family:var(--display);font-weight:700;font-size:28px;letter-spacing:-.02em}
 .sh .en{font-family:var(--mono);font-size:11px;color:var(--fg3);letter-spacing:.12em;text-transform:uppercase}
 .sub{color:var(--fg2);font-size:15px;max-width:780px;margin-bottom:26px;line-height:1.72}
 .sub b{color:var(--fg);font-weight:600}
-h3.t{font-family:var(--serif);font-weight:400;font-size:20px;margin:34px 0 14px}
+h3.t{font-family:var(--display);font-weight:600;font-size:20px;margin:34px 0 14px}
 
 /* grids */
 .grid{display:grid;gap:16px}
@@ -92,6 +98,8 @@ h3.t{font-family:var(--serif);font-weight:400;font-size:20px;margin:34px 0 14px}
 .bg-ink{background:#18150E}
 .bg-grey{background:#E7E5DE}
 .bg-photo{background:linear-gradient(135deg,#5b6cb0,#c08b6a 60%,#2b2230);}
+/* neutral display surface: follows page theme (logo slots use data-plate="adapt") */
+.bg-stage{background:var(--bg2)}
 
 /* the mark */
 .mk{display:block;overflow:visible}
@@ -291,12 +299,12 @@ footer{padding:36px 0;color:var(--fg3);font-size:13px;display:flex;justify-conte
   <p class="sub">造物云标志由两部分组成：<b>标记（Mark）</b>与<b>字标（Wordmark）</b>。标记是一颗由三个菱形面拼成的<b>等距立方／晶体</b>，承载两个品牌词——<b>“造物”</b>（一个物被构建出来）与<b>“晶体”</b>（会折光的精工感）；外层白色圆角超椭圆底板是它的<b>承托面</b>，不是可选装饰，与宝石是一个整体。字标为衬线“造物云”三字。</p>
   <div class="grid g2">
     <div class="cell">
-      <div class="stage bg-dark"><span class="mkslot" data-plate="white" data-pal="brand" data-size="120"></span></div>
+      <div class="stage bg-stage"><span class="mkslot" data-plate="adapt" data-size="120"></span></div>
       <div class="meta"><div class="nm">标记 Mark <span class="pill line">主元素</span></div>
         <div class="ds">白圆角底板 + 三面紫色晶体。顶面最亮、左面最深，形成自上而下的受光。三面缺一不可。</div></div>
     </div>
     <div class="cell">
-      <div class="stage bg-dark"><span class="wm" data-h="44"></span></div>
+      <div class="stage bg-stage"><span class="wm" data-h="44"></span></div>
       <div class="meta"><div class="nm">字标 Wordmark <span class="pill line">辅助元素</span></div>
         <div class="ds">衬线“造物云”，取色 <code>currentColor</code>，随背景明暗自动反相。单独使用须保证可读，不与标记等高。</div></div>
     </div>
@@ -315,17 +323,17 @@ footer{padding:36px 0;color:var(--fg3);font-size:13px;display:flex;justify-conte
   <p class="sub">三种合规组合，按场景择一使用。<b>横向组合</b>为默认主组合；空间狭长或居中场景用<b>竖向组合</b>；图标位、favicon、App 图标等只放<b>单标记</b>。组合内部的比例与间距是固定的，不可各自缩放。</p>
   <div class="grid g3">
     <div class="cell">
-      <div class="stage bg-dark"><span class="lock"><span class="mkslot" data-plate="white" data-pal="brand" data-size="40"></span><span class="wm" data-h="22"></span></span></div>
+      <div class="stage bg-stage"><span class="lock"><span class="mkslot" data-plate="adapt" data-size="40"></span><span class="wm" data-h="22"></span></span></div>
       <div class="meta"><div class="nm">横向组合 <span class="pill ok">默认·主</span></div>
         <div class="ds">标记 + 字标左右排列。顶栏、页脚、署名首选。字标视高 ≈ 标记 ×0.62。</div></div>
     </div>
     <div class="cell">
-      <div class="stage bg-dark"><span class="lock vert"><span class="mkslot" data-plate="white" data-pal="brand" data-size="56"></span><span class="wm" data-h="20"></span></span></div>
+      <div class="stage bg-stage"><span class="lock vert"><span class="mkslot" data-plate="adapt" data-size="56"></span><span class="wm" data-h="20"></span></span></div>
       <div class="meta"><div class="nm">竖向组合 <span class="pill line">居中场景</span></div>
         <div class="ds">标记在上、字标在下、整体居中。封面、加载页、海报中轴线使用。</div></div>
     </div>
     <div class="cell">
-      <div class="stage bg-dark"><span class="mkslot" data-plate="white" data-pal="brand" data-size="64"></span></div>
+      <div class="stage bg-stage"><span class="mkslot" data-plate="adapt" data-size="64"></span></div>
       <div class="meta"><div class="nm">单标记 <span class="pill line">图标位</span></div>
         <div class="ds">favicon、App 图标、头像位、水印只用标记，不带字。需保证识别度时优先它。</div></div>
     </div>
@@ -339,22 +347,22 @@ footer{padding:36px 0;color:var(--fg3);font-size:13px;display:flex;justify-conte
   <p class="sub">标志四周必须留出最小空白，任何文字、图形、边界、其他标志都不得侵入。安全距定义为 <b>X = 标记高度的 1/4</b>，上下左右各留 <b>1X</b>。空间越大越好，但不可小于 1X。</p>
   <div class="grid g2">
     <div class="cell">
-      <div class="stage bg-dark">
+      <div class="stage bg-stage">
         <div class="cs-stage" style="--csx:30px">
           <div class="cs-guide"></div>
           <span class="cs-tag tt">1X</span><span class="cs-tag ll">1X</span>
-          <div class="cs-inner"><span class="mkslot" data-plate="white" data-pal="brand" data-size="80"></span></div>
+          <div class="cs-inner"><span class="mkslot" data-plate="adapt" data-size="80"></span></div>
         </div>
       </div>
       <div class="meta"><div class="nm">单标记安全距 <span class="pill ok">≥ 1X</span></div>
         <div class="ds">X = 标记高度 ÷ 4。虚线为最小净空边界，实线内为标志占位。</div></div>
     </div>
     <div class="cell">
-      <div class="stage bg-dark">
+      <div class="stage bg-stage">
         <div class="cs-stage" style="--csx:22px">
           <div class="cs-guide"></div>
           <span class="cs-tag tt">1X</span><span class="cs-tag ll">1X</span>
-          <div class="cs-inner"><span class="lock"><span class="mkslot" data-plate="white" data-pal="brand" data-size="44"></span><span class="wm" data-h="24"></span></span></div>
+          <div class="cs-inner"><span class="lock"><span class="mkslot" data-plate="adapt" data-size="44"></span><span class="wm" data-h="24"></span></span></div>
         </div>
       </div>
       <div class="meta"><div class="nm">组合安全距 <span class="pill ok">≥ 1X</span></div>
@@ -368,11 +376,11 @@ footer{padding:36px 0;color:var(--fg3);font-size:13px;display:flex;justify-conte
   <div class="sh"><span class="n">04</span><h2>最小尺寸</h2><span class="en">Minimum Size</span></div>
   <p class="sub">小于最小尺寸，晶体三面会糊成一团、字标不可读。下列为允许的最小呈现尺寸；低于此值请改用更简的形式（如组合降为单标记）。</p>
   <div class="cell">
-    <div class="stage bg-dark" style="justify-content:flex-start">
+    <div class="stage bg-stage" style="justify-content:flex-start">
       <div class="ruler">
-        <div class="u"><span class="mkslot" data-plate="white" data-pal="brand" data-size="20"></span><span class="lb"><b>20px</b><br>单标记·屏幕</span></div>
-        <div class="u"><span class="lock"><span class="mkslot" data-plate="white" data-pal="brand" data-size="24"></span><span class="wm" data-h="15"></span></span><span class="lb"><b>24px</b> 高<br>横向组合·屏幕</span></div>
-        <div class="u"><span class="lock vert"><span class="mkslot" data-plate="white" data-pal="brand" data-size="40"></span><span class="wm" data-h="14"></span></span><span class="lb"><b>40px</b> 标记<br>竖向组合·屏幕</span></div>
+        <div class="u"><span class="mkslot" data-plate="adapt" data-size="20"></span><span class="lb"><b>20px</b><br>单标记·屏幕</span></div>
+        <div class="u"><span class="lock"><span class="mkslot" data-plate="adapt" data-size="24"></span><span class="wm" data-h="15"></span></span><span class="lb"><b>24px</b> 高<br>横向组合·屏幕</span></div>
+        <div class="u"><span class="lock vert"><span class="mkslot" data-plate="adapt" data-size="40"></span><span class="wm" data-h="14"></span></span><span class="lb"><b>40px</b> 标记<br>竖向组合·屏幕</span></div>
       </div>
     </div>
     <div class="meta"><div class="nm">屏幕最小值</div><div class="ds">实际显示尺寸，非源文件尺寸。下方为印刷换算。</div></div>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.font.im" crossorigin>
+<link href="https://fonts.font.im/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./site.css">
+<!-- reset / 共享 keyframes / 品牌标 / 顶栏下拉 / 字体类 见 site.css；此处仅留本页专用动画 -->
+<style>
+@keyframes shimmerBorder{0%,100%{opacity:.5}50%{opacity:1}}
+</style>
+</helmet>
+
+<div data-screen-label="造物云-解决方案" style="{{ rootStyle }}">
+
+  <!-- NAV -->
+  <header style="position:sticky;top:0;z-index:60;backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);background:var(--navBg);border-bottom:1px solid var(--navBdr);">
+    <div style="max-width:1280px;margin:0 auto;padding:0 var(--ph);height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+      <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--fg);flex-shrink:0;">
+        <div style="width:32px;height:32px;flex-shrink:0;transition:transform .25s ease,filter .25s ease;filter:drop-shadow(0 2px 7px rgba(24,21,14,.22)) drop-shadow(0 1px 2px rgba(24,21,14,.10));" style-hover="transform:scale(1.1);filter:drop-shadow(0 0 12px rgba(133,1,255,.65))"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M27.356405,6.5566244Q27.640217,6.7204833,27.900215,6.9199853Q28.16021,7.1194868,28.391941,7.3512182Q28.623672,7.5829496,28.823174,7.8429451Q29.022675,8.1029396,29.186533,8.3867512Q29.350391,8.6705627,29.475803,8.9733343Q29.601215,9.2761059,29.686035,9.5926561Q29.770855,9.9092064,29.813629,10.23412Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.813631,21.765881Q29.770855,22.090794,29.686037,22.407345Q29.601215,22.723896,29.475803,23.026669Q29.350391,23.329437,29.186531,23.613249Q29.022675,23.89706,28.823174,24.157059Q28.623672,24.417053,28.391941,24.648785Q28.16021,24.880516,27.900215,25.080017Q27.640217,25.279518,27.356405,25.443377L18.5,30.556623Q18.216188,30.720484,17.913418,30.845898Q17.610645,30.97131,17.294096,31.056129Q16.977547,31.140947,16.652632,31.183723Q16.327717,31.226498,16,31.226498Q15.672283,31.226498,15.347369,31.183723Q15.022456,31.140945,14.705906,31.056128Q14.389355,30.97131,14.086583,30.845898Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q4.3597822,25.279518,4.0997868,25.080017Q3.8397913,24.880516,3.6080601,24.648783Q3.3763289,24.417053,3.1768272,24.157059Q2.9773254,23.89706,2.8134668,23.613249Q2.6496081,23.329437,2.5241961,23.026669Q2.3987842,22.723896,2.3139648,22.407347Q2.2291453,22.090796,2.1863694,21.765881Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.1863689,10.23412Q2.2291448,9.9092064,2.3139644,9.5926561Q2.3987837,9.2761059,2.5241957,8.9733343Q2.6496074,8.6705627,2.8134661,8.3867512Q2.977325,8.1029396,3.1768267,7.8429446Q3.3763285,7.5829496,3.6080596,7.3512182Q3.8397908,7.1194868,4.0997868,6.9199853Q4.3597822,6.7204833,4.6435933,6.5566244L13.5,1.4433756Q13.783812,1.2795169,14.086583,1.1541051Q14.389355,1.0286931,14.705906,0.94387358Q15.022456,0.85905409,15.34737,0.8162784Q15.672283,0.77350271,16,0.77350271Q16.327717,0.77350277,16.652632,0.81627846Q16.977547,0.85905421,17.294096,0.9438737Q17.610645,1.0286932,17.913418,1.1541052Q18.216188,1.2795172,18.5,1.4433758L27.356405,6.5566244Z" fill="#FFFFFF"/><path d="M16,8L22.928203,12L22.928203,20L16,24L9.071797,20L9.071797,12L16,8Z" fill="#8501FF"/><path d="M15.999958,24.000038L15.999958,8.000038L22.928161,12.000038L22.928161,20.000038L15.999958,24.000038Z" fill="#AF59FF"/><path d="M15.99994,16L22.928144,12L15.99994,8L9.071738,12L15.99994,16Z" fill="#CE99FF"/></svg></div>
+        <span style="font-weight:900;font-size:18px;letter-spacing:-.02em;font-family:'Noto Sans SC',sans-serif;">造物云</span>
+      </a>
+      <div style="display:var(--navLinks);align-items:center;gap:4px;font-size:14px;font-weight:500;color:var(--fg2);">
+        <a href="index.html" style="text-decoration:none;color:var(--fg2);padding:8px 12px;border-radius:8px;" style-hover="background:var(--surf);color:var(--fg)">首页</a>
+        <a href="products.html" style="text-decoration:none;color:var(--fg2);padding:8px 12px;border-radius:8px;" style-hover="background:var(--surf);color:var(--fg)">产品中心</a>
+        <a href="solutions.html" style="text-decoration:none;color:var(--fg);padding:8px 12px;border-radius:8px;background:var(--surf);">解决方案</a>
+        <a href="cases.html" style="text-decoration:none;color:var(--fg2);padding:8px 12px;border-radius:8px;" style-hover="background:var(--surf);color:var(--fg)">案例</a>
+        <a href="about.html" style="text-decoration:none;color:var(--fg2);padding:8px 12px;border-radius:8px;" style-hover="background:var(--surf);color:var(--fg)">关于我们</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+        <button onClick="{{ toggleDark }}" style="{{ toggleBtn }}">{{ themeLabel }}</button>
+        <a href="index.html#cta" style="{{ navCtaBtn }}">预约演示</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section style="max-width:1280px;margin:0 auto;padding:80px var(--ph) 56px;">
+    <div style="text-align:center;max-width:760px;margin:0 auto;">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:5px 16px 5px 8px;border-radius:999px;background:var(--surf);border:1px solid var(--bdr);margin-bottom:22px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:block;"></span>
+        <span style="font-size:12px;font-weight:500;color:var(--fg2);letter-spacing:.04em;font-family:'Noto Sans SC',sans-serif;">解决方案</span>
+      </div>
+      <h1 style="font-family:'Noto Sans SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',sans-serif;font-size:var(--heroFs);line-height:1.2;font-weight:800;letter-spacing:-.01em;color:var(--fg);margin:0 0 18px;">按你的行业，<br><span style="color:var(--accent);">选择落地路径</span></h1>
+      <p style="font-size:17px;color:var(--fg2);line-height:1.68;margin:0;font-family:'Noto Sans SC',sans-serif;">同一套 AI 中台，沉到不同行业里就是不同的活。先看你的赛道有哪些已经跑通的链路，再决定用哪种方式与造物云合作。</p>
+    </div>
+  </section>
+
+  <!-- BY INDUSTRY -->
+  <section style="max-width:1280px;margin:0 auto;padding:0 var(--ph) 72px;">
+    <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--fg3);margin-bottom:24px;font-family:'Space Grotesk',sans-serif;">BY INDUSTRY — 按行业看方案</div>
+
+    <div style="display:grid;grid-template-columns:var(--cols2b);gap:16px;">
+
+      <!-- 快消品 -->
+      <div data-reveal style="{{ glassCard }};padding:30px;" style-hover="transform:translateY(-4px);border-color:var(--bdrBrt)">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:.04em;color:var(--fg3);">fmcg / 快消品</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--accent);">01</span>
+        </div>
+        <h3 style="margin:14px 0 0;font-size:26px;font-weight:800;letter-spacing:-.01em;color:var(--fg);font-family:'Noto Sans SC',sans-serif;">快消品</h3>
+        <p style="margin:14px 0 0;font-size:14px;line-height:1.7;color:var(--fg2);font-family:'Noto Sans SC',sans-serif;">食品、日化、个护、饮料。围绕节日营销、上新主图、电商爆款链路 —— 让品牌的“内容供给”匹配“流量节奏”。</p>
+        <div style="margin:22px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+          <div style="border:1px solid var(--bdr);border-radius:10px;padding:9px 0;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--fg2);">300+ SKU</div>
+          <div style="border:1px solid var(--bdr);border-radius:10px;padding:9px 0;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--fg2);">-92% 工时</div>
+          <div style="border:1px solid var(--bdr);border-radius:10px;padding:9px 0;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--fg2);">1 天上线</div>
+        </div>
+        <div style="margin:20px 0 0;font-size:12px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">服务过：欧莱雅 · 舒克 · YOOZ · 醉清风</div>
+      </div>
+
+      <!-- 时尚品 -->
+      <div data-reveal data-delay="80" style="{{ glassCard }};padding:30px;" style-hover="transform:translateY(-4px);border-color:var(--bdrBrt)">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:.04em;color:var(--fg3);">fashion / 时尚品</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--accent);">02</span>
+        </div>
+        <h3 style="margin:14px 0 0;font-size:26px;font-weight:800;letter-spacing:-.01em;color:var(--fg);font-family:'Noto Sans SC',sans-serif;">时尚品</h3>
+        <p style="margin:14px 0 0;font-size:14px;line-height:1.7;color:var(--fg2);font-family:'Noto Sans SC',sans-serif;">服装、鞋帽、配饰、美妆。趋势洞察 + 虚拟模特 + 季节系列上新 —— 让创意产能跟上“快时尚的节奏”。</p>
+        <div style="margin:22px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+          <div style="border:1px solid var(--bdr);border-radius:10px;padding:9px 0;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--fg2);">虚拟模特</div>
+          <div style="border:1px solid var(--bdr);border-radius:10px;padding:9px 0;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--fg2);">-80% 拍摄</div>
+          <div style="border:1px solid var(--bdr);border-radius:10px;padding:9px 0;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--fg2);">4 季持续</div>
+        </div>
+        <div style="margin:20px 0 0;font-size:12px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">服务过：星巴克 · 申通德高 · 新潮新消费</div>
+      </div>
+
+      <!-- 文化品 -->
+      <div data-reveal data-delay="160" style="{{ glassCard }};padding:30px;" style-hover="transform:translateY(-4px);border-color:var(--bdrBrt)">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:.04em;color:var(--fg3);">culture / 文化品</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--accent);">03</span>
+        </div>
+        <h3 style="margin:14px 0 0;font-size:26px;font-weight:800;letter-spacing:-.01em;color:var(--fg);font-family:'Noto Sans SC',sans-serif;">文化品</h3>
+        <p style="margin:14px 0 0;font-size:14px;line-height:1.7;color:var(--fg2);font-family:'Noto Sans SC',sans-serif;">文创、玩具、IP 周边、教育出版。IP 衍生设计 + 儿童内容场景 —— 球球老师就是这条赛道上的旗舰应用。</p>
+        <div style="margin:22px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+          <div style="border:1px solid var(--bdr);border-radius:10px;padding:9px 0;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--fg2);">球球老师</div>
+          <div style="border:1px solid var(--bdr);border-radius:10px;padding:9px 0;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--fg2);">IP 衍生</div>
+          <div style="border:1px solid var(--bdr);border-radius:10px;padding:9px 0;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--fg2);">儿童认知</div>
+        </div>
+        <div style="margin:20px 0 0;font-size:12px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">服务过：中国体育彩票 · 绿城 · 致欧家居</div>
+      </div>
+
+      <!-- 工业品 -->
+      <div data-reveal data-delay="240" style="{{ glassCard }};padding:30px;" style-hover="transform:translateY(-4px);border-color:var(--bdrBrt)">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:.04em;color:var(--fg3);">industrial / 工业品</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--accent);">04</span>
+        </div>
+        <h3 style="margin:14px 0 0;font-size:26px;font-weight:800;letter-spacing:-.01em;color:var(--fg);font-family:'Noto Sans SC',sans-serif;">工业品</h3>
+        <p style="margin:14px 0 0;font-size:14px;line-height:1.7;color:var(--fg2);font-family:'Noto Sans SC',sans-serif;">消费电子、家电、智能硬件、汽配。AI 草图 + 3D 渲染 + 设计—制造协同 —— 这是造物云出发的地方。</p>
+        <div style="margin:22px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+          <div style="border:1px solid var(--bdr);border-radius:10px;padding:9px 0;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--fg2);">-60% 周期</div>
+          <div style="border:1px solid var(--bdr);border-radius:10px;padding:9px 0;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--fg2);">3D 协同</div>
+          <div style="border:1px solid var(--bdr);border-radius:10px;padding:9px 0;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--fg2);">8 产品线</div>
+        </div>
+        <div style="margin:20px 0 0;font-size:12px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">服务过：海尔 · 苏泊尔 · 顾家家居 · 佳简几何</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ENGAGEMENT MODELS -->
+  <section style="border-top:1px solid var(--bdr);">
+    <div style="max-width:1280px;margin:0 auto;padding:72px var(--ph);">
+      <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--fg3);margin-bottom:8px;font-family:'Space Grotesk',sans-serif;">ENGAGEMENT — 三种合作模式</div>
+      <h2 style="margin:0 0 32px;font-size:30px;font-weight:800;letter-spacing:-.01em;color:var(--fg);font-family:'Noto Sans SC',sans-serif;">从最轻到最深，按你的准备度入场</h2>
+
+      <div style="display:grid;grid-template-columns:var(--cols3);gap:16px;">
+
+        <!-- 应用采购 -->
+        <div data-reveal style="{{ glassCard }};padding:28px;">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:var(--acBg);color:var(--accent);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;">A</span>
+          <h3 style="margin:18px 0 2px;font-size:19px;font-weight:700;color:var(--fg);font-family:'Noto Sans SC',sans-serif;">应用采购</h3>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:.04em;color:var(--fg3);">licensing</div>
+          <p style="margin:14px 0 0;font-size:13.5px;line-height:1.7;color:var(--fg2);font-family:'Noto Sans SC',sans-serif;">采购已落地的 AI 应用，按席位 / 学校 / 年度授权。最快两周对接上线。</p>
+          <div style="margin:18px 0 0;padding-top:16px;border-top:1px solid var(--bdr);font-size:12px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">适合谁：想立刻用上、不打算自建团队</div>
+        </div>
+
+        <!-- 行业共建 -->
+        <div data-reveal data-delay="80" style="{{ glassCard }};padding:28px;">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:var(--acBg);color:var(--accent);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;">B</span>
+          <h3 style="margin:18px 0 2px;font-size:19px;font-weight:700;color:var(--fg);font-family:'Noto Sans SC',sans-serif;">行业共建</h3>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:.04em;color:var(--fg3);">co-building</div>
+          <p style="margin:14px 0 0;font-size:13.5px;line-height:1.7;color:var(--fg2);font-family:'Noto Sans SC',sans-serif;">你出场景与 Know-How，我们出中台与工程，一起在你的垂直行业孵化新 AI 应用。</p>
+          <div style="margin:18px 0 0;padding-top:16px;border-top:1px solid var(--bdr);font-size:12px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">适合谁：有行业纵深、想长出自己的产品</div>
+        </div>
+
+        <!-- 中台接入 -->
+        <div data-reveal data-delay="160" style="{{ glassCard }};padding:28px;">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:var(--acBg);color:var(--accent);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;">C</span>
+          <h3 style="margin:18px 0 2px;font-size:19px;font-weight:700;color:var(--fg);font-family:'Noto Sans SC',sans-serif;">中台接入</h3>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:.04em;color:var(--fg3);">platform access</div>
+          <p style="margin:14px 0 0;font-size:13.5px;line-height:1.7;color:var(--fg2);font-family:'Noto Sans SC',sans-serif;">已有自己的产品和团队，按需调用中台某一层能力，按调用计费。</p>
+          <div style="margin:18px 0 0;padding-top:16px;border-top:1px solid var(--bdr);font-size:12px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">适合谁：已有团队、只缺底层 AI 能力</div>
+          <a href="api-hub.html" style="margin:14px 0 0;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:13px;font-weight:600;color:var(--accent);font-family:'Noto Sans SC',sans-serif;">查看 API HUB →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="max-width:1280px;margin:0 auto;padding:0 var(--ph) 80px;">
+    <div data-reveal style="{{ glassCard }};padding:48px var(--ph);text-align:center;">
+      <h2 style="margin:0 0 12px;font-size:28px;font-weight:800;letter-spacing:-.01em;color:var(--fg);font-family:'Noto Sans SC',sans-serif;">不确定从哪条路开始？</h2>
+      <p style="margin:0 auto 26px;max-width:520px;font-size:15px;line-height:1.7;color:var(--fg2);font-family:'Noto Sans SC',sans-serif;">把你的行业和目标告诉我们，一次对话就能判断该采购、共建，还是接入中台。</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+        <a href="index.html#cta" style="{{ primaryBtn }}">预约演示<span style="{{ btnIcon }}"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5L9 5.5 6 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a href="cases.html" style="{{ secondaryBtn }}">查看客户案例</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid var(--bdr);">
+    <div style="max-width:1280px;margin:0 auto;padding:24px var(--ph);">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">
+        <span>© 2026 杭州造物云技术有限公司</span>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;">
+          <a href="design-system.html" style="text-decoration:none;color:inherit;" style-hover="color:var(--fg)">设计系统</a>
+          <span>浙ICP备2021038972号-1</span>
+          <span>浙公网安备 33010602013219号</span>
+        </div>
+      </div>
+<template id="__bundler_thumbnail"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="80" fill="#07070F"/><polygon points="60,20 75,30 75,50 60,60 45,50 45,30" fill="#8501FF"/><polygon points="60,60 60,20 75,30 75,50" fill="#AF59FF"/><polygon points="60,40 75,30 60,20 45,30" fill="#CE99FF"/></svg></template>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { dark: true, logoHovered: false, width: 1280 };
+
+  componentDidMount() {
+    const r = () => this.setState({ width: window.innerWidth });
+    r(); window.addEventListener('resize', r); this._r = r;
+    setTimeout(() => this._initReveal(), 200);
+  }
+  componentWillUnmount() { if (this._r) window.removeEventListener('resize', this._r); }
+
+  _initReveal() {
+    const els = document.querySelectorAll('[data-reveal]');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (!e.isIntersecting) return; const d = parseInt(e.target.getAttribute('data-delay') || '0'); setTimeout(() => { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }, d); obs.unobserve(e.target); });
+    }, { threshold: 0.08 });
+    els.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; el.style.transition = 'opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)'; obs.observe(el); });
+  }
+
+  get _vars() {
+    const d = this.state.dark;
+    return d ? { '--bg':'#07070F','--fg':'#ECEEFF','--fg2':'rgba(236,238,255,.54)','--fg3':'rgba(236,238,255,.3)','--accent':'#6C7EFF','--acBg':'rgba(108,126,255,.15)','--surf':'rgba(255,255,255,.055)','--surf2':'rgba(255,255,255,.09)','--bdr':'rgba(255,255,255,.09)','--bdrBrt':'rgba(255,255,255,.18)','--navBg':'rgba(7,7,15,.9)','--navBdr':'rgba(255,255,255,.08)','--glass':'rgba(255,255,255,.07)','--glassTop':'rgba(255,255,255,.15)' }
+      : { '--bg':'#F8F7F3','--fg':'#18150E','--fg2':'rgba(24,21,14,.52)','--fg3':'rgba(24,21,14,.34)','--accent':'#2222C0','--acBg':'rgba(34,34,192,.1)','--surf':'rgba(255,255,255,.72)','--surf2':'rgba(255,255,255,.95)','--bdr':'rgba(24,21,14,.1)','--bdrBrt':'rgba(24,21,14,.22)','--navBg':'rgba(248,247,243,.9)','--navBdr':'rgba(24,21,14,.1)','--glass':'rgba(255,255,255,.72)','--glassTop':'rgba(255,255,255,.9)' };
+  }
+
+  get _resp() {
+    const w = this.state.width || 1280, m = w < 768, t = w >= 768 && w < 1024;
+    return {
+      '--ph': m ? '20px' : '48px',
+      '--heroFs': m ? '38px' : '56px',
+      '--navLinks': m ? 'none' : 'flex',
+      '--cols3': m ? '1fr' : t ? 'repeat(2,1fr)' : 'repeat(3,1fr)',
+      '--cols2b': m ? '1fr' : 'repeat(2,1fr)',
+      '--toolCols': m ? 'repeat(2,1fr)' : t ? 'repeat(3,1fr)' : 'repeat(6,1fr)',
+    };
+  }
+
+  _glassCard() {
+    const d = this.state.dark;
+    return { background: d ? 'rgba(255,255,255,.05)' : 'rgba(255,255,255,.72)', border: `1px solid ${d ? 'rgba(255,255,255,.1)' : 'rgba(24,21,14,.1)'}`, borderRadius: '20px', backdropFilter: 'saturate(180%) blur(16px)', WebkitBackdropFilter: 'saturate(180%) blur(16px)', boxShadow: d ? 'inset 0 1px 0 rgba(255,255,255,.12),0 8px 28px -10px rgba(0,0,0,.3)' : 'inset 0 1px 0 rgba(255,255,255,.88),0 6px 20px -8px rgba(0,0,0,.1)', transition: 'transform .2s ease,border-color .2s ease' };
+  }
+
+  renderVals() {
+    const d = this.state.dark, gc = this._glassCard();
+    return {
+      rootStyle: { ...this._vars, ...this._resp, background: 'var(--bg)', color: 'var(--fg)', fontFamily: "'Noto Sans SC',system-ui,sans-serif", minHeight: '100vh', overflowX: 'hidden' },
+      toggleBtn: { background: 'var(--surf)', border: '1px solid var(--bdr)', cursor: 'pointer', fontSize: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', padding: '0' },
+      themeLabel: d ? '☀' : '◑',
+      toggleDark: () => this.setState(s => ({ dark: !s.dark })),
+      navCtaBtn: { textDecoration: 'none', background: d ? '#6C7EFF' : '#18150E', color: d ? '#fff' : '#F8F7F3', fontSize: '13px', fontWeight: '600', padding: '9px 18px', borderRadius: '999px', display: 'inline-flex', alignItems: 'center', fontFamily: "'Noto Sans SC',sans-serif" },
+      primaryBtn: { textDecoration: 'none', background: d ? '#6C7EFF' : '#18150E', color: d ? '#fff' : '#F8F7F3', fontSize: '15px', fontWeight: '600', padding: '13px 16px 13px 22px', borderRadius: '999px', boxShadow: d ? '0 14px 32px -12px rgba(108,126,255,.6)' : '0 14px 32px -12px rgba(0,0,0,.25)', display: 'inline-flex', alignItems: 'center', gap: '10px', textDecoration: 'none', fontFamily: "'Noto Sans SC',sans-serif" },
+      secondaryBtn: { textDecoration: 'none', background: 'var(--glass)', border: '1px solid var(--bdr)', backdropFilter: 'blur(14px)', color: 'var(--fg)', fontSize: '15px', fontWeight: '600', padding: '13px 22px', borderRadius: '999px', display: 'inline-flex', alignItems: 'center', fontFamily: "'Noto Sans SC',sans-serif" },
+      btnIcon: { width: '26px', height: '26px', borderRadius: '50%', background: d ? 'rgba(255,255,255,.18)' : 'rgba(248,247,243,.22)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: '0' },
+      glassCard: gc,
+    };
+  }
+}
+</script>
+</body>
+</html>

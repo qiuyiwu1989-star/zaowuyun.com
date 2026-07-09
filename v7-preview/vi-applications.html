@@ -4,14 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>造物云 VI 应用物料库 · In Use</title>
+<!-- 品牌字体 · 思源黑体 + Space Grotesk · 国内可达镜像 font.im -->
+<link rel="preconnect" href="https://fonts.font.im" crossorigin>
+<link href="https://fonts.font.im/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============ tokens ============ */
 :root{
   --accent:#7B80FF; --accent-deep:#5B5FE0;
   --gem1:#8501FF; --gem2:#AF59FF; --gem3:#CE99FF;
-  --mono:'SF Pro Display','SF Pro Text',ui-sans-serif,'Helvetica Neue',Arial,sans-serif; /* 拉丁/小字栈，沿用 design-system.html §04 字体系统 */
-  --serif:'Songti SC','STSong','Noto Serif SC','Source Han Serif CN','SimSun',serif;
-  --sans:'PingFang SC','Noto Sans SC','Microsoft YaHei','Source Han Sans CN',system-ui,sans-serif;
+  /* 字体 · 思源黑体为唯一品牌字体；拉丁走 Space Grotesk。单一事实源 design-system.html §04 */
+  --sans:'Source Han Sans SC','Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+  --display:var(--sans);
+  --latin:'Space Grotesk',ui-sans-serif,'SF Pro Display','Helvetica Neue',Arial,sans-serif;
+  --mono:var(--latin); /* 兼容旧引用：拉丁/小字/编号走 Space Grotesk */
+  --serif:var(--display); /* 兼容别名（已弃用衬线）：物料里旧 var(--serif) 标题/字标渲染为思源黑体 */
 }
 html[data-theme="dark"]{
   --bg:#07070F; --bg2:#0d0d18; --surf:rgba(255,255,255,.05); --surf2:rgba(255,255,255,.085);
@@ -47,7 +53,7 @@ body{background:var(--bg);background-image:var(--pageglow);background-attachment
 /* ============ hero ============ */
 .hero{padding:66px 0 22px}
 .kic{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;color:var(--acc)}
-h1{font-family:var(--serif);font-weight:600;font-size:42px;letter-spacing:-.01em;margin:14px 0 16px;line-height:1.2}
+h1{font-family:var(--display);font-weight:800;font-size:42px;letter-spacing:-.02em;margin:14px 0 16px;line-height:1.18}
 .lead{font-size:16px;color:var(--fg2);max-width:680px;line-height:1.75}
 .meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px}
 .meta b{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.05em;color:var(--fg2);
@@ -57,7 +63,7 @@ h1{font-family:var(--serif);font-weight:600;font-size:42px;letter-spacing:-.01em
 section{margin-top:64px;scroll-margin-top:80px}
 .sh{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--bdr);padding-bottom:14px;margin-bottom:26px}
 .sh .n{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--acc)}
-.sh h2{font-family:var(--serif);font-weight:600;font-size:25px;letter-spacing:.01em}
+.sh h2{font-family:var(--display);font-weight:700;font-size:25px;letter-spacing:-.01em}
 .sh .en{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--fg3);margin-left:auto;text-transform:uppercase}
 .sub{font-size:14px;color:var(--fg2);max-width:760px;margin:-10px 0 26px;line-height:1.7}
 .sub b{color:var(--fg);font-weight:600}
@@ -557,7 +563,7 @@ section{margin-top:64px;scroll-margin-top:80px}
 <!-- 05 邮件签名 -->
 <section id="mail">
   <div class="sh"><span class="n">05</span><h2>邮件签名</h2><span class="en">Email Signature</span></div>
-  <p class="sub">对外邮件统一签名档：<b>左标志、右信息</b>，中间一道分隔线。姓名用宋体，联系方式用等宽字，链接走品牌紫。HTML 邮件与纯文本两版。</p>
+  <p class="sub">对外邮件统一签名档：<b>左标志、右信息</b>，中间一道分隔线。姓名用思源黑体，联系方式用等宽字，链接走品牌紫。HTML 邮件与纯文本两版。</p>
   <div class="grid g2">
     <div class="item"><div class="stage bd-grey"><div class="sig">
       <div class="l"><svg style="width:30px;height:30px"><use href="#i-mark"/></svg><span class="wm2">造物云</span></div>
@@ -581,7 +587,7 @@ section{margin-top:64px;scroll-margin-top:80px}
       <div class="kic" style="color:#A293FF;font-size:10px">ZAOWUYUN · 2026 KEYNOTE</div>
       <h3>智能是基础设施，<br><b>不是选配功能。</b></h3>
       <div class="ft"><span class="lk"><svg style="width:20px;height:20px"><use href="#i-mark"/></svg><span class="wm2">造物云</span></span><span class="pg">01 / 28</span></div>
-    </div></div><div class="cap"><b>封面母版</b><span>深紫光晕 + 宋体主张占主，标志与页码锁底。</span></div></div>
+    </div></div><div class="cap"><b>封面母版</b><span>深紫光晕 + 思源黑体主张占主，标志与页码锁底。</span></div></div>
     <div class="item"><div class="stage bd-soft" style="padding:22px"><div class="slide sl-inner">
       <div class="kt">PRODUCT MATRIX</div><h4>三平台 · 五能力产品</h4>
       <div class="cols"><div class="c"><b>智核 API HUB</b><p>统一接入 50+ 模型，智能路由与成本管控。</p></div><div class="c"><b>AI 工作台</b><p>让最懂业务的人，亲手做专业 AI 应用。</p></div><div class="c"><b>多模态中台</b><p>企业资产统一管理与向量检索。</p></div></div>
@@ -593,7 +599,7 @@ section{margin-top:64px;scroll-margin-top:80px}
 <!-- 07 社交内容 -->
 <section id="social">
   <div class="sh"><span class="n">07</span><h2>社交内容</h2><span class="en">Social</span></div>
-  <p class="sub">对外内容物料统一调性：<b>小红书封面 3 版</b>（知识卡 / 产品发布 / 数据卡）走 3:4 竖图；<b>公众号</b>头图 2.35:1 与次图。母题不变——深紫场景、宋体大字、晶体点缀。</p>
+  <p class="sub">对外内容物料统一调性：<b>小红书封面 3 版</b>（知识卡 / 产品发布 / 数据卡）走 3:4 竖图；<b>公众号</b>头图 2.35:1 与次图。母题不变——深紫场景、思源黑体大字、晶体点缀。</p>
 
   <h3 style="font-size:13px;color:var(--fg2);margin:0 0 16px;font-weight:600">小红书封面 · 三种内容型</h3>
   <div class="grid g3" style="margin-bottom:34px">
@@ -623,7 +629,7 @@ section{margin-top:64px;scroll-margin-top:80px}
     <div class="item"><div class="stage bd-soft" style="padding:22px"><div class="wx wx-h">
       <div class="t">当“智能”成为<br><b>每个应用的底层能力</b></div>
       <svg class="mk" style="width:40px;height:40px"><use href="#i-mark"/></svg>
-    </div></div><div class="cap"><b>公众号头条头图 · 2.35:1</b><span>深紫光晕 + 宋体主张，标志锁右侧，整体克制。</span></div></div>
+    </div></div><div class="cap"><b>公众号头条头图 · 2.35:1</b><span>深紫光晕 + 思源黑体主张，标志锁右侧，整体克制。</span></div></div>
   </div>
   <div class="wx2" style="margin-top:22px">
     <div class="item" style="flex:1"><div class="stage bd-soft" style="padding:18px"><div class="wx wx-s">

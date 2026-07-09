@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>为什么是企业 AI（最终版）· 造物云</title>
+<link rel="preconnect" href="https://fonts.font.im" crossorigin>
+<link href="https://fonts.font.im/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F8F6F0; --paper:#FCFAF5; --ink:#18150E;
+    --ink2:rgba(24,21,14,.56); --ink3:rgba(24,21,14,.34);
+    --line:rgba(24,21,14,.10); --line2:rgba(24,21,14,.16);
+    --teal:#06B6D4; --tealDeep:#0E7C90; --tealBg:rgba(6,182,212,.10);
+    --purple:#8501FF; --edge:#A69E8C; --edgeDeep:#6f6754; --edgeBg:rgba(166,158,140,.12);
+    --sans:'Noto Sans SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+    --mono:'Space Grotesk',ui-sans-serif,'SF Pro Display',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+    background-image:radial-gradient(ellipse 60% 50% at 78% 8%,rgba(6,182,212,.06),transparent 60%),
+                     radial-gradient(ellipse 40% 40% at 10% 92%,rgba(133,1,255,.05),transparent 55%);}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  /* ── header ── */
+  header{padding:64px 0 8px}
+  .kicker{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--teal);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  .kicker::before{content:"";width:26px;height:1.5px;background:var(--teal);display:inline-block}
+  h1{font-size:clamp(30px,5.2vw,50px);font-weight:900;letter-spacing:-.02em;line-height:1.12}
+  h1 em{font-style:normal;color:var(--teal)}
+  .lead{margin-top:20px;max-width:680px;font-size:clamp(15px,2vw,17.5px);color:var(--ink2);line-height:1.8}
+  .lead b{color:var(--ink);font-weight:700}
+
+  /* ── contrast grid ── */
+  .grid{display:grid;grid-template-columns:1fr 1.18fr;gap:22px;margin-top:44px}
+  @media(max-width:860px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:26px 26px 22px;
+    position:relative;overflow:hidden}
+  .card.ent{border-color:rgba(6,182,212,.28);box-shadow:0 24px 60px -34px rgba(6,182,212,.4)}
+  .tag{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;
+    letter-spacing:.02em;padding:4px 11px;border-radius:999px;margin-bottom:4px}
+  .tag.per{background:rgba(24,21,14,.06);color:var(--ink2)}
+  .tag.ent{background:var(--tealBg);color:var(--tealDeep)}
+  .tag .dot{width:7px;height:7px;border-radius:50%}
+  .tag.per .dot{background:var(--edge)}
+  .tag.ent .dot{background:var(--teal)}
+  .card h2{font-size:20px;font-weight:800;margin:12px 0 4px;letter-spacing:-.01em}
+  .card .sub{font-size:13.5px;color:var(--ink2);min-height:38px}
+  .stage-svg{display:block;width:100%;height:auto;margin:6px 0 4px}
+
+  /* fate line under each diagram */
+  .fate{font-size:13px;color:var(--ink2);border-top:1px dashed var(--line2);padding-top:14px;margin-top:6px}
+  .fate b{color:var(--ink)}
+  .card.ent .fate b{color:var(--tealDeep)}
+
+  /* value chip inside enterprise card */
+  .valchip{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+  .vc{flex:1;min-width:120px;border:1px solid var(--line);border-radius:12px;padding:11px 13px;
+    background:var(--bg);transition:.5s;opacity:.4}
+  .vc.on{opacity:1;border-color:rgba(6,182,212,.4);background:var(--tealBg);
+    box-shadow:0 8px 20px -12px rgba(6,182,212,.5)}
+  .vc .vt{font-size:12.5px;font-weight:800;color:var(--ink)}
+  .vc.on .vt{color:var(--tealDeep)}
+  .vc .vd{font-size:11px;color:var(--ink3);margin-top:2px}
+
+  /* ── control / meters ── */
+  .console{margin-top:26px;background:var(--paper);border:1px solid var(--line);border-radius:20px;
+    padding:24px 26px;display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center}
+  @media(max-width:720px){.console{grid-template-columns:1fr;gap:18px}}
+  .runbtn{font-family:var(--sans);font-size:15px;font-weight:800;color:#fff;background:var(--teal);
+    border:none;border-radius:999px;padding:14px 26px;cursor:pointer;white-space:nowrap;
+    box-shadow:0 14px 30px -12px rgba(6,182,212,.6);transition:transform .18s,background .2s}
+  .runbtn:hover{transform:translateY(-2px)}
+  .runbtn.stop{background:var(--ink);box-shadow:0 14px 30px -12px rgba(24,21,14,.4)}
+  .runbtn .ic{display:inline-block;margin-right:8px;font-family:var(--mono)}
+  .resetbtn{display:block;margin-top:10px;font-size:12px;color:var(--ink3);background:none;border:none;
+    cursor:pointer;text-decoration:underline;font-family:var(--sans)}
+  .resetbtn:hover{color:var(--ink)}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap}
+  .runbtn.ghost{background:var(--paper);color:var(--ink);border:1.5px solid var(--line2);box-shadow:none}
+  .runbtn.ghost:hover{border-color:var(--teal);color:var(--tealDeep)}
+  .runbtn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+  .fill.ent.over{background:linear-gradient(90deg,#22c3d6,#06B6D4,#8501FF);
+    background-size:220% 100%;animation:shim 1.5s linear infinite}
+  @keyframes shim{0%{background-position:0 0}100%{background-position:220% 0}}
+  .obadge{display:none;font-family:var(--mono);font-size:10px;font-weight:700;color:#fff;
+    background:linear-gradient(90deg,#06B6D4,#8501FF);padding:2px 9px;border-radius:999px;
+    margin-left:8px;vertical-align:middle;letter-spacing:.02em}
+  .obadge.on{display:inline-block;animation:pop .35s ease}
+  @keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+  .stage-svg text{font-family:var(--sans)}
+  .stage-svg text.mono{font-family:var(--mono)}
+  .meters{display:flex;flex-direction:column;gap:16px}
+  .meter .mtop{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
+  .meter .mname{font-size:13px;font-weight:700}
+  .meter .mname s{text-decoration:none;font-weight:500;color:var(--ink3);font-size:11.5px;margin-left:8px}
+  .meter .mval{font-family:var(--mono);font-size:15px;font-weight:700}
+  .track{height:12px;border-radius:999px;background:rgba(24,21,14,.07);overflow:hidden;position:relative}
+  .fill{height:100%;border-radius:999px;width:0;transition:width .25s ease-out}
+  .fill.per{background:repeating-linear-gradient(45deg,var(--edge),var(--edge) 6px,#c7c1b1 6px,#c7c1b1 12px)}
+  .fill.ent{background:linear-gradient(90deg,#22c3d6,var(--teal))}
+  .per .mval{color:var(--ink3)}
+  .ent .mval{color:var(--tealDeep)}
+
+  /* stats row */
+  .stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+  .stat .n{font-family:var(--mono);font-size:30px;font-weight:700;line-height:1;color:var(--ink)}
+  .stat.ent .n{color:var(--tealDeep)}
+  .stat .l{font-size:12px;color:var(--ink3);margin-top:6px}
+
+  /* window band */
+  .window{margin:34px 0 60px;background:linear-gradient(100deg,#0E0A1E,#141026);border-radius:20px;
+    padding:28px 30px;color:#fff;display:flex;align-items:center;gap:22px;flex-wrap:wrap;
+    box-shadow:0 30px 70px -40px rgba(14,10,30,.9)}
+  .window .wk{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:#7ee0ee;font-weight:600}
+  .window .wt{font-size:clamp(17px,2.4vw,22px);font-weight:800;line-height:1.4}
+  .window .wt em{font-style:normal;color:#4bd6ec}
+  .window .wp{font-size:13px;color:rgba(255,255,255,.62);margin-top:6px;max-width:560px}
+
+  footer{padding:0 0 60px;color:var(--ink3);font-size:12.5px;display:flex;gap:16px;flex-wrap:wrap}
+  footer a{color:var(--ink2);text-decoration:none;border-bottom:1px solid var(--line2)}
+  footer a:hover{color:var(--ink)}
+
+  .flywrap{position:relative}
+  #spark{transition:none}
+  .feed{pointer-events:none}
+
+  /* ── part 2: divergence chart ── */
+  .parthead{margin:64px 0 8px}
+  .parthead .pk{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+  .parthead h2{font-size:clamp(24px,3.6vw,34px);font-weight:900;letter-spacing:-.02em;line-height:1.16}
+  .parthead h2 em{font-style:normal;color:var(--teal)}
+  .parthead p{margin-top:14px;max-width:720px;font-size:15px;color:var(--ink2);line-height:1.8}
+  .parthead p b{color:var(--ink);font-weight:700}
+  .chartcard{margin-top:26px;background:var(--paper);border:1px solid var(--line);border-radius:22px;
+    padding:22px 22px 8px;box-shadow:0 30px 70px -46px rgba(24,21,14,.4)}
+  .legend{display:flex;gap:22px;flex-wrap:wrap;padding:2px 6px 16px}
+  .lg{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink2)}
+  .lg b{color:var(--ink);font-weight:700}
+  .lg .sw{width:22px;height:0;border-top:3px solid;border-radius:2px;flex-shrink:0}
+  .lg.h .sw{border-color:var(--edge)}
+  .lg.a .sw{border-color:var(--teal)}
+  .chart-svg{display:block;width:100%;height:auto}
+  .chart-svg text{font-family:var(--sans)}
+  .chart-svg text.mono{font-family:var(--mono)}
+  .status{text-align:center;font-size:13.5px;color:var(--ink3);padding:6px 0 12px;min-height:22px;transition:color .3s}
+  .status b{color:var(--tealDeep);font-weight:700}
+  .reads{display:flex;gap:26px;flex-wrap:wrap;justify-content:flex-end}
+  @media(max-width:760px){.reads{justify-content:flex-start}}
+  .rd .n{font-family:var(--mono);font-size:26px;font-weight:700;line-height:1}
+  .rd .l{font-size:11.5px;color:var(--ink3);margin-top:5px}
+  .rd.h .n{color:var(--edgeDeep)} .rd.a .n{color:var(--tealDeep)} .rd.g .n{color:var(--purple)}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.2px)}}
+
+  /* ── merged from v2: spine / pillars / luban / close ── */
+  .spine{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:44px}
+  @media(max-width:760px){.spine{grid-template-columns:1fr}}
+  .sp{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:24px 26px;position:relative;overflow:hidden}
+  .sp.ent{border-color:rgba(6,182,212,.28);box-shadow:0 24px 60px -34px rgba(6,182,212,.35)}
+  .sp .lab{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;margin-bottom:12px}
+  .sp.per .lab{background:var(--edgeBg);color:var(--edgeDeep)}
+  .sp.ent .lab{background:var(--tealBg);color:var(--tealDeep)}
+  .sp .lab .dot{width:7px;height:7px;border-radius:50%}
+  .sp.per .lab .dot{background:var(--edge)} .sp.ent .lab .dot{background:var(--teal)}
+  .sp h3{font-size:19px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+  .sp h3 b{font-family:var(--mono);font-weight:700}
+  .sp.per h3 b{color:var(--edgeDeep)} .sp.ent h3 b{color:var(--tealDeep)}
+  .sp p{font-size:13.5px;color:var(--ink2);margin-top:2px}
+  .sp svg{display:block;width:100%;height:74px;margin-top:14px}
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+  @media(max-width:920px){.pillars{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.pillars{grid-template-columns:1fr}}
+  .pill{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 22px 20px;display:flex;flex-direction:column;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+  .pill:hover{transform:translateY(-4px);box-shadow:0 22px 48px -30px rgba(6,182,212,.45);border-color:rgba(6,182,212,.3)}
+  .pill .ic{width:42px;height:42px;border-radius:12px;background:var(--tealBg);border:1px solid rgba(6,182,212,.22);display:flex;align-items:center;justify-content:center;color:var(--tealDeep);margin-bottom:14px}
+  .pill .no{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--ink3);letter-spacing:.08em}
+  .pill h3{font-size:17px;font-weight:800;letter-spacing:-.01em;margin:2px 0 12px}
+  .pill h3 s{font-family:var(--mono);font-weight:600;font-size:11px;color:var(--ink3);text-decoration:none;display:block;letter-spacing:.06em;margin-top:2px}
+  .row{display:flex;gap:9px;font-size:13px;line-height:1.55;padding:7px 0}
+  .row .mk{flex-shrink:0;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin-top:1px}
+  .row.per .mk{background:var(--edgeBg);color:var(--edgeDeep)} .row.ent .mk{background:var(--tealBg);color:var(--tealDeep)}
+  .row.per{color:var(--ink3)} .row.ent{color:var(--ink2)} .row.ent b{color:var(--ink);font-weight:700}
+  .pill .sell{margin-top:auto;padding-top:14px;border-top:1px dashed var(--line2);font-size:12.5px;font-weight:700;color:var(--tealDeep);line-height:1.55}
+  .luban{margin-top:44px;background:linear-gradient(100deg,#0E0A1E,#141026);border-radius:20px;padding:30px 32px;color:#fff;box-shadow:0 30px 70px -40px rgba(14,10,30,.9)}
+  .luban .lk{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:#7ee0ee;font-weight:600;margin-bottom:12px}
+  .luban h3{font-size:clamp(18px,2.4vw,23px);font-weight:800;line-height:1.4}
+  .luban h3 em{font-style:normal;color:#4bd6ec}
+  .luban p{font-size:13.5px;color:rgba(255,255,255,.66);margin-top:12px;max-width:680px;line-height:1.75}
+  .luban p b{color:#fff;font-weight:700}
+  .brands{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .brands span{font-size:12px;font-weight:700;color:#e7f7fb;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 14px}
+  .close{margin-top:40px;text-align:center;padding:10px 0 8px}
+  .close .big{font-size:clamp(20px,3vw,28px);font-weight:900;letter-spacing:-.02em;line-height:1.3;max-width:760px;margin:0 auto}
+  .close .big em{font-style:normal;color:var(--teal)}
+  .three{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:26px 0 4px}
+  .three .t{flex:1;min-width:190px;max-width:240px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 18px;text-align:left}
+  .three .t .tn{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--tealDeep);letter-spacing:.08em}
+  .three .t .tt{font-size:15px;font-weight:800;margin:6px 0 4px}
+  .three .t .td{font-size:12.5px;color:var(--ink2);line-height:1.6}
+  .cta{margin-top:30px}
+  .cta a{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:800;color:#fff;background:var(--teal);border-radius:999px;padding:14px 28px;text-decoration:none;box-shadow:0 14px 30px -12px rgba(6,182,212,.6);transition:transform .18s}
+  .cta a:hover{transform:translateY(-2px)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">造物云 · AI 工作台</div>
+    <h1>个人提效是加法，<br><em>企业中心</em>是复利。</h1>
+    <p class="lead">很多人已经用上了一堆智能体，效率确实涨了。但那份效率是<b>借来的</b>——借模型、借工具、借个人的手艺，用完即散、人走带走。站在企业的角度，AI 一定要被<b>收编成一个云端的、共用的、有管理的、垂直化的中心</b>：让效率从「一次性的加法」，变成「可累积、可复用、可治理、越用越值钱的复利」。</p>
+  </header>
+
+  <!-- ══ 主脊：加法 vs 复利 ══ -->
+  <div class="spine">
+    <div class="sp per">
+      <span class="lab"><span class="dot"></span>个人 · 散用智能体</span>
+      <h3>效率 = <b>加法</b>，还会蒸发</h3>
+      <p>线性、一次性、绑在人身上。今天调好的，明天要重来；人一走，清零。</p>
+      <svg viewBox="0 0 320 74" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="6" y1="54" x2="314" y2="54" stroke="rgba(24,21,14,.10)" stroke-width="1"/>
+        <path d="M6 50 L314 46" fill="none" stroke="var(--edge)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 7"/>
+        <circle cx="314" cy="46" r="3.5" fill="var(--edge)"/>
+      </svg>
+    </div>
+    <div class="sp ent">
+      <span class="lab"><span class="dot"></span>企业 · 收编成中心</span>
+      <h3>效率 = <b>复利</b>，越用越厚</h3>
+      <p>沉淀成组织资产，形成飞轮。今天的每一次使用，都在垫高明天的起点。</p>
+      <svg viewBox="0 0 320 74" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="6" y1="54" x2="314" y2="54" stroke="rgba(24,21,14,.10)" stroke-width="1"/>
+        <path d="M6 60 C120 58 210 40 314 8" fill="none" stroke="var(--teal)" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="314" cy="8" r="4" fill="var(--teal)"/>
+      </svg>
+    </div>
+  </div>
+
+  
+
+  <!-- ══ contrast ══ -->
+  <div class="grid">
+
+    <!-- 个人 AI -->
+    <div class="card per">
+      <span class="tag per"><span class="dot"></span>个人 AI</span>
+      <h2>价值留在边缘</h2>
+      <div class="sub">工具散落在企业外圈,各用各的。人一走,沉淀就跟着走。</div>
+      <svg class="stage-svg" viewBox="0 0 340 220" aria-hidden="true">
+        <!-- empty core: dashed rings that slowly spin — busywork, nothing ever fills -->
+        <circle id="perRing" cx="170" cy="110" r="58" fill="none" stroke="var(--line2)" stroke-width="1.5" stroke-dasharray="4 5"/>
+        <circle id="perRing2" cx="170" cy="110" r="43" fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="2 7"/>
+        <text x="170" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink3)">企业</text>
+        <text x="170" y="122" text-anchor="middle" font-size="10" fill="var(--ink3)">核心是空的</text>
+        <!-- value escaping / futile effort -->
+        <g id="perLeak"></g>
+        <!-- tools on the rim: busy but going nowhere -->
+        <g id="perTools" fill="var(--edge)"></g>
+      </svg>
+      <div class="fate">结果 → <b>沉淀停在边缘,无法复利。</b></div>
+    </div>
+
+    <!-- 企业 AI -->
+    <div class="card ent">
+      <span class="tag ent"><span class="dot"></span>企业 AI</span>
+      <h2>越用越聪明的飞轮</h2>
+      <div class="sub">员工使用汇进核心,核心越聪明,预测与决策越值钱,再反哺使用。</div>
+      <div class="flywrap">
+      <svg class="stage-svg" viewBox="0 0 340 220" aria-hidden="true">
+        <defs>
+          <radialGradient id="coreG" cx="40%" cy="36%" r="70%">
+            <stop offset="0%" stop-color="#9fedf7"/><stop offset="55%" stop-color="#22c3d6"/><stop offset="100%" stop-color="#06B6D4"/>
+          </radialGradient>
+          <radialGradient id="coreHot" cx="40%" cy="36%" r="70%">
+            <stop offset="0%" stop-color="#bfe6ff"/><stop offset="45%" stop-color="#37b6ff"/><stop offset="100%" stop-color="#8501FF"/>
+          </radialGradient>
+          <marker id="ah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="rgba(6,182,212,.6)"/>
+          </marker>
+        </defs>
+        <!-- true-circle belt (r=66, centre 170,110) -->
+        <circle cx="170" cy="110" r="66" fill="none" stroke="rgba(6,182,212,.14)" stroke-width="11"/>
+        <!-- direction chevrons on the true circle -->
+        <g fill="none" stroke="rgba(6,182,212,.5)" stroke-width="1.7" marker-end="url(#ah)">
+          <path d="M212.4 59.4 A66 66 0 0 1 220.6 67.6"/>
+          <path d="M220.6 152.4 A66 66 0 0 1 212.4 160.6"/>
+          <path d="M127.6 160.6 A66 66 0 0 1 119.4 152.4"/>
+          <path d="M119.4 67.6 A66 66 0 0 1 127.6 59.4"/>
+        </g>
+        <!-- rotating sweep highlight -->
+        <g id="sweep"><circle cx="170" cy="110" r="66" fill="none" stroke="var(--teal)" stroke-width="4"
+          stroke-linecap="round" stroke-dasharray="30 385" opacity=".85"/></g>
+        <!-- core ripples injected here -->
+        <g id="ripple"></g>
+        <!-- core -->
+        <circle id="coreGlow" cx="170" cy="110" r="30" fill="var(--teal)" opacity="0"/>
+        <circle id="core" cx="170" cy="110" r="30" fill="url(#coreG)" opacity=".34"/>
+        <text x="170" y="106" text-anchor="middle" font-size="10.5" font-weight="800" fill="#063540">企业智能</text>
+        <text id="coreIQ" class="mono" x="170" y="122" text-anchor="middle" font-size="13" font-weight="700" fill="#063540">0</text>
+        <!-- stage nodes on the true circle -->
+        <g font-size="10.5" font-weight="700" fill="var(--tealDeep)" text-anchor="middle">
+          <g><circle cx="170" cy="44" r="4" fill="var(--teal)"/><text x="170" y="28">员工使用</text></g>
+          <g><circle cx="236" cy="110" r="4" fill="var(--teal)"/><text x="236" y="96">解决问题</text></g>
+          <g><circle cx="170" cy="176" r="4" fill="var(--teal)"/><text x="170" y="198">判断沉淀</text></g>
+          <g><circle cx="104" cy="110" r="4" fill="var(--teal)"/><text x="104" y="96">越用越聪明</text></g>
+        </g>
+        <!-- comet trail + spark -->
+        <g id="trail"></g>
+        <circle id="spark" cx="170" cy="44" r="5.5" fill="#fff" stroke="var(--teal)" stroke-width="2"/>
+        <!-- employee feed dots injected here -->
+        <g id="feed" class="feed"></g>
+      </svg>
+      </div>
+      <div class="valchip">
+        <div class="vc" id="vcPred"><div class="vt">预测未来</div><div class="vd">趋势 · 风险先知</div></div>
+        <div class="vc" id="vcDec"><div class="vt">辅助决策</div><div class="vd">该做什么,而不只是怎么做</div></div>
+      </div>
+      <div class="fate">结果 → <b>核心越转越聪明,价值持续复利。</b></div>
+    </div>
+  </div>
+
+  <!-- ══ console ══ -->
+  <div class="console">
+    <div>
+      <div class="btnrow">
+        <button class="runbtn" id="startBtn"><span class="ic">▶</span>从 0 开始</button>
+        <button class="runbtn ghost" id="pauseBtn" disabled>暂停</button>
+      </div>
+    </div>
+    <div class="meters">
+      <div class="meter per">
+        <div class="mtop"><div class="mname">个人 AI<s>价值留在边缘,不进核心</s></div><div class="mval" id="perVal">0</div></div>
+        <div class="track"><div class="fill per" id="perFill"></div></div>
+      </div>
+      <div class="meter ent">
+        <div class="mtop"><div class="mname">企业 AI 智能度<s>越用越强,可超 100%</s><span class="obadge" id="obadge">超越 100% · 持续增强</span></div><div class="mval" id="entVal">0</div></div>
+        <div class="track"><div class="fill ent" id="entFill"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat ent"><div class="n" id="stEmp">0</div><div class="l">在用员工</div></div>
+    <div class="stat ent"><div class="n" id="stProb">0</div><div class="l">累计解决的问题</div></div>
+    <div class="stat ent"><div class="n" id="stIQ">0<span style="font-size:16px">%</span></div><div class="l">企业智能度</div></div>
+    <div class="stat"><div class="n" id="stPer">0<span style="font-size:16px">%</span></div><div class="l">个人 AI 沉淀进核心</div></div>
+  </div>
+
+  <!-- ══ 六支柱 ══ -->
+  <div class="parthead">
+    <div class="pk">Six Reasons</div>
+    <h2>中心化，到底<em>好在哪</em>。</h2>
+    <p>六根支柱，每一根都是「个人散用 ✕ / 企业中心 ✓」的一次分野——也是六个可以直接对外讲的卖点。</p>
+  </div>
+
+  <div class="pillars">
+
+    <div class="pill">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" fill="none"><path d="M4 6.5C4 5 6 4 9 4s5 1 5 2.5M4 6.5V17c0 1.5 2 2.5 5 2.5M4 6.5C4 8 6 9 9 9m5-2.5V17c0 1.5-2 2.5-5 2.5M14 6.5C14 8 12 9 9 9m0 0v10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14 9.5c0-1.5 2-2.5 5-2.5s5 1 5 2.5V19c0 1.5-2 2.5-5 2.5s-5-1-5-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".5"/></svg></div>
+      <div class="no">01</div>
+      <h3>知识沉淀<s>Knowledge · 越用越厚</s></h3>
+      <div class="row per"><span class="mk">✕</span><span>调好的提示词、跑通的工作流、踩过的坑，都留在个人本地，用完即散、人走带走。</span></div>
+      <div class="row ent"><span class="mk">✓</span><span>全部沉淀成 <b>企业资产</b>，越用越厚，后人站在前人肩上。</span></div>
+      <div class="sell">每一次高质量对话都在给公司攒资产，而不是打水漂。</div>
+    </div>
+
+    <div class="pill">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" fill="none"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 20c0-3 2.2-4.5 5-4.5S13 17 13 20M11 20c0-3 2.2-4.5 5-4.5s5 1.5 5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="no">02</div>
+      <h3>协作复用<s>Reuse · 一次调优全员受益</s></h3>
+      <div class="row per"><span class="mk">✕</span><span>各做各的，重复造轮子；张三调好的，李四完全不知道。</span></div>
+      <div class="row ent"><span class="mk">✓</span><span>共享 Agent／模板／知识库，最佳实践在组织里 <b>横向扩散</b>。</span></div>
+      <div class="sell">让最会用 AI 的那个人，成为所有人的起点。</div>
+    </div>
+
+    <div class="pill">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" fill="none"><path d="M12 3l7 3v5c0 4.2-2.8 7.5-7 9-4.2-1.5-7-4.8-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="no">03</div>
+      <h3>治理可控<s>Governance · 数据/成本/合规</s></h3>
+      <div class="row per"><span class="mk">✕</span><span>影子 AI：机密粘进公网模型，无审计无权限；各买各的订阅，成本失控。</span></div>
+      <div class="row ent"><span class="mk">✓</span><span>统一网关＋权限＋审计＋数据主权；用量成本 <b>可视可控</b>，集中议价。</span></div>
+      <div class="sell">AI 进每个业务环节，数据、权限、成本一件都不失控。</div>
+    </div>
+
+    <div class="pill">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M8 12h8M8 8.5h5M8 15.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="no">04</div>
+      <h3>垂直深度<s>Depth · 懂行·接系统</s></h3>
+      <div class="row per"><span class="mk">✕</span><span>通用 Agent 一碰你行业的私有数据和真实业务流程，就露怯。</span></div>
+      <div class="row ent"><span class="mk">✓</span><span>注入 <b>行业 know-how ＋ 私有数据 ＋ 业务流程</b>，做垂直深度的 Agent。</span></div>
+      <div class="sell">不是又一个聊天框，是懂你这行、接你系统的 AI。</div>
+    </div>
+
+    <div class="pill">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.5"/></svg></div>
+      <div class="no">05</div>
+      <h3>判断回流<s>Moat · 越用越聪明</s></h3>
+      <div class="row per"><span class="mk">✕</span><span>个人用一万次，还是那个通用模型——原地踏步。</span></div>
+      <div class="row ent"><span class="mk">✓</span><span>人的纠偏与偏好持续回流，沉淀成企业 <b>专有的判断资产</b>。</span></div>
+      <div class="sell">模型谁都能买，越用越懂你业务的判断，只有中心攒得下。</div>
+    </div>
+
+    <div class="pill">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" fill="none"><path d="M4 20V9l8-5 8 5v11" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M4 20h16M9.5 20v-5h5v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="no">06</div>
+      <h3>组织资产<s>Continuity · 不随人流失</s></h3>
+      <div class="row per"><span class="mk">✕</span><span>能力绑在人身上，人走清零；模型下线／涨价，个人硬扛。</span></div>
+      <div class="row ent"><span class="mk">✓</span><span>中立层，模型可替换，能力沉淀在平台，<b>业务连续性</b>有保障。</span></div>
+      <div class="sell">把 AI 从「招来的人」，变成「买下的地基」。</div>
+    </div>
+
+  </div>
+
+  
+  <!-- ══ PART 2 · 两种速度 ══ -->
+  <div class="parthead">
+    <div class="pk">所以,数年之后 ——</div>
+    <h2>同一起点,<em>两种速度</em>。</h2>
+    <p>企业 AI 在核心里复利,个人 AI 停在边缘——把时间拉长,两种组织能力就此两极分化。<b>靠人力驱动的组织</b>像走路,依然在往前、只是慢;<b>AI 增强的组织</b>像开车,一路拉开。两个都在前进,却越来越不在一个量级。</p>
+  </div>
+
+  <div class="chartcard">
+    <div class="legend">
+      <div class="lg h"><span class="sw"></span><span><b>人力驱动组织</b> · 像走路 —— 仍在成长,只是慢</span></div>
+      <div class="lg a"><span class="sw"></span><span><b>AI 增强组织</b> · 像开车 —— 复利加速,持续拉开</span></div>
+    </div>
+
+    <svg class="chart-svg" viewBox="0 0 720 388" aria-hidden="true">
+      <defs>
+        <linearGradient id="aiStroke" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#22c3d6"/><stop offset="70%" stop-color="#06B6D4"/><stop offset="100%" stop-color="#8501FF"/>
+        </linearGradient>
+        <linearGradient id="gapFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(133,1,255,.16)"/><stop offset="100%" stop-color="rgba(6,182,212,.05)"/>
+        </linearGradient>
+      </defs>
+      <g stroke="var(--line)" stroke-width="1">
+        <line x1="56" y1="30" x2="56" y2="330"/>
+        <line x1="56" y1="330" x2="668" y2="330"/>
+      </g>
+      <g stroke="var(--line)" stroke-width="1" stroke-dasharray="3 6">
+        <line x1="56" y1="105" x2="668" y2="105"/>
+        <line x1="56" y1="180" x2="668" y2="180"/>
+        <line x1="56" y1="255" x2="668" y2="255"/>
+      </g>
+      <text x="20" y="34" font-size="10.5" fill="var(--ink3)" transform="rotate(-90 20 34)" text-anchor="end" style="dominant-baseline:hanging">组织能力 →</text>
+      <text x="668" y="352" font-size="10.5" fill="var(--ink3)" text-anchor="end">时间（年） →</text>
+      <text x="56" y="348" font-size="10.5" fill="var(--ink3)" text-anchor="middle">起点</text>
+
+      <path id="gapArea" fill="url(#gapFill)" stroke="none" d=""/>
+      <path id="humanPath" fill="none" stroke="var(--edge)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d=""/>
+      <path id="aiPath" fill="none" stroke="url(#aiStroke)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" d=""/>
+
+      <g id="gapBracket" opacity="0">
+        <line id="gapLine" stroke="var(--purple)" stroke-width="1.4" stroke-dasharray="4 4"/>
+        <g id="gapTag">
+          <rect x="-30" y="-11" width="60" height="22" rx="7" fill="var(--purple)"/>
+          <text id="gapTagT" class="mono" x="0" y="4" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">差距</text>
+        </g>
+      </g>
+
+      <g id="walker" style="animation:bob 0.6s ease-in-out infinite">
+        <g stroke="var(--edgeDeep)" stroke-width="2" stroke-linecap="round" fill="none">
+          <circle cx="0" cy="-13" r="3.4" fill="var(--edgeDeep)" stroke="none"/>
+          <line x1="0" y1="-9" x2="0" y2="0"/>
+          <line x1="0" y1="-6" x2="-5" y2="-2"/>
+          <line x1="0" y1="-6" x2="5" y2="-9"/>
+          <line x1="0" y1="0" x2="-5" y2="7"/>
+          <line x1="0" y1="0" x2="6" y2="6"/>
+        </g>
+      </g>
+
+      <g id="car">
+        <g id="carSpeed" stroke="var(--teal)" stroke-width="1.6" stroke-linecap="round" opacity=".12">
+          <line x1="-26" y1="-6" x2="-18" y2="-6"/>
+          <line x1="-30" y1="-1" x2="-20" y2="-1"/>
+          <line x1="-25" y1="4" x2="-17" y2="4"/>
+        </g>
+        <path d="M-15 2 L-12 -5 L4 -5 L9 0 L15 0 Q17 0 17 3 L17 5 Q17 6 15 6 L-13 6 Q-15 6 -15 4 Z" fill="var(--teal)"/>
+        <path d="M-9 -5 L-7 -1 L2 -1 L0 -5 Z" fill="rgba(255,255,255,.55)"/>
+        <circle cx="-8" cy="6.5" r="3.6" fill="#0E0A1E"/><circle cx="-8" cy="6.5" r="1.4" fill="#fff"/>
+        <circle cx="10" cy="6.5" r="3.6" fill="#0E0A1E"/><circle cx="10" cy="6.5" r="1.4" fill="#fff"/>
+      </g>
+    </svg>
+
+    <div class="status" id="status">按“从 0 开始”,让两种组织从同一起点出发。</div>
+  </div>
+
+  <div class="console">
+    <div class="btnrow">
+      <button class="runbtn" id="startBtn2"><span class="ic">▶</span>从 0 开始</button>
+      <button class="runbtn ghost" id="pauseBtn2" disabled>暂停</button>
+    </div>
+    <div class="reads">
+      <div class="rd"><div class="n" id="rYear">起点</div><div class="l">时间进程</div></div>
+      <div class="rd h"><div class="n" id="rHuman">10</div><div class="l">人力驱动 · 能力</div></div>
+      <div class="rd a"><div class="n" id="rAI">10</div><div class="l">AI 增强 · 能力</div></div>
+      <div class="rd g"><div class="n" id="rGap">×1.0</div><div class="l">差距（倍数）</div></div>
+    </div>
+  </div>
+
+  <!-- ══ 合并收尾:两极分化 + 窗口期 ══ -->
+  <div class="window">
+    <div>
+      <div class="wk">THE DIVERGENCE · 两极分化 · 窗口期</div>
+      <div class="wt">走路的没有停,开车的更快 —— 差距,来自<em>复利的斜率</em>。</div>
+      <div class="wp">这并不代表靠人力的组织停止成长——它仍在前进,只是慢一档。真正决定数年之后彼此位置的,不是起点,而是每一年的增长速度。<br><br>而智能是复利的:谁先让全员用起来、先把判断沉进核心,谁的企业 AI 就先聪明一代。这,就是企业版此刻的窗口。</div>
+    </div>
+  </div>
+
+  <!-- ══ 鲁班信任锚 ══ -->
+  <div class="luban">
+    <div class="lk">PROVEN PLAYBOOK · 同一招</div>
+    <h3>这套打法，<em>鲁班已经跑通过</em>。</h3>
+    <p>鲁班做的不是「一个 3D 软件」——是把<b>散落在各个设计师电脑里的 3D 设计能力与资产，收编上云、变成企业共用、有管理的中心</b>。价值才长了出来。AI 工作台是<b>一模一样的招式</b>，只是收编对象从「3D 资产」换成「AI 应用 + 智能体 + 人的判断」。</p>
+    <div class="brands"><span>海尔</span><span>苏泊尔</span><span>顾家</span></div>
+  </div>
+
+  
+  <!-- ══ 收敛卖点 + CTA ══ -->
+  <div class="close">
+    <div class="big">把 AI 沉淀成<em>组织的资产</em>，<br>而不是让它在个人手里蒸发。</div>
+    <div class="three">
+      <div class="t"><div class="tn">01 · 沉淀</div><div class="tt">知识越用越厚</div><div class="td">提示词、工作流、判断，全部变成可复用的组织记忆。</div></div>
+      <div class="t"><div class="tn">02 · 可控</div><div class="tt">不失控的 AI</div><div class="td">数据、权限、成本、合规，进每个环节但一件不失控。</div></div>
+      <div class="t"><div class="tn">03 · 护城河</div><div class="tt">越用越懂你</div><div class="td">判断持续回流，沉淀成对手买不走的专有资产。</div></div>
+    </div>
+    <div class="cta"><a href="index.html#cta">预约演示 · 看它怎么在你公司跑起来 →</a></div>
+  </div>
+
+
+  <footer>
+    <a href="workbench.html">← AI 工作台</a>
+    <a href="index.html">造物云官网</a>
+    <span>为什么是企业 AI · 交互 + 卖点 · 最终版 v3</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var SVGNS='http://www.w3.org/2000/svg';
+  var $=function(id){return document.getElementById(id)};
+  var core=$('core'), coreGlow=$('coreGlow'), coreIQ=$('coreIQ'), spark=$('spark'),
+      feed=$('feed'), trail=$('trail'), rippleG=$('ripple'), sweep=$('sweep');
+  var entFill=$('entFill'), perFill=$('perFill'), entVal=$('entVal'), perVal=$('perVal');
+  var stEmp=$('stEmp'), stProb=$('stProb'), stIQ=$('stIQ'), stPer=$('stPer');
+  var vcPred=$('vcPred'), vcDec=$('vcDec'), obadge=$('obadge');
+  var startBtn=$('startBtn'), pauseBtn=$('pauseBtn');
+
+  var cx=170, cy=110, R=66;   // true-circle radius
+
+  // ── 个人 AI: busy but futile ("碌碌无为") — always animating, never accumulates ──
+  var perG=$('perTools'), perLeak=$('perLeak'), perRing=$('perRing'), perRing2=$('perRing2');
+  var perTools=[];
+  for(var i=0;i<7;i++){
+    var a=(i/7)*Math.PI*2 - Math.PI/2, r=64+(i%3)*5;
+    var g=document.createElementNS(SVGNS,'g');
+    var c=document.createElementNS(SVGNS,'circle');
+    c.setAttribute('r','4.6'); c.setAttribute('fill','var(--edge)'); c.setAttribute('opacity','.82'); g.appendChild(c);
+    var sp=document.createElementNS(SVGNS,'path');       // a busy spinner that never completes
+    sp.setAttribute('d','M8 0 A8 8 0 0 1 -3 7.4'); sp.setAttribute('fill','none');
+    sp.setAttribute('stroke','var(--edge)'); sp.setAttribute('stroke-width','1.5');
+    sp.setAttribute('stroke-linecap','round'); sp.setAttribute('opacity','.45'); g.appendChild(sp);
+    perG.appendChild(g);
+    perTools.push({g:g,sp:sp,a:a,r:r,bx:170+Math.cos(a)*r,by:110+Math.sin(a)*r,
+                   ph:i*0.9,spin:(i*47)%360,spd:55+((i*37)%90)});
+  }
+  function perLeakDot(inward){
+    var T=perTools[(Math.random()*perTools.length)|0], a=T.a, r0=T.r;
+    var d=document.createElementNS(SVGNS,'circle');
+    d.setAttribute('r', inward?'2.2':'2.6'); d.setAttribute('fill','var(--edge)'); perLeak.appendChild(d);
+    var s=null, dur=(inward?1500:1000)+Math.random()*500;
+    (function fly(ts){ if(!s)s=ts; var k=Math.min(1,(ts-s)/dur);
+      var rr = inward ? (r0 - Math.sin(k*Math.PI)*20)   // reaches toward the core, then retreats
+                      : (r0 + k*24);                    // value escapes outward
+      d.setAttribute('cx',(170+Math.cos(a)*rr).toFixed(1));
+      d.setAttribute('cy',(110+Math.sin(a)*rr).toFixed(1));
+      d.setAttribute('opacity',(0.5*(1-k)).toFixed(2));
+      if(k<1) requestAnimationFrame(fly); else perLeak.removeChild(d);
+    })();
+  }
+  var perT={last:0,leak:0,fut:0,rot:0};
+  function perLoop(ts){
+    var dt=Math.min(60, ts-(perT.last||ts)); perT.last=ts;
+    for(var k=0;k<perTools.length;k++){ var T=perTools[k];
+      var jx=Math.sin(ts*0.006+T.ph)*1.5, jy=Math.cos(ts*0.0075+T.ph*1.3)*1.5;
+      T.g.setAttribute('transform','translate('+(T.bx+jx).toFixed(2)+','+(T.by+jy).toFixed(2)+')');
+      T.spin=(T.spin+T.spd*dt/1000)%360;
+      T.sp.setAttribute('transform','rotate('+T.spin.toFixed(1)+')');
+    }
+    perT.rot=(perT.rot+dt*0.012)%360;
+    if(perRing) perRing.setAttribute('transform','rotate('+perT.rot.toFixed(1)+' 170 110)');
+    if(perRing2) perRing2.setAttribute('transform','rotate('+(-perT.rot*1.5).toFixed(1)+' 170 110)');
+    if(ts-perT.leak>560){ perT.leak=ts; perLeakDot(false); }
+    if(ts-perT.fut>1800){ perT.fut=ts; perLeakDot(true); }
+    requestAnimationFrame(perLoop);
+  }
+  requestAnimationFrame(perLoop);
+
+  // trail dots (comet behind the spark)
+  var TRAIL=5, trailEls=[];
+  for(var t=0;t<TRAIL;t++){
+    var td=document.createElementNS(SVGNS,'circle');
+    td.setAttribute('r',(4.2-t*0.6).toFixed(1)); td.setAttribute('fill','var(--teal)');
+    td.setAttribute('opacity',(0.34-t*0.06).toFixed(2)); trail.appendChild(td); trailEls.push(td);
+  }
+
+  var state={running:false, started:false, angle:-Math.PI/2, iq:0, emp:0, prob:0,
+             _last:0, lastFeed:0, lastEmp:0, lastRip:0, raf:null};
+
+  function posAt(ang){ return [cx+Math.cos(ang)*R, cy+Math.sin(ang)*R]; }
+
+  function renderSpark(){
+    var p=posAt(state.angle);
+    spark.setAttribute('cx',p[0].toFixed(1)); spark.setAttribute('cy',p[1].toFixed(1));
+    for(var k=0;k<TRAIL;k++){ var q=posAt(state.angle-(k+1)*0.16);
+      trailEls[k].setAttribute('cx',q[0].toFixed(1)); trailEls[k].setAttribute('cy',q[1].toFixed(1)); }
+    sweep.setAttribute('transform','rotate('+(state.angle*180/Math.PI).toFixed(1)+' '+cx+' '+cy+')');
+  }
+
+  function setIQ(v){
+    state.iq=Math.max(0,v);
+    var f=Math.min(1,state.iq/100), over=Math.max(0,state.iq-100);
+    core.setAttribute('opacity',(0.34+f*0.58).toFixed(3));
+    core.setAttribute('r',(30+f*8+over*0.05).toFixed(1));
+    core.setAttribute('fill', state.iq>100?'url(#coreHot)':'url(#coreG)');
+    var gf=Math.min(1,state.iq/150);
+    coreGlow.setAttribute('opacity',(gf*0.36).toFixed(3));
+    coreGlow.setAttribute('r',(30+gf*28).toFixed(1));
+    coreGlow.setAttribute('fill', state.iq>100?'#8501FF':'var(--teal)');
+    coreIQ.textContent=Math.round(state.iq);
+    entFill.style.width=Math.min(100,state.iq)+'%';
+    entFill.classList.toggle('over', state.iq>100);
+    entVal.textContent=Math.round(state.iq);
+    stIQ.innerHTML=Math.round(state.iq)+'<span style="font-size:16px">%</span>';
+    obadge.classList.toggle('on', state.iq>100);
+    vcPred.classList.toggle('on', state.iq>=55);
+    vcDec.classList.toggle('on', state.iq>=90);
+  }
+  function updStats(){ stEmp.textContent=state.emp; stProb.textContent=state.prob.toLocaleString('en-US'); }
+
+  function spawnFeed(){
+    var a=Math.random()*Math.PI*2, r=92;
+    var sx=cx+Math.cos(a)*r, sy=cy+Math.sin(a)*r;
+    var d=document.createElementNS(SVGNS,'circle');
+    d.setAttribute('r','3.2'); d.setAttribute('fill', state.iq>100?'#8501FF':'var(--teal)');
+    d.setAttribute('cx',sx.toFixed(1)); d.setAttribute('cy',sy.toFixed(1)); feed.appendChild(d);
+    var s=null, dur=580;
+    (function fly(ts){ if(!s)s=ts; var k=Math.min(1,(ts-s)/dur), e=1-Math.pow(1-k,2);
+      d.setAttribute('cx',(sx+(cx-sx)*e).toFixed(1)); d.setAttribute('cy',(sy+(cy-sy)*e).toFixed(1));
+      d.setAttribute('opacity',(1-k*0.75).toFixed(2));
+      if(k<1) requestAnimationFrame(fly); else feed.removeChild(d);
+    })();
+  }
+  function spawnRipple(){
+    var c=document.createElementNS(SVGNS,'circle');
+    c.setAttribute('cx',cx); c.setAttribute('cy',cy); c.setAttribute('r','30'); c.setAttribute('fill','none');
+    c.setAttribute('stroke', state.iq>100?'#8501FF':'var(--teal)'); c.setAttribute('stroke-width','2');
+    rippleG.appendChild(c);
+    var s=null, dur=1150;
+    (function go(ts){ if(!s)s=ts; var k=Math.min(1,(ts-s)/dur);
+      c.setAttribute('r',(30+k*32).toFixed(1)); c.setAttribute('opacity',(0.5*(1-k)).toFixed(2));
+      if(k<1) requestAnimationFrame(go); else rippleG.removeChild(c);
+    })();
+  }
+
+  function loop(ts){
+    if(!state.running) return;
+    var dt=Math.min(50, ts-(state._last||ts)); state._last=ts;
+    state.angle += dt*0.0027; renderSpark();
+    // more employees adopt over time
+    if(ts-state.lastEmp>720 && state.emp<320){ state.lastEmp=ts; state.emp+=Math.ceil(1+state.emp*0.06); updStats(); }
+    // feed pulses + solved problems, faster with more employees
+    var gap=Math.max(150, 500-state.emp*1.4);
+    if(ts-state.lastFeed>gap){ state.lastFeed=ts; spawnFeed(); state.prob+=Math.ceil(1+state.emp*0.4); updStats(); }
+    // core pulse ripple
+    if(ts-state.lastRip>1250){ state.lastRip=ts; spawnRipple(); }
+    // intelligence compounds — rate grows with employees, slows but never caps (can exceed 100%)
+    var rate=(0.007+state.emp*0.0006)/(1+state.iq*0.012);
+    setIQ(state.iq + rate*dt);
+    // 个人 AI: value never enters the core — stays flat at the edge
+    perFill.style.width='6%'; perVal.textContent='0'; stPer.innerHTML='0<span style="font-size:16px">%</span>';
+    state.raf=requestAnimationFrame(loop);
+  }
+
+  function reset(){
+    state.running=false; if(state.raf) cancelAnimationFrame(state.raf);
+    state.angle=-Math.PI/2; state.emp=0; state.prob=0; state.started=false;
+    setIQ(0); updStats(); renderSpark();
+    while(feed.firstChild) feed.removeChild(feed.firstChild);
+    while(rippleG.firstChild) rippleG.removeChild(rippleG.firstChild);
+    perFill.style.width='6%'; perVal.textContent='0'; stPer.innerHTML='0<span style="font-size:16px">%</span>';
+    pauseBtn.disabled=true; pauseBtn.textContent='暂停';
+    startBtn.innerHTML='<span class="ic">▶</span>从 0 开始';
+  }
+  function start(){
+    reset(); state.running=true; state.started=true;
+    state._last=0; state.lastFeed=0; state.lastEmp=0; state.lastRip=0;
+    pauseBtn.disabled=false; pauseBtn.textContent='暂停';
+    startBtn.innerHTML='<span class="ic">↻</span>重新开始';
+    state.raf=requestAnimationFrame(loop);
+  }
+  function pause(){ state.running=false; if(state.raf) cancelAnimationFrame(state.raf); pauseBtn.textContent='继续'; }
+  function resume(){ if(!state.started) return; state.running=true; state._last=0;
+    pauseBtn.textContent='暂停'; state.raf=requestAnimationFrame(loop); }
+
+  startBtn.addEventListener('click', start);
+  pauseBtn.addEventListener('click', function(){ if(state.running) pause(); else resume(); });
+
+  reset();  // initial edge state
+})();
+</script>
+
+<script>
+/* ── Part 2 · 两种速度 divergence chart ── */
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var humanPath=$('humanPath'), aiPath=$('aiPath'), gapArea=$('gapArea'),
+      walker=$('walker'), car=$('car'), carSpeed=$('carSpeed'),
+      gapBracket=$('gapBracket'), gapLine=$('gapLine'), gapTag=$('gapTag'), gapTagT=$('gapTagT'),
+      status=$('status');
+  var rYear=$('rYear'), rHuman=$('rHuman'), rAI=$('rAI'), rGap=$('rGap');
+  var startBtn=$('startBtn2'), pauseBtn=$('pauseBtn2');
+
+  var X0=56, X1=668, Y0=330, Ytop=30, MAX=122, W=X1-X0, H=Y0-Ytop;
+  var YEARS=8, DUR=9000;
+  function X(t){ return X0 + t*W; }
+  function Y(v){ return Y0 - (v/MAX)*H; }
+  function human(t){ return 10 + 26*t; }
+  function ai(t){ return 10*Math.pow(11.4, t); }
+
+  function curve(fn, tEnd){
+    var d='', n=Math.max(1, Math.round(tEnd*120));
+    for(var i=0;i<=n;i++){ var t=tEnd*i/n; d+=(i?'L':'M')+X(t).toFixed(1)+' '+Y(fn(t)).toFixed(1)+' '; }
+    return d;
+  }
+  function area(tEnd){
+    if(tEnd<=0) return '';
+    var n=Math.max(1, Math.round(tEnd*120)), d='M';
+    for(var i=0;i<=n;i++){ var t=tEnd*i/n; d+=(i?'L':'')+X(t).toFixed(1)+' '+Y(ai(t)).toFixed(1)+' '; }
+    for(var j=n;j>=0;j--){ var t2=tEnd*j/n; d+='L'+X(t2).toFixed(1)+' '+Y(human(t2)).toFixed(1)+' '; }
+    return d+'Z';
+  }
+
+  function render(t){
+    var hv=human(t), av=ai(t), hx=X(t), hy=Y(hv), ax=X(t), ay=Y(av);
+    humanPath.setAttribute('d', curve(human,t));
+    aiPath.setAttribute('d', curve(ai,t));
+    gapArea.setAttribute('d', area(t));
+    walker.setAttribute('transform','translate('+hx.toFixed(1)+','+(hy-9).toFixed(1)+')');
+    car.setAttribute('transform','translate('+ax.toFixed(1)+','+(ay-7).toFixed(1)+')');
+    if(t>0.04){
+      gapBracket.setAttribute('opacity','1');
+      gapLine.setAttribute('x1',ax.toFixed(1)); gapLine.setAttribute('y1',(ay).toFixed(1));
+      gapLine.setAttribute('x2',ax.toFixed(1)); gapLine.setAttribute('y2',(hy).toFixed(1));
+      gapTag.setAttribute('transform','translate('+(ax+2).toFixed(1)+','+((ay+hy)/2).toFixed(1)+')');
+      gapTagT.textContent='×'+(av/hv).toFixed(1);
+    } else { gapBracket.setAttribute('opacity','0'); }
+    rYear.textContent = t<=0 ? '起点' : ('第 '+Math.max(1,Math.round(t*YEARS))+' 年');
+    rHuman.textContent=Math.round(hv);
+    rAI.textContent=Math.round(av);
+    rGap.textContent='×'+(av/hv).toFixed(1);
+    carSpeed.setAttribute('opacity', state.running ? '0.55' : '0.12');
+    var s;
+    if(t<0.12) s='同一起点出发,速度还看不出差别。';
+    else if(t<0.45) s='AI 增强组织开始加速,差距悄悄拉开。';
+    else if(t<0.8) s='两条曲线分道扬镳——<b>斜率</b>的差别显形了。';
+    else s='数年之后,已经<b>不在一个量级</b>。而走路的,并没有停。';
+    status.innerHTML=s;
+  }
+
+  var state={running:false, started:false, t:0, _last:0, raf:null};
+
+  function loop(ts){
+    if(!state.running) return;
+    var dt=Math.min(60, ts-(state._last||ts)); state._last=ts;
+    state.t=Math.min(1, state.t + dt/DUR);
+    render(state.t);
+    if(state.t>=1){ state.running=false; pauseBtn.disabled=true; pauseBtn.textContent='暂停';
+      startBtn.innerHTML='<span class="ic">↻</span>再看一次'; return; }
+    state.raf=requestAnimationFrame(loop);
+  }
+  function reset(){
+    state.running=false; if(state.raf) cancelAnimationFrame(state.raf);
+    state.t=0; state.started=false; render(0);
+    pauseBtn.disabled=true; pauseBtn.textContent='暂停';
+    startBtn.innerHTML='<span class="ic">▶</span>从 0 开始';
+  }
+  function start(){
+    reset(); state.running=true; state.started=true; state._last=0;
+    pauseBtn.disabled=false; pauseBtn.textContent='暂停';
+    startBtn.innerHTML='<span class="ic">↻</span>重新开始';
+    state.raf=requestAnimationFrame(loop);
+  }
+  function pause(){ state.running=false; if(state.raf) cancelAnimationFrame(state.raf); pauseBtn.textContent='继续'; carSpeed.setAttribute('opacity','0.12'); }
+  function resume(){ if(!state.started||state.t>=1) return; state.running=true; state._last=0; pauseBtn.textContent='暂停'; state.raf=requestAnimationFrame(loop); }
+
+  startBtn.addEventListener('click', start);
+  pauseBtn.addEventListener('click', function(){ if(state.running) pause(); else resume(); });
+
+  render(0);
+})();
+</script>
+</body>
+</html>

@@ -151,11 +151,12 @@
           }));
           node._baseStyle = node.getAttribute('style');
         }
-      } else if (/^on[A-Z]/.test(name) || name === 'onclick') {
+      } else if (/^on[a-z]+$/i.test(name)) {
+        // 通用事件绑定:onclick / onmouseenter / onmouseleave …(浏览器会把属性名小写)
         const m = raw.match(TOKEN);
         if (m) {
           const fn = resolveToken(m[1], vals);
-          const evt = (name === 'onclick' ? 'click' : name.slice(2).toLowerCase());
+          const evt = name.slice(2).toLowerCase();
           node.removeAttribute(name);
           if (typeof fn === 'function') {
             node.addEventListener(evt, function (e) {

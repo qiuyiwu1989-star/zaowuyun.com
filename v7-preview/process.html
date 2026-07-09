@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>过程稿 · 管理中心 · 造物云</title>
+<link rel="preconnect" href="https://fonts.font.im" crossorigin>
+<link href="https://fonts.font.im/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F8F6F0; --paper:#FCFAF5; --ink:#18150E;
+    --ink2:rgba(24,21,14,.58); --ink3:rgba(24,21,14,.36);
+    --line:rgba(24,21,14,.10); --line2:rgba(24,21,14,.16);
+    --teal:#0E7C90; --purple:#7a12c4; --amber:#9a6a00;
+    --sans:'Noto Sans SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+    --mono:'Space Grotesk',ui-sans-serif,'SF Pro Display',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(ellipse 55% 45% at 85% 4%,rgba(6,182,212,.06),transparent 60%),
+                     radial-gradient(ellipse 45% 40% at 6% 96%,rgba(133,1,255,.05),transparent 55%);}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  header{padding:56px 0 8px}
+  .kicker{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink3);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .kicker::before{content:"";width:24px;height:1.5px;background:var(--ink3);display:inline-block}
+  h1{font-size:clamp(26px,4.4vw,40px);font-weight:900;letter-spacing:-.02em;line-height:1.14}
+  .lead{margin-top:16px;max-width:680px;font-size:15px;color:var(--ink2);line-height:1.8}
+  .lead b{color:var(--ink);font-weight:700}
+  .note{margin-top:12px;font-size:12.5px;color:var(--ink3)}
+
+  section{margin-top:44px}
+  .sh{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;border-bottom:1px solid var(--line);padding-bottom:10px}
+  .sh h2{font-size:17px;font-weight:800;letter-spacing:-.01em}
+  .sh .c{font-family:var(--mono);font-size:12px;color:var(--ink3)}
+  .sh .d{font-size:12.5px;color:var(--ink3);margin-left:auto}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  .card{display:block;text-decoration:none;color:inherit;background:var(--paper);border:1px solid var(--line);
+    border-radius:14px;padding:16px 17px;transition:transform .16s,box-shadow .16s,border-color .16s}
+  .card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -24px rgba(24,21,14,.4);border-color:var(--line2)}
+  .card .t{font-size:14.5px;font-weight:800;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+  .card .t .go{margin-left:auto;color:var(--ink3);font-family:var(--mono);transition:transform .16s}
+  .card:hover .t .go{transform:translateX(3px);color:var(--ink)}
+  .card .d{font-size:12.5px;color:var(--ink2);line-height:1.6;margin-top:7px;min-height:34px}
+  .card .f{font-family:var(--mono);font-size:11px;color:var(--ink3);margin-top:10px}
+  .tag{font-family:var(--sans);font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;letter-spacing:.02em}
+  .tag.draft{color:var(--purple);background:rgba(133,1,255,.09)}
+  .tag.embed{color:var(--teal);background:rgba(6,182,212,.1)}
+  .tag.lab{color:var(--amber);background:rgba(154,106,0,.1)}
+  .tag.ref{color:var(--ink2);background:rgba(24,21,14,.06)}
+
+  footer{padding:40px 0 60px;color:var(--ink3);font-size:12.5px;display:flex;gap:16px;flex-wrap:wrap}
+  footer a{color:var(--ink2);text-decoration:none;border-bottom:1px solid var(--line2)}
+  footer a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">造物云 AI 中台官网 · 内部</div>
+    <h1>过程稿 · 管理中心</h1>
+    <p class="lead">这里汇总官网建设过程中的<b>过程稿</b>——叙事草稿、可复用嵌入件、设计实验页。它们<b>不进对外导航</b>；有的会被挑出来扶正到正式页面。</p>
+    <div class="note">仅内部索引，不对外、不收录（noindex）。新做的过程稿都登记到这里，别让它散落在目录里。</div>
+  </header>
+
+  <!-- 叙事草稿 -->
+  <section>
+    <div class="sh"><h2>叙事草稿</h2><span class="c">3</span><span class="d">产品叙事 / 可扶正到正式页</span></div>
+    <div class="grid">
+      <a class="card" href="enterprise-ai.html">
+        <div class="t"><span class="tag draft">草稿</span>为什么是企业 AI<span class="go">→</span></div>
+        <div class="d">个人 vs 企业飞轮 + 走路 vs 开车两段交互合一页。已作为 workbench 内嵌板块的源。</div>
+        <div class="f">enterprise-ai.html</div>
+      </a>
+      <a class="card" href="enterprise-ai-v2.html">
+        <div class="t"><span class="tag draft">草稿</span>为什么是企业 AI（卖点版）<span class="go">→</span></div>
+        <div class="d">同主题的卖点导向另稿。待与主稿合并取舍（见 IA 整合③）。</div>
+        <div class="f">enterprise-ai-v2.html</div>
+      </a>
+      <a class="card" href="same-play.html">
+        <div class="t"><span class="tag draft">草稿</span>同一套打法，跑第二遍<span class="go">→</span></div>
+        <div class="d">鲁班（海尔 3D 云化）与 AI 工作台同构对照：边缘→核心→复利。</div>
+        <div class="f">same-play.html</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 嵌入件 -->
+  <section>
+    <div class="sh"><h2>嵌入件</h2><span class="c">2</span><span class="d">供正式页 iframe 调用 · 深浅联动</span></div>
+    <div class="grid">
+      <a class="card" href="enterprise-ai-embed.html">
+        <div class="t"><span class="tag embed">嵌入</span>为什么是企业 AI · 嵌入版<span class="go">→</span></div>
+        <div class="d">去导航/页脚的深色嵌入版，已挂在 workbench「WHY ENTERPRISE AI」板块，随宿主明暗联动、自适应高度。</div>
+        <div class="f">enterprise-ai-embed.html</div>
+      </a>
+      <a class="card" href="same-play-embed.html">
+        <div class="t"><span class="tag embed">嵌入</span>同一套打法 · 嵌入版<span class="go">→</span></div>
+        <div class="d">鲁班对照的嵌入版，已挂在 workbench「先例」板块。</div>
+        <div class="f">same-play-embed.html</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 设计实验 -->
+  <section>
+    <div class="sh"><h2>设计实验</h2><span class="c">8</span><span class="d">品牌 / 字体 / 导航 / 配色的探索稿</span></div>
+    <div class="grid">
+      <a class="card" href="logo-guide.html">
+        <div class="t"><span class="tag lab">实验</span>标志使用规范<span class="go">→</span></div>
+        <div class="d">Logo Guidelines：留白、最小尺寸、错误用法。</div>
+        <div class="f">logo-guide.html</div>
+      </a>
+      <a class="card" href="logo-lab.html">
+        <div class="t"><span class="tag lab">实验</span>标志实验室<span class="go">→</span></div>
+        <div class="d">颜色 / 字号 / 微动画的探索。</div>
+        <div class="f">logo-lab.html</div>
+      </a>
+      <a class="card" href="logo-polish-compare.html">
+        <div class="t"><span class="tag lab">实验</span>标记打磨 · 前后对照<span class="go">→</span></div>
+        <div class="d">Logo 打磨的 before / after。</div>
+        <div class="f">logo-polish-compare.html</div>
+      </a>
+      <a class="card" href="font-lab.html">
+        <div class="t"><span class="tag lab">实验</span>官方字体提案<span class="go">→</span></div>
+        <div class="d">字体实验室：正文/标题字重与镜像选型。</div>
+        <div class="f">font-lab.html</div>
+      </a>
+      <a class="card" href="nav-lab.html">
+        <div class="t"><span class="tag lab">实验</span>顶栏与插画风格对比<span class="go">→</span></div>
+        <div class="d">导航形态与插画风格的对照探索。</div>
+        <div class="f">nav-lab.html</div>
+      </a>
+      <a class="card" href="accent-tune.html">
+        <div class="t"><span class="tag lab">实验</span>强调色调校<span class="go">→</span></div>
+        <div class="d">让 UI 回到 LOGO 的紫，配色校准。</div>
+        <div class="f">accent-tune.html</div>
+      </a>
+      <a class="card" href="vi-applications.html">
+        <div class="t"><span class="tag lab">实验</span>VI 应用物料库<span class="go">→</span></div>
+        <div class="d">In Use：VI 在物料上的应用示例。</div>
+        <div class="f">vi-applications.html</div>
+      </a>
+      <a class="card" href="preview.html">
+        <div class="t"><span class="tag lab">实验</span>v7 预览索引<span class="go">→</span></div>
+        <div class="d">早期 v7 页面预览索引（历史）。</div>
+        <div class="f">preview.html</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 基准 -->
+  <section>
+    <div class="sh"><h2>基准</h2><span class="c">1</span><span class="d">单一事实源</span></div>
+    <div class="grid">
+      <a class="card" href="design-system.html">
+        <div class="t"><span class="tag ref">基准</span>设计系统 · Design System<span class="go">→</span></div>
+        <div class="d">组件、令牌、品牌 VI 的单一事实源（正式页，页脚可达）。</div>
+        <div class="f">design-system.html</div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <a href="index.html">← 造物云官网</a>
+    <a href="workbench.html">AI 工作台</a>
+    <span>过程稿 · 管理中心 · 内部索引</span>
+  </footer>
+</div>
+</body>
+</html>

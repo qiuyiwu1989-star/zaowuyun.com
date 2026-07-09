@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.font.im" crossorigin>
+<link href="https://fonts.font.im/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./site.css">
+<!-- reset / 共享 keyframes / 品牌标 / 顶栏下拉 / 字体类 见 site.css -->
+
+</helmet>
+
+<div data-screen-label="造物云-关于我们" style="{{ rootStyle }}">
+
+  <!-- NAV -->
+  <header style="position:sticky;top:0;z-index:60;backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);background:var(--navBg);border-bottom:1px solid var(--navBdr);">
+    <div style="max-width:1280px;margin:0 auto;padding:0 var(--ph);height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+      <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--fg);flex-shrink:0;">
+        <div style="width:32px;height:32px;flex-shrink:0;transition:transform .25s ease,filter .25s ease;filter:drop-shadow(0 2px 7px rgba(24,21,14,.22)) drop-shadow(0 1px 2px rgba(24,21,14,.10));" style-hover="transform:scale(1.1);filter:drop-shadow(0 0 12px rgba(133,1,255,.65))"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M27.356405,6.5566244Q27.640217,6.7204833,27.900215,6.9199853Q28.16021,7.1194868,28.391941,7.3512182Q28.623672,7.5829496,28.823174,7.8429451Q29.022675,8.1029396,29.186533,8.3867512Q29.350391,8.6705627,29.475803,8.9733343Q29.601215,9.2761059,29.686035,9.5926561Q29.770855,9.9092064,29.813629,10.23412Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.813631,21.765881Q29.770855,22.090794,29.686037,22.407345Q29.601215,22.723896,29.475803,23.026669Q29.350391,23.329437,29.186531,23.613249Q29.022675,23.89706,28.823174,24.157059Q28.623672,24.417053,28.391941,24.648785Q28.16021,24.880516,27.900215,25.080017Q27.640217,25.279518,27.356405,25.443377L18.5,30.556623Q18.216188,30.720484,17.913418,30.845898Q17.610645,30.97131,17.294096,31.056129Q16.977547,31.140947,16.652632,31.183723Q16.327717,31.226498,16,31.226498Q15.672283,31.226498,15.347369,31.183723Q15.022456,31.140945,14.705906,31.056128Q14.389355,30.97131,14.086583,30.845898Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q4.3597822,25.279518,4.0997868,25.080017Q3.8397913,24.880516,3.6080601,24.648783Q3.3763289,24.417053,3.1768272,24.157059Q2.9773254,23.89706,2.8134668,23.613249Q2.6496081,23.329437,2.5241961,23.026669Q2.3987842,22.723896,2.3139648,22.407347Q2.2291453,22.090796,2.1863694,21.765881Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.1863689,10.23412Q2.2291448,9.9092064,2.3139644,9.5926561Q2.3987837,9.2761059,2.5241957,8.9733343Q2.6496074,8.6705627,2.8134661,8.3867512Q2.977325,8.1029396,3.1768267,7.8429446Q3.3763285,7.5829496,3.6080596,7.3512182Q3.8397908,7.1194868,4.0997868,6.9199853Q4.3597822,6.7204833,4.6435933,6.5566244L13.5,1.4433756Q13.783812,1.2795169,14.086583,1.1541051Q14.389355,1.0286931,14.705906,0.94387358Q15.022456,0.85905409,15.34737,0.8162784Q15.672283,0.77350271,16,0.77350271Q16.327717,0.77350277,16.652632,0.81627846Q16.977547,0.85905421,17.294096,0.9438737Q17.610645,1.0286932,17.913418,1.1541052Q18.216188,1.2795172,18.5,1.4433758L27.356405,6.5566244Z" fill="#FFFFFF"/><path d="M16,8L22.928203,12L22.928203,20L16,24L9.071797,20L9.071797,12L16,8Z" fill="#8501FF"/><path d="M15.999958,24.000038L15.999958,8.000038L22.928161,12.000038L22.928161,20.000038L15.999958,24.000038Z" fill="#AF59FF"/><path d="M15.99994,16L22.928144,12L15.99994,8L9.071738,12L15.99994,16Z" fill="#CE99FF"/></svg></div>
+        <span style="font-weight:900;font-size:18px;letter-spacing:-.02em;font-family:'Noto Sans SC',sans-serif;">造物云</span>
+      </a>
+      <div style="display:var(--navLinks);align-items:center;gap:4px;font-size:14px;font-weight:500;color:var(--fg2);">
+        <a href="index.html" style="text-decoration:none;color:var(--fg2);padding:8px 12px;border-radius:8px;" style-hover="background:var(--surf);color:var(--fg)">首页</a>
+        <a href="products.html" style="text-decoration:none;color:var(--fg2);padding:8px 12px;border-radius:8px;" style-hover="background:var(--surf);color:var(--fg)">产品中心</a>
+        <a href="solutions.html" style="text-decoration:none;color:var(--fg2);padding:8px 12px;border-radius:8px;" style-hover="background:var(--surf);color:var(--fg)">解决方案</a>
+        <a href="cases.html" style="text-decoration:none;color:var(--fg2);padding:8px 12px;border-radius:8px;" style-hover="background:var(--surf);color:var(--fg)">案例</a>
+        <a href="about.html" style="text-decoration:none;color:var(--fg);padding:8px 12px;border-radius:8px;background:var(--surf);">关于我们</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+        <button onClick="{{ toggleDark }}" style="{{ toggleBtn }}">{{ themeLabel }}</button>
+        <a href="index.html#cta" style="{{ navCtaBtn }}">预约演示</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section style="max-width:1280px;margin:0 auto;padding:80px var(--ph) 56px;">
+    <div style="max-width:760px;">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 8px;border-radius:999px;background:var(--surf);border:1px solid var(--bdr);margin-bottom:22px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:block;"></span>
+        <span style="font-size:12px;font-weight:500;color:var(--fg2);letter-spacing:.04em;font-family:'Noto Sans SC',sans-serif;">关于造物云</span>
+      </div>
+      <h1 style="font-family:'Noto Sans SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',sans-serif;font-size:var(--heroFs);line-height:1.2;font-weight:800;letter-spacing:-.01em;color:var(--fg);margin:0 0 18px;">我们相信，智能<br>是企业最重要的<span style="color:var(--accent);">基础设施</span>。</h1>
+      <p style="font-size:18px;color:var(--fg2);line-height:1.68;margin:0;max-width:580px;font-family:'Noto Sans SC',sans-serif;">造物云由一群对企业 AI 落地有强烈使命感的人创立。我们不相信 AI 只是工具——它是驱动下一代企业运转的底层逻辑。</p>
+    </div>
+  </section>
+
+  <!-- DIVIDER LINE ART -->
+  <div style="max-width:1280px;margin:0 auto;padding:0 var(--ph) 56px;">
+    <div style="border-top:1px solid var(--bdr);padding-top:40px;display:flex;justify-content:center;">
+      <svg viewBox="0 0 600 80" fill="none" style="width:100%;max-width:560px;color:var(--accent);opacity:.4;">
+        <line x1="0" y1="40" x2="220" y2="40" stroke="currentColor" stroke-width=".8" stroke-dasharray="3 5"/>
+        <circle cx="240" cy="40" r="18" stroke="currentColor" stroke-width="1"/>
+        <circle cx="300" cy="40" r="24" stroke="currentColor" stroke-width="1"/>
+        <circle cx="360" cy="40" r="18" stroke="currentColor" stroke-width="1"/>
+        <line x1="380" y1="40" x2="600" y2="40" stroke="currentColor" stroke-width=".8" stroke-dasharray="3 5"/>
+        <circle cx="240" cy="40" r="5" fill="currentColor"/>
+        <circle cx="300" cy="40" r="7" fill="currentColor"/>
+        <circle cx="360" cy="40" r="5" fill="currentColor"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- MISSION + VISION 2-col -->
+  <section style="max-width:1280px;margin:0 auto;padding:0 var(--ph) 72px;">
+    <div style="display:grid;grid-template-columns:var(--col2);gap:48px;">
+      <div data-reveal>
+        <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--fg3);margin-bottom:16px;font-family:'Space Grotesk',sans-serif;">MISSION</div>
+        <h2 style="font-family:'Noto Sans SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',sans-serif;font-size:30px;font-weight:700;letter-spacing:-.01em;line-height:1.28;color:var(--fg);margin:0 0 16px;">让每一家企业，都能用上<br>生产级的 AI 能力。</h2>
+        <p style="font-size:15.5px;color:var(--fg2);line-height:1.7;margin:0;font-family:'Noto Sans SC',sans-serif;">AI 不应该只属于有资源自建团队的大公司。造物云把复杂的模型工程、数据管线与安全合规封装成标准化能力，让各规模的企业都能直接使用。</p>
+      </div>
+      <div data-reveal data-delay="150">
+        <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--fg3);margin-bottom:16px;font-family:'Space Grotesk',sans-serif;">VISION</div>
+        <h2 style="font-family:'Noto Sans SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',sans-serif;font-size:30px;font-weight:700;letter-spacing:-.01em;line-height:1.28;color:var(--fg);margin:0 0 16px;">构建 AI 原生企业的<br>运转基础。</h2>
+        <p style="font-size:15.5px;color:var(--fg2);line-height:1.7;margin:0;font-family:'Noto Sans SC',sans-serif;">五年后回望，我们希望能说：造物云曾帮助数千家企业完成了 AI 化的跃迁——不是功能上的点缀，而是让 AI 真正成为驱动业务的引擎。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section style="max-width:1280px;margin:0 auto;padding:0 var(--ph) 72px;">
+    <div data-reveal style="margin-bottom:36px;">
+      <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--fg3);margin-bottom:12px;font-family:'Space Grotesk',sans-serif;">VALUES</div>
+      <h2 style="font-family:'Noto Sans SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',sans-serif;font-size:38px;font-weight:700;letter-spacing:-.015em;color:var(--fg);margin:0;">我们相信的事。</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:var(--cols2);gap:16px;">
+      <div data-reveal data-delay="0" style="{{ glassCard }};padding:28px 30px;">
+        <div style="width:40px;height:40px;border-radius:12px;background:var(--acBg);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg viewBox="0 0 20 20" fill="none" style="width:18px;color:var(--accent);"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.3"/><path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3 style="font-size:18px;font-weight:700;color:var(--fg);margin:0 0 9px;font-family:'Noto Sans SC',sans-serif;">可靠胜过聪明</h3>
+        <p style="font-size:14px;color:var(--fg2);line-height:1.65;margin:0;font-family:'Noto Sans SC',sans-serif;">企业需要的不是最时髦的技术，而是稳定可预期的结果。我们对可靠性的追求高于一切。</p>
+      </div>
+      <div data-reveal data-delay="100" style="{{ glassCard }};padding:28px 30px;">
+        <div style="width:40px;height:40px;border-radius:12px;background:var(--acBg);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg viewBox="0 0 20 20" fill="none" style="width:18px;color:var(--accent);"><path d="M10 3v14M3 10h14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+        <h3 style="font-size:18px;font-weight:700;color:var(--fg);margin:0 0 9px;font-family:'Noto Sans SC',sans-serif;">产品即服务</h3>
+        <p style="font-size:14px;color:var(--fg2);line-height:1.65;margin:0;font-family:'Noto Sans SC',sans-serif;">产品不是交付物，是正在运行的服务。我们和客户一起，持续迭代，而不是完成后消失。</p>
+      </div>
+      <div data-reveal data-delay="200" style="{{ glassCard }};padding:28px 30px;">
+        <div style="width:40px;height:40px;border-radius:12px;background:var(--acBg);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg viewBox="0 0 20 20" fill="none" style="width:18px;color:var(--accent);"><rect x="3" y="6" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M7 6V5a3 3 0 016 0v1" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <h3 style="font-size:18px;font-weight:700;color:var(--fg);margin:0 0 9px;font-family:'Noto Sans SC',sans-serif;">安全不是配置项</h3>
+        <p style="font-size:14px;color:var(--fg2);line-height:1.65;margin:0;font-family:'Noto Sans SC',sans-serif;">安全、合规与数据主权从设计第一天起就是核心，不是事后的补丁或可选模块。</p>
+      </div>
+      <div data-reveal data-delay="300" style="{{ glassCard }};padding:28px 30px;">
+        <div style="width:40px;height:40px;border-radius:12px;background:var(--acBg);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg viewBox="0 0 20 20" fill="none" style="width:18px;color:var(--accent);"><circle cx="7" cy="8" r="3" stroke="currentColor" stroke-width="1.3"/><circle cx="13" cy="8" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M3 17c0-3 2-4 4-4h6c2 0 4 1 4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+        <h3 style="font-size:18px;font-weight:700;color:var(--fg);margin:0 0 9px;font-family:'Noto Sans SC',sans-serif;">以人为中心</h3>
+        <p style="font-size:14px;color:var(--fg2);line-height:1.65;margin:0;font-family:'Noto Sans SC',sans-serif;">AI 是为人服务的，不是替代人的。我们构建的一切，最终都是为了让人做出更好的决策。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY TIMELINE -->
+  <section style="max-width:1280px;margin:0 auto;padding:0 var(--ph) 72px;">
+    <div data-reveal style="margin-bottom:36px;">
+      <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--fg3);margin-bottom:12px;font-family:'Space Grotesk',sans-serif;">STORY</div>
+      <h2 style="font-family:'Noto Sans SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',sans-serif;font-size:38px;font-weight:700;letter-spacing:-.015em;color:var(--fg);margin:0;">我们走过的路。</h2>
+    </div>
+    <div style="position:relative;padding-left:28px;border-left:1px solid var(--bdr);">
+      <div data-reveal style="margin-bottom:36px;position:relative;">
+        <div style="position:absolute;left:-36px;width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid var(--bg);"></div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--accent);margin-bottom:6px;">2021</div>
+        <h3 style="font-size:18px;font-weight:700;color:var(--fg);margin:0 0 6px;font-family:'Noto Sans SC',sans-serif;">创立于杭州</h3>
+        <p style="font-size:14.5px;color:var(--fg2);line-height:1.65;margin:0;max-width:580px;font-family:'Noto Sans SC',sans-serif;">团队从一个问题出发：为什么优秀的 AI 能力只存在于大厂内部？我们决定把这些能力标准化，交给每一家企业。</p>
+      </div>
+      <div data-reveal data-delay="100" style="margin-bottom:36px;position:relative;">
+        <div style="position:absolute;left:-36px;width:16px;height:16px;border-radius:50%;background:var(--surf2);border:3px solid var(--bg);box-shadow:0 0 0 1px var(--bdrBrt);"></div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--fg3);margin-bottom:6px;">2022</div>
+        <h3 style="font-size:18px;font-weight:700;color:var(--fg);margin:0 0 6px;font-family:'Noto Sans SC',sans-serif;">服务前 50 家企业客户</h3>
+        <p style="font-size:14.5px;color:var(--fg2);line-height:1.65;margin:0;max-width:580px;font-family:'Noto Sans SC',sans-serif;">从制造业到零售，我们打磨出真正可落地的产品形态，而不是概念演示。</p>
+      </div>
+      <div data-reveal data-delay="200" style="margin-bottom:36px;position:relative;">
+        <div style="position:absolute;left:-36px;width:16px;height:16px;border-radius:50%;background:var(--surf2);border:3px solid var(--bg);box-shadow:0 0 0 1px var(--bdrBrt);"></div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--fg3);margin-bottom:6px;">2023</div>
+        <h3 style="font-size:18px;font-weight:700;color:var(--fg);margin:0 0 6px;font-family:'Noto Sans SC',sans-serif;">大模型时代，重写产品底座</h3>
+        <p style="font-size:14.5px;color:var(--fg2);line-height:1.65;margin:0;max-width:580px;font-family:'Noto Sans SC',sans-serif;">GPT 时代到来，我们完整重构了模型网关、数据治理和 Agent 编排层，成为企业 AI 中台。</p>
+      </div>
+      <div data-reveal data-delay="300" style="position:relative;">
+        <div style="position:absolute;left:-36px;width:16px;height:16px;border-radius:50%;background:var(--surf2);border:3px solid var(--bg);box-shadow:0 0 0 1px var(--bdrBrt);"></div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--fg3);margin-bottom:6px;">2024 – 今</div>
+        <h3 style="font-size:18px;font-weight:700;color:var(--fg);margin:0 0 6px;font-family:'Noto Sans SC',sans-serif;">600+ 企业，10 亿+日均调用</h3>
+        <p style="font-size:14.5px;color:var(--fg2);line-height:1.65;margin:0;max-width:580px;font-family:'Noto Sans SC',sans-serif;">跨越金融、制造、医疗、零售、政务五大行业，造物云已成为中国最被信赖的企业 AI 中台之一。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION / CONTACT -->
+  <section style="max-width:1280px;margin:0 auto;padding:0 var(--ph) 80px;">
+    <div style="display:grid;grid-template-columns:var(--col2);gap:20px;">
+      <div data-reveal style="{{ glassCard }};padding:30px 32px;">
+        <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--fg3);margin-bottom:14px;font-family:'Space Grotesk',sans-serif;">OFFICE</div>
+        <h3 style="font-size:18px;font-weight:700;color:var(--fg);margin:0 0 10px;font-family:'Noto Sans SC',sans-serif;">杭州总部</h3>
+        <p style="font-size:14.5px;color:var(--fg2);line-height:1.65;margin:0 0 16px;font-family:'Noto Sans SC',sans-serif;">浙江省杭州市余杭区文一西路 969 号<br>西溪天堂创业园 A 幢 10 层</p>
+        <p style="font-size:13.5px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">杭州造物云技术有限公司</p>
+      </div>
+      <div data-reveal data-delay="150" style="{{ glassCard }};padding:30px 32px;">
+        <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--fg3);margin-bottom:14px;font-family:'Space Grotesk',sans-serif;">CONTACT</div>
+        <h3 style="font-size:18px;font-weight:700;color:var(--fg);margin:0 0 10px;font-family:'Noto Sans SC',sans-serif;">联系我们</h3>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="mailto:hello@zaowuyun.com" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--fg2);font-size:14.5px;font-family:'Noto Sans SC',sans-serif;" style-hover="color:var(--fg)"><svg viewBox="0 0 18 18" fill="none" style="width:16px;flex-shrink:0;color:var(--fg3);"><rect x="2" y="4" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M2 7l7 5 7-5" stroke="currentColor" stroke-width="1.2"/></svg>hello@zaowuyun.com</a>
+        </div>
+        <div style="margin-top:20px;padding-top:18px;border-top:1px solid var(--bdr);">
+          <a href="index.html#cta" style="{{ navCtaBtn }};display:inline-flex;">预约产品演示</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid var(--bdr);">
+    <div style="max-width:1280px;margin:0 auto;padding:24px var(--ph);">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:var(--fg3);font-family:'Noto Sans SC',sans-serif;">
+        <span>© 2026 杭州造物云技术有限公司</span>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;">
+          <a href="design-system.html" style="text-decoration:none;color:inherit;" style-hover="color:var(--fg)">设计系统</a>
+          <span>浙ICP备2021038972号-1</span>
+          <span>浙公网安备 33010602013219号</span>
+        </div>
+      </div>
+<template id="__bundler_thumbnail"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="80" fill="#07070F"/><polygon points="60,20 75,30 75,50 60,60 45,50 45,30" fill="#34D399" opacity=".9"/><polygon points="60,60 60,20 75,30 75,50" fill="#6EE7B7" opacity=".7"/><polygon points="60,40 75,30 60,20 45,30" fill="#A7F3D0" opacity=".6"/></svg></template>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { dark: true, logoHovered: false, width: 1280 };
+
+  componentDidMount() {
+    const r = () => this.setState({ width: window.innerWidth });
+    r(); window.addEventListener('resize', r); this._r = r;
+    setTimeout(() => this._initReveal(), 200);
+  }
+  componentWillUnmount() { if (this._r) window.removeEventListener('resize', this._r); }
+
+  _initReveal() {
+    const els = document.querySelectorAll('[data-reveal]');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (!e.isIntersecting) return; const d = parseInt(e.target.getAttribute('data-delay') || '0'); setTimeout(() => { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }, d); obs.unobserve(e.target); });
+    }, { threshold: 0.1 });
+    els.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; el.style.transition = 'opacity .75s ease,transform .75s ease'; obs.observe(el); });
+  }
+
+  _logoMark() {
+    const h = this.state.logoHovered, d = this.state.dark, color = d ? '#8B8FFF' : '#2222C0';
+    return React.createElement('svg', { key: 'lm', width: 28, height: 28, viewBox: '0 0 28 28', fill: 'none', style: { flexShrink: 0 }, onMouseEnter: () => this.setState({ logoHovered: true }), onMouseLeave: () => this.setState({ logoHovered: false }) }, [
+      React.createElement('g', { key: 'r', style: { animation: `spinRing ${h ? '1.8s' : '12s'} linear infinite`, transformOrigin: '14px 14px' } }, [React.createElement('circle', { key: 'rc', cx: 14, cy: 14, r: 12, stroke: color, strokeWidth: h ? 1.2 : 1, strokeDasharray: '4 2.5', fill: 'none', style: { opacity: h ? 1 : .75 } })]),
+      React.createElement('circle', { key: 'n0', cx: 14, cy: 4.5, r: h ? 2.8 : 2.2, fill: color }),
+      React.createElement('circle', { key: 'n1', cx: 6.5, cy: 19.5, r: h ? 2.8 : 2.2, fill: color }),
+      React.createElement('circle', { key: 'n2', cx: 21.5, cy: 19.5, r: h ? 2.8 : 2.2, fill: color }),
+      React.createElement('line', { key: 'l0', x1: 14, y1: 4.5, x2: 6.5, y2: 19.5, stroke: color, strokeWidth: h ? 1 : .7, style: { opacity: h ? .85 : .5 } }),
+      React.createElement('line', { key: 'l1', x1: 14, y1: 4.5, x2: 21.5, y2: 19.5, stroke: color, strokeWidth: h ? 1 : .7, style: { opacity: h ? .85 : .5 } }),
+      React.createElement('line', { key: 'l2', x1: 6.5, y1: 19.5, x2: 21.5, y2: 19.5, stroke: color, strokeWidth: h ? 1 : .7, style: { opacity: h ? .85 : .5 } }),
+    ]);
+  }
+
+  get _vars() {
+    const d = this.state.dark;
+    return d ? { '--bg':'#0A0A14','--fg':'#F0F0FF','--fg2':'rgba(240,240,255,.55)','--fg3':'rgba(240,240,255,.32)','--accent':'#6366F1','--acBg':'rgba(99,102,241,.13)','--surf':'rgba(255,255,255,.05)','--surf2':'rgba(255,255,255,.1)','--bdr':'rgba(255,255,255,.08)','--bdrBrt':'rgba(255,255,255,.16)','--navBg':'rgba(10,10,20,.86)','--navBdr':'rgba(255,255,255,.07)','--glass':'rgba(255,255,255,.06)','--glassTop':'rgba(255,255,255,.12)' }
+      : { '--bg':'#F8F7F3','--fg':'#18150E','--fg2':'rgba(24,21,14,.52)','--fg3':'rgba(24,21,14,.34)','--accent':'#2222C0','--acBg':'rgba(34,34,192,.1)','--surf':'rgba(255,255,255,.72)','--surf2':'rgba(255,255,255,.95)','--bdr':'rgba(24,21,14,.1)','--bdrBrt':'rgba(24,21,14,.22)','--navBg':'rgba(248,247,243,.9)','--navBdr':'rgba(24,21,14,.1)','--glass':'rgba(255,255,255,.72)','--glassTop':'rgba(255,255,255,.9)' };
+  }
+
+  get _resp() {
+    const w = this.state.width || 1280, m = w < 768;
+    return { '--ph': m ? '20px' : '48px', '--heroFs': m ? '38px' : '58px', '--navLinks': m ? 'none' : 'flex', '--col2': m ? '1fr' : '1fr 1fr', '--cols2': m ? '1fr' : '1fr 1fr' };
+  }
+
+  _glassCard() {
+    const d = this.state.dark;
+    return { background: d ? 'rgba(255,255,255,.05)' : 'rgba(255,255,255,.72)', border: `1px solid ${d ? 'rgba(255,255,255,.1)' : 'rgba(24,21,14,.1)'}`, borderRadius: '20px', backdropFilter: 'saturate(180%) blur(18px)', WebkitBackdropFilter: 'saturate(180%) blur(18px)', boxShadow: d ? 'inset 0 1px 0 rgba(255,255,255,.12),0 8px 24px -10px rgba(0,0,0,.28)' : 'inset 0 1px 0 rgba(255,255,255,.9),0 6px 20px -8px rgba(0,0,0,.1)' };
+  }
+
+  renderVals() {
+    const d = this.state.dark;
+    return {
+      rootStyle: { ...this._vars, ...this._resp, background: 'var(--bg)', color: 'var(--fg)', fontFamily: "'Noto Sans SC',system-ui,sans-serif", minHeight: '100vh', overflowX: 'hidden' },
+      logoMark: this._logoMark(),
+      toggleBtn: { background: 'var(--surf)', border: '1px solid var(--bdr)', cursor: 'pointer', fontSize: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', padding: '0' },
+      themeLabel: d ? '☀' : '◑',
+      toggleDark: () => this.setState(s => ({ dark: !s.dark })),
+      navCtaBtn: { textDecoration: 'none', background: d ? '#6366F1' : '#18150E', color: d ? '#fff' : '#F8F7F3', fontSize: '13px', fontWeight: '600', padding: '9px 18px', borderRadius: '999px', display: 'inline-flex', alignItems: 'center', fontFamily: "'Noto Sans SC',sans-serif" },
+      glassCard: this._glassCard(),
+    };
+  }
+}
+</script>
+</body>
+</html>

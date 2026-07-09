@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>强调色调校 · 让 UI 回到 LOGO 的紫 — 造物云设计系统</title>
+<meta name="description" content="把固定的 LOGO 晶体与三套候选 UI 强调色并排对照：现状靛蓝、轻推、对齐 LOGO。深浅主题可切，决定全站 --accent 往紫罗兰收多深。">
+<!-- 品牌字体 · 思源黑体 + Space Grotesk · 国内可达镜像 font.im -->
+<link rel="stylesheet" href="https://font.im/css2?family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+:root{
+  --bg:#07070F; --bg2:#0d0d18; --surf:rgba(255,255,255,.05); --surf2:rgba(255,255,255,.09);
+  --fg:#ECEEFF; --fg2:rgba(236,238,255,.52); --fg3:rgba(236,238,255,.30);
+  --bdr:rgba(255,255,255,.10); --bdrBrt:rgba(255,255,255,.18);
+  /* 默认强调（现状） */
+  --accent:#7B80FF; --accent-deep:#5B5FE0; --acBg:rgba(123,128,255,.13);
+  --sans:'Source Han Sans SC','Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+  --latin:'Space Grotesk',ui-sans-serif,'SF Pro Display','Helvetica Neue',Arial,sans-serif;
+  --r-sm:8px; --r-md:12px; --r-lg:18px; --r-pill:999px;
+  --t:.25s; --ease:cubic-bezier(.4,1,.6,1);
+}
+html[data-theme="light"]{
+  --bg:#F8F6F0; --bg2:#FBFAF6; --surf:rgba(24,21,14,.04); --surf2:rgba(24,21,14,.07);
+  --fg:#18150E; --fg2:rgba(24,21,14,.52); --fg3:rgba(24,21,14,.34);
+  --bdr:rgba(24,21,14,.11); --bdrBrt:rgba(24,21,14,.20);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.7;
+  -webkit-font-smoothing:antialiased;transition:background var(--t) var(--ease),color var(--t) var(--ease);padding-bottom:80px}
+a{color:var(--accent)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* ---- 顶栏 ---- */
+.tbar{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 86%,transparent);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);display:flex;align-items:center;
+  justify-content:space-between;padding:11px 28px;gap:16px;flex-wrap:wrap}
+.tbar .lhs{display:flex;align-items:center;gap:11px;font-size:13px;color:var(--fg2)}
+.tbar .lhs b{color:var(--fg);font-weight:600}
+.toggle{display:inline-flex;border:1px solid var(--bdr);border-radius:var(--r-pill);overflow:hidden}
+.toggle button{font-family:var(--sans);font-size:12.5px;border:none;background:transparent;color:var(--fg2);
+  padding:6px 16px;cursor:pointer;transition:.18s}
+.toggle button.on{background:var(--fg);color:var(--bg)}
+
+/* ---- 头 ---- */
+.head{padding:48px 0 12px}
+.kic{font-family:var(--latin);font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--accent);text-transform:uppercase}
+.head h1{font-weight:800;font-size:clamp(28px,4.4vw,44px);letter-spacing:-.02em;line-height:1.1;margin:12px 0 14px}
+.head p{color:var(--fg2);font-size:15.5px;max-width:760px}
+.head p b{color:var(--fg);font-weight:600}
+
+/* ---- LOGO 真值条 ---- */
+.truth{margin:30px 0 8px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.tcell{border:1px solid var(--bdr);border-radius:var(--r-md);background:var(--surf);padding:14px 16px}
+.tcell .sw{height:40px;border-radius:var(--r-sm);margin-bottom:10px;border:1px solid var(--bdr)}
+.tcell .nm{font-size:13px;font-weight:600}
+.tcell .vr{font-family:var(--latin);font-size:11.5px;color:var(--fg3);letter-spacing:.02em}
+.tcell .hue{font-family:var(--latin);font-size:10.5px;color:var(--accent);margin-top:2px}
+
+/* ---- 三方案网格 ---- */
+.cands{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+@media(max-width:880px){.cands{grid-template-columns:1fr}}
+.cand{border:1px solid var(--bdr);border-radius:var(--r-lg);background:var(--surf);overflow:hidden;display:flex;flex-direction:column}
+.cand.pick{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.cand .ch{padding:16px 18px 14px;border-bottom:1px solid var(--bdr)}
+.cand .ch .tag{font-family:var(--latin);font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cAccent)}
+.cand .ch h3{font-size:18px;font-weight:700;letter-spacing:-.01em;margin:5px 0 4px;display:flex;align-items:center;gap:8px}
+.cand .ch .badge-rec{font-family:var(--latin);font-size:10px;font-weight:700;color:var(--cAccent);
+  background:color-mix(in srgb,var(--cAccent) 16%,transparent);padding:2px 8px;border-radius:var(--r-pill)}
+.cand .ch .vals{font-family:var(--latin);font-size:11px;color:var(--fg3);margin-top:6px;line-height:1.7;word-break:break-all}
+.cand .ch .vals b{color:var(--fg2);font-weight:600}
+.cand .body{padding:18px;display:flex;flex-direction:column;gap:20px;flex:1}
+
+/* 锁标（晶体 + 字标）—— 晶体颜色恒定为 LOGO 真值，只换 UI accent 看是否同族 */
+.lock{display:flex;align-items:center;gap:11px}
+.lock .plate{display:inline-flex;align-items:center;justify-content:center}
+.lock .wm{font-weight:700;font-size:20px;letter-spacing:.01em;color:var(--fg)}
+.row-lbl{font-family:var(--latin);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg3);margin-bottom:9px}
+
+/* 真组件，全部吃 --cAccent / --cDeep / --cBg */
+.kicC{font-family:var(--latin);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cAccent)}
+.h-demo{font-weight:800;font-size:21px;letter-spacing:-.01em;line-height:1.3;margin-top:6px}
+.h-demo em{font-style:normal;color:var(--cAccent)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{font-family:var(--sans);font-size:13.5px;font-weight:600;border:none;cursor:pointer;
+  border-radius:var(--r-pill);padding:10px 20px;transition:.2s}
+.btn.primary{background:var(--cAccent);color:#fff;
+  box-shadow:0 12px 30px -12px color-mix(in srgb,var(--cAccent) 65%,transparent)}
+.btn.primary:hover{background:var(--cDeep)}
+.btn.grad{background:linear-gradient(135deg,var(--cAccent),var(--cDeep));color:#fff}
+.btn.ghost{background:transparent;color:var(--cAccent);border:1px solid color-mix(in srgb,var(--cAccent) 45%,transparent)}
+.linktxt{font-size:13.5px;color:var(--fg2);line-height:1.7}
+.linktxt a{color:var(--cAccent);font-weight:600}
+.chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{font-family:var(--latin);font-size:11px;font-weight:600;padding:4px 11px;border-radius:var(--r-pill);
+  color:var(--cAccent);background:color-mix(in srgb,var(--cAccent) 14%,transparent)}
+.dot{width:11px;height:11px;border-radius:3px;background:var(--cAccent);display:inline-block}
+.inp{font-family:var(--sans);font-size:13.5px;color:var(--fg);background:var(--surf2);
+  border:1px solid var(--cAccent);box-shadow:0 0 0 3px color-mix(in srgb,var(--cAccent) 20%,transparent);
+  border-radius:var(--r-sm);padding:9px 13px;width:100%}
+.heroband{height:78px;border-radius:var(--r-md);border:1px solid var(--bdr);
+  background:radial-gradient(ellipse 80% 70% at 70% 30%,color-mix(in srgb,var(--cAccent) 42%,transparent),transparent 62%),
+             radial-gradient(ellipse 50% 60% at 12% 84%,color-mix(in srgb,var(--cAccent) 22%,transparent),transparent 58%),
+             var(--bg2)}
+.pick-btn{font-family:var(--sans);font-size:12.5px;font-weight:600;border:1px solid var(--bdr);background:var(--surf2);
+  color:var(--fg2);border-radius:var(--r-pill);padding:7px 0;cursor:pointer;width:100%;transition:.18s}
+.cand.pick .pick-btn{background:var(--cAccent);color:#fff;border-color:var(--cAccent)}
+
+.note{margin:34px 0 0;font-size:13px;color:var(--fg3);border-left:2px solid var(--bdr);padding-left:14px;line-height:1.8}
+.foot{margin-top:46px;border-top:1px solid var(--bdr);padding:22px 0;font-family:var(--latin);
+  font-size:11.5px;color:var(--fg3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.foot a{color:var(--fg2)}
+</style>
+</head>
+<body>
+
+<div class="tbar">
+  <div class="lhs"><b>造物云</b> · 强调色调校 <span style="color:var(--fg3)">Accent × Logo</span></div>
+  <div class="toggle" id="themeTg">
+    <button data-th="dark" class="on">深色</button>
+    <button data-th="light">浅色</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="head">
+    <div class="kic">Design System · Polish</div>
+    <h1>让按钮和角标 LOGO，是同一种紫</h1>
+    <p>LOGO 晶体是真正的<b>紫罗兰</b>（签名色 #8501FF，色相约 270°），但当前设计系统的强调色偏<b>靛蓝</b>（#7B80FF / #3535B5，色相约 238°）。下面把<b>固定不变的 LOGO 晶体</b>放在三套候选 UI 强调色旁边——晶体颜色三栏完全一致，只有按钮·链接·kicker 在换色。看哪一栏的 UI 和晶体最像「同族」。先切深浅主题，再为每栏的实物组件投票。</p>
+  </div>
+
+  <!-- LOGO 真值 -->
+  <div class="row-lbl" style="margin-top:8px">LOGO 晶体真值（固定锚点）</div>
+  <div class="truth">
+    <div class="tcell"><div class="sw" style="background:#CE99FF"></div><div class="nm">顶面 Top</div><div class="vr">#CE99FF</div><div class="hue">H ≈ 270°</div></div>
+    <div class="tcell"><div class="sw" style="background:#AF59FF"></div><div class="nm">右面 Right</div><div class="vr">#AF59FF</div><div class="hue">H ≈ 272°</div></div>
+    <div class="tcell"><div class="sw" style="background:#8501FF"></div><div class="nm">左面 Left · 签名</div><div class="vr">#8501FF</div><div class="hue">H ≈ 271°</div></div>
+    <div class="tcell"><div class="sw" style="background:linear-gradient(135deg,#8E92FF,#7A00E6)"></div><div class="nm">紫底板渐变</div><div class="vr">#8E92FF → #7A00E6</div><div class="hue">H 238 → 270</div></div>
+  </div>
+
+  <!-- 三方案 -->
+  <div class="cands" id="cands"></div>
+
+  <p class="note">
+    晶体三栏一致，是有意为之——LOGO 是不动的锚，要调的是 UI。<b>轻推</b>把强调色相从 238° 拉到约 256°，离 LOGO 紫更近又保留现有稳重；<b>对齐 LOGO</b> 直接落到约 265°，按钮和晶体几乎同色、最纯粹但全站观感变化最大；<b>现状</b>留作基准。选定后，我会把 <code>design-system.html</code> 与 <code>logo-guide.html</code> 的 <code>:root</code> 改成对应值，并扫 6 个核心页与 <code>support.js</code> 里硬编码的 #7B80FF / #5B5FE0，统一回推。
+  </p>
+
+  <div class="foot">
+    <span>造物云 · v7 设计系统 · 强调色调校 · 2026-06-22</span>
+    <span><a href="design-system.html">设计系统 →</a> &nbsp; <a href="logo-guide.html">标志规范 →</a></span>
+  </div>
+</div>
+
+<script>
+/* ===== LOGO 晶体 builder（与 logo-guide / logo-lab 同源）===== */
+const FACES={
+  top:'M16 8 L22.928 12 L16 16 L9.072 12 Z',
+  right:'M16 16 L22.928 12 L22.928 20 L16 24 Z',
+  left:'M9.072 12 L16 16 L16 24 L9.072 20 Z'
+};
+const PLATE_D="M27.356405,6.5566244Q27.640217,6.7204833,27.900215,6.9199853Q28.16021,7.1194868,28.391941,7.3512182Q28.623672,7.5829496,28.823174,7.8429451Q29.022675,8.1029396,29.186533,8.3867512Q29.350391,8.6705627,29.475803,8.9733343Q29.601215,9.2761059,29.686035,9.5926561Q29.770855,9.9092064,29.813629,10.23412Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.813631,21.765881Q29.770855,22.090794,29.686037,22.407345Q29.601215,22.723896,29.475803,23.026669Q29.350391,23.329437,29.186531,23.613249Q29.022675,23.89706,28.823174,24.157059Q28.623672,24.417053,28.391941,24.648785Q28.16021,24.880516,27.900215,25.080017Q27.640217,25.279518,27.356405,25.443377L18.5,30.556623Q18.216188,30.720484,17.913418,30.845898Q17.610645,30.97131,17.294096,31.056129Q16.977547,31.140947,16.652632,31.183723Q16.327717,31.226498,16,31.226498Q15.672283,31.226498,15.347369,31.183723Q15.022456,31.140945,14.705906,31.056128Q14.389355,30.97131,14.086583,30.845898Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q4.3597822,25.279518,4.0997868,25.080017Q3.8397913,24.880516,3.6080601,24.648783Q3.3763289,24.417053,3.1768272,24.157059Q2.9773254,23.89706,2.8134668,23.613249Q2.6496081,23.329437,2.5241961,23.026669Q2.3987842,22.723896,2.3139648,22.407347Q2.2291453,22.090796,2.1863694,21.765881Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.1863689,10.23412Q2.2291448,9.9092064,2.3139644,9.5926561Q2.3987837,9.2761059,2.5241957,8.9733343Q2.6496074,8.6705627,2.8134661,8.3867512Q2.977325,8.1029396,3.1768267,7.8429446Q3.3763285,7.5829496,3.6080596,7.3512182Q3.8397908,7.1194868,4.0997868,6.9199853Q4.3597822,6.7204833,4.6435933,6.5566244L13.5,1.4433756Q13.783812,1.2795169,14.086583,1.1541051Q14.389355,1.0286931,14.705906,0.94387358Q15.022456,0.85905409,15.34737,0.8162784Q15.672283,0.77350271,16,0.77350271Q16.327717,0.77350277,16.652632,0.81627846Q16.977547,0.85905421,17.294096,0.9438737Q17.610645,1.0286932,17.913418,1.1541052Q18.216188,1.2795172,18.5,1.4433758L27.356405,6.5566244Z";
+const PAL={top:'#CE99FF',right:'#AF59FF',left:'#8501FF'};
+function mark(size){
+  const light=document.documentElement.getAttribute('data-theme')==='light';
+  const plate=light
+    ?`<path d="${PLATE_D}" fill="#FFFFFF" stroke="rgba(24,21,14,.06)" stroke-width="0.4" stroke-linejoin="round"/>`
+    :`<path d="${PLATE_D}" fill="#FFFFFF"/>`;
+  return `<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:${size}px;height:${size}px;display:block">
+    ${plate}
+    <path d="${FACES.left}"  fill="${PAL.left}"/>
+    <path d="${FACES.right}" fill="${PAL.right}"/>
+    <path d="${FACES.top}"   fill="${PAL.top}"/>
+  </svg>`;
+}
+
+/* ===== 三套候选（深 / 浅 各一组）===== */
+const CANDS=[
+  {key:'cur', tag:'Current', name:'现状 · 靛蓝', rec:false,
+    hue:'H ≈ 238°',
+    dark:{a:'#7B80FF',d:'#5B5FE0'}, light:{a:'#3535B5',d:'#27278C'}},
+  {key:'nudge', tag:'Nudge', name:'轻推', rec:true,
+    hue:'H ≈ 256°',
+    dark:{a:'#8C7BFF',d:'#6A4FE2'}, light:{a:'#5A2EC4',d:'#45219A'}},
+  {key:'align', tag:'Align', name:'对齐 LOGO', rec:false,
+    hue:'H ≈ 265°',
+    dark:{a:'#9D6BFF',d:'#7A33E6'}, light:{a:'#6E1FD6',d:'#5814AD'}},
+];
+let picked='nudge';
+
+function render(){
+  const light=document.documentElement.getAttribute('data-theme')==='light';
+  const host=document.getElementById('cands');
+  host.innerHTML=CANDS.map(c=>{
+    const p=light?c.light:c.dark;
+    const sty=`--cAccent:${p.a};--cDeep:${p.d}`;
+    return `<div class="cand ${c.key===picked?'pick':''}" style="${sty}" data-key="${c.key}">
+      <div class="ch">
+        <div class="tag">${c.tag}</div>
+        <h3>${c.name}${c.rec?'<span class="badge-rec">推荐</span>':''}</h3>
+        <div class="vals"><b>${c.hue}</b> &nbsp; accent <b>${p.a}</b> · deep <b>${p.d}</b></div>
+      </div>
+      <div class="body">
+        <div>
+          <div class="row-lbl">锁标 · 晶体（固定）+ 字标</div>
+          <div class="lock"><span class="plate">${mark(40)}</span><span class="wm">造物云</span></div>
+        </div>
+        <div>
+          <div class="kicC">Token Hub · 智能基础设施</div>
+          <div class="h-demo">把智能，<em>装进每件产品</em></div>
+        </div>
+        <div class="btns">
+          <button class="btn primary">开始构建</button>
+          <button class="btn ghost">看案例</button>
+          <button class="btn grad">渐变</button>
+        </div>
+        <div class="linktxt">正文里的 <a href="#">超链接示例</a> 与强调，跨页统一走这枚强调色。</div>
+        <div class="chips"><span class="dot"></span><span class="chip">品牌徽章</span><span class="chip">API</span><span class="chip">工作台</span></div>
+        <input class="inp" value="聚焦态输入框 · 边框与光环" readonly>
+        <div><div class="row-lbl">Hero 光晕</div><div class="heroband"></div></div>
+        <button class="pick-btn" data-pick="${c.key}">${c.key===picked?'已选 ✓':'选这套'}</button>
+      </div>
+    </div>`;
+  }).join('');
+  host.querySelectorAll('[data-pick]').forEach(b=>b.onclick=()=>{picked=b.dataset.pick;render();});
+}
+
+document.getElementById('themeTg').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b)return;
+  document.documentElement.setAttribute('data-theme',b.dataset.th);
+  document.querySelectorAll('#themeTg button').forEach(x=>x.classList.toggle('on',x===b));
+  render();
+});
+render();
+</script>
+</body>
+</html>

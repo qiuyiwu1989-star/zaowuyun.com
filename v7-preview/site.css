@@ -1,0 +1,45 @@
+/* ============================================================
+ * 造物云官网 v7 · 站点共享样式 site.css —— 单一事实源（静态层）
+ * ------------------------------------------------------------
+ * 规则：本文件只收「跨页一致、与主题无关」的静态样式：
+ *   reset · 共享 @keyframes · 品牌标动画 · 顶栏下拉 · 字体工具类。
+ * 不收「随主题/断点变化」的 token —— 那些由各页组件 renderVals()
+ *   以内联 CSS 变量（rootStyle / --navBg / --navLinks / --footerCols…）注入。
+ * 每页只需：<link rel="stylesheet" href="./site.css">（放进 <helmet>）。
+ * 详见 SPEC.md「C. 设计系统单一事实源」。
+ * ============================================================ */
+
+/* ---------- reset ---------- */
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{-webkit-font-smoothing:antialiased;}
+
+/* ---------- 字体工具类（思源黑体唯一品牌字，靠字重分层；拉丁/数字走 Space Grotesk） ---------- */
+.font-sans{font-family:'Noto Sans SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif;}
+/* 旧 .font-serif 一并归并到品牌黑体，不再用衬线 */
+.font-serif{font-family:'Noto Sans SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif;}
+.font-mono{font-family:'Space Grotesk',ui-sans-serif,'SF Pro Display','Helvetica Neue',Arial,sans-serif;}
+
+/* ---------- 共享 @keyframes（跨页通用） ---------- */
+@keyframes spinRing{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes logoAppear{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+@keyframes menuIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ---------- 品牌标 MARK 微动画：三面错峰提亮（与 design-system #logo / logo-guide §08 同源） ---------- */
+.brand-mark .f-top,.brand-mark .f-right,.brand-mark .f-left{transform-box:fill-box;transform-origin:center}
+@keyframes brandShim{0%,74%,100%{filter:brightness(1)}14%{filter:brightness(1.24)}}
+.brand-mark .f-top{animation:brandShim 3.4s cubic-bezier(.4,1,.6,1) infinite}
+.brand-mark .f-right{animation:brandShim 3.4s cubic-bezier(.4,1,.6,1) infinite 1.13s}
+.brand-mark .f-left{animation:brandShim 3.4s cubic-bezier(.4,1,.6,1) infinite 2.26s}
+
+/* ---------- 顶栏「产品」hover 下拉：纯 CSS，零重渲染（避免 setState 触发整页淡入） ---------- */
+.nav-prod-menu{opacity:0;visibility:hidden;transform:translateY(-6px);pointer-events:none;transition:opacity .18s ease,transform .18s ease,visibility 0s linear .18s}
+.nav-prod:hover .nav-prod-menu{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;transition:opacity .18s ease,transform .18s ease,visibility 0s}
+@media(hover:none){.nav-prod-menu{display:none}}
+
+/* ---------- 无障碍：尊重减弱动效偏好 ---------- */
+@media(prefers-reduced-motion:reduce){
+  .brand-mark .f-top,.brand-mark .f-right,.brand-mark .f-left{animation:none!important}
+  *{scroll-behavior:auto!important}
+}

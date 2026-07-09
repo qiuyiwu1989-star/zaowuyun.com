@@ -19,8 +19,6 @@
 :root{
   /* 背景 / 表面 */
   --bg:#07070F; --surf:rgba(255,255,255,.05); --surf2:rgba(255,255,255,.09);
-  /* 页脚 token（跟随主题；深色锚） */
-  --ftrBg:#0E0A1E; --ftrBdr:rgba(255,255,255,.12); --ftrStrong:rgba(255,255,255,.82); --ftrLabel:rgba(255,255,255,.32); --ftrLink:rgba(255,255,255,.55); --ftrFaint:rgba(255,255,255,.32);
   /* 文字 */
   --fg:#ECEEFF; --fg2:rgba(236,238,255,.52); --fg3:rgba(236,238,255,.28);
   /* 品牌强调 */
@@ -37,7 +35,7 @@
 
   /* 字体栈 · 单一事实源见 §04 —— 思源黑体 Source Han Sans 为唯一品牌字体 */
   --sans:'Source Han Sans SC','Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
-  --display:var(--sans);   /* 标题：同字体、字号 + 700 字重分层，不再用衬线（中文不用 800/900，避免笨重）*/
+  --display:var(--sans);   /* 标题：同字体、靠 700–900 字重区分层级，不再用衬线 */
   --latin:'Space Grotesk',ui-sans-serif,'SF Pro Display','Helvetica Neue',Arial,sans-serif; /* 拉丁 / 数字 / kicker */
   --mono:var(--latin);     /* 兼容旧引用：kicker/数字/标签统一走拉丁字；真等宽仅代码块单独指定 */
   --code:ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
@@ -60,7 +58,6 @@
 }
 [data-theme="light"]{
   --bg:#F8F6F0; --surf:rgba(255,255,255,.82); --surf2:rgba(255,255,255,.96);
-  --ftrBg:#EFE9DE; --ftrBdr:rgba(24,21,14,.10); --ftrStrong:rgba(24,21,14,.85); --ftrLabel:rgba(24,21,14,.45); --ftrLink:rgba(24,21,14,.62); --ftrFaint:rgba(24,21,14,.42);
   --fg:#18150E; --fg2:rgba(24,21,14,.50); --fg3:rgba(24,21,14,.32);
   --accent:#3535B5; --accent-deep:#27278C; --acBg:rgba(53,53,181,.08);
   --bdr-soft:rgba(24,21,14,.05); --bdr:rgba(24,21,14,.09); --bdrBrt:rgba(24,21,14,.18);
@@ -120,7 +117,7 @@ header.top{position:sticky;top:0;z-index:60;backdrop-filter:saturate(180%) blur(
 .hero{background:var(--heroBg);padding:var(--s-9) var(--s-7) var(--s-8);position:relative;overflow:hidden}
 .hero-in{max-width:1280px;margin:0 auto}
 .kicker{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--accent);margin-bottom:14px}
-.hero h1{font-family:var(--display);font-size:clamp(40px,6vw,68px);font-weight:700;line-height:1.12;letter-spacing:-.02em;margin-bottom:18px}
+.hero h1{font-family:var(--display);font-size:clamp(40px,6vw,68px);font-weight:800;line-height:1.12;letter-spacing:-.02em;margin-bottom:18px}
 .hero h1 em{font-style:normal;color:var(--accent)}
 .hero p{font-size:17px;color:var(--fg2);max-width:640px;line-height:1.7}
 .hero .meta{margin-top:var(--s-6);display:flex;gap:var(--s-5);flex-wrap:wrap;font-size:12.5px;color:var(--fg3);font-family:var(--mono)}
@@ -294,12 +291,12 @@ section.ds{max-width:1280px;margin:0 auto;padding:var(--s-8) var(--s-7);border-t
 .motion-box.m-fade{animation:fadeK var(--t-slow) var(--ease) infinite alternate}
 
 /* 页脚演示 + 页面页脚 */
-.foot-demo{background:var(--ftrBg);border-radius:var(--r-lg);padding:32px 36px;color:var(--ftrLink);transition:background var(--t-base),color var(--t-base)}
+.foot-demo{background:#100B1F;border-radius:var(--r-lg);padding:32px 36px;color:rgba(255,255,255,.7)}
 .foot-demo .ft-top{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:24px}
-.foot-demo .ft-brand{font-weight:700;color:var(--ftrStrong);font-size:15px}
-.foot-demo .ft-col h5{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--ftrLabel);margin-bottom:10px}
-.foot-demo .ft-col a{display:block;color:var(--ftrLink);font-size:13px;padding:3px 0}
-.foot-demo .ft-bar{border-top:1px solid var(--ftrBdr);padding-top:16px;font-size:11.5px;color:var(--ftrFaint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.foot-demo .ft-brand{font-weight:700;color:#fff;font-size:15px}
+.foot-demo .ft-col h5{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,.32);margin-bottom:10px}
+.foot-demo .ft-col a{display:block;color:rgba(255,255,255,.55);font-size:13px;padding:3px 0}
+.foot-demo .ft-bar{border-top:1px solid rgba(255,255,255,.1);padding-top:16px;font-size:11.5px;color:rgba(255,255,255,.32);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 footer.page{border-top:1px solid var(--bdr);padding:var(--s-6) var(--s-7);max-width:1280px;margin:0 auto;
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--fg3);font-family:var(--mono)}
@@ -378,25 +375,6 @@ a:focus-visible,button:focus-visible,.btn:focus-visible,.swatch:focus-visible,
 .input-icon:focus-within svg{stroke:var(--accent)}
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
-
-/* ---------- 新增组件：表格 / 提示气泡 / 空状态 ---------- */
-.ds-table{width:100%;border-collapse:collapse;font-family:var(--sans)}
-.ds-table th{padding:10px 14px;text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--fg3);font-weight:600;border-bottom:1px solid var(--bdr)}
-.ds-table td{padding:11px 14px;font-size:13.5px;color:var(--fg2);border-bottom:1px solid var(--bdr-soft)}
-.ds-table td.strong{color:var(--fg)}
-.ds-table td.num{text-align:right;font-variant-numeric:tabular-nums}
-.ds-table tbody tr{transition:background var(--t-fast)}
-.ds-table tbody tr:hover{background:var(--surf)}
-.ds-table tbody tr:last-child td{border-bottom:none}
-.tt{position:relative;display:inline-flex}
-.tt-pop{position:absolute;bottom:calc(100% + 9px);left:50%;transform:translateX(-50%) translateY(4px);background:var(--fg);color:var(--bg);font-size:12px;line-height:1;padding:7px 11px;border-radius:var(--r-sm);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity var(--t-fast),transform var(--t-fast);box-shadow:var(--sh-1);z-index:5}
-.tt:hover .tt-pop{opacity:1;transform:translateX(-50%) translateY(0)}
-.tt-pop::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--fg)}
-.empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:44px 24px;border:1px dashed var(--bdr);border-radius:var(--r-lg);background:var(--surf)}
-.empty .ic{width:46px;height:46px;border-radius:14px;background:var(--acBg);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;color:var(--accent);margin-bottom:6px}
-.empty h4{font-size:15px;font-weight:700;color:var(--fg);margin:0}
-.empty p{font-size:13px;color:var(--fg2);margin:0;max-width:280px;line-height:1.6}
-
 </style>
 </head>
 <body>
@@ -405,7 +383,7 @@ a:focus-visible,button:focus-visible,.btn:focus-visible,.swatch:focus-visible,
 <header class="top">
   <div class="top-in">
     <div class="brand">
-      <svg class="mark anim-shimmer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><path d="M27.356405,6.5566244Q27.640217,6.7204833,27.900215,6.9199853Q28.16021,7.1194868,28.391941,7.3512182Q28.623672,7.5829496,28.823174,7.8429451Q29.022675,8.1029396,29.186533,8.3867512Q29.350391,8.6705627,29.475803,8.9733343Q29.601215,9.2761059,29.686035,9.5926561Q29.770855,9.9092064,29.813629,10.23412Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.813631,21.765881Q29.770855,22.090794,29.686037,22.407345Q29.601215,22.723896,29.475803,23.026669Q29.350391,23.329437,29.186531,23.613249Q29.022675,23.89706,28.823174,24.157059Q28.623672,24.417053,28.391941,24.648785Q28.16021,24.880516,27.900215,25.080017Q27.640217,25.279518,27.356405,25.443377L18.5,30.556623Q18.216188,30.720484,17.913418,30.845898Q17.610645,30.97131,17.294096,31.056129Q16.977547,31.140947,16.652632,31.183723Q16.327717,31.226498,16,31.226498Q15.672283,31.226498,15.347369,31.183723Q15.022456,31.140945,14.705906,31.056128Q14.389355,30.97131,14.086583,30.845898Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q4.3597822,25.279518,4.0997868,25.080017Q3.8397913,24.880516,3.6080601,24.648783Q3.3763289,24.417053,3.1768272,24.157059Q2.9773254,23.89706,2.8134668,23.613249Q2.6496081,23.329437,2.5241961,23.026669Q2.3987842,22.723896,2.3139648,22.407347Q2.2291453,22.090796,2.1863694,21.765881Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.1863689,10.23412Q2.2291448,9.9092064,2.3139644,9.5926561Q2.3987837,9.2761059,2.5241957,8.9733343Q2.6496074,8.6705627,2.8134661,8.3867512Q2.977325,8.1029396,3.1768267,7.8429446Q3.3763285,7.5829496,3.6080596,7.3512182Q3.8397908,7.1194868,4.0997868,6.9199853Q4.3597822,6.7204833,4.6435933,6.5566244L13.5,1.4433756Q13.783812,1.2795169,14.086583,1.1541051Q14.389355,1.0286931,14.705906,0.94387358Q15.022456,0.85905409,15.34737,0.8162784Q15.672283,0.77350271,16,0.77350271Q16.327717,0.77350277,16.652632,0.81627846Q16.977547,0.85905421,17.294096,0.9438737Q17.610645,1.0286932,17.913418,1.1541052Q18.216188,1.2795172,18.5,1.4433758L27.356405,6.5566244Z" fill="#FFFFFF"/><path d="M16,8L22.928203,12L22.928203,20L16,24L9.071797,20L9.071797,12L16,8Z" class="f-left" fill="#8501FF"/><path d="M15.999958,24.000038L15.999958,8.000038L22.928161,12.000038L22.928161,20.000038L15.999958,24.000038Z" class="f-right" fill="#AF59FF"/><path d="M15.99994,16L22.928144,12L15.99994,8L9.071738,12L15.99994,16Z" class="f-top" fill="#CE99FF"/></svg>
+      <svg class="mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><path d="M27.356405,6.5566244Q27.640217,6.7204833,27.900215,6.9199853Q28.16021,7.1194868,28.391941,7.3512182Q28.623672,7.5829496,28.823174,7.8429451Q29.022675,8.1029396,29.186533,8.3867512Q29.350391,8.6705627,29.475803,8.9733343Q29.601215,9.2761059,29.686035,9.5926561Q29.770855,9.9092064,29.813629,10.23412Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.813631,21.765881Q29.770855,22.090794,29.686037,22.407345Q29.601215,22.723896,29.475803,23.026669Q29.350391,23.329437,29.186531,23.613249Q29.022675,23.89706,28.823174,24.157059Q28.623672,24.417053,28.391941,24.648785Q28.16021,24.880516,27.900215,25.080017Q27.640217,25.279518,27.356405,25.443377L18.5,30.556623Q18.216188,30.720484,17.913418,30.845898Q17.610645,30.97131,17.294096,31.056129Q16.977547,31.140947,16.652632,31.183723Q16.327717,31.226498,16,31.226498Q15.672283,31.226498,15.347369,31.183723Q15.022456,31.140945,14.705906,31.056128Q14.389355,30.97131,14.086583,30.845898Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q4.3597822,25.279518,4.0997868,25.080017Q3.8397913,24.880516,3.6080601,24.648783Q3.3763289,24.417053,3.1768272,24.157059Q2.9773254,23.89706,2.8134668,23.613249Q2.6496081,23.329437,2.5241961,23.026669Q2.3987842,22.723896,2.3139648,22.407347Q2.2291453,22.090796,2.1863694,21.765881Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.1863689,10.23412Q2.2291448,9.9092064,2.3139644,9.5926561Q2.3987837,9.2761059,2.5241957,8.9733343Q2.6496074,8.6705627,2.8134661,8.3867512Q2.977325,8.1029396,3.1768267,7.8429446Q3.3763285,7.5829496,3.6080596,7.3512182Q3.8397908,7.1194868,4.0997868,6.9199853Q4.3597822,6.7204833,4.6435933,6.5566244L13.5,1.4433756Q13.783812,1.2795169,14.086583,1.1541051Q14.389355,1.0286931,14.705906,0.94387358Q15.022456,0.85905409,15.34737,0.8162784Q15.672283,0.77350271,16,0.77350271Q16.327717,0.77350277,16.652632,0.81627846Q16.977547,0.85905421,17.294096,0.9438737Q17.610645,1.0286932,17.913418,1.1541052Q18.216188,1.2795172,18.5,1.4433758L27.356405,6.5566244Z" fill="#FFFFFF"/><path d="M16,8L22.928203,12L22.928203,20L16,24L9.071797,20L9.071797,12L16,8Z" fill="#8501FF"/><path d="M15.999958,24.000038L15.999958,8.000038L22.928161,12.000038L22.928161,20.000038L15.999958,24.000038Z" fill="#AF59FF"/><path d="M15.99994,16L22.928144,12L15.99994,8L9.071738,12L15.99994,16Z" fill="#CE99FF"/></svg>
       造物云 <span class="by">DESIGN SYSTEM</span>
     </div>
     <nav class="top-nav" id="topnav">
@@ -422,12 +400,8 @@ a:focus-visible,button:focus-visible,.btn:focus-visible,.swatch:focus-visible,
       <a href="#cards">卡片</a>
       <a href="#badges">徽章</a>
       <a href="#forms">表单</a>
-      <a href="#table">表格</a>
-      <a href="#tooltip">提示</a>
-      <a href="#empty">空状态</a>
       <a href="#nav">导航</a>
       <a href="#footer">页脚</a>
-      <a href="process.html" style="margin-left:6px;padding-left:12px;border-left:1px solid var(--bdr);opacity:.7;">过程稿 ↗</a>
     </nav>
     <button class="theme-btn" id="themeBtn" title="切换主题" aria-label="切换明暗主题"></button>
   </div>
@@ -591,17 +565,17 @@ a:focus-visible,button:focus-visible,.btn:focus-visible,.swatch:focus-visible,
     <div class="grad"><div class="band" style="background:radial-gradient(ellipse 75% 60% at 70% 35%,rgba(123,128,255,.5),transparent 60%),radial-gradient(ellipse 45% 55% at 12% 82%,rgba(139,92,246,.3),transparent 55%),#07070F"></div><div class="meta"><div class="nm">Hero 深空（--heroBg）</div><div class="vr">紫蓝 + 紫 + 青 三点径向光晕叠 #07070F。用于 Hero、CTA、宣言区。</div></div></div>
     <div class="grad"><div class="band" style="background:linear-gradient(135deg,var(--accent),var(--accent-deep))"></div><div class="meta"><div class="nm">主强调线性渐变</div><div class="vr">linear-gradient(135deg,#7B80FF,#5B5FE0)。用于主按钮、强调标记、数据高亮。</div></div></div>
     <div class="grad"><div class="band" style="background:linear-gradient(150deg,rgba(123,128,255,.18),rgba(123,128,255,.04))"></div><div class="meta"><div class="nm">卡片头柔光</div><div class="vr">单色低透明斜向渐变。用于产品卡 / 图示区顶部背景。</div></div></div>
-    <div class="grad"><div class="band" style="background:var(--ftrBg)"></div><div class="meta"><div class="nm">页脚底色（--ftrBg）</div><div class="vr">跟随主题：浅色 #EFE9DE 暖白面板 · 深色 #0E0A1E 深蓝锚（SPEC §D canonical）。整站统一。</div></div></div>
+    <div class="grad"><div class="band" style="background:#100B1F"></div><div class="meta"><div class="nm">页脚深底</div><div class="vr">纯色 #100B1F（SPEC §D canonical）。页脚恒深，不随主题切换，整站统一。</div></div></div>
   </div>
 </section>
 
 <!-- ===== 04 字体 ===== -->
 <section class="ds" id="type">
   <div class="sec-head"><span class="sec-no">04</span><h2>字体系统</h2><span class="en">Typography</span></div>
-  <p class="sec-desc"><b>一款中文字体撑全站：思源黑体（Source Han Sans / Noto Sans SC）。</b>标题与正文同字体，靠<b>字号 + 字重</b>分层——展示标题最重只到 <b>Bold 700</b>（中文大字号下 900／800 会发方、显笨重，700 更清透有力），副标题 600，正文 Regular 400／Medium 500，不再混用衬线。拉丁字母、数字与 kicker 用 <b>Space Grotesk</b>；代码用系统等宽。全部 <span style="font-family:var(--code);font-size:12px">font-display:swap</span> 异步加载，国内走 font.im 镜像，先以系统字渲染、字体到位再替换，绝不白屏。</p>
+  <p class="sec-desc"><b>一款中文字体撑全站：思源黑体（Source Han Sans / Noto Sans SC）。</b>标题与正文同字体，只靠<b>字重</b>分层——展示标题用 Heavy 900／Bold 700，正文用 Regular 400／Medium 500，不再混用衬线。拉丁字母、数字与 kicker 用 <b>Space Grotesk</b>；代码用系统等宽。全部 <span style="font-family:var(--code);font-size:12px">font-display:swap</span> 异步加载，国内走 font.im 镜像，先以系统字渲染、字体到位再替换，绝不白屏。</p>
   <div style="border-top:1px solid var(--bdr)">
-    <div class="type-row"><span class="lbl">Display · 思源黑体 700</span><span class="sample" style="font-family:var(--display);font-size:56px;line-height:1.1;font-weight:700;letter-spacing:-.02em">智能是基础设施</span><span class="px">56–68px / 700</span></div>
-    <div class="type-row"><span class="lbl">H1 · 思源黑体 700</span><span class="sample" style="font-family:var(--display);font-size:40px;font-weight:700;letter-spacing:-.02em">接入任何模型</span><span class="px">40px / 700</span></div>
+    <div class="type-row"><span class="lbl">Display · 思源黑体 900</span><span class="sample" style="font-family:var(--display);font-size:56px;line-height:1.1;font-weight:900;letter-spacing:-.02em">智能是基础设施</span><span class="px">56–68px / 900</span></div>
+    <div class="type-row"><span class="lbl">H1 · 思源黑体 800</span><span class="sample" style="font-family:var(--display);font-size:40px;font-weight:800;letter-spacing:-.02em">接入任何模型</span><span class="px">40px / 800</span></div>
     <div class="type-row"><span class="lbl">H2 · 思源黑体 700</span><span class="sample" style="font-family:var(--display);font-size:32px;font-weight:700;letter-spacing:-.02em">为企业级需求而设计</span><span class="px">32px / 700</span></div>
     <div class="type-row"><span class="lbl">H3 · 思源黑体 700</span><span class="sample" style="font-size:22px;font-weight:700">用好每一个 Token</span><span class="px">22px / 1.3</span></div>
     <div class="type-row"><span class="lbl">Body LG · 思源黑体 400</span><span class="sample" style="font-size:17px;color:var(--fg2)">统一管理所有 AI 模型的调用入口，智能路由、成本可控。</span><span class="px">17px / 1.7</span></div>
@@ -612,7 +586,7 @@ a:focus-visible,button:focus-visible,.btn:focus-visible,.swatch:focus-visible,
     <div class="type-row"><span class="lbl">Code · 等宽</span><span class="sample" style="font-family:var(--code);font-size:14px;color:var(--fg2)">client.chat(model)</span><span class="px">仅代码</span></div>
   </div>
   <div class="grid g-4" style="margin-top:var(--s-6)">
-    <div class="swatch" data-copy="var(--display)"><div class="meta"><div class="nm">--display</div><div class="vr">思源黑体 Bold 700 · 标题（中文不上 900/800）</div></div></div>
+    <div class="swatch" data-copy="var(--display)"><div class="meta"><div class="nm">--display</div><div class="vr">思源黑体 Heavy/Bold · 标题</div></div></div>
     <div class="swatch" data-copy="var(--sans)"><div class="meta"><div class="nm">--sans</div><div class="vr">思源黑体 · 正文/界面/默认</div></div></div>
     <div class="swatch" data-copy="var(--latin)"><div class="meta"><div class="nm">--latin</div><div class="vr">Space Grotesk · 拉丁/数字</div></div></div>
     <div class="swatch" data-copy="var(--code)"><div class="meta"><div class="nm">--code</div><div class="vr">系统等宽 · 仅代码</div></div></div>
@@ -816,74 +790,14 @@ opacity + translateY</pre></div></div>
   </div>
 </section>
 
-<!-- ===== 12 表格 ===== -->
-<section class="ds" id="table">
-  <div class="sec-head"><span class="sec-no">12</span><h2>表格</h2><span class="en">Table</span></div>
-  <p class="sec-desc">呈现结构化数据。表头用 Space Grotesk 小字 + fg3、下描 1px --bdr；行分隔用极淡 --bdr-soft；hover 整行以 --surf 提示；数字列右对齐并用 <span style="font-family:var(--code);font-size:12px">tabular-nums</span> 对齐位数。</p>
-  <div class="demo">
-    <div class="stage" style="display:block">
-      <table class="ds-table">
-        <thead><tr><th>模型</th><th>上下文</th><th>供应商</th><th class="num">日均调用</th></tr></thead>
-        <tbody>
-          <tr><td class="strong">GPT-4o</td><td>128K</td><td>OpenAI</td><td class="num">4.20M</td></tr>
-          <tr><td class="strong">Claude 3.5</td><td>200K</td><td>Anthropic</td><td class="num">3.15M</td></tr>
-          <tr><td class="strong">Qwen-Max</td><td>32K</td><td>阿里云</td><td class="num">2.08M</td></tr>
-          <tr><td class="strong">DeepSeek R1</td><td>64K</td><td>DeepSeek</td><td class="num">1.74M</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="code"><button class="copy-code">复制</button><pre>&lt;table class="ds-table"&gt;
-  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;模型&lt;/th&gt;&lt;th class="num"&gt;日均调用&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-  &lt;tbody&gt;&lt;tr&gt;&lt;td class="strong"&gt;GPT-4o&lt;/td&gt;&lt;td class="num"&gt;4.20M&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
-&lt;/table&gt;</pre></div>
-  </div>
-</section>
-
-<!-- ===== 13 提示气泡 ===== -->
-<section class="ds" id="tooltip">
-  <div class="sec-head"><span class="sec-no">13</span><h2>提示气泡</h2><span class="en">Tooltip</span></div>
-  <p class="sec-desc">悬停解释次要信息。深底反色气泡（--fg 底 / --bg 字），带小箭头，150ms 淡入并轻微上移。仅承载短说明，不放交互元素。把鼠标移到下面元素上查看。</p>
-  <div class="demo">
-    <div class="stage" style="gap:var(--s-6)">
-      <span class="tt"><button class="btn ghost">调用量 <span style="opacity:.6">?</span></button><span class="tt-pop">近 24 小时的模型调用次数</span></span>
-      <span class="tt"><span class="badge info" style="cursor:default">Beta</span><span class="tt-pop">功能开放中，接口可能调整</span></span>
-    </div>
-    <div class="code"><button class="copy-code">复制</button><pre>&lt;span class="tt"&gt;
-  &lt;button class="btn ghost"&gt;调用量 ?&lt;/button&gt;
-  &lt;span class="tt-pop"&gt;近 24 小时的调用次数&lt;/span&gt;
-&lt;/span&gt;</pre></div>
-  </div>
-</section>
-
-<!-- ===== 14 空状态 ===== -->
-<section class="ds" id="empty">
-  <div class="sec-head"><span class="sec-no">14</span><h2>空状态</h2><span class="en">Empty State</span></div>
-  <p class="sec-desc">列表 / 面板无数据时的占位。虚线描边 + 表面底 + 线性图标 + 一句说明 + 一个明确的下一步动作，避免“空白让人以为坏了”。</p>
-  <div class="demo">
-    <div class="stage" style="display:block">
-      <div class="empty">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" style="width:22px"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        <h4>还没有接入任何模型</h4>
-        <p>连接你的第一个大模型供应商，开始用统一网关调度调用。</p>
-        <a class="btn primary" style="margin-top:10px" href="#empty">接入模型</a>
-      </div>
-    </div>
-    <div class="code"><button class="copy-code">复制</button><pre>&lt;div class="empty"&gt;
-  &lt;div class="ic"&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/div&gt;
-  &lt;h4&gt;还没有数据&lt;/h4&gt;&lt;p&gt;说明文字&lt;/p&gt;
-  &lt;a class="btn primary"&gt;下一步&lt;/a&gt;
-&lt;/div&gt;</pre></div>
-  </div>
-</section>
-
 <!-- ===== 12 导航 ===== -->
 <section class="ds" id="nav">
-  <div class="sec-head"><span class="sec-no">15</span><h2>导航</h2><span class="en">Navigation</span></div>
-  <p class="sec-desc">主站顶栏<b>全站统一</b>：矢量字标 logo + <b>产品</b>悬停下拉（mega-menu，露出各产品页）+ 解决方案 / 案例 / 关于 + 主题切换 + <b>预约演示</b> CTA；当前页主色高亮，「预约演示」旁附<b>旧站入口</b>。canonical 复制源见 <a href="index.html" style="color:var(--accent)">index.html 顶栏</a> 与 SPEC §D。区块内分段切换用 pill-nav，产品页内用下划线 tabs，三者共享主色高亮逻辑。</p>
+  <div class="sec-head"><span class="sec-no">12</span><h2>导航</h2><span class="en">Navigation</span></div>
+  <p class="sec-desc">主站顶栏为玻璃胶囊；区块内的分段切换用 pill-nav；产品页内用下划线 tabs。三者共享主色高亮逻辑。</p>
   <div class="demo">
     <div class="stage col" style="gap:var(--s-5)">
       <div class="pill-nav">
-        <a href="#nav" class="on">首页</a><a href="#nav">产品</a><a href="#nav">解决方案</a><a href="#nav">案例</a><a href="#nav">关于</a>
+        <a href="#nav" class="on">首页</a><a href="#nav">产品</a><a href="#nav">案例</a><a href="#nav">关于</a>
       </div>
       <div class="tabs">
         <button class="on">智核 · API HUB</button><button>AI 工作台</button><button>应用中心</button><button>深脑</button>
@@ -901,8 +815,8 @@ opacity + translateY</pre></div></div>
 
 <!-- ===== 13 页脚 ===== -->
 <section class="ds" id="footer">
-  <div class="sec-head"><span class="sec-no">16</span><h2>页脚</h2><span class="en">Footer</span></div>
-  <p class="sec-desc">页脚跟随主题（<span style="font-family:var(--code);font-size:12px">--ftrBg</span>：浅色暖白面板 #EFE9DE / 深色深蓝锚 #0E0A1E，SPEC §D canonical），整站统一。四列：品牌 + 产品 + 解决方案 + 公司，底部为版权与备案。</p>
+  <div class="sec-head"><span class="sec-no">13</span><h2>页脚</h2><span class="en">Footer</span></div>
+  <p class="sec-desc">页脚恒为深底（<span style="font-family:var(--code);font-size:12px">#100B1F</span>，SPEC §D canonical），不随主题切换，作为整站稳定的“地基”。四列：品牌 + 产品 + 解决方案 + 公司，底部为版权与备案。</p>
   <div class="foot-demo">
     <div class="ft-top">
       <div style="max-width:260px">
@@ -939,12 +853,12 @@ opacity + translateY</pre></div></div>
   var icMoon='<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11.5 8.8A5.2 5.2 0 016 2.2 5.6 5.6 0 1011.5 8.8z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>';
   var btn=document.getElementById('themeBtn');
   function apply(t){ if(t==='light'){root.setAttribute('data-theme','light');btn.innerHTML=icMoon;} else {root.removeAttribute('data-theme');btn.innerHTML=icSun;} renderContrast(); }
-  var saved=null; try{saved=localStorage.getItem('zwyTheme');}catch(e){}
-  apply(saved||'light');
+  var saved=null; try{saved=localStorage.getItem('zwy-ds-theme');}catch(e){}
+  apply(saved||'dark');
   btn.addEventListener('click',function(){
     var nowLight=root.getAttribute('data-theme')==='light';
     var next=nowLight?'dark':'light'; apply(next);
-    try{localStorage.setItem('zwyTheme',next);}catch(e){}
+    try{localStorage.setItem('zwy-ds-theme',next);}catch(e){}
   });
 
   /* ---- 复制工具 ---- */
