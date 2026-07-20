@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>设计令牌 · 造物云 v8</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:#F4F5F8; color:#15161C; font-family:'Noto Sans SC', system-ui, -apple-system, sans-serif; -webkit-font-smoothing:antialiased; line-height:1.7; }
+  a { color:#5A4FE6; text-decoration:none; }
+  a:hover { color:#4438C4; }
+  ::selection { background:#5A4FE6; color:#fff; }
+  .mono { font-family:'Space Grotesk', ui-monospace, monospace; }
+  @media (max-width:760px){ nav[data-nav]{ padding:0 20px !important; } .tok-cols{ grid-template-columns:1fr !important; } }
+</style>
+</helmet>
+
+<div style="max-width:100%; overflow-x:clip; background:#F4F5F8;">
+
+<nav data-nav style="position:sticky; top:0; z-index:60; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:0 40px; height:64px; background:rgba(244,245,248,.82); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); border-bottom:1px solid rgba(21,22,28,.07);">
+  <a href="index.html" style="display:flex; align-items:center; gap:10px;">
+    <span data-mark data-size="26" style="display:inline-flex;"></span>
+    <span data-wm data-h="16" style="display:inline-flex; align-items:center; color:#15161C;"></span>
+  </a>
+  <span class="mono" style="font-size:12px; font-weight:600; letter-spacing:.1em; color:#8A8C96;">DESIGN TOKENS</span>
+</nav>
+
+<header style="max-width:1180px; margin:0 auto; padding:64px 40px 28px;">
+  <div class="mono" style="font-size:12px; font-weight:700; letter-spacing:.2em; color:#5A4FE6; margin-bottom:18px;">HANDOFF · 设计令牌</div>
+  <h1 style="font-size:clamp(34px,4.4vw,50px); font-weight:700; letter-spacing:-.02em; line-height:1.18; margin:0 0 14px;">一套令牌，<span style="color:#5A4FE6;">设计与研发对齐</span>。</h1>
+  <p style="font-size:16.5px; color:#5A5C68; line-height:1.7; max-width:600px; margin:0;">所有颜色、圆角、间距、阴影、字阶都以 CSS 变量为单一事实来源。明暗双主题共享同名令牌，切换 <span class="mono" style="color:#15161C;">data-theme</span> 即可整站换肤。文末提供 CSS 与 JSON 两份可直接落地的导出。</p>
+</header>
+
+<!-- COLOR TOKENS -->
+<section style="max-width:1180px; margin:0 auto; padding:24px 40px;">
+  <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:8px;"><h2 style="font-size:24px; font-weight:700; letter-spacing:-.01em; margin:0;">颜色</h2><span class="mono" style="font-size:12px; color:#8A8C96;">COLOR · 明 / 暗 双值</span></div>
+  <p style="font-size:13.5px; color:#8A8C96; margin:0 0 22px;">左侧色块为浅色主题取值，右侧深色圆点为暗色主题取值。点击任意行复制变量名。</p>
+
+  <sc-for list="{{ groups }}" as="g" hint-placeholder-count="5">
+    <div style="margin-bottom:26px;">
+      <div class="mono" style="font-size:11px; font-weight:700; letter-spacing:.12em; color:#8A8C96; margin-bottom:12px;">{{ g.label }}</div>
+      <div style="border:1px solid rgba(21,22,28,.08); border-radius:16px; overflow:hidden; background:#fff;">
+        <sc-for list="{{ g.tokens }}" as="t" hint-placeholder-count="4">
+          <div data-copy="{{ t.name }}" style="display:grid; grid-template-columns:44px 1fr auto auto; gap:16px; align-items:center; padding:12px 18px; border-top:1px solid rgba(21,22,28,.05); cursor:pointer;" style-hover="background:#FAFAFC">
+            <span style="width:44px; height:32px; border-radius:8px; border:1px solid rgba(21,22,28,.1); background:{{ t.light }};"></span>
+            <span class="mono" style="font-size:13px; font-weight:600; color:#15161C;">{{ t.name }}</span>
+            <span class="mono" style="font-size:12px; color:#8A8C96;">{{ t.lightLabel }}</span>
+            <span style="display:inline-flex; align-items:center; gap:8px;"><span class="mono" style="font-size:12px; color:#8A8C96;">{{ t.darkLabel }}</span><span style="width:18px; height:18px; border-radius:50%; border:1px solid rgba(255,255,255,.2); background:{{ t.dark }}; box-shadow:0 0 0 3px #101018;"></span></span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-for>
+</section>
+
+<!-- SCALES -->
+<section style="max-width:1180px; margin:0 auto; padding:24px 40px;">
+  <div class="tok-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+    <div>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:16px;"><h2 style="font-size:24px; font-weight:700; margin:0;">圆角</h2><span class="mono" style="font-size:12px; color:#8A8C96;">RADIUS</span></div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <sc-for list="{{ radii }}" as="r" hint-placeholder-count="5">
+          <div style="display:flex; align-items:center; gap:16px;"><span style="width:52px; height:52px; flex-shrink:0; background:rgba(91,79,230,.1); border:1px solid #5A4FE6; border-radius:{{ r.px }};"></span><div><div class="mono" style="font-size:13px; font-weight:600;">{{ r.name }}</div><div class="mono" style="font-size:12px; color:#8A8C96;">{{ r.px }} · {{ r.use }}</div></div></div>
+        </sc-for>
+      </div>
+    </div>
+    <div>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:16px;"><h2 style="font-size:24px; font-weight:700; margin:0;">间距</h2><span class="mono" style="font-size:12px; color:#8A8C96;">SPACE · 4 基数</span></div>
+      <div style="display:flex; flex-direction:column; gap:9px;">
+        <sc-for list="{{ spaces }}" as="s" hint-placeholder-count="6">
+          <div style="display:flex; align-items:center; gap:16px;"><span class="mono" style="width:64px; flex-shrink:0; font-size:12px; font-weight:600; color:#15161C;">{{ s.name }}</span><span style="height:14px; border-radius:4px; background:#5A4FE6; width:{{ s.px }};"></span><span class="mono" style="font-size:12px; color:#8A8C96;">{{ s.px }}</span></div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHADOW + TYPE -->
+<section style="max-width:1180px; margin:0 auto; padding:24px 40px;">
+  <div class="tok-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+    <div>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:16px;"><h2 style="font-size:24px; font-weight:700; margin:0;">阴影</h2><span class="mono" style="font-size:12px; color:#8A8C96;">ELEVATION</span></div>
+      <div style="display:flex; gap:16px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:120px; background:#fff; border:1px solid rgba(21,22,28,.06); border-radius:14px; padding:22px; box-shadow:0 1px 2px rgba(24,21,14,.05),0 4px 10px -3px rgba(24,21,14,.06);"><div class="mono" style="font-size:12px; font-weight:600;">--sh1</div><div class="mono" style="font-size:11px; color:#8A8C96;">卡片 / 悬浮</div></div>
+        <div style="flex:1; min-width:120px; background:#fff; border:1px solid rgba(21,22,28,.06); border-radius:14px; padding:22px; box-shadow:0 2px 6px rgba(24,21,14,.05),0 14px 28px -8px rgba(24,21,14,.09),0 28px 56px -18px rgba(24,21,14,.07);"><div class="mono" style="font-size:12px; font-weight:600;">--sh2</div><div class="mono" style="font-size:11px; color:#8A8C96;">弹层 / 模态</div></div>
+      </div>
+    </div>
+    <div>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:16px;"><h2 style="font-size:24px; font-weight:700; margin:0;">字阶</h2><span class="mono" style="font-size:12px; color:#8A8C96;">TYPE</span></div>
+      <div style="border:1px solid rgba(21,22,28,.08); border-radius:14px; background:#fff; overflow:hidden;">
+        <sc-for list="{{ types }}" as="ty" hint-placeholder-count="5">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; padding:11px 18px; border-top:1px solid rgba(21,22,28,.05);"><span style="font-size:{{ ty.px }}; font-weight:{{ ty.w }}; letter-spacing:-.01em; color:#15161C; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ ty.name }}</span><span class="mono" style="font-size:11px; color:#8A8C96; flex-shrink:0;">{{ ty.px }}/{{ ty.w }}</span></div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPORT -->
+<section style="max-width:1180px; margin:0 auto; padding:36px 40px 72px;">
+  <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:16px;"><h2 style="font-size:24px; font-weight:700; margin:0;">导出</h2><span class="mono" style="font-size:12px; color:#8A8C96;">EXPORT · 直接落地</span></div>
+  <div class="tok-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+    <div style="border:1px solid rgba(21,22,28,.1); border-radius:16px; overflow:hidden; background:#0E0A1E;">
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,.08);"><span class="mono" style="font-size:12px; font-weight:600; color:rgba(255,255,255,.7);">tokens.css</span><button data-copy-btn="css" style="font-family:inherit; font-size:11.5px; font-weight:600; color:#fff; background:#5A4FE6; border:none; border-radius:8px; padding:6px 12px; cursor:pointer;">复制</button></div>
+      <pre data-code="css" style="margin:0; padding:16px; overflow:auto; max-height:320px;" class="mono"><code style="font-size:11.5px; line-height:1.7; color:#C9CCFF; white-space:pre;">{{ cssText }}</code></pre>
+    </div>
+    <div style="border:1px solid rgba(21,22,28,.1); border-radius:16px; overflow:hidden; background:#0E0A1E;">
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,.08);"><span class="mono" style="font-size:12px; font-weight:600; color:rgba(255,255,255,.7);">tokens.json</span><button data-copy-btn="json" style="font-family:inherit; font-size:11.5px; font-weight:600; color:#fff; background:#5A4FE6; border:none; border-radius:8px; padding:6px 12px; cursor:pointer;">复制</button></div>
+      <pre data-code="json" style="margin:0; padding:16px; overflow:auto; max-height:320px;" class="mono"><code style="font-size:11.5px; line-height:1.7; color:#C9CCFF; white-space:pre;">{{ jsonText }}</code></pre>
+    </div>
+  </div>
+  <div data-toast style="position:fixed; left:50%; bottom:32px; transform:translate(-50%,20px); opacity:0; transition:all .3s cubic-bezier(.2,.7,.2,1); background:#15161C; color:#fff; font-size:13px; font-weight:500; padding:10px 20px; border-radius:999px; box-shadow:0 12px 30px -10px rgba(0,0,0,.4); pointer-events:none; z-index:100;">已复制</div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const groups = [
+      { label:'品牌 · BRAND', tokens:[
+        { name:'--accent', light:'#5A4FE6', lightLabel:'#5A4FE6', dark:'#7B80FF', darkLabel:'#7B80FF' },
+        { name:'--accentDeep', light:'#4438C4', lightLabel:'#4438C4', dark:'#5B5FE0', darkLabel:'#5B5FE0' },
+        { name:'--acBg', light:'rgba(90,79,230,.08)', lightLabel:'accent 8%', dark:'rgba(123,128,255,.13)', darkLabel:'accent 13%' },
+      ]},
+      { label:'文字 · TEXT', tokens:[
+        { name:'--fg', light:'#16181F', lightLabel:'#16181F', dark:'#ECEEFF', darkLabel:'#ECEEFF' },
+        { name:'--fg2', light:'rgba(22,24,31,.56)', lightLabel:'ink 56%', dark:'rgba(236,238,255,.52)', darkLabel:'ink 52%' },
+        { name:'--fg3', light:'rgba(22,24,31,.40)', lightLabel:'ink 40%', dark:'rgba(236,238,255,.28)', darkLabel:'ink 28%' },
+      ]},
+      { label:'表面 · SURFACE', tokens:[
+        { name:'--bg', light:'#F4F5F8', lightLabel:'#F4F5F8', dark:'#07070F', darkLabel:'#07070F' },
+        { name:'--card', light:'#FFFFFF', lightLabel:'#FFFFFF', dark:'rgba(255,255,255,.055)', darkLabel:'white 5.5%' },
+        { name:'--surf', light:'rgba(255,255,255,.72)', lightLabel:'white 72%', dark:'rgba(255,255,255,.05)', darkLabel:'white 5%' },
+      ]},
+      { label:'描边 · BORDER', tokens:[
+        { name:'--bdr', light:'rgba(22,24,31,.10)', lightLabel:'ink 10%', dark:'rgba(255,255,255,.08)', darkLabel:'white 8%' },
+        { name:'--bdrSoft', light:'rgba(22,24,31,.06)', lightLabel:'ink 6%', dark:'rgba(255,255,255,.05)', darkLabel:'white 5%' },
+      ]},
+      { label:'语义 · SEMANTIC', tokens:[
+        { name:'--ok', light:'#0E9C6B', lightLabel:'#0E9C6B', dark:'#4ECDA0', darkLabel:'#4ECDA0' },
+        { name:'--info', light:'#2C74D6', lightLabel:'#2C74D6', dark:'#6AA6F5', darkLabel:'#6AA6F5' },
+        { name:'--warn', light:'#B77A22', lightLabel:'#B77A22', dark:'#E8B45A', darkLabel:'#E8B45A' },
+        { name:'--err', light:'#D8474F', lightLabel:'#D8474F', dark:'#EC6E77', darkLabel:'#EC6E77' },
+      ]},
+    ];
+    const radii = [
+      { name:'radius-sm', px:'8px', use:'徽章 / 输入' },
+      { name:'radius-md', px:'12px', use:'按钮 / 图标位' },
+      { name:'radius-lg', px:'18px', use:'卡片' },
+      { name:'radius-xl', px:'22px', use:'大面板' },
+      { name:'radius-full', px:'999px', use:'胶囊 / 头像' },
+    ];
+    const spaces = [
+      { name:'space-1', px:'4px' }, { name:'space-2', px:'8px' }, { name:'space-3', px:'12px' },
+      { name:'space-4', px:'16px' }, { name:'space-6', px:'24px' }, { name:'space-10', px:'40px' },
+    ];
+    const types = [
+      { name:'Display 展示标题', px:'44px', w:'700' },
+      { name:'H1 页面标题', px:'32px', w:'700' },
+      { name:'H2 区块标题', px:'24px', w:'600' },
+      { name:'Body 正文', px:'16px', w:'400' },
+      { name:'Caption 辅助', px:'12px', w:'500' },
+    ];
+    const line = (t) => '  ' + t.name + ': ' + t.light + ';';
+    const dline = (t) => '  ' + t.name + ': ' + t.dark + ';';
+    const cssText =
+      ':root{\n' + groups.flatMap(g => g.tokens.map(line)).join('\n') +
+      '\n  --radius-lg: 18px;\n  --sh1: 0 4px 10px -3px rgba(24,21,14,.06);\n}\n\n' +
+      'html[data-theme="dark"]{\n' + groups.flatMap(g => g.tokens.map(dline)).join('\n') + '\n}';
+    const obj = { color:{ light:{}, dark:{} }, radius:{}, space:{} };
+    groups.forEach(g => g.tokens.forEach(t => { obj.color.light[t.name.slice(2)] = t.light; obj.color.dark[t.name.slice(2)] = t.dark; }));
+    radii.forEach(r => obj.radius[r.name] = r.px);
+    spaces.forEach(s => obj.space[s.name] = s.px);
+    const jsonText = JSON.stringify(obj, null, 2);
+    return { groups, radii, spaces, types, cssText, jsonText };
+  }
+
+  componentDidMount() {
+    const root = this.el || document;
+    const PLATE = "M27.356405,6.5566244Q27.640217,6.7204833,27.900215,6.9199853Q28.16021,7.1194868,28.391941,7.3512182Q28.623672,7.5829496,28.823174,7.8429451Q29.022675,8.1029396,29.186533,8.3867512Q29.350391,8.6705627,29.475803,8.9733343Q29.601215,9.2761059,29.686035,9.5926561Q29.770855,9.9092064,29.813629,10.23412Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.813631,21.765881Q29.770855,22.090794,29.686037,22.407345Q29.601215,22.723896,29.475803,23.026669Q29.350391,23.329437,29.186531,23.613249Q29.022675,23.89706,28.823174,24.157059Q28.623672,24.417053,28.391941,24.648785Q28.16021,24.880516,27.900215,25.080017Q27.640217,25.279518,27.356405,25.443377L18.5,30.556623Q18.216188,30.720484,17.913418,30.845898Q17.610645,30.97131,17.294096,31.056129Q16.977547,31.140947,16.652632,31.183723Q16.327717,31.226498,16,31.226498Q15.672283,31.226498,15.347369,31.183723Q15.022456,31.140945,14.705906,31.056128Q14.389355,30.97131,14.086583,30.845898Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q4.3597822,25.279518,4.0997868,25.080017Q3.8397913,24.880516,3.6080601,24.648783Q3.3763289,24.417053,3.1768272,24.157059Q2.9773254,23.89706,2.8134668,23.613249Q2.6496081,23.329437,2.5241961,23.026669Q2.3987842,22.723896,2.3139648,22.407347Q2.2291453,22.090796,2.1863694,21.765881Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.1863689,10.23412Q2.2291448,9.9092064,2.3139644,9.5926561Q2.3987837,9.2761059,2.5241957,8.9733343Q2.6496074,8.6705627,2.8134661,8.3867512Q2.977325,8.1029396,3.1768267,7.8429446Q3.3763285,7.5829496,3.6080596,7.3512182Q3.8397908,7.1194868,4.0997868,6.9199853Q4.3597822,6.7204833,4.6435933,6.5566244L13.5,1.4433756Q13.783812,1.2795169,14.086583,1.1541051Q14.389355,1.0286931,14.705906,0.94387358Q15.022456,0.85905409,15.34737,0.8162784Q15.672283,0.77350271,16,0.77350271Q16.327717,0.77350277,16.652632,0.81627846Q16.977547,0.85905421,17.294096,0.9438737Q17.610645,1.0286932,17.913418,1.1541052Q18.216188,1.2795169,18.5,1.4433756Z";
+    const F = { top:"M16 8 L22.928 12 L16 16 L9.072 12 Z", right:"M16 16 L22.928 12 L22.928 20 L16 24 Z", left:"M9.072 12 L16 16 L16 24 L9.072 20 Z" };
+    let u = 0;
+    root.querySelectorAll('[data-mark]').forEach(el => {
+      const s = +(el.dataset.size || 26); const id = 'tm' + (u++);
+      el.innerHTML = '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:' + s + 'px;height:' + s + 'px;display:block;filter:drop-shadow(0 2px 6px rgba(21,22,28,.18));">'
+        + '<defs>'
+        + '<linearGradient id="' + id + 't" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#CBB8FF"/><stop offset="1" stop-color="#A48DF4"/></linearGradient>'
+        + '<linearGradient id="' + id + 'r" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8E6DEE"/><stop offset="1" stop-color="#6B45DE"/></linearGradient>'
+        + '<linearGradient id="' + id + 'l" x1="0" y1="0" x2="0.2" y2="1"><stop offset="0" stop-color="#4E36BE"/><stop offset="1" stop-color="#2E1F86"/></linearGradient>'
+        + '</defs>'
+        + '<path d="' + PLATE + '" fill="#FFFFFF" stroke="rgba(21,22,28,.06)" stroke-width="0.5"/>'
+        + '<path d="' + F.left + '" fill="url(#' + id + 'l)"/>'
+        + '<path d="' + F.right + '" fill="url(#' + id + 'r)"/>'
+        + '<path d="' + F.top + '" fill="url(#' + id + 't)"/>'
+        + '</svg>';
+    });
+    const slots = Array.from(root.querySelectorAll('[data-wm]'));
+    fetch('assets-zwy/wordmark.svg').then(r => r.text()).then(txt => {
+      slots.forEach(w => { const h = +(w.dataset.h || 16); w.innerHTML = txt; const svg = w.querySelector('svg'); if (svg) { svg.removeAttribute('height'); svg.removeAttribute('width'); svg.style.height = h + 'px'; svg.style.width = 'auto'; svg.style.display = 'block'; } });
+    }).catch(() => { slots.forEach(w => { w.innerHTML = '<span style="font-weight:700;font-size:19px;">造物云</span>'; }); });
+
+    const toast = root.querySelector('[data-toast]');
+    const flash = (msg) => { if (!toast) return; toast.textContent = msg; toast.style.opacity = 1; toast.style.transform = 'translate(-50%,0)'; clearTimeout(this._tt); this._tt = setTimeout(() => { toast.style.opacity = 0; toast.style.transform = 'translate(-50%,20px)'; }, 1400); };
+    const copy = (text, msg) => { if (navigator.clipboard) { navigator.clipboard.writeText(text).then(() => flash(msg)).catch(() => flash('复制失败')); } else { flash('复制失败'); } };
+    root.querySelectorAll('[data-copy]').forEach(el => el.addEventListener('click', () => copy(el.dataset.copy, '已复制 ' + el.dataset.copy)));
+    root.querySelectorAll('[data-copy-btn]').forEach(btn => btn.addEventListener('click', () => {
+      const code = root.querySelector('[data-code="' + btn.dataset.copyBtn + '"] code');
+      if (code) copy(code.textContent, '已复制 ' + btn.dataset.copyBtn + ' 令牌');
+    }));
+  }
+}
+</script>
+</body>
+</html>

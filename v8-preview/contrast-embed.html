@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="theme-light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>为什么是企业 AI · 造物云</title>
+<link rel="preconnect" href="https://fonts.font.im" crossorigin>
+<link href="https://fonts.font.im/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07070F; --paper:rgba(255,255,255,.05); --ink:#ECEEFF;
+    --ink2:rgba(236,238,255,.56); --ink3:rgba(236,238,255,.34);
+    --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.17);
+    --teal:#7B6CFF; --tealDeep:#8E82FF; --tealBg:rgba(90,79,230,.14);
+    --purple:#A855F7; --edge:#9A9CA6; --edgeDeep:#C3C5D0;
+    --sans:'Noto Sans SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+    --mono:'Space Grotesk',ui-sans-serif,'SF Pro Display',sans-serif;
+  }
+  /* light mode (synced from embedding page) */
+  html.theme-light{
+    --bg:#F4F5F8; --paper:#FFFFFF; --ink:#16181F;
+    --ink2:rgba(21,22,28,.56); --ink3:rgba(21,22,28,.34);
+    --line:rgba(21,22,28,.10); --line2:rgba(21,22,28,.16);
+    --teal:#5A4FE6; --tealDeep:#4438C4; --tealBg:rgba(90,79,230,.10);
+    --purple:#A855F7; --edge:#9A9CA6; --edgeDeep:#6B6D78;
+  }
+  html,body{transition:background .3s ease,color .3s ease}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:transparent;color:var(--ink);font-family:var(--sans);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0}
+
+  /* ── header ── */
+  header{padding:64px 0 8px}
+  .kicker{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--teal);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  .kicker::before{content:"";width:26px;height:1.5px;background:var(--teal);display:inline-block}
+  h1{font-size:clamp(30px,5.2vw,50px);font-weight:900;letter-spacing:-.02em;line-height:1.12}
+  h1 em{font-style:normal;color:var(--teal)}
+  .lead{margin-top:20px;max-width:680px;font-size:clamp(15px,2vw,17.5px);color:var(--ink2);line-height:1.8}
+  .lead b{color:var(--ink);font-weight:700}
+
+  /* ── contrast grid ── */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px;align-items:stretch}
+  @media(max-width:860px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:26px 26px 22px;
+    position:relative;overflow:hidden;display:flex;flex-direction:column}
+  .card.ent{border-color:rgba(90,79,230,.28);box-shadow:0 24px 60px -34px rgba(90,79,230,.4)}
+  .tag{align-self:flex-start;display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;
+    letter-spacing:.02em;padding:4px 11px;border-radius:999px;margin-bottom:4px}
+  .tag.per{background:rgba(21,22,28,.06);color:var(--ink2)}
+  .tag.ent{background:var(--tealBg);color:var(--tealDeep)}
+  .tag .dot{width:7px;height:7px;border-radius:50%}
+  .tag.per .dot{background:var(--edge)}
+  .tag.ent .dot{background:var(--teal)}
+  .card h2{font-size:20px;font-weight:700;margin:12px 0 4px;letter-spacing:-.01em}
+  .card.per h2{color:var(--edgeDeep)}
+  .card .sub{font-size:13px;color:var(--ink2);min-height:40px;line-height:1.6}
+  .stage-svg{display:block;width:100%;height:auto;margin:2px 0 2px}
+
+  /* parallel skeleton rows (both cards share the same structure) */
+  .sigrow{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:12px 0 2px;min-height:24px}
+  .sig{font-size:10.5px;font-weight:600;border-radius:999px;padding:3px 10px;white-space:nowrap;border:1px solid transparent;transition:.4s}
+  .sig.ent{color:var(--tealDeep);background:var(--tealBg);border-color:rgba(90,79,230,.18)}
+  .sig.per{color:var(--ink3);background:rgba(21,22,28,.045);border-color:var(--line)}
+  .rowhint{text-align:center;font-size:10px;letter-spacing:.05em;margin:3px 0;min-height:15px}
+  .rowhint.ent{color:var(--tealDeep);font-weight:600}
+  .rowhint.per{color:var(--ink3)}
+  .stagebox{flex:1;display:flex;align-items:center;justify-content:center;min-height:230px}
+
+  /* fate line under each diagram */
+  .fate{font-size:13px;color:var(--ink2);padding-top:4px;margin-top:auto}
+  .fate b{color:var(--ink)}
+  .card.ent .fate b{color:var(--tealDeep)}
+
+  /* value chip inside enterprise card */
+  .valchip{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+  .vc{flex:1;min-width:120px;border:1px solid var(--line);border-radius:12px;padding:11px 13px;
+    background:var(--bg);transition:.5s;opacity:.4}
+  .vc.on{opacity:1;border-color:rgba(90,79,230,.4);background:var(--tealBg);
+    box-shadow:0 8px 20px -12px rgba(90,79,230,.5);animation:vc-pulse 2.6s ease-in-out infinite}
+  #vcDec.on{animation-delay:.6s} #vcThird.on{animation-delay:1.2s}
+  @keyframes vc-pulse{0%,100%{box-shadow:0 8px 20px -12px rgba(90,79,230,.38);border-color:rgba(90,79,230,.34)}
+    50%{box-shadow:0 14px 32px -8px rgba(90,79,230,.95);border-color:rgba(90,79,230,.9)}}
+  .vc .vt{font-size:12.5px;font-weight:800;color:var(--ink);display:flex;align-items:center;gap:6px}
+  .vc-ic{display:inline-flex;flex-shrink:0}
+  .vc-ic svg{width:15px;height:15px}
+  .vc.on .vt{color:var(--tealDeep)}
+  .vc .vd{font-size:11px;color:var(--ink3);margin-top:2px}
+  .card.per .vc{opacity:.62}   /* capabilities the personal side never reaches */
+
+  /* ── control / meters ── */
+  .console{margin-top:26px;background:var(--paper);border:1px solid var(--line);border-radius:20px;
+    padding:24px 26px;display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center}
+  @media(max-width:720px){.console{grid-template-columns:1fr;gap:18px}}
+  .runbtn{font-family:var(--sans);font-size:15px;font-weight:800;color:#fff;background:var(--teal);
+    border:none;border-radius:999px;padding:14px 26px;cursor:pointer;white-space:nowrap;
+    box-shadow:0 14px 30px -12px rgba(90,79,230,.6);transition:transform .18s,background .2s}
+  .runbtn:hover{transform:translateY(-2px)}
+  .runbtn.stop{background:var(--ink);box-shadow:0 14px 30px -12px rgba(21,22,28,.4)}
+  .runbtn .ic{display:inline-block;margin-right:8px;font-family:var(--mono)}
+  .resetbtn{display:block;margin-top:10px;font-size:12px;color:var(--ink3);background:none;border:none;
+    cursor:pointer;text-decoration:underline;font-family:var(--sans)}
+  .resetbtn:hover{color:var(--ink)}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap}
+  .runbtn.ghost{background:var(--paper);color:var(--ink);border:1.5px solid var(--line2);box-shadow:none}
+  .runbtn.ghost:hover{border-color:var(--teal);color:var(--tealDeep)}
+  .runbtn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+  .fill.ent.over{background:linear-gradient(90deg,#7B6CFF,#5A4FE6,#A855F7);
+    background-size:220% 100%;animation:shim 1.5s linear infinite}
+  @keyframes shim{0%{background-position:0 0}100%{background-position:220% 0}}
+  .obadge{display:none;font-family:var(--mono);font-size:10px;font-weight:700;color:#fff;
+    background:linear-gradient(90deg,#5A4FE6,#A855F7);padding:2px 9px;border-radius:999px;
+    margin-left:8px;vertical-align:middle;letter-spacing:.02em}
+  .obadge.on{display:inline-block;animation:pop .35s ease}
+  @keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+  .stage-svg text{font-family:var(--sans)}
+  .stage-svg text.mono{font-family:var(--mono)}
+  .meters{display:flex;flex-direction:column;gap:16px}
+  .meter .mtop{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
+  .meter .mname{font-size:13px;font-weight:700}
+  .meter .mname s{text-decoration:none;font-weight:500;color:var(--ink3);font-size:11.5px;margin-left:8px}
+  .meter .mval{font-family:var(--mono);font-size:15px;font-weight:700}
+  .track{height:12px;border-radius:999px;background:rgba(21,22,28,.07);overflow:hidden;position:relative}
+  .fill{height:100%;border-radius:999px;width:0;transition:width .25s ease-out}
+  .fill.per{background:repeating-linear-gradient(45deg,var(--edge),var(--edge) 6px,#C3C5D0 6px,#C3C5D0 12px)}
+  .fill.ent{background:linear-gradient(90deg,#7B6CFF,var(--teal))}
+  .per .mval{color:var(--ink3)}
+  .ent .mval{color:var(--tealDeep)}
+
+  /* stats row */
+  .stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+  .stat .n{font-family:var(--mono);font-size:30px;font-weight:700;line-height:1;color:var(--ink)}
+  .stat.ent .n{color:var(--tealDeep)}
+  .stat .l{font-size:12px;color:var(--ink3);margin-top:6px}
+
+  /* window band */
+  .window{margin:34px 0 60px;background:linear-gradient(100deg,#0E0A1E,#141026);border-radius:20px;
+    padding:28px 30px;color:#fff;display:flex;align-items:center;gap:22px;flex-wrap:wrap;
+    box-shadow:0 30px 70px -40px rgba(14,10,30,.9)}
+  .window .wk{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:#B9B2FF;font-weight:600}
+  .window .wt{font-size:clamp(17px,2.4vw,22px);font-weight:800;line-height:1.4}
+  .window .wt em{font-style:normal;color:#9D91FF}
+  .window .wp{font-size:13px;color:rgba(255,255,255,.62);margin-top:6px;max-width:560px}
+
+  footer{padding:0 0 60px;color:var(--ink3);font-size:12.5px;display:flex;gap:16px;flex-wrap:wrap}
+  footer a{color:var(--ink2);text-decoration:none;border-bottom:1px solid var(--line2)}
+  footer a:hover{color:var(--ink)}
+
+  .flywrap{position:relative}
+  #spark{transition:none}
+  .feed{pointer-events:none}
+
+  /* ── part 2: divergence chart ── */
+  .parthead{margin:64px 0 8px}
+  .parthead .pk{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+  .parthead h2{font-size:clamp(24px,3.6vw,34px);font-weight:900;letter-spacing:-.02em;line-height:1.16}
+  .parthead h2 em{font-style:normal;color:var(--teal)}
+  .parthead p{margin-top:14px;max-width:720px;font-size:15px;color:var(--ink2);line-height:1.8}
+  .parthead p b{color:var(--ink);font-weight:700}
+  .chartcard{margin-top:26px;background:var(--paper);border:1px solid var(--line);border-radius:22px;
+    padding:22px 22px 8px;box-shadow:0 30px 70px -46px rgba(21,22,28,.4)}
+  .legend{display:flex;gap:22px;flex-wrap:wrap;padding:2px 6px 16px}
+  .lg{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink2)}
+  .lg b{color:var(--ink);font-weight:700}
+  .lg .sw{width:22px;height:0;border-top:3px solid;border-radius:2px;flex-shrink:0}
+  .lg.h .sw{border-color:var(--edge)}
+  .lg.a .sw{border-color:var(--teal)}
+  .chart-svg{display:block;width:100%;height:auto}
+  .chart-svg text{font-family:var(--sans)}
+  .chart-svg text.mono{font-family:var(--mono)}
+  .status{text-align:center;font-size:13.5px;color:var(--ink3);padding:6px 0 12px;min-height:22px;transition:color .3s}
+  .status b{color:var(--tealDeep);font-weight:700}
+  .reads{display:flex;gap:26px;flex-wrap:wrap;justify-content:flex-end}
+  @media(max-width:760px){.reads{justify-content:flex-start}}
+  .rd .n{font-family:var(--mono);font-size:26px;font-weight:700;line-height:1}
+  .rd .l{font-size:11.5px;color:var(--ink3);margin-top:5px}
+  .rd.h .n{color:var(--edgeDeep)} .rd.a .n{color:var(--tealDeep)} .rd.g .n{color:var(--purple)}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.2px)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+
+  <!-- ══ contrast ══ -->
+  <div class="grid">
+
+    <!-- 个人 AI -->
+    <div class="card per">
+      <span class="tag per"><span class="dot"></span>个人 AI</span>
+      <h2>价值留在边缘</h2>
+      <div class="sub">工具散落在企业外圈,各用各的。人一走,沉淀就跟着走,攒不进公司。</div>
+      <div class="sigrow"><span class="sig per">私人账号</span><span class="sig per">本地文件</span><span class="sig per">各自的提示词</span><span class="sig per">临时对话</span></div>
+      <div class="rowhint per">各自为战,不汇入核心 ↓</div>
+      <div class="stagebox"><div class="flywrap">
+      <svg class="stage-svg" viewBox="0 0 340 220" aria-hidden="true">
+        <!-- idle / broken belt where a flywheel would spin -->
+        <circle cx="170" cy="110" r="66" fill="none" stroke="var(--line)" stroke-width="11" opacity=".5"/>
+        <circle cx="170" cy="110" r="66" fill="none" stroke="var(--line2)" stroke-width="1" stroke-dasharray="3 9"/>
+        <!-- empty dashed core -->
+        <circle id="perRing" cx="170" cy="110" r="40" fill="none" stroke="var(--line2)" stroke-width="1.5" stroke-dasharray="4 6"/>
+        <circle id="perRing2" cx="170" cy="110" r="27" fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="2 7"/>
+        <text x="170" y="106" text-anchor="middle" font-size="11" font-weight="800" fill="var(--ink3)">企业核心</text>
+        <text x="170" y="121" text-anchor="middle" font-size="9.5" fill="var(--ink3)">始终是空的</text>
+        <g id="perLeak"></g>
+        <g id="perTools" fill="var(--edge)"></g>
+      </svg>
+      </div></div>
+      <div class="rowhint per">用完即走,攒不进核心 ↓</div>
+      <div class="valchip">
+        <div class="vc"><div class="vt"><span class="vc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18"/><path d="M4.2 4.2l15.6 15.6"/></svg></span>局部视野</div><div class="vd">只看到眼前一角</div></div>
+        <div class="vc"><div class="vt"><span class="vc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M6.3 15.7l9.4-9.4"/></svg></span>细节疏漏</div><div class="vd">抓不住关键细节</div></div>
+        <div class="vc"><div class="vt"><span class="vc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>片面决策</div><div class="vd">全凭感觉拍板</div></div>
+      </div>
+      <div class="fate">结果 → <b>沉淀停在边缘,无法复利。</b></div>
+    </div>
+
+    <!-- 企业 AI -->
+    <div class="card ent">
+      <span class="tag ent"><span class="dot"></span>企业 AI</span>
+      <h2>越用越聪明的飞轮</h2>
+      <div class="sub">各路信号汇进核心,核心越用越聪明——沉淀成公司自己的智能。</div>
+      <div class="sigrow"><span class="sig ent">销售反馈</span><span class="sig ent">用户行为</span><span class="sig ent">财务数据</span><span class="sig ent">会议纪要</span><span class="sig ent">历史决策</span></div>
+      <div class="rowhint ent">各路信号汇入核心 ↓</div>
+      <div class="stagebox"><div class="flywrap">
+      <svg class="stage-svg" viewBox="0 0 340 220" aria-hidden="true">
+        <defs>
+          <radialGradient id="coreG" cx="40%" cy="36%" r="70%">
+            <stop offset="0%" stop-color="#C7C0FF"/><stop offset="55%" stop-color="#7B6CFF"/><stop offset="100%" stop-color="#5A4FE6"/>
+          </radialGradient>
+          <radialGradient id="coreHot" cx="40%" cy="36%" r="70%">
+            <stop offset="0%" stop-color="#D9D4FF"/><stop offset="45%" stop-color="#8E82FF"/><stop offset="100%" stop-color="#A855F7"/>
+          </radialGradient>
+          <marker id="ah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="rgba(90,79,230,.6)"/>
+          </marker>
+        </defs>
+        <!-- true-circle belt (r=66, centre 170,110) -->
+        <circle cx="170" cy="110" r="66" fill="none" stroke="rgba(90,79,230,.14)" stroke-width="11"/>
+        <!-- direction chevrons on the true circle -->
+        <g fill="none" stroke="rgba(90,79,230,.5)" stroke-width="1.7" marker-end="url(#ah)">
+          <path d="M212.4 59.4 A66 66 0 0 1 220.6 67.6"/>
+          <path d="M220.6 152.4 A66 66 0 0 1 212.4 160.6"/>
+          <path d="M127.6 160.6 A66 66 0 0 1 119.4 152.4"/>
+          <path d="M119.4 67.6 A66 66 0 0 1 127.6 59.4"/>
+        </g>
+        <!-- rotating sweep highlight -->
+        <g id="sweep"><circle cx="170" cy="110" r="66" fill="none" stroke="var(--teal)" stroke-width="4"
+          stroke-linecap="round" stroke-dasharray="30 385" opacity=".85"/></g>
+        <!-- core ripples injected here -->
+        <g id="ripple"></g>
+        <!-- core -->
+        <circle id="coreGlow" cx="170" cy="110" r="30" fill="var(--teal)" opacity="0"/>
+        <circle id="core" cx="170" cy="110" r="30" fill="url(#coreG)" opacity=".34"/>
+        <text x="170" y="106" text-anchor="middle" font-size="10.5" font-weight="800" fill="#241C63">企业智能</text>
+        <text id="coreIQ" class="mono" x="170" y="122" text-anchor="middle" font-size="13" font-weight="700" fill="#241C63">0</text>
+        <!-- stage nodes on the true circle -->
+        <g font-size="10.5" font-weight="700" fill="var(--tealDeep)" text-anchor="middle">
+          <g><circle cx="170" cy="44" r="4" fill="var(--teal)"/><text x="170" y="28">员工使用</text></g>
+          <g><circle cx="236" cy="110" r="4" fill="var(--teal)"/><text x="236" y="96">解决问题</text></g>
+          <g><circle cx="170" cy="176" r="4" fill="var(--teal)"/><text x="170" y="198">判断沉淀</text></g>
+          <g><circle cx="104" cy="110" r="4" fill="var(--teal)"/><text x="104" y="96">越用越聪明</text></g>
+        </g>
+        <!-- comet trail + spark -->
+        <g id="trail"></g>
+        <circle id="spark" cx="170" cy="44" r="5.5" fill="#fff" stroke="var(--teal)" stroke-width="2"/>
+        <!-- employee feed dots injected here -->
+        <g id="feed" class="feed"></g>
+      </svg>
+      </div></div>
+      <div class="rowhint ent">核心越强,AI 带来的价值越大 ↓</div>
+      <div class="valchip">
+        <div class="vc" id="vcPred"><div class="vt"><span class="vc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18"/></svg></span>全局视野</div><div class="vd">洞察全局趋势</div></div>
+        <div class="vc" id="vcDec"><div class="vt"><span class="vc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>细节掌控</div><div class="vd">深挖关键细节</div></div>
+        <div class="vc" id="vcThird"><div class="vt"><span class="vc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.2 12.2l2.6 2.6 5-5.6"/></svg></span>明智决策</div><div class="vd">综合智能,做对选择</div></div>
+      </div>
+      <div class="fate">结果 → <b>核心越转越聪明,价值持续复利。</b></div>
+    </div>
+  </div>
+
+  <!-- ══ console ══ -->
+  <div class="console">
+    <div>
+      <div class="btnrow">
+        <button class="runbtn" id="startBtn"><span class="ic">▶</span>从 0 开始</button>
+        <button class="runbtn ghost" id="pauseBtn" disabled>暂停</button>
+      </div>
+    </div>
+    <div class="meters">
+      <div class="meter per">
+        <div class="mtop"><div class="mname">个人 AI<s>价值留在边缘,不进核心</s></div><div class="mval" id="perVal">0</div></div>
+        <div class="track"><div class="fill per" id="perFill"></div></div>
+      </div>
+      <div class="meter ent">
+        <div class="mtop"><div class="mname">企业 AI 智能度<s>越用越强,可超 100%</s><span class="obadge" id="obadge">超越 100% · 持续增强</span></div><div class="mval" id="entVal">0</div></div>
+        <div class="track"><div class="fill ent" id="entFill"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat ent"><div class="n" id="stEmp">0</div><div class="l">在用员工</div></div>
+    <div class="stat ent"><div class="n" id="stProb">0</div><div class="l">累计解决的问题</div></div>
+    <div class="stat ent"><div class="n" id="stIQ">0<span style="font-size:16px">%</span></div><div class="l">企业智能度</div></div>
+    <div class="stat"><div class="n" id="stPer">0<span style="font-size:16px">%</span></div><div class="l">个人 AI 沉淀进核心</div></div>
+  </div>
+
+  </div>
+
+<script>
+(function(){
+  var SVGNS='http://www.w3.org/2000/svg';
+  var $=function(id){return document.getElementById(id)};
+  var core=$('core'), coreGlow=$('coreGlow'), coreIQ=$('coreIQ'), spark=$('spark'),
+      feed=$('feed'), trail=$('trail'), rippleG=$('ripple'), sweep=$('sweep');
+  var entFill=$('entFill'), perFill=$('perFill'), entVal=$('entVal'), perVal=$('perVal');
+  var stEmp=$('stEmp'), stProb=$('stProb'), stIQ=$('stIQ'), stPer=$('stPer');
+  var vcPred=$('vcPred'), vcDec=$('vcDec'), vcThird=$('vcThird'), obadge=$('obadge');
+  var startBtn=$('startBtn'), pauseBtn=$('pauseBtn');
+
+  var cx=170, cy=110, R=66;   // true-circle radius
+
+  // ── 个人 AI: busy but futile ("碌碌无为") — always animating, never accumulates ──
+  var perG=$('perTools'), perLeak=$('perLeak'), perRing=$('perRing'), perRing2=$('perRing2');
+  var perTools=[];
+  for(var i=0;i<9;i++){
+    var a=(i/9)*Math.PI*2 - Math.PI/2, r=68+(i%3)*7;
+    var g=document.createElementNS(SVGNS,'g');
+    var c=document.createElementNS(SVGNS,'circle');
+    c.setAttribute('r','4.6'); c.setAttribute('fill','var(--edge)'); c.setAttribute('opacity','.82'); g.appendChild(c);
+    var sp=document.createElementNS(SVGNS,'path');       // a busy spinner that never completes
+    sp.setAttribute('d','M8 0 A8 8 0 0 1 -3 7.4'); sp.setAttribute('fill','none');
+    sp.setAttribute('stroke','var(--edge)'); sp.setAttribute('stroke-width','1.5');
+    sp.setAttribute('stroke-linecap','round'); sp.setAttribute('opacity','.45'); g.appendChild(sp);
+    perG.appendChild(g);
+    perTools.push({g:g,sp:sp,a:a,r:r,bx:170+Math.cos(a)*r,by:110+Math.sin(a)*r,
+                   ph:i*0.9,spin:(i*47)%360,spd:55+((i*37)%90)});
+  }
+  function perLeakDot(inward){
+    var T=perTools[(Math.random()*perTools.length)|0], a=T.a, r0=T.r;
+    var d=document.createElementNS(SVGNS,'circle');
+    d.setAttribute('r', inward?'2.2':'2.6'); d.setAttribute('fill','var(--edge)'); perLeak.appendChild(d);
+    var s=null, dur=(inward?1500:1000)+Math.random()*500;
+    (function fly(ts){ if(!s)s=ts; var k=Math.min(1,(ts-s)/dur);
+      var rr = inward ? (r0 - Math.sin(k*Math.PI)*20)   // reaches toward the core, then retreats
+                      : (r0 + k*24);                    // value escapes outward
+      d.setAttribute('cx',(170+Math.cos(a)*rr).toFixed(1));
+      d.setAttribute('cy',(110+Math.sin(a)*rr).toFixed(1));
+      d.setAttribute('opacity',(0.5*(1-k)).toFixed(2));
+      if(k<1) requestAnimationFrame(fly); else perLeak.removeChild(d);
+    })();
+  }
+  var perT={last:0,leak:0,fut:0,rot:0};
+  function perLoop(ts){
+    var dt=Math.min(60, ts-(perT.last||ts)); perT.last=ts;
+    for(var k=0;k<perTools.length;k++){ var T=perTools[k];
+      var jx=Math.sin(ts*0.006+T.ph)*1.5, jy=Math.cos(ts*0.0075+T.ph*1.3)*1.5;
+      T.g.setAttribute('transform','translate('+(T.bx+jx).toFixed(2)+','+(T.by+jy).toFixed(2)+')');
+      T.spin=(T.spin+T.spd*dt/1000)%360;
+      T.sp.setAttribute('transform','rotate('+T.spin.toFixed(1)+')');
+    }
+    perT.rot=(perT.rot+dt*0.012)%360;
+    if(perRing) perRing.setAttribute('transform','rotate('+perT.rot.toFixed(1)+' 170 110)');
+    if(perRing2) perRing2.setAttribute('transform','rotate('+(-perT.rot*1.5).toFixed(1)+' 170 110)');
+    if(ts-perT.leak>560){ perT.leak=ts; perLeakDot(false); }
+    if(ts-perT.fut>1800){ perT.fut=ts; perLeakDot(true); }
+    requestAnimationFrame(perLoop);
+  }
+
+  // trail dots (comet behind the spark)
+  var TRAIL=5, trailEls=[];
+  for(var t=0;t<TRAIL;t++){
+    var td=document.createElementNS(SVGNS,'circle');
+    td.setAttribute('r',(4.2-t*0.6).toFixed(1)); td.setAttribute('fill','var(--teal)');
+    td.setAttribute('opacity',(0.34-t*0.06).toFixed(2)); trail.appendChild(td); trailEls.push(td);
+  }
+
+  var state={running:false, started:false, angle:-Math.PI/2, iq:0, emp:0, prob:0,
+             _last:0, lastFeed:0, lastEmp:0, lastRip:0, raf:null};
+
+  function posAt(ang){ return [cx+Math.cos(ang)*R, cy+Math.sin(ang)*R]; }
+
+  function renderSpark(){
+    var p=posAt(state.angle);
+    spark.setAttribute('cx',p[0].toFixed(1)); spark.setAttribute('cy',p[1].toFixed(1));
+    for(var k=0;k<TRAIL;k++){ var q=posAt(state.angle-(k+1)*0.16);
+      trailEls[k].setAttribute('cx',q[0].toFixed(1)); trailEls[k].setAttribute('cy',q[1].toFixed(1)); }
+    sweep.setAttribute('transform','rotate('+(state.angle*180/Math.PI).toFixed(1)+' '+cx+' '+cy+')');
+  }
+
+  function setIQ(v){
+    state.iq=Math.max(0,v);
+    var f=Math.min(1,state.iq/100), over=Math.max(0,state.iq-100);
+    core.setAttribute('opacity',(0.34+f*0.58).toFixed(3));
+    core.setAttribute('r',(30+f*8+Math.min(14,over*0.045)).toFixed(1));
+    core.setAttribute('fill', state.iq>100?'url(#coreHot)':'url(#coreG)');
+    var gf=Math.min(1,state.iq/150);
+    coreGlow.setAttribute('opacity',(gf*0.36).toFixed(3));
+    coreGlow.setAttribute('r',(30+gf*28).toFixed(1));
+    coreGlow.setAttribute('fill', state.iq>100?'#A855F7':'var(--teal)');
+    coreIQ.textContent=Math.round(state.iq);
+    entFill.style.width=Math.min(100,state.iq)+'%';
+    entFill.classList.toggle('over', state.iq>100);
+    entVal.textContent=Math.round(state.iq);
+    stIQ.innerHTML=Math.round(state.iq)+'<span style="font-size:16px">%</span>';
+    obadge.classList.toggle('on', state.iq>100);
+    vcPred.classList.toggle('on', state.iq>=40);
+    vcDec.classList.toggle('on', state.iq>=75);
+    vcThird.classList.toggle('on', state.iq>=110);
+  }
+  function updStats(){ stEmp.textContent=state.emp; stProb.textContent=state.prob.toLocaleString('en-US'); }
+
+  function spawnFeed(){
+    var a=Math.random()*Math.PI*2, r=92;
+    var sx=cx+Math.cos(a)*r, sy=cy+Math.sin(a)*r;
+    var d=document.createElementNS(SVGNS,'circle');
+    d.setAttribute('r','3.2'); d.setAttribute('fill', state.iq>100?'#A855F7':'var(--teal)');
+    d.setAttribute('cx',sx.toFixed(1)); d.setAttribute('cy',sy.toFixed(1)); feed.appendChild(d);
+    var s=null, dur=580;
+    (function fly(ts){ if(!s)s=ts; var k=Math.min(1,(ts-s)/dur), e=1-Math.pow(1-k,2);
+      d.setAttribute('cx',(sx+(cx-sx)*e).toFixed(1)); d.setAttribute('cy',(sy+(cy-sy)*e).toFixed(1));
+      d.setAttribute('opacity',(1-k*0.75).toFixed(2));
+      if(k<1) requestAnimationFrame(fly); else feed.removeChild(d);
+    })();
+  }
+  function spawnRipple(){
+    var c=document.createElementNS(SVGNS,'circle');
+    c.setAttribute('cx',cx); c.setAttribute('cy',cy); c.setAttribute('r','30'); c.setAttribute('fill','none');
+    c.setAttribute('stroke', state.iq>100?'#A855F7':'var(--teal)'); c.setAttribute('stroke-width','2');
+    rippleG.appendChild(c);
+    var s=null, dur=1150;
+    (function go(ts){ if(!s)s=ts; var k=Math.min(1,(ts-s)/dur);
+      c.setAttribute('r',(30+k*32).toFixed(1)); c.setAttribute('opacity',(0.5*(1-k)).toFixed(2));
+      if(k<1) requestAnimationFrame(go); else rippleG.removeChild(c);
+    })();
+  }
+
+  var EMP_CAP = 36;   // 一支真实团队的规模：员工陆续用起来后稳定，不无限扩招
+  function loop(ts){
+    if(!state.running) return;
+    var dt=Math.min(50, ts-(state._last||ts)); state._last=ts;
+    state.angle += dt*0.0027; renderSpark();
+    // 员工陆续用起来：S 型采纳，趋近团队规模后稳定
+    if(ts-state.lastEmp>620 && state.emp<EMP_CAP){ state.lastEmp=ts;
+      state.emp=Math.min(EMP_CAP, state.emp+Math.max(1, Math.round((EMP_CAP-state.emp)*0.16))); updStats(); }
+    // 每次使用都把判断喂进核心，问题稳步累积
+    var gap=Math.max(240, 620-state.emp*9);
+    if(ts-state.lastFeed>gap){ state.lastFeed=ts; spawnFeed(); state.prob+=Math.ceil(1+state.emp*0.25); updStats(); }
+    // core pulse ripple
+    if(ts-state.lastRip>1250){ state.lastRip=ts; spawnRipple(); }
+    // 智能复利：同一支团队持续使用，核心越用越聪明（可超 100%），靠的是复利不是扩招
+    var base=(0.011+state.emp*0.001);
+    var rate=base/(1 + state.iq*0.011 + state.iq*state.iq*0.00030);
+    if(state.iq<100) rate*=0.6;        // 0→100 段更慢，像核心在慢慢升温
+    setIQ(state.iq + rate*dt);         // 不封顶：越用越强、持续复利，不会停
+    // 越聪明越有生命力：核心呼吸发光
+    var lvl=Math.min(1,state.iq/70), pb=Math.sin(ts*0.0042);
+    coreGlow.setAttribute('opacity', (0.10*lvl + Math.max(0,pb)*0.30*lvl).toFixed(3));
+    coreGlow.setAttribute('r', (32 + lvl*16 + Math.max(0,pb)*9*lvl).toFixed(1));
+    coreGlow.setAttribute('fill', state.iq>100?'#A855F7':'var(--teal)');
+    // 个人 AI: value never enters the core — stays flat at the edge
+    perFill.style.width='6%'; perVal.textContent='0'; stPer.innerHTML='0<span style="font-size:16px">%</span>';
+    state.raf=requestAnimationFrame(loop);
+  }
+
+  function reset(){
+    state.running=false; if(state.raf) cancelAnimationFrame(state.raf);
+    state.angle=-Math.PI/2; state.emp=0; state.prob=0; state.started=false;
+    setIQ(0); updStats(); renderSpark();
+    while(feed.firstChild) feed.removeChild(feed.firstChild);
+    while(rippleG.firstChild) rippleG.removeChild(rippleG.firstChild);
+    perFill.style.width='6%'; perVal.textContent='0'; stPer.innerHTML='0<span style="font-size:16px">%</span>';
+    pauseBtn.disabled=true; pauseBtn.textContent='暂停';
+    startBtn.innerHTML='<span class="ic">▶</span>从 0 开始';
+  }
+  function start(){
+    reset(); state.running=true; state.started=true;
+    state._last=0; state.lastFeed=0; state.lastEmp=0; state.lastRip=0;
+    pauseBtn.disabled=false; pauseBtn.textContent='暂停';
+    startBtn.innerHTML='<span class="ic">↻</span>重新开始';
+    state.raf=requestAnimationFrame(loop);
+  }
+  function pause(){ state.running=false; if(state.raf) cancelAnimationFrame(state.raf); pauseBtn.textContent='继续'; }
+  function resume(){ if(!state.started) return; state.running=true; state._last=0;
+    pauseBtn.textContent='暂停'; state.raf=requestAnimationFrame(loop); }
+
+  startBtn.addEventListener('click', start);
+  pauseBtn.addEventListener('click', function(){ if(state.running) pause(); else resume(); });
+
+  reset();  // initial edge state（静止，不预跑）
+  // 只在父页滚到该处时才开始（父页发 ea-start）：企业飞轮 + 个人侧忙碌 一起动
+  window.addEventListener('message', function(e){ var d=e&&e.data; if(d && d.type==='ea-start' && !state.started){ start(); requestAnimationFrame(perLoop); } });
+})();
+</script>
+
+
+<script>
+/* ── report content height to the embedding page (iframe auto-resize) ── */
+(function(){
+  function h(){ return Math.ceil(document.documentElement.scrollHeight); }
+  var last=0;
+  function report(){ var v=h(); if(Math.abs(v-last)<2) return; last=v;
+    if(window.parent && window.parent!==window) window.parent.postMessage({type:'ea-embed-h',h:v},'*'); }
+  window.addEventListener('load', report);
+  window.addEventListener('resize', report);
+  if(window.ResizeObserver){ try{ new ResizeObserver(report).observe(document.body); }catch(e){} }
+  [200,600,1200,2400].forEach(function(d){ setTimeout(report,d); });
+  // theme sync from the embedding page
+  window.addEventListener('message', function(e){
+    var d=e&&e.data; if(!d||d.type!=='ea-theme') return;
+    document.documentElement.classList.toggle('theme-light', !d.dark);
+    report();
+  });
+})();
+</script>
+
+</body>
+</html>

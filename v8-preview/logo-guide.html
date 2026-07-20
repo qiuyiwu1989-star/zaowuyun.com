@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>标志规范 · 造物云 v8</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:#F4F5F8; color:#15161C; font-family:'Noto Sans SC', system-ui, -apple-system, sans-serif; -webkit-font-smoothing:antialiased; line-height:1.7; }
+  a { color:#5A4FE6; text-decoration:none; }
+  ::selection { background:#5A4FE6; color:#fff; }
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; } }
+  @media (max-width:760px){
+    nav[style*="padding:0 40px"]{ padding:0 20px !important; flex-wrap:wrap; height:auto !important; row-gap:6px; padding-top:10px !important; padding-bottom:10px !important; }
+  }
+</style>
+</helmet>
+
+<div style="max-width:100%; overflow-x:clip; background:#F4F5F8;">
+
+<nav style="position:sticky; top:0; z-index:60; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:0 40px; height:64px; background:rgba(244,245,248,.82); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); border-bottom:1px solid rgba(21,22,28,.07);">
+  <a href="products.html" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+    <span data-mark data-size="26" style="display:inline-flex;"></span>
+    <span data-wm data-h="16" style="display:inline-flex; align-items:center; color:#15161C;"></span>
+    <span style="font-family:'Space Grotesk',sans-serif; font-size:10px; font-weight:600; letter-spacing:.08em; color:#9A9CA6; padding-left:8px; border-left:1px solid rgba(21,22,28,.1);">LOGO GUIDE</span>
+  </a>
+  <a href="#" style="font-size:13px; font-weight:600; color:#fff; background:#5A4FE6; border-radius:999px; padding:9px 18px;" style-hover="background:#4438C4">下载资源包</a>
+</nav>
+
+<!-- HERO -->
+<section style="max-width:1100px; margin:0 auto; padding:72px 40px 48px;">
+  <div style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.16em; color:#8A8C96; margin-bottom:16px;">BRAND MARK · 标志规范</div>
+  <h1 style="font-size:clamp(36px,5vw,52px); font-weight:700; letter-spacing:-.02em; line-height:1.15; margin:0 0 18px;">造物云标志使用规范</h1>
+  <p style="font-size:17px; color:#5A5C68; line-height:1.7; max-width:600px; margin:0;">标志由<b style="color:#15161C;">晶体标记</b>（白色超椭圆底板 + 三面紫色晶体）与<b style="color:#15161C;">“造物云”字标</b>组成。晶体三面自带明度渐变，呈宝石纵深；字标用 currentColor 随背景反相。</p>
+</section>
+
+<!-- CONSTRUCTION -->
+<section style="max-width:1100px; margin:0 auto; padding:16px 40px 48px;">
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px;">
+    <div style="background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:22px; padding:36px; display:flex; flex-direction:column; align-items:center; gap:18px; box-shadow:0 20px 44px -30px rgba(21,22,28,.18);">
+      <span data-mark data-size="96" style="display:inline-flex;"></span>
+      <div style="font-family:'Space Grotesk',sans-serif; font-size:12px; color:#9A9CA6;">MARK · 晶体标记</div>
+    </div>
+    <div style="background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:22px; padding:36px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; box-shadow:0 20px 44px -30px rgba(21,22,28,.18);">
+      <span data-wm data-h="40" style="display:inline-flex; color:#15161C;"></span>
+      <div style="font-family:'Space Grotesk',sans-serif; font-size:12px; color:#9A9CA6;">WORDMARK · 字标</div>
+    </div>
+    <div style="background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:22px; padding:36px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; box-shadow:0 20px 44px -30px rgba(21,22,28,.18);">
+      <div style="display:flex; align-items:center; gap:14px;"><span data-mark data-size="44" style="display:inline-flex;"></span><span data-wm data-h="28" style="display:inline-flex; color:#15161C;"></span></div>
+      <div style="font-family:'Space Grotesk',sans-serif; font-size:12px; color:#9A9CA6;">LOCKUP · 横向组合（默认）</div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR VERSIONS -->
+<section style="max-width:1100px; margin:0 auto; padding:16px 40px 48px;">
+  <h2 style="font-size:26px; font-weight:700; letter-spacing:-.02em; margin:0 0 6px;">颜色版本</h2>
+  <p style="font-size:14px; color:#5A5C68; margin:0 0 24px;">同一枚完整标记适配任意底色。深、浅底直接用全彩；纯色 / 图片上用反白挖空版（中心透底）。</p>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px;">
+    <div style="border:1px solid rgba(21,22,28,.08); border-radius:18px; overflow:hidden;">
+      <div style="height:140px; display:flex; align-items:center; justify-content:center; background:#FBFBFD;"><span data-mark data-size="56" data-elevate="1" style="display:inline-flex;"></span></div>
+      <div style="padding:11px 14px; border-top:1px solid rgba(21,22,28,.08); font-family:'Space Grotesk',sans-serif; font-size:11px; color:#9A9CA6;">全彩 · 浅底</div>
+    </div>
+    <div style="border:1px solid rgba(21,22,28,.08); border-radius:18px; overflow:hidden;">
+      <div style="height:140px; display:flex; align-items:center; justify-content:center; background:#0C0B12;"><span data-mark data-size="56" style="display:inline-flex;"></span></div>
+      <div style="padding:11px 14px; border-top:1px solid rgba(21,22,28,.08); font-family:'Space Grotesk',sans-serif; font-size:11px; color:#9A9CA6;">全彩 · 深底</div>
+    </div>
+    <div style="border:1px solid rgba(21,22,28,.08); border-radius:18px; overflow:hidden;">
+      <div style="height:140px; display:flex; align-items:center; justify-content:center; background:#5A4FE6;"><span data-mark data-size="56" data-reverse="1" style="display:inline-flex;"></span></div>
+      <div style="padding:11px 14px; border-top:1px solid rgba(21,22,28,.08); font-family:'Space Grotesk',sans-serif; font-size:11px; color:#9A9CA6;">反白 · 白色晶体（主色底）</div>
+    </div>
+    <div style="border:1px solid rgba(21,22,28,.08); border-radius:18px; overflow:hidden;">
+      <div style="height:140px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,#3b2a8f,#6b52d6);"><span data-mark data-size="56" data-reverse="1" style="display:inline-flex;"></span></div>
+      <div style="padding:11px 14px; border-top:1px solid rgba(21,22,28,.08); font-family:'Space Grotesk',sans-serif; font-size:11px; color:#9A9CA6;">反白 · 白色晶体（图片 / 渐变底）</div>
+    </div>
+    <div style="border:1px solid rgba(21,22,28,.08); border-radius:18px; overflow:hidden;">
+      <div style="height:140px; display:flex; align-items:center; justify-content:center; background:#FBFBFD;"><span data-mark data-size="56" data-knockout="1" style="display:inline-flex; color:#15161C;"></span></div>
+      <div style="padding:11px 14px; border-top:1px solid rgba(21,22,28,.08); font-family:'Space Grotesk',sans-serif; font-size:11px; color:#9A9CA6;">单色·墨 · 黑白印刷</div>
+    </div>
+  </div>
+  <div style="margin-top:16px; display:inline-flex; align-items:center; gap:10px; font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:#5A5C68; background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:12px; padding:12px 16px;">晶体三层：<span style="color:#C9AEFF; font-weight:600;">顶 EADCFF→C9AEFF</span> · <span style="color:#7B52E6; font-weight:600;">右 A87CF3→7B52E6</span> · <span style="color:#3B2A9E; font-weight:600;">左 5E3EC8→3B2A9E</span></div>
+
+  <!-- NAV USAGE -->
+  <h3 style="font-size:16px; font-weight:700; margin:40px 0 6px;">导航栏用法 · Navigation</h3>
+  <p style="font-size:13.5px; color:#5A5C68; margin:0 0 18px; max-width:640px;">浅色导航栏一律用<b style="color:#15161C;">全彩晶体</b>。反白（白色晶体）只用于深色 / 主色导航；若在浅色栏上必须反白，须垫一块<b style="color:#15161C;">主色圆角托板 + 投影</b>，否则白晶体会与浅灰底融为一体。</p>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px;">
+    <div style="border:1px solid rgba(21,22,28,.08); border-radius:16px; overflow:hidden;">
+      <div style="display:flex; align-items:center; justify-content:space-between; height:56px; padding:0 16px; background:#F4F5F8; border-bottom:1px solid rgba(21,22,28,.06);"><div style="display:flex; align-items:center; gap:8px;"><span data-mark data-size="24" style="display:inline-flex;"></span><span data-wm data-h="14" style="display:inline-flex; color:#15161C;"></span></div><span style="width:8px;height:8px;border-radius:50%;background:#22C55E;"></span></div>
+      <div style="padding:10px 14px; font-family:'Space Grotesk',sans-serif; font-size:11px; color:#15A15A;">✓ 浅色栏 · 全彩晶体（默认）</div>
+    </div>
+    <div style="border:1px solid rgba(21,22,28,.08); border-radius:16px; overflow:hidden;">
+      <div style="display:flex; align-items:center; justify-content:space-between; height:56px; padding:0 16px; background:#F4F5F8; border-bottom:1px solid rgba(21,22,28,.06);"><div style="display:flex; align-items:center; gap:8px;"><span style="width:34px; height:34px; border-radius:10px; background:linear-gradient(150deg,#6B52D6,#4A34B0); box-shadow:0 6px 16px -6px rgba(91,79,230,.6); display:inline-flex; align-items:center; justify-content:center;"><span data-mark data-size="22" data-reverse="1" style="display:inline-flex;"></span></span><span data-wm data-h="14" style="display:inline-flex; color:#15161C;"></span></div><span style="width:8px;height:8px;border-radius:50%;background:#22C55E;"></span></div>
+      <div style="padding:10px 14px; font-family:'Space Grotesk',sans-serif; font-size:11px; color:#15A15A;">✓ 浅色栏 · 反白须垫主色托板</div>
+    </div>
+    <div style="border:1px solid rgba(232,90,90,.3); border-radius:16px; overflow:hidden;">
+      <div style="display:flex; align-items:center; justify-content:space-between; height:56px; padding:0 16px; background:#F4F5F8; border-bottom:1px solid rgba(21,22,28,.06);"><div style="display:flex; align-items:center; gap:8px;"><span data-mark data-size="24" data-reverse="1" style="display:inline-flex; opacity:.9;"></span><span data-wm data-h="14" style="display:inline-flex; color:#C7C9D4;"></span></div><span style="width:8px;height:8px;border-radius:50%;background:#22C55E;"></span></div>
+      <div style="padding:10px 14px; font-family:'Space Grotesk',sans-serif; font-size:11px; color:#C2472F;">✗ 浅色栏 · 裸白晶体（与底融合）</div>
+    </div>
+    <div style="border:1px solid rgba(21,22,28,.08); border-radius:16px; overflow:hidden;">
+      <div style="display:flex; align-items:center; justify-content:space-between; height:56px; padding:0 16px; background:#171826; border-bottom:1px solid rgba(255,255,255,.06);"><div style="display:flex; align-items:center; gap:8px;"><span data-mark data-size="24" data-reverse="1" style="display:inline-flex;"></span><span data-wm data-h="14" style="display:inline-flex; color:#fff;"></span></div><span style="width:8px;height:8px;border-radius:50%;background:#22C55E;"></span></div>
+      <div style="padding:10px 14px; font-family:'Space Grotesk',sans-serif; font-size:11px; color:#15A15A;">✓ 深色栏 · 反白晶体直接用</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLEARSPACE + MIN SIZE -->
+<section style="max-width:1100px; margin:0 auto; padding:16px 40px 48px;">
+  <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:20px;">
+    <div style="background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:22px; padding:32px; box-shadow:0 20px 44px -30px rgba(21,22,28,.18);">
+      <h3 style="font-size:16px; font-weight:700; margin:0 0 16px;">安全距 · Clear Space</h3>
+      <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+        <div style="position:relative; width:120px; height:120px; border:1px dashed rgba(91,79,230,.4); border-radius:16px; display:flex; align-items:center; justify-content:center;"><span data-mark data-size="60" style="display:inline-flex;"></span></div>
+        <p style="font-size:13.5px; color:#5A5C68; line-height:1.7; margin:0; max-width:280px;">四周留白 ≥ <b style="color:#15161C; font-family:'Space Grotesk',sans-serif;">1X</b>（X = 标记高 ÷ 4）。空间越大越好，任何元素不得侵入该区域。</p>
+      </div>
+    </div>
+    <div style="background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:22px; padding:32px; box-shadow:0 20px 44px -30px rgba(21,22,28,.18);">
+      <h3 style="font-size:16px; font-weight:700; margin:0 0 16px;">最小尺寸 · Min Size</h3>
+      <div style="display:flex; align-items:flex-end; gap:24px;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:10px;"><span data-mark data-size="20" style="display:inline-flex;"></span><span style="font-family:'Space Grotesk',sans-serif; font-size:11px; color:#9A9CA6;">20px</span></div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:10px;"><span data-mark data-size="32" style="display:inline-flex;"></span><span style="font-family:'Space Grotesk',sans-serif; font-size:11px; color:#9A9CA6;">32px</span></div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:10px;"><span data-mark data-size="48" style="display:inline-flex;"></span><span style="font-family:'Space Grotesk',sans-serif; font-size:11px; color:#9A9CA6;">48px</span></div>
+      </div>
+      <p style="font-size:13px; color:#5A5C68; line-height:1.7; margin:16px 0 0;">屏幕单标记 ≥ 20px，横向组合整体高 ≥ 24px；印刷单标记 ≥ 8mm。</p>
+    </div>
+  </div>
+</section>
+
+<!-- DON'TS -->
+<section style="max-width:1100px; margin:0 auto; padding:16px 40px 72px;">
+  <h2 style="font-size:26px; font-weight:700; letter-spacing:-.02em; margin:0 0 6px;">错误用法</h2>
+  <p style="font-size:14px; color:#5A5C68; margin:0 0 24px;">保持标记的比例、明度顺序与完整性。以下用法一律禁止。</p>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px;">
+    <div style="border:1px solid rgba(21,22,28,.08); border-radius:18px; overflow:hidden; background:#fff;">
+      <div style="height:130px; display:flex; align-items:center; justify-content:center;"><span data-mark data-size="56" style="display:inline-flex; transform:scaleX(1.5);"></span></div>
+      <div style="padding:11px 14px; border-top:1px solid rgba(21,22,28,.08); font-size:12px; color:#D8474F; display:flex; align-items:center; gap:6px;"><span style="font-weight:700;">✕</span>拉伸变形</div>
+    </div>
+    <div style="border:1px solid rgba(21,22,28,.08); border-radius:18px; overflow:hidden; background:#fff;">
+      <div style="height:130px; display:flex; align-items:center; justify-content:center;"><span data-mark data-size="56" style="display:inline-flex; transform:rotate(24deg);"></span></div>
+      <div style="padding:11px 14px; border-top:1px solid rgba(21,22,28,.08); font-size:12px; color:#D8474F; display:flex; align-items:center; gap:6px;"><span style="font-weight:700;">✕</span>旋转倾斜</div>
+    </div>
+    <div style="border:1px solid rgba(21,22,28,.08); border-radius:18px; overflow:hidden; background:#fff;">
+      <div style="height:130px; display:flex; align-items:center; justify-content:center; filter:hue-rotate(140deg) saturate(1.6);"><span data-mark data-size="56" style="display:inline-flex;"></span></div>
+      <div style="padding:11px 14px; border-top:1px solid rgba(21,22,28,.08); font-size:12px; color:#D8474F; display:flex; align-items:center; gap:6px;"><span style="font-weight:700;">✕</span>改变主色</div>
+    </div>
+    <div style="border:1px solid rgba(21,22,28,.08); border-radius:18px; overflow:hidden; background:#fff;">
+      <div style="height:130px; display:flex; align-items:center; justify-content:center; background:repeating-linear-gradient(45deg,#ddd,#ddd 6px,#eee 6px,#eee 12px);"><span data-mark data-size="56" style="display:inline-flex;"></span></div>
+      <div style="padding:11px 14px; border-top:1px solid rgba(21,22,28,.08); font-size:12px; color:#D8474F; display:flex; align-items:center; gap:6px;"><span style="font-weight:700;">✕</span>杂乱背景（未垫底）</div>
+    </div>
+  </div>
+</section>
+
+<footer style="background:#F1F2F6; border-top:1px solid rgba(21,22,28,.07); padding:36px 40px;">
+  <div style="max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; align-items:center; font-family:'Space Grotesk',sans-serif; font-size:12px; color:#9A9CA6;">
+    <div style="display:flex; align-items:center; gap:10px;"><span data-mark data-size="24" style="display:inline-flex;"></span><span data-wm data-h="15" style="display:inline-flex; color:#15161C;"></span></div>
+    <span>© 2026 杭州造物云技术有限公司</span>
+    <span>浙ICP备2021038972号-1 · 浙公网安备 33010602013219号</span>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const root = this.el || document;
+    const PLATE = "M27.356405,6.5566244Q27.640217,6.7204833,27.900215,6.9199853Q28.16021,7.1194868,28.391941,7.3512182Q28.623672,7.5829496,28.823174,7.8429451Q29.022675,8.1029396,29.186533,8.3867512Q29.350391,8.6705627,29.475803,8.9733343Q29.601215,9.2761059,29.686035,9.5926561Q29.770855,9.9092064,29.813629,10.23412Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.813631,21.765881Q29.770855,22.090794,29.686037,22.407345Q29.601215,22.723896,29.475803,23.026669Q29.350391,23.329437,29.186531,23.613249Q29.022675,23.89706,28.823174,24.157059Q28.623672,24.417053,28.391941,24.648785Q28.16021,24.880516,27.900215,25.080017Q27.640217,25.279518,27.356405,25.443377L18.5,30.556623Q18.216188,30.720484,17.913418,30.845898Q17.610645,30.97131,17.294096,31.056129Q16.977547,31.140947,16.652632,31.183723Q16.327717,31.226498,16,31.226498Q15.672283,31.226498,15.347369,31.183723Q15.022456,31.140945,14.705906,31.056128Q14.389355,30.97131,14.086583,30.845898Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q4.3597822,25.279518,4.0997868,25.080017Q3.8397913,24.880516,3.6080601,24.648783Q3.3763289,24.417053,3.1768272,24.157059Q2.9773254,23.89706,2.8134668,23.613249Q2.6496081,23.329437,2.5241961,23.026669Q2.3987842,22.723896,2.3139648,22.407347Q2.2291453,22.090796,2.1863694,21.765881Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.1863689,10.23412Q2.2291448,9.9092064,2.3139644,9.5926561Q2.3987837,9.2761059,2.5241957,8.9733343Q2.6496074,8.6705627,2.8134661,8.3867512Q2.977325,8.1029396,3.1768267,7.8429446Q3.3763285,7.5829496,3.6080596,7.3512182Q3.8397908,7.1194868,4.0997868,6.9199853Q4.3597822,6.7204833,4.6435933,6.5566244L13.5,1.4433756Q13.783812,1.2795169,14.086583,1.1541051Q14.389355,1.0286931,14.705906,0.94387358Q15.022456,0.85905409,15.34737,0.8162784Q15.672283,0.77350271,16,0.77350271Q16.327717,0.77350277,16.652632,0.81627846Q16.977547,0.85905421,17.294096,0.9438737Q17.610645,1.0286932,17.913418,1.1541052Q18.216188,1.2795172,18.5,1.4433758L27.356405,6.5566244Z";
+    const F = { top:"M16 8 L22.928 12 L16 16 L9.072 12 Z", right:"M16 16 L22.928 12 L22.928 20 L16 24 Z", left:"M9.072 12 L16 16 L16 24 L9.072 20 Z" };
+    let u = 0;
+    root.querySelectorAll('[data-mark]').forEach(el => {
+      const s = +(el.dataset.size || 44); const id = 'lm' + (u++);
+      const elev = el.dataset.elevate === '1' ? 'filter:drop-shadow(0 3px 8px rgba(21,22,28,.22)) drop-shadow(0 1px 2px rgba(21,22,28,.12));' : 'filter:drop-shadow(0 2px 6px rgba(21,22,28,.16));';
+      if (el.dataset.reverse === '1') {
+        el.innerHTML = '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:' + s + 'px;height:' + s + 'px;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.18));">'
+          + '<path d="' + F.left + '" fill="rgba(255,255,255,.55)"/>'
+          + '<path d="' + F.right + '" fill="rgba(255,255,255,.82)"/>'
+          + '<path d="' + F.top + '" fill="#FFFFFF"/></svg>';
+        return;
+      }
+      if (el.dataset.knockout === '1') {
+        el.innerHTML = '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:' + s + 'px;height:' + s + 'px;display:block;">'
+          + '<defs><mask id="' + id + 'k" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32"><rect width="32" height="32" fill="black"/><path d="' + PLATE + '" fill="white"/><path d="' + F.top + '" fill="black"/><path d="' + F.right + '" fill="black"/><path d="' + F.left + '" fill="black"/></mask></defs>'
+          + '<path d="' + PLATE + '" fill="currentColor" mask="url(#' + id + 'k)"/></svg>';
+        return;
+      }
+      el.innerHTML = '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:' + s + 'px;height:' + s + 'px;display:block;' + elev + '">'
+        + '<defs>'
+        + '<linearGradient id="' + id + 't" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#CBB8FF"/><stop offset="1" stop-color="#A48DF4"/></linearGradient>'
+        + '<linearGradient id="' + id + 'r" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8E6DEE"/><stop offset="1" stop-color="#6B45DE"/></linearGradient>'
+        + '<linearGradient id="' + id + 'l" x1="0" y1="0" x2="0.2" y2="1"><stop offset="0" stop-color="#4E36BE"/><stop offset="1" stop-color="#2E1F86"/></linearGradient>'
+        + '</defs>'
+        + '<path d="' + PLATE + '" fill="#FFFFFF" stroke="rgba(21,22,28,.06)" stroke-width="0.5"/>'
+        + '<path d="' + F.left + '" fill="url(#' + id + 'l)"/>'
+        + '<path d="' + F.right + '" fill="url(#' + id + 'r)"/>'
+        + '<path d="' + F.top + '" fill="url(#' + id + 't)"/>'
+        + '</svg>';
+    });
+    const slots = Array.from(root.querySelectorAll('[data-wm]'));
+    fetch('assets-zwy/wordmark.svg').then(r => r.text()).then(txt => {
+      slots.forEach(w => { const h = +(w.dataset.h || 18); w.innerHTML = txt; const svg = w.querySelector('svg'); if (svg) { svg.removeAttribute('height'); svg.removeAttribute('width'); svg.style.height = h + 'px'; svg.style.width = 'auto'; svg.style.display = 'block'; } });
+    }).catch(() => { slots.forEach(w => { const h = +(w.dataset.h || 18); w.innerHTML = '<span style="font-weight:700;font-size:' + (h + 3) + 'px;">造物云</span>'; }); });
+  }
+}
+</script>
+</body>
+</html>

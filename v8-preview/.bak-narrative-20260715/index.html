@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>造物云 · 企业智能的资产化系统</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:radial-gradient(ellipse 100% 52% at 50% -6%, rgba(90,79,230,.07), transparent 58%), radial-gradient(ellipse 56% 40% at 92% 6%, rgba(90,79,230,.05), transparent 60%), #F4F5F8; background-attachment:fixed; color:#15161C; font-family:'Noto Sans SC', system-ui, -apple-system, sans-serif; -webkit-font-smoothing:antialiased; line-height:1.7; }
+  /* hex 式细节底纹：点阵 + 细颗粒（固定层，不吃事件）*/
+  body::before{ content:""; position:fixed; inset:0; z-index:0; pointer-events:none; background-image:radial-gradient(circle, rgba(22,24,31,.025) 1px, transparent 1.5px); background-size:26px 26px; }
+  body::after{ content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.08; mix-blend-mode:soft-light; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  a { color:#5A4FE6; text-decoration:none; }
+  ::selection { background:#5A4FE6; color:#fff; }
+  @keyframes floaty { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
+  @keyframes floaty2 { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-16px); } }
+  @keyframes dash { to { stroke-dashoffset:-16; } }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; } }
+  @media (max-width:880px){
+    .zwy-hero{ min-height:auto !important; padding:44px 20px 30px !important; justify-content:flex-start !important; }
+    .zwy-hero-art{ margin:0 -6px !important; }
+  }
+
+  /* ===== 顶栏胶囊 NAV PILL（永乐风格 · 造物云配色）===== */
+  .zwy-navwrap{ position:sticky; top:0; z-index:60; display:flex; justify-content:center; padding:14px 20px; pointer-events:none; }
+  .zwy-pill{ position:relative; pointer-events:auto; display:inline-flex; align-items:center; gap:8px; padding:8px 8px 8px 18px; background:linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.5)); -webkit-backdrop-filter:saturate(160%) brightness(1.06) blur(120px); backdrop-filter:saturate(160%) brightness(1.06) blur(120px); border:1px solid rgba(255,255,255,.55); border-radius:99px; box-shadow:0 20px 50px -16px rgba(21,22,28,.3), 0 3px 10px -5px rgba(21,22,28,.1), inset 0 1px 1px rgba(255,255,255,.95), inset 0 -8px 20px -10px rgba(255,255,255,.4); max-width:100%; }
+  .zwy-pill-brand{ display:flex; align-items:center; gap:9px; text-decoration:none; padding-right:16px; border-right:1px solid rgba(21,22,28,.1); flex-shrink:0; }
+  .zwy-navlinks{ display:flex; align-items:center; gap:2px; }
+  .zwy-navlinks > a{ font-size:13.5px; color:rgba(21,22,28,.66); font-weight:500; padding:8px 14px; border-radius:99px; text-decoration:none; transition:background .2s, color .2s; white-space:nowrap; }
+  .zwy-navlinks > a:hover{ background:rgba(21,22,28,.06); color:#16181F; }
+  .zwy-navlinks > a.zwy-cta{ color:#fff; background:#5A4FE6; font-weight:600; padding:9px 18px; margin-left:6px; box-shadow:0 6px 16px -6px #5A4FE6; }
+  .zwy-navlinks > a.zwy-cta:hover{ background:#4438C4; color:#fff; }
+
+  /* 下拉菜单 */
+  .zwy-nav-item{ position:relative; display:inline-flex; align-items:center; }
+  .zwy-nav-trigger{ display:inline-flex; align-items:center; gap:5px; font-size:13.5px; color:rgba(21,22,28,.66); font-weight:500; padding:8px 12px 8px 14px; border-radius:99px; text-decoration:none; transition:background .2s, color .2s; white-space:nowrap; cursor:pointer; }
+  .zwy-nav-item:hover .zwy-nav-trigger{ background:rgba(21,22,28,.06); color:#16181F; }
+  .zwy-caret{ opacity:.6; transition:transform .22s; }
+  .zwy-nav-item:hover .zwy-caret{ transform:rotate(180deg); }
+  .zwy-dropdown{ position:absolute; top:100%; left:50%; transform:translateX(-50%) translateY(6px); padding-top:14px; opacity:0; visibility:hidden; transition:opacity .2s ease, transform .2s ease; z-index:70; }
+  .zwy-nav-item:hover .zwy-dropdown{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+  .zwy-dropdown-inner{ background:linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.6)); -webkit-backdrop-filter:saturate(160%) brightness(1.06) blur(120px); backdrop-filter:saturate(160%) brightness(1.06) blur(120px); border:1px solid rgba(255,255,255,.55); border-radius:18px; box-shadow:0 30px 60px -22px rgba(21,22,28,.34), inset 0 1px 1px rgba(255,255,255,.95); padding:10px; min-width:300px; }
+  .zwy-dd-item{ display:flex; gap:12px; align-items:flex-start; padding:11px 12px; border-radius:12px; text-decoration:none; transition:background .18s; }
+  .zwy-dd-item:hover{ background:rgba(90,79,230,.08); }
+  .zwy-dd-item .ic{ flex-shrink:0; width:34px; height:34px; border-radius:10px; background:rgba(90,79,230,.1); display:flex; align-items:center; justify-content:center; color:#5A4FE6; }
+  .zwy-dd-item > span:last-child{ display:flex; flex-direction:column; min-width:0; }
+  .zwy-dd-item .tt{ display:block; font-size:13.5px; font-weight:600; color:#16181F; letter-spacing:-.01em; }
+  .zwy-dd-item .dd{ display:block; font-size:11.5px; color:#8A8C96; margin-top:3px; line-height:1.4; }
+
+  /* 移动端汉堡（纯 CSS）*/
+  .zwy-nt{ position:absolute; opacity:0; width:1px; height:1px; pointer-events:none; }
+  .zwy-hamb{ display:none; }
+  @media (max-width:880px){
+    .zwy-navwrap{ padding:12px 16px; }
+    .zwy-pill{ display:flex; width:100%; justify-content:space-between; padding:8px 10px 8px 16px; gap:10px; }
+    .zwy-pill-brand{ border-right:0; padding-right:0; }
+    .zwy-hamb{ display:inline-flex; flex-direction:column; justify-content:center; gap:5px; width:38px; height:38px; padding:9px; cursor:pointer; flex-shrink:0; }
+    .zwy-hamb span{ display:block; height:2px; width:100%; background:#16181F; border-radius:2px; transition:transform .22s, opacity .22s; }
+    .zwy-navlinks{ position:absolute; top:calc(100% + 10px); left:0; right:0; flex-direction:column; align-items:stretch; gap:4px; background:rgba(255,255,255,.94); -webkit-backdrop-filter:saturate(180%) blur(24px); backdrop-filter:saturate(180%) blur(24px); border:1px solid rgba(21,22,28,.08); border-radius:20px; padding:12px; box-shadow:0 26px 50px -20px rgba(21,22,28,.32); display:none; }
+    .zwy-nt:checked ~ .zwy-navlinks{ display:flex; }
+    .zwy-navlinks > a{ padding:12px 14px; font-size:15px; border-radius:12px; }
+    .zwy-navlinks > a.zwy-cta{ justify-content:center; text-align:center; margin-left:0; margin-top:6px; }
+    /* 下拉在抽屉里平铺 */
+    .zwy-navlinks > .zwy-nav-item{ display:block; width:100%; }
+    .zwy-nav-trigger{ display:flex; width:100%; justify-content:space-between; padding:12px 14px; font-size:15px; border-radius:12px; }
+    .zwy-caret{ display:none; }
+    .zwy-dropdown{ position:static; transform:none; opacity:1; visibility:visible; padding-top:0; }
+    .zwy-dropdown-inner{ background:transparent; border:0; box-shadow:none; padding:2px 0 6px 12px; min-width:0; }
+    .zwy-dd-item{ padding:9px 12px; }
+    .zwy-dd-item .ic{ display:none; }
+    .zwy-dd-item .dd{ display:none; }
+    .zwy-nt:checked ~ .zwy-hamb span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+    .zwy-nt:checked ~ .zwy-hamb span:nth-child(2){ opacity:0; }
+    .zwy-nt:checked ~ .zwy-hamb span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  }
+
+  /* 页脚移动端：四栏折叠为两栏 */
+  @media (max-width:760px){
+    footer [style*="1.6fr 1fr 1fr 1fr"]{ grid-template-columns:1fr 1fr !important; gap:28px 24px !important; }
+  }
+
+  /* ===== L1→L5 转型蓝图 ===== */
+  .zwy-bp{ max-width:1300px; margin:0 auto; padding:64px 40px 40px; position:relative; z-index:1; }
+  .zwy-bp-scroll{ overflow-x:auto; overflow-y:hidden; padding-bottom:10px; -webkit-overflow-scrolling:touch; }
+  .zwy-bp-grid{ min-width:1060px; display:grid; grid-template-columns:150px repeat(5,1fr); gap:10px; align-items:stretch; }
+  .zwy-bp-corner{ display:flex; flex-direction:column; justify-content:center; gap:2px; padding:14px; border-radius:12px; background:rgba(21,22,28,.04); border:1px solid rgba(21,22,28,.06); font-size:12px; color:#8A8C96; font-weight:600; }
+  .zwy-bp-corner .sl{ color:#C3C5D0; }
+  .zwy-bp-head{ border-radius:14px; padding:14px 15px; color:#fff; box-shadow:0 10px 24px -14px rgba(21,22,28,.5); }
+  .zwy-bp-head .code{ font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; line-height:1; }
+  .zwy-bp-head .nm{ font-size:13.5px; font-weight:600; margin-top:8px; }
+  .zwy-bp-head .en{ font-size:10.5px; opacity:.72; margin-top:2px; font-family:'Space Grotesk',sans-serif; }
+  .zwy-bp-rowlabel{ display:flex; flex-direction:column; justify-content:center; gap:3px; padding:14px; border-radius:12px; background:rgba(21,22,28,.03); border:1px solid rgba(21,22,28,.06); }
+  .zwy-bp-rowlabel .mn{ font-size:14px; font-weight:700; color:#16181F; letter-spacing:-.01em; }
+  .zwy-bp-rowlabel .mq{ font-size:11px; color:#8A8C96; font-family:'Space Grotesk',sans-serif; }
+  .zwy-bp-rowlabel.feat{ background:rgba(21,22,28,.06); }
+  .zwy-bp-cell{ background:#fff; border:1px solid rgba(21,22,28,.07); border-radius:12px; padding:13px; box-shadow:0 6px 16px -12px rgba(21,22,28,.2); }
+  .zwy-bp-cell .t{ display:flex; align-items:center; gap:7px; font-size:13px; font-weight:600; color:#16181F; letter-spacing:-.01em; line-height:1.3; }
+  .zwy-bp-cell .t .dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .zwy-bp-cell ul{ margin:9px 0 0; padding:0; list-style:none; }
+  .zwy-bp-cell li{ position:relative; font-size:11.5px; color:#7A7C86; line-height:1.55; padding-left:12px; }
+  .zwy-bp-cell li::before{ content:""; position:absolute; left:2px; top:8px; width:3px; height:3px; border-radius:50%; background:#B7B9C4; }
+  .zwy-bp-feat{ border-radius:12px; padding:13px 14px; color:#fff; box-shadow:0 10px 24px -16px rgba(21,22,28,.5); }
+  .zwy-bp-feat .ft{ font-size:13px; font-weight:700; }
+  .zwy-bp-feat .fd{ font-size:11px; opacity:.85; margin-top:3px; line-height:1.4; }
+  .zwy-bp-gov{ margin-top:14px; background:linear-gradient(120deg,#141226,#1D1A38); border-radius:18px; padding:22px 24px; display:grid; grid-template-columns:auto 1fr; gap:22px; align-items:center; }
+  .zwy-bp-govhead{ padding-right:22px; border-right:1px solid rgba(255,255,255,.12); }
+  .zwy-bp-govhead .gh1{ font-size:17px; font-weight:700; color:#fff; }
+  .zwy-bp-govhead .gh2{ font-size:11px; color:rgba(255,255,255,.5); font-family:'Space Grotesk',sans-serif; letter-spacing:.06em; margin-top:4px; }
+  .zwy-bp-govgrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .zwy-bp-govcol .gt{ font-size:13.5px; font-weight:600; color:#fff; }
+  .zwy-bp-govcol .gt em{ font-style:normal; color:#7B80FF; font-family:'Space Grotesk',sans-serif; font-size:12px; }
+  .zwy-bp-govcol .gd{ font-size:11.5px; color:rgba(255,255,255,.5); margin:4px 0 9px; }
+  .zwy-bp-chips{ display:flex; gap:6px; flex-wrap:wrap; }
+  .zwy-bp-chip{ font-size:11px; color:rgba(255,255,255,.8); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); border-radius:99px; padding:4px 10px; }
+  .zwy-bp-goal{ margin-top:14px; background:linear-gradient(100deg,#5A4FE6,#7B5CF5); border-radius:14px; padding:16px 22px; text-align:center; color:#fff; font-size:15px; font-weight:500; }
+  .zwy-bp-goal strong{ font-weight:700; }
+  @media (max-width:760px){
+    .zwy-bp-gov{ grid-template-columns:1fr; gap:16px; }
+    .zwy-bp-govhead{ border-right:0; border-bottom:1px solid rgba(255,255,255,.12); padding:0 0 14px; }
+    .zwy-bp-govgrid{ grid-template-columns:1fr; }
+  }
+
+  :root{--bg:#F4F5F8;--paper:#FFFFFF;--ink:#16181F;--ink2:rgba(21,22,28,.56);--ink3:rgba(21,22,28,.34);--line:rgba(21,22,28,.10);--line2:rgba(21,22,28,.16);--teal:#5A4FE6;--tealDeep:#4438C4;--tealBg:rgba(90,79,230,.10);--purple:#A855F7;--edge:#9A9CA6;--edgeDeep:#6B6D78;--sans:'Noto Sans SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',sans-serif;--mono:'Space Grotesk',ui-sans-serif,'SF Pro Display',sans-serif}
+  .zwy-eai{color:var(--ink);font-family:var(--sans);line-height:1.6;}
+  .zwy-eai /* light mode (synced from embedding page) */
+  html.theme-light{
+    --bg:#F4F5F8; --paper:#FFFFFF; --ink:#16181F;
+    --ink2:rgba(21,22,28,.56); --ink3:rgba(21,22,28,.34);
+    --line:rgba(21,22,28,.10); --line2:rgba(21,22,28,.16);
+    --teal:#5A4FE6; --tealDeep:#4438C4; --tealBg:rgba(90,79,230,.10);
+    --purple:#A855F7; --edge:#9A9CA6; --edgeDeep:#6B6D78;
+  }
+  .zwy-eai *{box-sizing:border-box;margin:0;padding:0}
+  .zwy-eai .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  .zwy-eai /* ── header ── */
+  header{padding:64px 0 8px}
+  .zwy-eai .kicker{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--teal);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  .zwy-eai .kicker::before{content:"";width:26px;height:1.5px;background:var(--teal);display:inline-block}
+  .zwy-eai h1{font-size:clamp(30px,5.2vw,50px);font-weight:900;letter-spacing:-.02em;line-height:1.12}
+  .zwy-eai h1 em{font-style:normal;color:var(--teal)}
+  .zwy-eai .lead{margin-top:20px;max-width:680px;font-size:clamp(15px,2vw,17.5px);color:var(--ink2);line-height:1.8}
+  .zwy-eai .lead b{color:var(--ink);font-weight:700}
+  .zwy-eai /* ── contrast grid ── */
+  .grid{display:grid;grid-template-columns:1fr 1.18fr;gap:22px;margin-top:44px}
+  @media(max-width:860px){.zwy-eai .grid{grid-template-columns:1fr}}
+  .zwy-eai .card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:26px 26px 22px;
+    position:relative;overflow:hidden}
+  .zwy-eai .card.ent{border-color:rgba(90,79,230,.28);box-shadow:0 24px 60px -34px rgba(90,79,230,.4)}
+  .zwy-eai .tag{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;
+    letter-spacing:.02em;padding:4px 11px;border-radius:999px;margin-bottom:4px}
+  .zwy-eai .tag.per{background:rgba(21,22,28,.06);color:var(--ink2)}
+  .zwy-eai .tag.ent{background:var(--tealBg);color:var(--tealDeep)}
+  .zwy-eai .tag .dot{width:7px;height:7px;border-radius:50%}
+  .zwy-eai .tag.per .dot{background:var(--edge)}
+  .zwy-eai .tag.ent .dot{background:var(--teal)}
+  .zwy-eai .card h2{font-size:20px;font-weight:800;margin:12px 0 4px;letter-spacing:-.01em}
+  .zwy-eai .card .sub{font-size:13.5px;color:var(--ink2);min-height:38px}
+  .zwy-eai .stage-svg{display:block;width:100%;height:auto;margin:6px 0 4px}
+  .zwy-eai /* fate line under each diagram */
+  .fate{font-size:13px;color:var(--ink2);border-top:1px dashed var(--line2);padding-top:14px;margin-top:6px}
+  .zwy-eai .fate b{color:var(--ink)}
+  .zwy-eai .card.ent .fate b{color:var(--tealDeep)}
+  .zwy-eai /* value chip inside enterprise card */
+  .valchip{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+  .zwy-eai .vc{flex:1;min-width:120px;border:1px solid var(--line);border-radius:12px;padding:11px 13px;
+    background:var(--bg);transition:.5s;opacity:.4}
+  .zwy-eai .vc.on{opacity:1;border-color:rgba(90,79,230,.4);background:var(--tealBg);
+    box-shadow:0 8px 20px -12px rgba(90,79,230,.5)}
+  .zwy-eai .vc .vt{font-size:12.5px;font-weight:800;color:var(--ink)}
+  .zwy-eai .vc.on .vt{color:var(--tealDeep)}
+  .zwy-eai .vc .vd{font-size:11px;color:var(--ink3);margin-top:2px}
+  .zwy-eai /* ── control / meters ── */
+  .console{margin-top:26px;background:var(--paper);border:1px solid var(--line);border-radius:20px;
+    padding:24px 26px;display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center}
+  @media(max-width:720px){.zwy-eai .console{grid-template-columns:1fr;gap:18px}}
+  .zwy-eai .runbtn{font-family:var(--sans);font-size:15px;font-weight:800;color:#fff;background:var(--teal);
+    border:none;border-radius:999px;padding:14px 26px;cursor:pointer;white-space:nowrap;
+    box-shadow:0 14px 30px -12px rgba(90,79,230,.6);transition:transform .18s,background .2s}
+  .zwy-eai .runbtn:hover{transform:translateY(-2px)}
+  .zwy-eai .runbtn.stop{background:var(--ink);box-shadow:0 14px 30px -12px rgba(21,22,28,.4)}
+  .zwy-eai .runbtn .ic{display:inline-block;margin-right:8px;font-family:var(--mono)}
+  .zwy-eai .resetbtn{display:block;margin-top:10px;font-size:12px;color:var(--ink3);background:none;border:none;
+    cursor:pointer;text-decoration:underline;font-family:var(--sans)}
+  .zwy-eai .resetbtn:hover{color:var(--ink)}
+  .zwy-eai .btnrow{display:flex;gap:10px;flex-wrap:wrap}
+  .zwy-eai .runbtn.ghost{background:var(--paper);color:var(--ink);border:1.5px solid var(--line2);box-shadow:none}
+  .zwy-eai .runbtn.ghost:hover{border-color:var(--teal);color:var(--tealDeep)}
+  .zwy-eai .runbtn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+  .zwy-eai .fill.ent.over{background:linear-gradient(90deg,#7B6CFF,#5A4FE6,#A855F7);
+    background-size:220% 100%;animation:shim 1.5s linear infinite}
+  @keyframes shim{0%{background-position:0 0}100%{background-position:220% 0}}
+  .zwy-eai .obadge{display:none;font-family:var(--mono);font-size:10px;font-weight:700;color:#fff;
+    background:linear-gradient(90deg,#5A4FE6,#A855F7);padding:2px 9px;border-radius:999px;
+    margin-left:8px;vertical-align:middle;letter-spacing:.02em}
+  .zwy-eai .obadge.on{display:inline-block;animation:pop .35s ease}
+  @keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+  .zwy-eai .stage-svg text{font-family:var(--sans)}
+  .zwy-eai .stage-svg text.mono{font-family:var(--mono)}
+  .zwy-eai .meters{display:flex;flex-direction:column;gap:16px}
+  .zwy-eai .meter .mtop{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
+  .zwy-eai .meter .mname{font-size:13px;font-weight:700}
+  .zwy-eai .meter .mname s{text-decoration:none;font-weight:500;color:var(--ink3);font-size:11.5px;margin-left:8px}
+  .zwy-eai .meter .mval{font-family:var(--mono);font-size:15px;font-weight:700}
+  .zwy-eai .track{height:12px;border-radius:999px;background:rgba(21,22,28,.07);overflow:hidden;position:relative}
+  .zwy-eai .fill{height:100%;border-radius:999px;width:0;transition:width .25s ease-out}
+  .zwy-eai .fill.per{background:repeating-linear-gradient(45deg,var(--edge),var(--edge) 6px,#C3C5D0 6px,#C3C5D0 12px)}
+  .zwy-eai .fill.ent{background:linear-gradient(90deg,#7B6CFF,var(--teal))}
+  .zwy-eai .per .mval{color:var(--ink3)}
+  .zwy-eai .ent .mval{color:var(--tealDeep)}
+  .zwy-eai /* stats row */
+  .stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+  .zwy-eai .stat .n{font-family:var(--mono);font-size:30px;font-weight:700;line-height:1;color:var(--ink)}
+  .zwy-eai .stat.ent .n{color:var(--tealDeep)}
+  .zwy-eai .stat .l{font-size:12px;color:var(--ink3);margin-top:6px}
+  .zwy-eai /* window band */
+  .window{margin:34px 0 60px;background:linear-gradient(100deg,#0E0A1E,#141026);border-radius:20px;
+    padding:28px 30px;color:#fff;display:flex;align-items:center;gap:22px;flex-wrap:wrap;
+    box-shadow:0 30px 70px -40px rgba(14,10,30,.9)}
+  .zwy-eai .window .wk{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:#B9B2FF;font-weight:600}
+  .zwy-eai .window .wt{font-size:clamp(17px,2.4vw,22px);font-weight:800;line-height:1.4}
+  .zwy-eai .window .wt em{font-style:normal;color:#9D91FF}
+  .zwy-eai .window .wp{font-size:13px;color:rgba(255,255,255,.62);margin-top:6px;max-width:560px}
+  .zwy-eai footer{padding:0 0 60px;color:var(--ink3);font-size:12.5px;display:flex;gap:16px;flex-wrap:wrap}
+  .zwy-eai footer a{color:var(--ink2);text-decoration:none;border-bottom:1px solid var(--line2)}
+  .zwy-eai footer a:hover{color:var(--ink)}
+  .zwy-eai .flywrap{position:relative}
+  .zwy-eai #eai_spark{transition:none}
+  .zwy-eai .feed{pointer-events:none}
+  .zwy-eai /* ── part 2: divergence chart ── */
+  .parthead{margin:64px 0 8px}
+  .zwy-eai .parthead .pk{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+  .zwy-eai .parthead h2{font-size:clamp(24px,3.6vw,34px);font-weight:900;letter-spacing:-.02em;line-height:1.16}
+  .zwy-eai .parthead h2 em{font-style:normal;color:var(--teal)}
+  .zwy-eai .parthead p{margin-top:14px;max-width:720px;font-size:15px;color:var(--ink2);line-height:1.8}
+  .zwy-eai .parthead p b{color:var(--ink);font-weight:700}
+  .zwy-eai .chartcard{margin-top:26px;background:var(--paper);border:1px solid var(--line);border-radius:22px;
+    padding:22px 22px 8px;box-shadow:0 30px 70px -46px rgba(21,22,28,.4)}
+  .zwy-eai .legend{display:flex;gap:22px;flex-wrap:wrap;padding:2px 6px 16px}
+  .zwy-eai .lg{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink2)}
+  .zwy-eai .lg b{color:var(--ink);font-weight:700}
+  .zwy-eai .lg .sw{width:22px;height:0;border-top:3px solid;border-radius:2px;flex-shrink:0}
+  .zwy-eai .lg.h .sw{border-color:var(--edge)}
+  .zwy-eai .lg.a .sw{border-color:var(--teal)}
+  .zwy-eai .chart-svg{display:block;width:100%;height:auto}
+  .zwy-eai .chart-svg text{font-family:var(--sans)}
+  .zwy-eai .chart-svg text.mono{font-family:var(--mono)}
+  .zwy-eai .status{text-align:center;font-size:13.5px;color:var(--ink3);padding:6px 0 12px;min-height:22px;transition:color .3s}
+  .zwy-eai .status b{color:var(--tealDeep);font-weight:700}
+  .zwy-eai .reads{display:flex;gap:26px;flex-wrap:wrap;justify-content:flex-end}
+  @media(max-width:760px){.zwy-eai .reads{justify-content:flex-start}}
+  .zwy-eai .rd .n{font-family:var(--mono);font-size:26px;font-weight:700;line-height:1}
+  .zwy-eai .rd .l{font-size:11.5px;color:var(--ink3);margin-top:5px}
+  .zwy-eai .rd.h .n{color:var(--edgeDeep)}
+  .zwy-eai .rd.a .n{color:var(--tealDeep)}
+  .zwy-eai .rd.g .n{color:var(--purple)}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.2px)}}
+</style>
+</helmet>
+
+<div style="max-width:100%; overflow-x:clip; background:transparent; position:relative; z-index:1;">
+
+<!-- ===== NAV PILL ===== -->
+<div class="zwy-navwrap">
+  <nav class="zwy-pill">
+    <a href="index.html" class="zwy-pill-brand" aria-label="造物云"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:24px;height:24px;display:block;flex-shrink:0;filter:drop-shadow(0 2px 6px rgba(21,22,28,.18));"><defs><linearGradient id="nmt" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#CBB8FF"/><stop offset="1" stop-color="#A48DF4"/></linearGradient><linearGradient id="nmr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8E6DEE"/><stop offset="1" stop-color="#6B45DE"/></linearGradient><linearGradient id="nml" x1="0" y1="0" x2="0.2" y2="1"><stop offset="0" stop-color="#4E36BE"/><stop offset="1" stop-color="#2E1F86"/></linearGradient></defs><path d="M27.356405,6.5566244Q27.640217,6.7204833,27.900215,6.9199853Q28.16021,7.1194868,28.391941,7.3512182Q28.623672,7.5829496,28.823174,7.8429451Q29.022675,8.1029396,29.186533,8.3867512Q29.350391,8.6705627,29.475803,8.9733343Q29.601215,9.2761059,29.686035,9.5926561Q29.770855,9.9092064,29.813629,10.23412Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.813631,21.765881Q29.770855,22.090794,29.686037,22.407345Q29.601215,22.723896,29.475803,23.026669Q29.350391,23.329437,29.186531,23.613249Q29.022675,23.89706,28.823174,24.157059Q28.623672,24.417053,28.391941,24.648785Q28.16021,24.880516,27.900215,25.080017Q27.640217,25.279518,27.356405,25.443377L18.5,30.556623Q18.216188,30.720484,17.913418,30.845898Q17.610645,30.97131,17.294096,31.056129Q16.977547,31.140947,16.652632,31.183723Q16.327717,31.226498,16,31.226498Q15.672283,31.226498,15.347369,31.183723Q15.022456,31.140945,14.705906,31.056128Q14.389355,30.97131,14.086583,30.845898Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q4.3597822,25.279518,4.0997868,25.080017Q3.8397913,24.880516,3.6080601,24.648783Q3.3763289,24.417053,3.1768272,24.157059Q2.9773254,23.89706,2.8134668,23.613249Q2.6496081,23.329437,2.5241961,23.026669Q2.3987842,22.723896,2.3139648,22.407347Q2.2291453,22.090796,2.1863694,21.765881Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.1863689,10.23412Q2.2291448,9.9092064,2.3139644,9.5926561Q2.3987837,9.2761059,2.5241957,8.9733343Q2.6496074,8.6705627,2.8134661,8.3867512Q2.977325,8.1029396,3.1768267,7.8429446Q3.3763285,7.5829496,3.6080596,7.3512182Q3.8397908,7.1194868,4.0997868,6.9199853Q4.3597822,6.7204833,4.6435933,6.5566244L13.5,1.4433756Q13.783812,1.2795169,14.086583,1.1541051Q14.389355,1.0286931,14.705906,0.94387358Q15.022456,0.85905409,15.34737,0.8162784Q15.672283,0.77350271,16,0.77350271Q16.327717,0.77350277,16.652632,0.81627846Q16.977547,0.85905421,17.294096,0.9438737Q17.610645,1.0286932,17.913418,1.1541052Q18.216188,1.2795172,18.5,1.4433758L27.356405,6.5566244Z" fill="#FFFFFF" stroke="rgba(21,22,28,.06)" stroke-width="0.5"/><path d="M9.072 12 L16 16 L16 24 L9.072 20 Z" fill="url(#nml)"/><path d="M16 16 L22.928 12 L22.928 20 L16 24 Z" fill="url(#nmr)"/><path d="M16 8 L22.928 12 L16 16 L9.072 12 Z" fill="url(#nmt)"/></svg><svg viewBox="0 0 181.7136993408203 52.81919860839844" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:16px;width:auto;display:block;color:#16181F;"><path d="M52.016441258789065,10.5552L40.953640258789065,10.5552L40.953640258789065,13.734L53.93523825878906,13.734C54.08913825878906,13.7335,54.24174125878906,13.7634,54.38404125878906,13.822C54.52643925878906,13.8806,54.65583825878906,13.9667,54.76483925878906,14.0754C54.873939258789065,14.1841,54.96043825878906,14.3132,55.01943925878906,14.4554C55.07843825878906,14.5976,55.10884125878906,14.7501,55.10884125878906,14.904L55.10884125878906,19.476C55.10884125878906,19.629999,55.07843825878906,19.7824,55.01943925878906,19.924601C54.96043825878906,20.066799,54.873939258789065,20.1959,54.76483925878906,20.3046C54.65583825878906,20.4133,54.52643925878906,20.499399,54.38404125878906,20.558001C54.24174125878906,20.6166,54.08913825878906,20.6465,53.93523825878906,20.646L18.33123925878906,20.646C18.02093725878906,20.646,17.72334325878906,20.522699,17.503925258789064,20.303301C17.284507258789063,20.0839,17.161239258789063,19.786301,17.161239258789063,19.476L17.161239258789063,14.9184C17.161239258789063,14.6081,17.284507258789063,14.3105,17.503925258789064,14.0911C17.72334325878906,13.8717,18.02093725878906,13.7484,18.33123925878906,13.7484L33.01203925878906,13.7484L33.01203925878906,10.5696L19.623640258789063,10.5696C19.312999258789063,10.5687,19.015419258789063,10.4446,18.796100258789064,10.2246C18.576790258789064,10.0046,18.45364025878906,9.7066402,18.45364025878906,9.3960104L18.45364025878906,2.3868001C18.45364025878906,2.0764999,18.576910258789063,1.77891,18.796320258789063,1.55949C19.01573925878906,1.34007,19.313339258789064,1.2168,19.623640258789063,1.2168L25.20364025878906,1.2168C25.513939258789062,1.2168,25.811538258789064,1.34007,26.030948258789063,1.55949C26.25037025878906,1.77891,26.373640258789063,2.0764999,26.373640258789063,2.3868001L26.373640258789063,3.8627999L33.01203925878906,3.8627999L33.01203925878906,1.17001C33.01203925878906,1.01606,33.04243825878906,0.863617,33.10144025878906,0.72143102C33.160438258789064,0.57924497,33.24694025878906,0.45010599,33.35604125878906,0.341414C33.46504225878906,0.232722,33.594440258789064,0.146617,33.73683925878906,0.0880308C33.87913925878906,0.029444899,34.03173825878906,-0.00046815301,34.18563825878906,0.0000055390196L39.780037258789065,0.0000055390196C39.933937258789065,-0.00046815301,40.086540258789064,0.029444899,40.22884025878906,0.0880308C40.37123825878906,0.146617,40.50064125878906,0.232722,40.609642258789066,0.341414C40.718742258789064,0.45010599,40.80523725878906,0.57924497,40.864238258789065,0.72143102C40.923240258789065,0.863617,40.953640258789065,1.01606,40.953640258789065,1.17001L40.953640258789065,3.8627999L51.99844025878906,3.8627999C52.30873825878906,3.8627999,52.606338258789066,3.9860699,52.825741258789066,4.2054901C53.045139258789064,4.4249101,53.16843825878906,4.7224998,53.16843825878906,5.0328002L53.16843825878906,9.3960104C53.164741258789064,9.7010603,53.04243825878906,9.9926796,52.82733925878906,10.2091C52.61233925878906,10.4255,52.321438258789065,10.5496,52.016441258789065,10.5552ZM74.79362525878906,0L80.40612825878907,0C80.71672025878907,0.00095286901,81.01432825878906,0.12502,81.23362725878906,0.345009C81.45292625878906,0.56499898,81.57612625878906,0.86296499,81.57612625878906,1.1736L81.57612625878906,8.8992004L84.17522425878906,8.8992004C84.48532125878906,8.9001503,84.78232525878906,9.0237198,85.00152625878906,9.2429304C85.22072625878906,9.4621401,85.34432225878906,9.7591896,85.34522225878906,10.0692L85.34522225878906,15.678C85.34432225878906,15.988,85.22072625878906,16.285101,85.00152625878906,16.504299C84.78232525878906,16.723499,84.48532125878906,16.847,84.17522425878906,16.848L81.57612625878906,16.848L81.57612625878906,26.261999L83.69282525878906,25.308001C83.87222325878906,25.2278,84.06882525878906,25.194,84.26472425878906,25.2096C84.46052525878906,25.2251,84.64932225878906,25.2896,84.81372025878906,25.3971C84.97822525878907,25.504601,85.11302225878906,25.6516,85.20592525878907,25.8248C85.29882825878906,25.9979,85.34672525878906,26.1915,85.34522225878906,26.388L85.34522225878906,32.616001C85.34772525878907,32.8438,85.28352325878906,33.067299,85.16082725878907,33.259102C85.03802525878906,33.451,84.86192325878906,33.602798,84.65402225878906,33.695999L81.57612625878906,35.085602L81.57612625878906,51.645599C81.57612625878906,51.9562,81.45292625878906,52.2542,81.23362725878906,52.474201C81.01432825878906,52.694199,80.71672025878907,52.818199,80.40612825878907,52.819199L74.79722625878907,52.819199C74.48662525878906,52.818199,74.18902625878906,52.694199,73.96972625878907,52.474201C73.75042725878906,52.2542,73.62722825878906,51.9562,73.62722825878906,51.645599L73.62722825878906,38.6856L64.91166725878907,42.613201C64.73237625878906,42.694401,64.53550725878907,42.729,64.33927125878907,42.713902C64.14305125878906,42.6987,63.953823258789065,42.634399,63.789085258789065,42.526699C63.62434025878906,42.418999,63.489410258789064,42.2715,63.39680125878906,42.0979C63.304195258789065,41.924198,63.256901258789064,41.73,63.25927725878906,41.533199L63.25927725878906,35.279999C63.25731625878906,35.052299,63.32160225878906,34.828999,63.444328258789064,34.637299C63.56705825878906,34.445499,63.742916258789066,34.293598,63.950474258789065,34.200001L73.62722825878906,29.847601L73.62722825878906,16.848L70.35846725878906,16.848C70.13166825878906,18.489599,69.86527225878906,20.113199,69.55927325878906,21.672001C69.50514225878906,21.937201,69.36074825878906,22.1754,69.15069625878907,22.3461C68.94063525878906,22.516701,68.67791725878907,22.609301,68.40727225878906,22.608L63.93965525878906,22.608C63.766247258789065,22.608999,63.59481825878906,22.5711,63.43791225878906,22.497299C63.28101325878906,22.423401,63.14262725878906,22.315399,63.032871258789065,22.1812C62.92311525878906,22.0469,62.84476425878906,21.889799,62.80358525878906,21.7213C62.762405258789066,21.5529,62.75942625878906,21.377399,62.79486125878906,21.2076C63.92707425878906,15.4675,64.56064625878906,9.6401396,64.68846125878906,3.7908001C64.69414525878906,3.48491,64.82013725878906,3.1935899,65.03914625878906,2.97997C65.25815625878906,2.76635,65.55253625878906,2.64765,65.85846725878906,2.6496L70.24686425878906,2.6496C70.40217625878907,2.6490901,70.55603825878906,2.67961,70.69939425878906,2.7393601C70.84275825878906,2.7991099,70.97273225878907,2.8868899,71.08171125878906,2.99754C71.19069625878906,3.1082001,71.27647425878907,3.2395101,71.33402225878906,3.38376C71.39158625878906,3.5280199,71.41974625878906,3.6823101,71.41686225878907,3.8376C71.39166225878907,5.3676,71.31606325878906,7.0991998,71.19366425878906,8.8992004L73.62362625878906,8.8992004L73.62362625878906,1.1736C73.62362625878906,0.86296499,73.74682625878906,0.56499898,73.96612525878906,0.345009C74.18542525878907,0.12502,74.48302425878906,0.00095286901,74.79362525878906,0ZM101.13122525878906,1.2636C101.06902525878907,2.12275,100.94872525878907,2.9767001,100.77122525878906,3.8196001L117.16561525878906,3.8196001C117.47592525878906,3.8196001,117.77352525878906,3.9428699,117.99291525878907,4.1622901C118.21232525878906,4.3817,118.33562525878907,4.6792998,118.33562525878907,4.9896002L118.33562525878907,51.282001C118.33562525878907,51.5923,118.21232525878906,51.8899,117.99291525878907,52.109299C117.77352525878906,52.328701,117.47592525878906,52.452,117.16561525878906,52.452L103.69082525878906,52.452C103.38052525878906,52.452,103.08292525878906,52.328701,102.86352525878907,52.109299C102.64411525878906,51.8899,102.52082525878906,51.5923,102.52082525878906,51.282001L102.52082525878906,45.673199C102.52032525878906,45.519402,102.55032525878906,45.3671,102.60892525878906,45.224899C102.66752525878906,45.082699,102.75372525878906,44.953602,102.86242525878906,44.844799C102.97112525878906,44.736099,103.10032525878906,44.649899,103.24252525878906,44.591301C103.38471525878906,44.5327,103.53702525878906,44.502701,103.69082525878906,44.503201L110.38682525878906,44.503201L110.38682525878906,37.454399L89.73361225878907,46.947601C89.55540425878907,47.029701,89.35940525878907,47.065701,89.16364325878907,47.0522C88.96789525878906,47.0387,88.77866325878907,46.9762,88.61338825878906,46.870499C88.44810525878906,46.764702,88.31208825878906,46.619099,88.21783425878907,46.446999C88.12358125878906,46.274899,88.07412725878906,46.081799,88.07402025878906,45.885601L88.07402025878906,39.837601C88.07112925878906,39.611099,88.13381925878906,39.388599,88.25454725878906,39.196999C88.37528225878906,39.005402,88.54889725878907,38.852798,88.75443225878907,38.757599L110.38682525878906,28.836L110.38682525878906,21.985201L89.73361225878907,31.482C89.55401625878906,31.5648,89.35636125878906,31.6007,89.15912625878906,31.5863C88.96188325878906,31.572001,88.77147625878906,31.5079,88.60572025878906,31.400101C88.43996425878906,31.2922,88.30426825878907,31.1441,88.21128825878907,30.9695C88.11830125878906,30.795,88.07107525878907,30.599701,88.07402025878906,30.402L88.07402025878906,24.354C88.07112925878906,24.127501,88.13381925878906,23.905001,88.25454725878906,23.7134C88.37528225878906,23.521799,88.54889725878907,23.3692,88.75443225878907,23.274L110.38682525878906,13.356L110.38682525878906,11.7684L96.93361625878906,11.7684C94.87856325878906,14.2355,92.21757525878907,16.126101,89.21161625878906,17.254801C89.03544625878907,17.321199,88.84586325878907,17.344299,88.65889025878906,17.3221C88.47192425878906,17.2999,88.29305225878906,17.233,88.13736725878907,17.1271C87.98168925878906,17.0212,87.85377525878906,16.879299,87.76442725878906,16.7136C87.67507925878907,16.547899,87.62693025878906,16.3631,87.62402325878907,16.174801L87.62402325878907,9.9684C87.62673225878906,9.7626696,87.68251025878907,9.5611296,87.78594225878906,9.3832798C87.88937425878906,9.20543,88.03696425878907,9.0572901,88.21443225878906,8.9532003C89.59638225878906,8.1164103,90.76446525878906,6.9692798,91.62614425878907,5.6027098C92.48783125878906,4.2361398,93.01943225878907,2.68767,93.17882525878906,1.08C93.20225525878907,0.78709602,93.33470125878907,0.51363701,93.55000325878906,0.31366801C93.76530425878906,0.113699,94.04778325878907,0.00176846,94.34161425878906,0L99.95762625878906,0C100.11942525878906,0.000058436799,100.27952525878906,0.033485599,100.42792525878906,0.098192997C100.57622525878907,0.1629,100.70962525878906,0.257498,100.81972525878906,0.37607801C100.92992525878907,0.49465901,101.01441525878906,0.63467401,101.06792525878906,0.78737903C101.12152525878906,0.94008499,101.14312525878906,1.1022,101.13122525878906,1.2636ZM133.23606525878907,2.3688965L174.53526525878905,2.3688965C175.18147525878905,2.3688965,175.70527525878907,2.8927236,175.70527525878907,3.5388966L175.70527525878907,9.532896C175.70527525878907,10.179067,175.18147525878905,10.702896,174.53526525878905,10.702896L133.23606525878907,10.702896C132.58990525878906,10.702896,132.06607525878906,10.179067,132.06607525878906,9.532896L132.06607525878906,3.5388966C132.06607525878906,2.8927236,132.58990525878906,2.3688965,133.23606525878907,2.3688965ZM3.9097003587890624,2.7612305L13.280500258789063,2.7612305C13.926700258789063,2.7612305,14.450500258789063,3.2850575,14.450500258789063,3.9312305L14.450500258789063,9.5112305C14.450500258789063,10.1574,13.926700258789063,10.681231,13.280500258789063,10.681231L3.9097003587890624,10.681231C3.2635273587890623,10.681231,2.7397003587890625,10.1574,2.7397003587890625,9.5112305L2.7397003587890625,3.9312305C2.7397003587890625,3.2850575,3.2635273587890623,2.7612305,3.9097003587890624,2.7612305ZM14.673600258789062,41.151573L14.673600258789062,17.639971C14.672700258789062,17.32996,14.549100258789062,17.032917,14.329900258789063,16.813705C14.110699258789062,16.594494,13.813599258789063,16.470921,13.503600258789062,16.469971L1.1735999587890624,16.469971C0.8629680287890625,16.469969,0.5650039887890626,16.593122,0.3450149887890625,16.812437C0.1250250087890625,17.03175,0.0009528690090625,17.329336,6.249999975026233e-14,17.639971L6.249999975026233e-14,22.827572C6.249999975026233e-14,23.13883,0.1236479987890625,23.43734,0.3437399887890625,23.657431C0.5638329987890625,23.877522,0.8623449787890625,24.001171,1.1735999587890624,24.001171L6.753600158789062,24.001171L6.753600158789062,40.561172L0.6336039887890625,43.963173C0.4499160087890625,44.064072,0.2968089887890625,44.21257,0.1903819987890625,44.393173C0.0839549007890625,44.573669,0.0281416997890625,44.779572,0.0288061997890625,44.98917L0.0288061997890625,51.36837C0.0288117007890625,51.57217,0.0820420977890625,51.772472,0.1832409987890625,51.949272C0.2844400087890625,52.126171,0.4300970087890625,52.273571,0.6057749987890625,52.376869C0.7814530087890625,52.480171,0.9810600287890625,52.53577,1.1848399587890626,52.538269C1.3886200587890625,52.540672,1.5895099587890624,52.489872,1.7676000587890626,52.39077L10.227600258789062,47.71077L16.772400258789062,52.27557C16.969999258789063,52.41317,17.204799258789063,52.48727,17.445600258789064,52.487972L53.93519925878906,52.487972C54.24649825878906,52.487972,54.544998258789064,52.364269,54.76509825878906,52.144272C54.98519925878906,51.924171,55.10879925878906,51.625671,55.10879925878906,51.314369L55.10879925878906,45.723572C55.10879925878906,45.41227,54.98519925878906,45.11377,54.76509825878906,44.893669C54.544998258789064,44.673569,54.24649825878906,44.549973,53.93519925878906,44.549973L19.53720125878906,44.549973L14.673600258789062,41.151573ZM152.65811525878905,27.755932L180.54371525878906,27.755932C180.85430525878905,27.754982,181.15190525878907,27.630913,181.37120525878908,27.410923C181.59049525878908,27.190933,181.71369525878907,26.892973,181.71369525878907,26.582333L181.71369525878907,20.581133C181.71270525878907,20.271122,181.58921525878907,19.974079,181.36990525878906,19.754868C181.15071525878906,19.535656,180.85371525878907,19.412083,180.54371525878906,19.411133L127.22770525878906,19.411133C126.91769525878907,19.412083,126.62063525878906,19.535656,126.40142525878906,19.754868C126.18221525878906,19.974079,126.05865525878906,20.271122,126.05770525878906,20.581133L126.05770525878906,26.571533C126.05770525878906,26.882172,126.18086525878907,27.180134,126.40017525878906,27.400124C126.61949525878906,27.620113,126.91707525878907,27.744183,127.22770525878906,27.745132L142.25050525878908,27.745132L131.26689525878905,43.401535C131.12782525878907,43.598434,131.05360525878908,43.833733,131.05450525878905,44.074734L131.05450525878905,50.965134C131.05450525878905,51.275433,131.17776525878907,51.573032,131.39717525878908,51.792435C131.61659525878906,52.011833,131.91421525878906,52.135132,132.22450525878907,52.135132L175.70530525878905,52.135132C176.01591525878905,52.135132,176.31390525878905,52.011932,176.53390525878908,51.792633C176.75390525878908,51.573334,176.87791525878907,51.275734,176.87890525878908,50.965134L176.87890525878908,44.074734C176.88261525878906,43.815434,176.80030525878905,43.562332,176.64491525878907,43.354733L170.14331525878907,34.667931C170.03390525878908,34.521935,169.89210525878906,34.403233,169.72911525878905,34.321434C169.56600525878906,34.239532,169.38610525878906,34.196732,169.20370525878906,34.196335L161.49250525878907,34.196335C161.27551525878906,34.197033,161.06291525878908,34.257832,160.87831525878906,34.372032C160.69380525878907,34.486332,160.54450525878906,34.649532,160.44720525878907,34.843433C160.34980525878908,35.037434,160.30810525878906,35.254631,160.32681525878905,35.470833C160.34550525878907,35.687134,160.42370525878906,35.893932,160.55290525878905,36.068333L166.31291525878908,43.783134L141.39370525878905,43.783134L152.65811525878905,27.755932ZM19.65966825878906,40.309162L19.65966825878906,24.775162C19.65966825878906,24.463902,19.783315258789063,24.16539,20.00340825878906,23.945297C20.223501258789064,23.725204,20.52200125878906,23.601562,20.83325725878906,23.601562L51.631267258789066,23.601562C51.942569258789064,23.601562,52.241070258789065,23.725204,52.46116625878906,23.945297C52.68126725878906,24.16539,52.80486725878906,24.463902,52.80486725878906,24.775162L52.80486725878906,40.309162C52.80486725878906,40.463062,52.77446725878906,40.615562,52.715469258789064,40.757763C52.656467258789064,40.899963,52.569969258789065,41.02906,52.46086925878906,41.137764C52.35186725878906,41.24646,52.22246925878906,41.332565,52.08006625878906,41.391163C51.937767258789066,41.44976,51.78516725878906,41.47966,51.631267258789066,41.479164L20.83325725878906,41.479164C20.679308258789064,41.47966,20.52679225878906,41.44976,20.384424258789064,41.391163C20.24205825878906,41.332565,20.112653258789063,41.24646,20.003628258789064,41.137764C19.894602258789064,41.02906,19.808098258789062,40.899963,19.749075258789063,40.757763C19.690052258789063,40.615562,19.65966825878906,40.463062,19.65966825878906,40.309162ZM27.579668258789063,34.340363L44.88486825878906,34.340363L44.88486825878906,30.740362L27.579668258789063,30.740362L27.579668258789063,34.340363Z" fill-rule="evenodd" fill="currentColor"/></svg></a>
+    <input type="checkbox" id="zwynav" class="zwy-nt" aria-hidden="true">
+    <label for="zwynav" class="zwy-hamb" aria-label="导航菜单"><span></span><span></span><span></span></label>
+    <div class="zwy-navlinks">
+      <div class="zwy-nav-item">
+        <a href="products.html" class="zwy-nav-trigger">产品体系 <svg class="zwy-caret" width="9" height="9" viewBox="0 0 10 10"><path d="M2 3.5L5 6.5L8 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="zwy-dropdown"><div class="zwy-dropdown-inner">
+          <a class="zwy-dd-item" href="api-hub.html"><span class="ic"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="2.6"/><circle cx="10" cy="3" r="1.4"/><circle cx="16.5" cy="14" r="1.4"/><circle cx="3.5" cy="14" r="1.4"/><path d="M10 7.4V4.4M12.2 11.7l3 1.7M7.8 11.7l-3 1.7"/></svg></span><span><span class="tt">智核 · TOKEN HUB</span><span class="dd">一个接口，接入所有大模型</span></span></a>
+          <a class="zwy-dd-item" href="workbench.html"><span class="ic"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M3 8h14M8 8v8"/></svg></span><span><span class="tt">AI 工作台</span><span class="dd">自然语言搭业务应用</span></span></a>
+          <a class="zwy-dd-item" href="ledger.html"><span class="ic"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="12" height="14" rx="1.5"/><path d="M7 7h6M7 10h6M7 13h4"/></svg></span><span><span class="tt">资产账本</span><span class="dd">AI 产出确权 · 沉淀 · 复利</span></span></a>
+          <a class="zwy-dd-item" href="products.html"><span class="ic"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3a3.5 3.5 0 00-3.5 3.5v7A3 3 0 009.5 16.5h1A3 3 0 0013.5 13.5v-7A3.5 3.5 0 0010 3z"/><path d="M10 7.5v5M8 10h4"/></svg></span><span><span class="tt">深脑</span><span class="dd">企业专属知识与判断中枢</span></span></a>
+        </div></div>
+      </div>
+      <div class="zwy-nav-item">
+        <a href="solutions.html" class="zwy-nav-trigger">解决方案 <svg class="zwy-caret" width="9" height="9" viewBox="0 0 10 10"><path d="M2 3.5L5 6.5L8 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="zwy-dropdown"><div class="zwy-dropdown-inner">
+          <a class="zwy-dd-item" href="solutions.html"><span class="ic"><svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="3.4"/></svg></span><span><span class="tt">电商运营</span><span class="dd">选品 · 详情 · 客服判断沉淀</span></span></a>
+          <a class="zwy-dd-item" href="solutions.html"><span class="ic"><svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="3.4"/></svg></span><span><span class="tt">设计创意</span><span class="dd">风格与产出标准化复用</span></span></a>
+          <a class="zwy-dd-item" href="solutions.html"><span class="ic"><svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="3.4"/></svg></span><span><span class="tt">咨询专业服务</span><span class="dd">方法论沉进核心，不随人走</span></span></a>
+          <a class="zwy-dd-item" href="solutions.html"><span class="ic"><svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="3.4"/></svg></span><span><span class="tt">教培机构</span><span class="dd">名师经验资产化</span></span></a>
+          <a class="zwy-dd-item" href="solutions.html"><span class="ic"><svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="3.4"/></svg></span><span><span class="tt">外贸</span><span class="dd">多语言获客与跟单沉淀</span></span></a>
+        </div></div>
+      </div>
+      <a href="cases.html">案例</a>
+      <a href="ams.html">方法论</a>
+      <a href="news.html">资讯</a>
+      <a href="about.html">关于</a>
+      <a href="https://innolab.cc" target="_blank" rel="noopener">innolab ↗</a>
+      <a href="#cta" class="zwy-cta">预约演示</a>
+    </div>
+  </nav>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="zwy-hero" style="max-width:920px; margin:0 auto; padding:40px 40px 56px; min-height:calc(100svh - 92px); text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+  <div style="display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid rgba(21,22,28,.09); border-radius:999px; padding:6px 14px; white-space:nowrap; box-shadow:0 2px 8px rgba(21,22,28,.04); margin-bottom:28px;">
+    <span style="width:16px; height:16px; border-radius:50%; background:#5A4FE6; display:flex; align-items:center; justify-content:center;"><span style="width:5px; height:5px; border-radius:50%; background:#fff;"></span></span>
+    <span style="font-size:12.5px; font-weight:500; color:#3D3F49;">企业智能的资产化系统</span>
+  </div>
+  <h1 style="font-size:clamp(44px,6vw,80px); font-weight:700; letter-spacing:-.03em; line-height:1.08; margin:0 0 26px;">智能会变成自来水。<br>企业唯一的不同，是<span style="color:#5A4FE6;">记得自己是谁</span>。</h1>
+  <p style="font-size:19px; color:#5A5C68; line-height:1.7; max-width:640px; margin:0 auto 36px;">别人卖 AI 的使用权，我们给 AI 产出的所有权——让每一次判断、方法与成果都被确权、沉淀、复利。</p>
+  <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+    <a href="products.html" style="display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:#fff; background:#5A4FE6; border-radius:999px; padding:13px 24px; white-space:nowrap; box-shadow:0 2px 6px rgba(0,0,0,.12),0 14px 30px -12px #5A4FE6;" style-hover="background:#4438C4">探索产品 <span style="font-size:16px;">→</span></a>
+    <a href="#cta" style="display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:#15161C; background:#fff; border:1px solid rgba(21,22,28,.12); border-radius:999px; padding:13px 24px; white-space:nowrap;" style-hover="border-color:rgba(21,22,28,.28)">预约演示</a>
+  </div>
+  <div style="display:flex; gap:28px; margin-top:38px; font-size:13px; color:#8A8C96; justify-content:center; flex-wrap:wrap;">
+    <span><strong style="font-family:'Space Grotesk',sans-serif; color:#15161C; font-size:17px;">50+</strong> 接入模型</span>
+    <span style="width:1px; background:rgba(21,22,28,.1);"></span>
+    <span><strong style="font-family:'Space Grotesk',sans-serif; color:#15161C; font-size:17px;">99.9%</strong> 可用性</span>
+    <span style="width:1px; background:rgba(21,22,28,.1);"></span>
+    <span><strong style="font-family:'Space Grotesk',sans-serif; color:#15161C; font-size:17px;">私有化</strong> 数据不出域</span>
+  </div>
+</section>
+
+<!-- ===== VALUE ===== -->
+<!-- 客户 logo 墙（占位，替换为真实客户 logo）-->
+<section style="max-width:1180px; margin:0 auto; padding:8px 40px 24px;">
+  <div style="display:flex; align-items:center; justify-content:center; gap:16px; margin:0 0 34px;">
+    <span style="display:inline-block; width:28px; height:1px; background:rgba(22,24,31,.22);"></span>
+    <span style="font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#83858F; white-space:nowrap;">被知识密集型企业信赖</span>
+    <span style="display:inline-block; width:28px; height:1px; background:rgba(22,24,31,.22);"></span>
+  </div>
+  <div style="display:flex; align-items:center; justify-content:center; gap:clamp(30px,5.2vw,60px); flex-wrap:wrap; opacity:.9;">
+    <div style="display:flex; align-items:center; gap:9px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="#31333C"><circle cx="12" cy="12" r="10"/></svg><div style="width:56px; height:10px; background:#31333C; border-radius:3px;"></div></div><div style="display:flex; align-items:center; gap:9px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="#31333C"><rect x="3" y="3" width="18" height="18" rx="5"/></svg><div style="width:56px; height:10px; background:#31333C; border-radius:3px;"></div></div><div style="display:flex; align-items:center; gap:9px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="#31333C"><path d="M12 2l9 5v10l-9 5-9-5V7z"/></svg><div style="width:56px; height:10px; background:#31333C; border-radius:3px;"></div></div><div style="display:flex; align-items:center; gap:9px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="#31333C"><path d="M12 2l10 20H2z"/></svg><div style="width:56px; height:10px; background:#31333C; border-radius:3px;"></div></div><div style="display:flex; align-items:center; gap:9px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="#31333C"><circle cx="8" cy="12" r="6"/><circle cx="16" cy="12" r="6" opacity=".55"/></svg><div style="width:56px; height:10px; background:#31333C; border-radius:3px;"></div></div><div style="display:flex; align-items:center; gap:9px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="#31333C"><rect x="3" y="8" width="18" height="8" rx="4"/></svg><div style="width:56px; height:10px; background:#31333C; border-radius:3px;"></div></div>
+  </div>
+</section>
+
+<!-- ===== PILLARS ===== -->
+<div style="background:linear-gradient(180deg,#0C0B18,#141234); border-top:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06); position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background-image:radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px); background-size:26px 26px; pointer-events:none;"></div>
+  <section id="value" style="position:relative; max-width:1280px; margin:0 auto; padding:74px 40px;">
+    <div style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.16em; color:#A79CFF; margin-bottom:14px;">MECHANISM · 机制</div>
+    <h2 style="font-size:clamp(26px,3vw,34px); font-weight:700; letter-spacing:-.02em; line-height:1.2; color:#ECEEFF; margin:0 0 42px; max-width:22ch;">让 AI 产出变成资产，<br>只需三件事。</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:28px;">
+      <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .6s cubic-bezier(.2,.7,.2,1);">
+      <div style="width:44px; height:44px; border-radius:12px; background:rgba(255,255,255,.07); color:#A79CFF; display:flex; align-items:center; justify-content:center; margin-bottom:16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 4.5-3.2 7.5-8 9-4.8-1.5-8-4.5-8-9V7z"/><path d="m9 12 2 2 4-4"/></svg></div>
+      <h3 style="font-size:19px; font-weight:700; margin:0 0 8px; color:#ECEEFF;">确权</h3>
+      <p style="font-size:14px; color:rgba(236,238,255,.62); line-height:1.7; margin:0;">每一条 AI 产出都带归属。谁的判断、哪次沉淀，清晰可溯——资产先要有主。</p>
+    </div>
+      <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .6s cubic-bezier(.2,.7,.2,1) .08s;">
+      <div style="width:44px; height:44px; border-radius:12px; background:rgba(255,255,255,.07); color:#A79CFF; display:flex; align-items:center; justify-content:center; margin-bottom:16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+      <h3 style="font-size:19px; font-weight:700; margin:0 0 8px; color:#ECEEFF;">沉淀</h3>
+      <p style="font-size:14px; color:rgba(236,238,255,.62); line-height:1.7; margin:0;">对话、方法与成果自动落库，长成一层越用越厚的企业记忆，而不是随会话消失。</p>
+    </div>
+      <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .6s cubic-bezier(.2,.7,.2,1) .16s;">
+      <div style="width:44px; height:44px; border-radius:12px; background:rgba(255,255,255,.07); color:#A79CFF; display:flex; align-items:center; justify-content:center; margin-bottom:16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18 L10 12 L14 15 L20 7"/><path d="M15 7h5v5"/></svg></div>
+      <h3 style="font-size:19px; font-weight:700; margin:0 0 8px; color:#ECEEFF;">复利</h3>
+      <p style="font-size:14px; color:rgba(236,238,255,.62); line-height:1.7; margin:0;">资产越厚，下一次判断越准。特异性上下文形成壁垒，时间站在你这一边。</p>
+    </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== 过渡环节：从「所有权」引向差距的可视化 ===== -->
+<section style="max-width:820px; margin:0 auto; padding:70px 40px 20px; text-align:center;">
+  <div style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.14em; color:#8A8C96; margin-bottom:16px;">THE DIVERGENCE · 差距从哪来</div>
+  <h2 style="font-size:clamp(27px,3.6vw,40px); font-weight:700; letter-spacing:-.025em; line-height:1.22; margin:0 0 16px;">当智能变成自来水，<br>差距只来自一件事：<span style="color:#5A4FE6;">谁把智能沉进了核心</span>。</h2>
+  <p style="font-size:16px; color:#5A5C68; line-height:1.75; margin:0 auto; max-width:600px;">别人卖使用权，价值停在边缘；我们给所有权，价值沉进核心、越用越聪明。下面两个可交互演示，把这个差距亲手跑给你看。</p>
+  <div style="margin-top:26px; display:flex; justify-content:center;"><span style="width:1px; height:44px; background:linear-gradient(180deg, rgba(90,79,230,.5), transparent);"></span></div>
+</section>
+
+<!-- ===== 可视化差异①：个人 AI vs 企业 AI ===== -->
+<section style="max-width:1180px; margin:0 auto; padding:8px 40px 8px;">
+  <div style="text-align:center; max-width:760px; margin:0 auto;">
+    <div style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.14em; color:#5A4FE6; margin-bottom:12px;">01 · 个人 AI vs 企业 AI</div>
+    <h2 style="font-size:clamp(24px,3vw,34px); font-weight:700; letter-spacing:-.02em; line-height:1.24; margin:0 0 12px;">价值留在边缘，还是沉进核心？</h2>
+    <p style="font-size:15px; color:#5A5C68; line-height:1.7; margin:0;">个人 AI 各用各的，人一走沉淀就走；企业 AI 汇进核心，越转越聪明。<span style="color:#8A8C96;">点「从 0 开始」跑一遍飞轮 ↓</span></p>
+  </div>
+  <div class="zwy-eai">
+<!-- ══ contrast ══ -->
+  <div class="grid">
+
+    <!-- 个人 AI -->
+    <div class="card per">
+      <span class="tag per"><span class="dot"></span>个人 AI</span>
+      <h2>价值留在边缘</h2>
+      <div class="sub">工具散落在企业外圈,各用各的。人一走,沉淀就跟着走。</div>
+      <svg class="stage-svg" viewBox="0 0 340 220" aria-hidden="true">
+        <!-- empty core: dashed rings that slowly spin — busywork, nothing ever fills -->
+        <circle id="eai_perRing" cx="170" cy="110" r="58" fill="none" stroke="var(--line2)" stroke-width="1.5" stroke-dasharray="4 5"/>
+        <circle id="eai_perRing2" cx="170" cy="110" r="43" fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="2 7"/>
+        <text x="170" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink3)">企业</text>
+        <text x="170" y="122" text-anchor="middle" font-size="10" fill="var(--ink3)">核心是空的</text>
+        <!-- value escaping / futile effort -->
+        <g id="eai_perLeak"></g>
+        <!-- tools on the rim: busy but going nowhere -->
+        <g id="eai_perTools" fill="var(--edge)"></g>
+      </svg>
+      <div class="fate">结果 → <b>沉淀停在边缘,无法复利。</b></div>
+    </div>
+
+    <!-- 企业 AI -->
+    <div class="card ent">
+      <span class="tag ent"><span class="dot"></span>企业 AI</span>
+      <h2>越用越聪明的飞轮</h2>
+      <div class="sub">员工使用汇进核心,核心越聪明,预测与决策越值钱,再反哺使用。</div>
+      <div class="flywrap">
+      <svg class="stage-svg" viewBox="0 0 340 220" aria-hidden="true">
+        <defs>
+          <radialGradient id="eai_coreG" cx="40%" cy="36%" r="70%">
+            <stop offset="0%" stop-color="#C7C0FF"/><stop offset="55%" stop-color="#7B6CFF"/><stop offset="100%" stop-color="#5A4FE6"/>
+          </radialGradient>
+          <radialGradient id="eai_coreHot" cx="40%" cy="36%" r="70%">
+            <stop offset="0%" stop-color="#D9D4FF"/><stop offset="45%" stop-color="#8E82FF"/><stop offset="100%" stop-color="#A855F7"/>
+          </radialGradient>
+          <marker id="eai_ah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="rgba(90,79,230,.6)"/>
+          </marker>
+        </defs>
+        <!-- true-circle belt (r=66, centre 170,110) -->
+        <circle cx="170" cy="110" r="66" fill="none" stroke="rgba(90,79,230,.14)" stroke-width="11"/>
+        <!-- direction chevrons on the true circle -->
+        <g fill="none" stroke="rgba(90,79,230,.5)" stroke-width="1.7" marker-end="url(#eai_ah)">
+          <path d="M212.4 59.4 A66 66 0 0 1 220.6 67.6"/>
+          <path d="M220.6 152.4 A66 66 0 0 1 212.4 160.6"/>
+          <path d="M127.6 160.6 A66 66 0 0 1 119.4 152.4"/>
+          <path d="M119.4 67.6 A66 66 0 0 1 127.6 59.4"/>
+        </g>
+        <!-- rotating sweep highlight -->
+        <g id="eai_sweep"><circle cx="170" cy="110" r="66" fill="none" stroke="var(--teal)" stroke-width="4"
+          stroke-linecap="round" stroke-dasharray="30 385" opacity=".85"/></g>
+        <!-- core ripples injected here -->
+        <g id="eai_ripple"></g>
+        <!-- core -->
+        <circle id="eai_coreGlow" cx="170" cy="110" r="30" fill="var(--teal)" opacity="0"/>
+        <circle id="eai_core" cx="170" cy="110" r="30" fill="url(#eai_coreG)" opacity=".34"/>
+        <text x="170" y="106" text-anchor="middle" font-size="10.5" font-weight="800" fill="#241C63">企业智能</text>
+        <text id="eai_coreIQ" class="mono" x="170" y="122" text-anchor="middle" font-size="13" font-weight="700" fill="#241C63">0</text>
+        <!-- stage nodes on the true circle -->
+        <g font-size="10.5" font-weight="700" fill="var(--tealDeep)" text-anchor="middle">
+          <g><circle cx="170" cy="44" r="4" fill="var(--teal)"/><text x="170" y="28">员工使用</text></g>
+          <g><circle cx="236" cy="110" r="4" fill="var(--teal)"/><text x="236" y="96">解决问题</text></g>
+          <g><circle cx="170" cy="176" r="4" fill="var(--teal)"/><text x="170" y="198">判断沉淀</text></g>
+          <g><circle cx="104" cy="110" r="4" fill="var(--teal)"/><text x="104" y="96">越用越聪明</text></g>
+        </g>
+        <!-- comet trail + spark -->
+        <g id="eai_trail"></g>
+        <circle id="eai_spark" cx="170" cy="44" r="5.5" fill="#fff" stroke="var(--teal)" stroke-width="2"/>
+        <!-- employee feed dots injected here -->
+        <g id="eai_feed" class="feed"></g>
+      </svg>
+      </div>
+      <div class="valchip">
+        <div class="vc" id="eai_vcPred"><div class="vt">预测未来</div><div class="vd">趋势 · 风险先知</div></div>
+        <div class="vc" id="eai_vcDec"><div class="vt">辅助决策</div><div class="vd">该做什么,而不只是怎么做</div></div>
+      </div>
+      <div class="fate">结果 → <b>核心越转越聪明,价值持续复利。</b></div>
+    </div>
+  </div>
+
+  <!-- ══ console ══ -->
+  <div class="console">
+    <div>
+      <div class="btnrow">
+        <button class="runbtn" id="eai_startBtn"><span class="ic">▶</span>从 0 开始</button>
+        <button class="runbtn ghost" id="eai_pauseBtn" disabled>暂停</button>
+      </div>
+    </div>
+    <div class="meters">
+      <div class="meter per">
+        <div class="mtop"><div class="mname">个人 AI<s>价值留在边缘,不进核心</s></div><div class="mval" id="eai_perVal">0</div></div>
+        <div class="track"><div class="fill per" id="eai_perFill"></div></div>
+      </div>
+      <div class="meter ent">
+        <div class="mtop"><div class="mname">企业 AI 智能度<s>越用越强,可超 100%</s><span class="obadge" id="eai_obadge">超越 100% · 持续增强</span></div><div class="mval" id="eai_entVal">0</div></div>
+        <div class="track"><div class="fill ent" id="eai_entFill"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat ent"><div class="n" id="eai_stEmp">0</div><div class="l">在用员工</div></div>
+    <div class="stat ent"><div class="n" id="eai_stProb">0</div><div class="l">累计解决的问题</div></div>
+    <div class="stat ent"><div class="n" id="eai_stIQ">0<span style="font-size:16px">%</span></div><div class="l">企业智能度</div></div>
+    <div class="stat"><div class="n" id="eai_stPer">0<span style="font-size:16px">%</span></div><div class="l">个人 AI 沉淀进核心</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ===== 可视化差异②：同一起点，两种速度 ===== -->
+<section style="max-width:1180px; margin:0 auto; padding:44px 40px 8px;">
+  <div style="text-align:center; max-width:760px; margin:0 auto;">
+    <div style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.14em; color:#5A4FE6; margin-bottom:12px;">02 · 同一起点，两种速度</div>
+    <h2 style="font-size:clamp(24px,3vw,34px); font-weight:700; letter-spacing:-.02em; line-height:1.24; margin:0 0 12px;">智能成基建后，差距如何被拉大？</h2>
+    <p style="font-size:15px; color:#5A5C68; line-height:1.7; margin:0;">同样的起点，靠人力驱动像走路，靠智能驱动像开车——复利的斜率，决定数年后的量级。<span style="color:#8A8C96;">跑一遍看差距怎么拉开 ↓</span></p>
+  </div>
+  <div class="zwy-eai">
+<!-- ══ PART 2 · 两种速度 ══ -->
+  <div class="parthead">
+    <div class="pk">所以,数年之后 ——</div>
+    <h2>同一起点,<em>两种速度</em>。</h2>
+    <p>企业 AI 在核心里复利,个人 AI 停在边缘——把时间拉长,两种组织能力就此两极分化。<b>靠人力驱动的组织</b>像走路,依然在往前、只是慢;<b>AI 增强的组织</b>像开车,一路拉开。两个都在前进,却越来越不在一个量级。</p>
+  </div>
+
+  <div class="chartcard">
+    <div class="legend">
+      <div class="lg h"><span class="sw"></span><span><b>人力驱动组织</b> · 像走路 —— 仍在成长,只是慢</span></div>
+      <div class="lg a"><span class="sw"></span><span><b>AI 增强组织</b> · 像开车 —— 复利加速,持续拉开</span></div>
+    </div>
+
+    <svg class="chart-svg" viewBox="0 0 720 388" aria-hidden="true">
+      <defs>
+        <linearGradient id="eai_aiStroke" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#7B6CFF"/><stop offset="70%" stop-color="#5A4FE6"/><stop offset="100%" stop-color="#A855F7"/>
+        </linearGradient>
+        <linearGradient id="eai_gapFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(168,85,247,.16)"/><stop offset="100%" stop-color="rgba(90,79,230,.05)"/>
+        </linearGradient>
+      </defs>
+      <g stroke="var(--line)" stroke-width="1">
+        <line x1="56" y1="30" x2="56" y2="330"/>
+        <line x1="56" y1="330" x2="668" y2="330"/>
+      </g>
+      <g stroke="var(--line)" stroke-width="1" stroke-dasharray="3 6">
+        <line x1="56" y1="105" x2="668" y2="105"/>
+        <line x1="56" y1="180" x2="668" y2="180"/>
+        <line x1="56" y1="255" x2="668" y2="255"/>
+      </g>
+      <text x="20" y="34" font-size="10.5" fill="var(--ink3)" transform="rotate(-90 20 34)" text-anchor="end" style="dominant-baseline:hanging">组织能力 →</text>
+      <text x="668" y="352" font-size="10.5" fill="var(--ink3)" text-anchor="end">时间（年） →</text>
+      <text x="56" y="348" font-size="10.5" fill="var(--ink3)" text-anchor="middle">起点</text>
+
+      <path id="eai_gapArea" fill="url(#eai_gapFill)" stroke="none" d=""/>
+      <path id="eai_humanPath" fill="none" stroke="var(--edge)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d=""/>
+      <path id="eai_aiPath" fill="none" stroke="url(#eai_aiStroke)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" d=""/>
+
+      <g id="eai_gapBracket" opacity="0">
+        <line id="eai_gapLine" stroke="var(--purple)" stroke-width="1.4" stroke-dasharray="4 4"/>
+        <g id="eai_gapTag">
+          <rect x="-30" y="-11" width="60" height="22" rx="7" fill="var(--purple)"/>
+          <text id="eai_gapTagT" class="mono" x="0" y="4" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">差距</text>
+        </g>
+      </g>
+
+      <g id="eai_walker" style="animation:bob 0.6s ease-in-out infinite">
+        <g stroke="var(--edgeDeep)" stroke-width="2" stroke-linecap="round" fill="none">
+          <circle cx="0" cy="-13" r="3.4" fill="var(--edgeDeep)" stroke="none"/>
+          <line x1="0" y1="-9" x2="0" y2="0"/>
+          <line x1="0" y1="-6" x2="-5" y2="-2"/>
+          <line x1="0" y1="-6" x2="5" y2="-9"/>
+          <line x1="0" y1="0" x2="-5" y2="7"/>
+          <line x1="0" y1="0" x2="6" y2="6"/>
+        </g>
+      </g>
+
+      <g id="eai_car">
+        <g id="eai_carSpeed" stroke="var(--teal)" stroke-width="1.6" stroke-linecap="round" opacity=".12">
+          <line x1="-26" y1="-6" x2="-18" y2="-6"/>
+          <line x1="-30" y1="-1" x2="-20" y2="-1"/>
+          <line x1="-25" y1="4" x2="-17" y2="4"/>
+        </g>
+        <path d="M-15 2 L-12 -5 L4 -5 L9 0 L15 0 Q17 0 17 3 L17 5 Q17 6 15 6 L-13 6 Q-15 6 -15 4 Z" fill="var(--teal)"/>
+        <path d="M-9 -5 L-7 -1 L2 -1 L0 -5 Z" fill="rgba(255,255,255,.55)"/>
+        <circle cx="-8" cy="6.5" r="3.6" fill="#0E0A1E"/><circle cx="-8" cy="6.5" r="1.4" fill="#fff"/>
+        <circle cx="10" cy="6.5" r="3.6" fill="#0E0A1E"/><circle cx="10" cy="6.5" r="1.4" fill="#fff"/>
+      </g>
+    </svg>
+
+    <div class="status" id="eai_status">按“从 0 开始”,让两种组织从同一起点出发。</div>
+  </div>
+
+  <div class="console">
+    <div class="btnrow">
+      <button class="runbtn" id="eai_startBtn2"><span class="ic">▶</span>从 0 开始</button>
+      <button class="runbtn ghost" id="eai_pauseBtn2" disabled>暂停</button>
+    </div>
+    <div class="reads">
+      <div class="rd"><div class="n" id="eai_rYear">起点</div><div class="l">时间进程</div></div>
+      <div class="rd h"><div class="n" id="eai_rHuman">10</div><div class="l">人力驱动 · 能力</div></div>
+      <div class="rd a"><div class="n" id="eai_rAI">10</div><div class="l">AI 增强 · 能力</div></div>
+      <div class="rd g"><div class="n" id="eai_rGap">×1.0</div><div class="l">差距（倍数）</div></div>
+    </div>
+  </div>
+
+  <!-- ══ 合并收尾:两极分化 + 窗口期 ══ -->
+  <div class="window">
+    <div>
+      <div class="wk">THE DIVERGENCE · 两极分化 · 窗口期</div>
+      <div class="wt">走路的没有停,开车的更快 —— 差距,来自<em>复利的斜率</em>。</div>
+      <div class="wp">这并不代表靠人力的组织停止成长——它仍在前进,只是慢一档。真正决定数年之后彼此位置的,不是起点,而是每一年的增长速度。<br><br>而智能是复利的:谁先让全员用起来、先把判断沉进核心,谁的企业 AI 就先聪明一代。这,就是企业版此刻的窗口。</div>
+    </div>
+  </div>
+</div>
+</section>
+<script>
+(function(){
+  var SVGNS='http://www.w3.org/2000/svg';
+  var $=function(id){return document.getElementById(id)};
+  var core=$('eai_core'), coreGlow=$('eai_coreGlow'), coreIQ=$('eai_coreIQ'), spark=$('eai_spark'),
+      feed=$('eai_feed'), trail=$('eai_trail'), rippleG=$('eai_ripple'), sweep=$('eai_sweep');
+  var entFill=$('eai_entFill'), perFill=$('eai_perFill'), entVal=$('eai_entVal'), perVal=$('eai_perVal');
+  var stEmp=$('eai_stEmp'), stProb=$('eai_stProb'), stIQ=$('eai_stIQ'), stPer=$('eai_stPer');
+  var vcPred=$('eai_vcPred'), vcDec=$('eai_vcDec'), obadge=$('eai_obadge');
+  var startBtn=$('eai_startBtn'), pauseBtn=$('eai_pauseBtn');
+
+  var cx=170, cy=110, R=66;   // true-circle radius
+
+  // ── 个人 AI: busy but futile ("碌碌无为") — always animating, never accumulates ──
+  var perG=$('eai_perTools'), perLeak=$('eai_perLeak'), perRing=$('eai_perRing'), perRing2=$('eai_perRing2');
+  var perTools=[];
+  for(var i=0;i<7;i++){
+    var a=(i/7)*Math.PI*2 - Math.PI/2, r=64+(i%3)*5;
+    var g=document.createElementNS(SVGNS,'g');
+    var c=document.createElementNS(SVGNS,'circle');
+    c.setAttribute('r','4.6'); c.setAttribute('fill','var(--edge)'); c.setAttribute('opacity','.82'); g.appendChild(c);
+    var sp=document.createElementNS(SVGNS,'path');       // a busy spinner that never completes
+    sp.setAttribute('d','M8 0 A8 8 0 0 1 -3 7.4'); sp.setAttribute('fill','none');
+    sp.setAttribute('stroke','var(--edge)'); sp.setAttribute('stroke-width','1.5');
+    sp.setAttribute('stroke-linecap','round'); sp.setAttribute('opacity','.45'); g.appendChild(sp);
+    perG.appendChild(g);
+    perTools.push({g:g,sp:sp,a:a,r:r,bx:170+Math.cos(a)*r,by:110+Math.sin(a)*r,
+                   ph:i*0.9,spin:(i*47)%360,spd:55+((i*37)%90)});
+  }
+  function perLeakDot(inward){
+    var T=perTools[(Math.random()*perTools.length)|0], a=T.a, r0=T.r;
+    var d=document.createElementNS(SVGNS,'circle');
+    d.setAttribute('r', inward?'2.2':'2.6'); d.setAttribute('fill','var(--edge)'); perLeak.appendChild(d);
+    var s=null, dur=(inward?1500:1000)+Math.random()*500;
+    (function fly(ts){ if(!s)s=ts; var k=Math.min(1,(ts-s)/dur);
+      var rr = inward ? (r0 - Math.sin(k*Math.PI)*20)   // reaches toward the core, then retreats
+                      : (r0 + k*24);                    // value escapes outward
+      d.setAttribute('cx',(170+Math.cos(a)*rr).toFixed(1));
+      d.setAttribute('cy',(110+Math.sin(a)*rr).toFixed(1));
+      d.setAttribute('opacity',(0.5*(1-k)).toFixed(2));
+      if(k<1) requestAnimationFrame(fly); else perLeak.removeChild(d);
+    })();
+  }
+  var perT={last:0,leak:0,fut:0,rot:0};
+  function perLoop(ts){
+    var dt=Math.min(60, ts-(perT.last||ts)); perT.last=ts;
+    for(var k=0;k<perTools.length;k++){ var T=perTools[k];
+      var jx=Math.sin(ts*0.006+T.ph)*1.5, jy=Math.cos(ts*0.0075+T.ph*1.3)*1.5;
+      T.g.setAttribute('transform','translate('+(T.bx+jx).toFixed(2)+','+(T.by+jy).toFixed(2)+')');
+      T.spin=(T.spin+T.spd*dt/1000)%360;
+      T.sp.setAttribute('transform','rotate('+T.spin.toFixed(1)+')');
+    }
+    perT.rot=(perT.rot+dt*0.012)%360;
+    if(perRing) perRing.setAttribute('transform','rotate('+perT.rot.toFixed(1)+' 170 110)');
+    if(perRing2) perRing2.setAttribute('transform','rotate('+(-perT.rot*1.5).toFixed(1)+' 170 110)');
+    if(ts-perT.leak>560){ perT.leak=ts; perLeakDot(false); }
+    if(ts-perT.fut>1800){ perT.fut=ts; perLeakDot(true); }
+    requestAnimationFrame(perLoop);
+  }
+  requestAnimationFrame(perLoop);
+
+  // trail dots (comet behind the spark)
+  var TRAIL=5, trailEls=[];
+  for(var t=0;t<TRAIL;t++){
+    var td=document.createElementNS(SVGNS,'circle');
+    td.setAttribute('r',(4.2-t*0.6).toFixed(1)); td.setAttribute('fill','var(--teal)');
+    td.setAttribute('opacity',(0.34-t*0.06).toFixed(2)); trail.appendChild(td); trailEls.push(td);
+  }
+
+  var state={running:false, started:false, angle:-Math.PI/2, iq:0, emp:0, prob:0,
+             _last:0, lastFeed:0, lastEmp:0, lastRip:0, raf:null};
+
+  function posAt(ang){ return [cx+Math.cos(ang)*R, cy+Math.sin(ang)*R]; }
+
+  function renderSpark(){
+    var p=posAt(state.angle);
+    spark.setAttribute('cx',p[0].toFixed(1)); spark.setAttribute('cy',p[1].toFixed(1));
+    for(var k=0;k<TRAIL;k++){ var q=posAt(state.angle-(k+1)*0.16);
+      trailEls[k].setAttribute('cx',q[0].toFixed(1)); trailEls[k].setAttribute('cy',q[1].toFixed(1)); }
+    sweep.setAttribute('transform','rotate('+(state.angle*180/Math.PI).toFixed(1)+' '+cx+' '+cy+')');
+  }
+
+  function setIQ(v){
+    state.iq=Math.max(0,v);
+    var f=Math.min(1,state.iq/100), over=Math.max(0,state.iq-100);
+    core.setAttribute('opacity',(0.34+f*0.58).toFixed(3));
+    core.setAttribute('r',(30+f*8+over*0.05).toFixed(1));
+    core.setAttribute('fill', state.iq>100?'url(#eai_coreHot)':'url(#eai_coreG)');
+    var gf=Math.min(1,state.iq/150);
+    coreGlow.setAttribute('opacity',(gf*0.36).toFixed(3));
+    coreGlow.setAttribute('r',(30+gf*28).toFixed(1));
+    coreGlow.setAttribute('fill', state.iq>100?'#A855F7':'var(--teal)');
+    coreIQ.textContent=Math.round(state.iq);
+    entFill.style.width=Math.min(100,state.iq)+'%';
+    entFill.classList.toggle('over', state.iq>100);
+    entVal.textContent=Math.round(state.iq);
+    stIQ.innerHTML=Math.round(state.iq)+'<span style="font-size:16px">%</span>';
+    obadge.classList.toggle('on', state.iq>100);
+    vcPred.classList.toggle('on', state.iq>=55);
+    vcDec.classList.toggle('on', state.iq>=90);
+  }
+  function updStats(){ stEmp.textContent=state.emp; stProb.textContent=state.prob.toLocaleString('en-US'); }
+
+  function spawnFeed(){
+    var a=Math.random()*Math.PI*2, r=92;
+    var sx=cx+Math.cos(a)*r, sy=cy+Math.sin(a)*r;
+    var d=document.createElementNS(SVGNS,'circle');
+    d.setAttribute('r','3.2'); d.setAttribute('fill', state.iq>100?'#A855F7':'var(--teal)');
+    d.setAttribute('cx',sx.toFixed(1)); d.setAttribute('cy',sy.toFixed(1)); feed.appendChild(d);
+    var s=null, dur=580;
+    (function fly(ts){ if(!s)s=ts; var k=Math.min(1,(ts-s)/dur), e=1-Math.pow(1-k,2);
+      d.setAttribute('cx',(sx+(cx-sx)*e).toFixed(1)); d.setAttribute('cy',(sy+(cy-sy)*e).toFixed(1));
+      d.setAttribute('opacity',(1-k*0.75).toFixed(2));
+      if(k<1) requestAnimationFrame(fly); else feed.removeChild(d);
+    })();
+  }
+  function spawnRipple(){
+    var c=document.createElementNS(SVGNS,'circle');
+    c.setAttribute('cx',cx); c.setAttribute('cy',cy); c.setAttribute('r','30'); c.setAttribute('fill','none');
+    c.setAttribute('stroke', state.iq>100?'#A855F7':'var(--teal)'); c.setAttribute('stroke-width','2');
+    rippleG.appendChild(c);
+    var s=null, dur=1150;
+    (function go(ts){ if(!s)s=ts; var k=Math.min(1,(ts-s)/dur);
+      c.setAttribute('r',(30+k*32).toFixed(1)); c.setAttribute('opacity',(0.5*(1-k)).toFixed(2));
+      if(k<1) requestAnimationFrame(go); else rippleG.removeChild(c);
+    })();
+  }
+
+  function loop(ts){
+    if(!state.running) return;
+    var dt=Math.min(50, ts-(state._last||ts)); state._last=ts;
+    state.angle += dt*0.0027; renderSpark();
+    // more employees adopt over time
+    if(ts-state.lastEmp>720 && state.emp<320){ state.lastEmp=ts; state.emp+=Math.ceil(1+state.emp*0.06); updStats(); }
+    // feed pulses + solved problems, faster with more employees
+    var gap=Math.max(150, 500-state.emp*1.4);
+    if(ts-state.lastFeed>gap){ state.lastFeed=ts; spawnFeed(); state.prob+=Math.ceil(1+state.emp*0.4); updStats(); }
+    // core pulse ripple
+    if(ts-state.lastRip>1250){ state.lastRip=ts; spawnRipple(); }
+    // intelligence compounds — rate grows with employees, slows but never caps (can exceed 100%)
+    var rate=(0.007+state.emp*0.0006)/(1+state.iq*0.012);
+    setIQ(state.iq + rate*dt);
+    // 个人 AI: value never enters the core — stays flat at the edge
+    perFill.style.width='6%'; perVal.textContent='0'; stPer.innerHTML='0<span style="font-size:16px">%</span>';
+    state.raf=requestAnimationFrame(loop);
+  }
+
+  function reset(){
+    state.running=false; if(state.raf) cancelAnimationFrame(state.raf);
+    state.angle=-Math.PI/2; state.emp=0; state.prob=0; state.started=false;
+    setIQ(0); updStats(); renderSpark();
+    while(feed.firstChild) feed.removeChild(feed.firstChild);
+    while(rippleG.firstChild) rippleG.removeChild(rippleG.firstChild);
+    perFill.style.width='6%'; perVal.textContent='0'; stPer.innerHTML='0<span style="font-size:16px">%</span>';
+    pauseBtn.disabled=true; pauseBtn.textContent='暂停';
+    startBtn.innerHTML='<span class="ic">▶</span>从 0 开始';
+  }
+  function start(){
+    reset(); state.running=true; state.started=true;
+    state._last=0; state.lastFeed=0; state.lastEmp=0; state.lastRip=0;
+    pauseBtn.disabled=false; pauseBtn.textContent='暂停';
+    startBtn.innerHTML='<span class="ic">↻</span>重新开始';
+    state.raf=requestAnimationFrame(loop);
+  }
+  function pause(){ state.running=false; if(state.raf) cancelAnimationFrame(state.raf); pauseBtn.textContent='继续'; }
+  function resume(){ if(!state.started) return; state.running=true; state._last=0;
+    pauseBtn.textContent='暂停'; state.raf=requestAnimationFrame(loop); }
+
+  startBtn.addEventListener('click', start);
+  pauseBtn.addEventListener('click', function(){ if(state.running) pause(); else resume(); });
+
+  reset();  // initial edge state
+})();
+</script>
+<script>
+/* ── Part 2 · 两种速度 divergence chart ── */
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var humanPath=$('eai_humanPath'), aiPath=$('eai_aiPath'), gapArea=$('eai_gapArea'),
+      walker=$('eai_walker'), car=$('eai_car'), carSpeed=$('eai_carSpeed'),
+      gapBracket=$('eai_gapBracket'), gapLine=$('eai_gapLine'), gapTag=$('eai_gapTag'), gapTagT=$('eai_gapTagT'),
+      status=$('eai_status');
+  var rYear=$('eai_rYear'), rHuman=$('eai_rHuman'), rAI=$('eai_rAI'), rGap=$('eai_rGap');
+  var startBtn=$('eai_startBtn2'), pauseBtn=$('eai_pauseBtn2');
+
+  var X0=56, X1=668, Y0=330, Ytop=30, MAX=122, W=X1-X0, H=Y0-Ytop;
+  var YEARS=8, DUR=9000;
+  function X(t){ return X0 + t*W; }
+  function Y(v){ return Y0 - (v/MAX)*H; }
+  function human(t){ return 10 + 26*t; }
+  function ai(t){ return 10*Math.pow(11.4, t); }
+
+  function curve(fn, tEnd){
+    var d='', n=Math.max(1, Math.round(tEnd*120));
+    for(var i=0;i<=n;i++){ var t=tEnd*i/n; d+=(i?'L':'M')+X(t).toFixed(1)+' '+Y(fn(t)).toFixed(1)+' '; }
+    return d;
+  }
+  function area(tEnd){
+    if(tEnd<=0) return '';
+    var n=Math.max(1, Math.round(tEnd*120)), d='M';
+    for(var i=0;i<=n;i++){ var t=tEnd*i/n; d+=(i?'L':'')+X(t).toFixed(1)+' '+Y(ai(t)).toFixed(1)+' '; }
+    for(var j=n;j>=0;j--){ var t2=tEnd*j/n; d+='L'+X(t2).toFixed(1)+' '+Y(human(t2)).toFixed(1)+' '; }
+    return d+'Z';
+  }
+
+  function render(t){
+    var hv=human(t), av=ai(t), hx=X(t), hy=Y(hv), ax=X(t), ay=Y(av);
+    humanPath.setAttribute('d', curve(human,t));
+    aiPath.setAttribute('d', curve(ai,t));
+    gapArea.setAttribute('d', area(t));
+    walker.setAttribute('transform','translate('+hx.toFixed(1)+','+(hy-9).toFixed(1)+')');
+    car.setAttribute('transform','translate('+ax.toFixed(1)+','+(ay-7).toFixed(1)+')');
+    if(t>0.04){
+      gapBracket.setAttribute('opacity','1');
+      gapLine.setAttribute('x1',ax.toFixed(1)); gapLine.setAttribute('y1',(ay).toFixed(1));
+      gapLine.setAttribute('x2',ax.toFixed(1)); gapLine.setAttribute('y2',(hy).toFixed(1));
+      gapTag.setAttribute('transform','translate('+(ax+2).toFixed(1)+','+((ay+hy)/2).toFixed(1)+')');
+      gapTagT.textContent='×'+(av/hv).toFixed(1);
+    } else { gapBracket.setAttribute('opacity','0'); }
+    rYear.textContent = t<=0 ? '起点' : ('第 '+Math.max(1,Math.round(t*YEARS))+' 年');
+    rHuman.textContent=Math.round(hv);
+    rAI.textContent=Math.round(av);
+    rGap.textContent='×'+(av/hv).toFixed(1);
+    carSpeed.setAttribute('opacity', state.running ? '0.55' : '0.12');
+    var s;
+    if(t<0.12) s='同一起点出发,速度还看不出差别。';
+    else if(t<0.45) s='AI 增强组织开始加速,差距悄悄拉开。';
+    else if(t<0.8) s='两条曲线分道扬镳——<b>斜率</b>的差别显形了。';
+    else s='数年之后,已经<b>不在一个量级</b>。而走路的,并没有停。';
+    status.innerHTML=s;
+  }
+
+  var state={running:false, started:false, t:0, _last:0, raf:null};
+
+  function loop(ts){
+    if(!state.running) return;
+    var dt=Math.min(60, ts-(state._last||ts)); state._last=ts;
+    state.t=Math.min(1, state.t + dt/DUR);
+    render(state.t);
+    if(state.t>=1){ state.running=false; pauseBtn.disabled=true; pauseBtn.textContent='暂停';
+      startBtn.innerHTML='<span class="ic">↻</span>再看一次'; return; }
+    state.raf=requestAnimationFrame(loop);
+  }
+  function reset(){
+    state.running=false; if(state.raf) cancelAnimationFrame(state.raf);
+    state.t=0; state.started=false; render(0);
+    pauseBtn.disabled=true; pauseBtn.textContent='暂停';
+    startBtn.innerHTML='<span class="ic">▶</span>从 0 开始';
+  }
+  function start(){
+    reset(); state.running=true; state.started=true; state._last=0;
+    pauseBtn.disabled=false; pauseBtn.textContent='暂停';
+    startBtn.innerHTML='<span class="ic">↻</span>重新开始';
+    state.raf=requestAnimationFrame(loop);
+  }
+  function pause(){ state.running=false; if(state.raf) cancelAnimationFrame(state.raf); pauseBtn.textContent='继续'; carSpeed.setAttribute('opacity','0.12'); }
+  function resume(){ if(!state.started||state.t>=1) return; state.running=true; state._last=0; pauseBtn.textContent='暂停'; state.raf=requestAnimationFrame(loop); }
+
+  startBtn.addEventListener('click', start);
+  pauseBtn.addEventListener('click', function(){ if(state.running) pause(); else resume(); });
+
+  render(0);
+})();
+</script>
+
+<!-- ===== L1→L5 企业转型蓝图（智能体管理学）===== -->
+<section class="zwy-bp">
+  <div style="text-align:center; max-width:820px; margin:0 auto 34px;">
+    <div style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.14em; color:#5A4FE6; margin-bottom:12px;">METHODOLOGY · 智能体管理学</div>
+    <h2 style="font-size:clamp(26px,3.4vw,40px); font-weight:700; letter-spacing:-.025em; line-height:1.2; margin:0 0 14px;">六大模块 × 五阶段转型路径</h2>
+    <p style="font-size:16px; color:#5A5C68; line-height:1.75; margin:0;">从工具辅助到自进化组织，构建人机协同的能力系统——企业从 L1 走到 L5，每一层都在被重构。</p>
+  </div>
+  <div class="zwy-bp-scroll">
+    <div class="zwy-bp-grid">
+      <div class="zwy-bp-corner"><span>六大模块</span><span class="sl">/</span><span>五阶段</span></div>
+      <div class="zwy-bp-head" style="background:linear-gradient(155deg,#6B6E7A,#4C4F59);"><div class="code">L1</div><div class="nm">工具辅助阶段</div><div class="en">AI as Tool</div></div>
+      <div class="zwy-bp-head" style="background:linear-gradient(155deg,#E4883C,#C1691F);"><div class="code">L2</div><div class="nm">流程嵌入阶段</div><div class="en">AI in Workflow</div></div>
+      <div class="zwy-bp-head" style="background:linear-gradient(155deg,#3D7BE5,#2A5AC2);"><div class="code">L3</div><div class="nm">系统协同阶段</div><div class="en">Human–AI System</div></div>
+      <div class="zwy-bp-head" style="background:linear-gradient(155deg,#17A67B,#0E7E5D);"><div class="code">L4</div><div class="nm">能力网络阶段</div><div class="en">Agent Network</div></div>
+      <div class="zwy-bp-head" style="background:linear-gradient(155deg,#7B5CF5,#5A4FE6);"><div class="code">L5</div><div class="nm">自进化组织阶段</div><div class="en">Agentic Organization</div></div>
+      <div class="zwy-bp-rowlabel"><div class="mn">竞争逻辑重构</div><div class="mq">Why: 如何取胜</div></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#6B6E7A"></span>效率工具</div><ul><li>降本提效为主</li><li>优势来自资源/规模</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#E4883C"></span>局部效率优势</div><ul><li>流程自动化带来效率</li><li>优势来自细分效率</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#3D7BE5"></span>数据驱动竞争</div><ul><li>数据+模型形成洞察</li><li>优势来自数据与洞察</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#17A67B"></span>能力系统竞争</div><ul><li>能力模块化与编排</li><li>优势来自能力体系</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#7B5CF5"></span>进化速度竞争</div><ul><li>持续学习与自我优化</li><li>优势来自进化速度</li></ul></div>
+      <div class="zwy-bp-rowlabel"><div class="mn">组织形态重构</div><div class="mq">Who: 谁来做</div></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#6B6E7A"></span>传统岗位组织</div><ul><li>人为核心，分工明确</li><li>层级化管理</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#E4883C"></span>岗位+AI助手</div><ul><li>嵌入岗位辅助执行</li><li>人主导，AI 辅助</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#3D7BE5"></span>人机协同小队</div><ul><li>跨职能协作</li><li>人机共同完成任务</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#17A67B"></span>Agent 团队</div><ul><li>以 Agent 为生产单元</li><li>扁平化、项目制</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#7B5CF5"></span>网络化组织</div><ul><li>去中心化组织</li><li>动态组网，自组织</li></ul></div>
+      <div class="zwy-bp-rowlabel"><div class="mn">产品形态重构</div><div class="mq">What: 卖什么</div></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#6B6E7A"></span>功能型产品</div><ul><li>标准化产品</li><li>卖功能，交付物</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#E4883C"></span>AI 增强功能</div><ul><li>功能增强，更好用</li><li>卖增强功能</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#3D7BE5"></span>任务化产品</div><ul><li>围绕任务设计</li><li>卖任务结果</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#17A67B"></span>结果/服务产品化</div><ul><li>按结果或效果交付</li><li>AaaS（能力即服务）</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#7B5CF5"></span>自适应产品</div><ul><li>个性化、实时化</li><li>持续创造价值</li></ul></div>
+      <div class="zwy-bp-rowlabel"><div class="mn">系统能力重构</div><div class="mq">How: 怎么做</div></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#6B6E7A"></span>零散工具</div><ul><li>多工具拼凑</li><li>数据孤岛</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#E4883C"></span>流程自动化</div><ul><li>自动化工作流</li><li>规则+RPA+AI</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#3D7BE5"></span>中台+双前台</div><ul><li>业务中台支撑</li><li>人机协同前台</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#17A67B"></span>能力平台化</div><ul><li>能力模块化（Skills）</li><li>能力可复用</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#7B5CF5"></span>能力操作系统</div><ul><li>Agentic OS</li><li>自进化、可扩展</li></ul></div>
+      <div class="zwy-bp-rowlabel"><div class="mn">价值逻辑重构</div><div class="mq">Value: 怎么赚钱</div></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#6B6E7A"></span>按人/席位收费</div><ul><li>人力成本为主</li><li>线性定价</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#E4883C"></span>效率溢价</div><ul><li>提效带来溢价</li><li>仍以人力为定价基准</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#3D7BE5"></span>任务计费</div><ul><li>按任务/单次计费</li><li>价值与结果挂钩</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#17A67B"></span>结果计费（AaaS）</div><ul><li>按结果或效果付费</li><li>订阅/按量/分成</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#7B5CF5"></span>动态定价/价值分成</div><ul><li>按实际价值动态定价</li><li>生态分成</li></ul></div>
+      <div class="zwy-bp-rowlabel"><div class="mn">人类角色重构</div><div class="mq">Human: 人做什么</div></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#6B6E7A"></span>执行者</div><ul><li>按指令执行</li><li>重复性劳动为主</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#E4883C"></span>使用者</div><ul><li>使用 AI 工具</li><li>提升个人效率</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#3D7BE5"></span>协同者</div><ul><li>与 AI 协同完成任务</li><li>判断+监督</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#17A67B"></span>编排者（Orchestrator）</div><ul><li>设计流程、编排 Agent</li><li>管理 AI 团队</li></ul></div>
+      <div class="zwy-bp-cell"><div class="t"><span class="dot" style="background:#7B5CF5"></span>设定者（Intent Owner）</div><ul><li>设定目标与边界</li><li>生态价值与方向</li></ul></div>
+      <div class="zwy-bp-rowlabel feat"><div class="mn">阶段特征</div></div>
+      <div class="zwy-bp-feat" style="background:linear-gradient(150deg,#6B6E7A,#4C4F59);"><div class="ft">点状工具使用</div><div class="fd">局部提效，未形成体系</div></div>
+      <div class="zwy-bp-feat" style="background:linear-gradient(150deg,#E4883C,#C1691F);"><div class="ft">流程局部自动化</div><div class="fd">效率提升，孤岛存在</div></div>
+      <div class="zwy-bp-feat" style="background:linear-gradient(150deg,#3D7BE5,#2A5AC2);"><div class="ft">人机协同成常态</div><div class="fd">系统化，开始规模化</div></div>
+      <div class="zwy-bp-feat" style="background:linear-gradient(150deg,#17A67B,#0E7E5D);"><div class="ft">能力网络化</div><div class="fd">可复用、可编排、可扩展</div></div>
+      <div class="zwy-bp-feat" style="background:linear-gradient(150deg,#7B5CF5,#5A4FE6);"><div class="ft">自进化组织</div><div class="fd">持续进化，指数级增长</div></div>
+    </div>
+  </div>
+  <!-- 治理神经 -->
+  <div class="zwy-bp-gov">
+    <div class="zwy-bp-govhead"><div class="gh1">治理神经</div><div class="gh2">贯穿五阶段</div></div>
+    <div class="zwy-bp-govgrid">
+        <div class="zwy-bp-govcol"><div class="gt">意图管理 <em>(Intent)</em></div><div class="gd">确保 AI 做对的事</div><div class="zwy-bp-chips"><span class="zwy-bp-chip">目标对齐</span><span class="zwy-bp-chip">任务定义</span><span class="zwy-bp-chip">上下文管理</span></div></div>
+        <div class="zwy-bp-govcol"><div class="gt">边界与升级 <em>(Boundary)</em></div><div class="gd">确保 AI 在可控范围内</div><div class="zwy-bp-chips"><span class="zwy-bp-chip">权限控制</span><span class="zwy-bp-chip">升级机制</span><span class="zwy-bp-chip">人机切换</span></div></div>
+        <div class="zwy-bp-govcol"><div class="gt">主权控制 <em>(Sovereignty)</em></div><div class="gd">确保企业掌握核心能力</div><div class="zwy-bp-chips"><span class="zwy-bp-chip">数据主权</span><span class="zwy-bp-chip">模型主权</span><span class="zwy-bp-chip">执行主权</span></div></div>
+    </div>
+  </div>
+  <!-- 目标带 -->
+  <div class="zwy-bp-goal">目标：从工具使用到能力系统，从人机协同到自进化组织，构建<strong>可持续竞争力</strong></div>
+  <div style="text-align:center; margin-top:22px;"><a href="ams.html" style="font-size:14px; font-weight:600; color:#5A4FE6; text-decoration:none;" style-hover="color:#4438C4">查看完整方法论 · 智能体管理学 →</a></div>
+</section>
+
+<!-- ===== PRODUCT SYSTEM ===== -->
+<section id="core" style="max-width:1280px; margin:0 auto; padding:52px 40px 20px;">
+  <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:28px;">
+    <div>
+      <div style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.14em; color:#8A8C96; margin-bottom:12px;">PRODUCT SYSTEM — 产品体系</div>
+      <h2 style="font-size:32px; font-weight:700; letter-spacing:-.02em; margin:0;">一核多线，覆盖企业 AI 的每一层</h2>
+    </div>
+    <a href="products.html" style="display:inline-flex; align-items:center; gap:7px; font-size:14px; font-weight:600; color:#5A4FE6; white-space:nowrap;" style-hover="gap:11px">查看全部产品 <span style="font-size:15px;">→</span></a>
+  </div>
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .6s cubic-bezier(.2,.7,.2,1); display:flex; flex-direction:column; align-items:stretch; gap:0;">
+
+    <!-- 应用层 · 顶 -->
+    <div style="font-family:'Space Grotesk',sans-serif; font-size:10.5px; font-weight:700; letter-spacing:.14em; color:#8A8C96; margin-bottom:10px;">应用层 · APPLICATION</div>
+    <a href="products.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:18px; flex-wrap:wrap; background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:18px; padding:20px 26px; box-shadow:0 14px 34px -26px rgba(21,22,28,.22);" style-hover="border-color:rgba(91,79,230,.35)">
+      <span style="width:40px; height:40px; flex-shrink:0; border-radius:11px; background:rgba(91,79,230,.1); color:#5A4FE6; display:inline-flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+      <div style="flex:1; min-width:200px;"><h3 style="font-size:17px; font-weight:700; margin:0 0 3px;">应用中心</h3><p style="font-size:13px; color:#5A5C68; line-height:1.6; margin:0;">面向业务的成熟 AI 应用与行业模板——智能客服、营销内容、流程自动化，开箱即用。</p></div>
+    </a>
+
+    <div style="display:flex; justify-content:center; padding:6px 0;"><svg width="20" height="26" viewBox="0 0 20 26" fill="none"><path d="M10 1 V19" stroke="#C7C4E8" stroke-width="2" stroke-dasharray="4 4"/><path d="M4 15 L10 22 L16 15" stroke="#5A4FE6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+    <!-- 能力层 · 中(平行) -->
+    <div style="font-family:'Space Grotesk',sans-serif; font-size:10.5px; font-weight:700; letter-spacing:.14em; color:#8A8C96; margin-bottom:10px;">能力层 · CAPABILITIES</div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px;">
+      <a href="products.html" style="text-decoration:none; color:inherit; background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:16px; padding:18px 20px; display:flex; flex-direction:column; gap:7px; box-shadow:0 14px 34px -26px rgba(21,22,28,.22);" style-hover="border-color:rgba(91,79,230,.35); transform:translateY(-3px)">
+        <div style="display:flex; align-items:center; gap:8px;"><h3 style="font-size:15.5px; font-weight:700; margin:0;">AI 工作台</h3><span style="background:rgba(6,182,212,.12); color:#0E93AB; padding:2px 8px; border-radius:999px; font-size:10px; font-weight:600; font-family:'Space Grotesk',sans-serif;">New</span></div>
+        <p style="font-size:12.5px; color:#5A5C68; line-height:1.6; margin:0;">团队的 AI 生产力空间：Agent 编排、Prompt 管理与协作。</p>
+      </a>
+      <a href="products.html" style="text-decoration:none; color:inherit; background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:16px; padding:18px 20px; display:flex; flex-direction:column; gap:7px; box-shadow:0 14px 34px -26px rgba(21,22,28,.22);" style-hover="border-color:rgba(91,79,230,.35); transform:translateY(-3px)">
+        <div style="display:flex; align-items:center; gap:8px;"><h3 style="font-size:15.5px; font-weight:700; margin:0;">知识管理</h3></div>
+        <p style="font-size:12.5px; color:#5A5C68; line-height:1.6; margin:0;">企业上下文中枢，把文档与历史沉淀为可引用的 AI 记忆。</p>
+      </a>
+      <a href="products.html" style="text-decoration:none; color:inherit; background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:16px; padding:18px 20px; display:flex; flex-direction:column; gap:7px; box-shadow:0 14px 34px -26px rgba(21,22,28,.22);" style-hover="border-color:rgba(91,79,230,.35); transform:translateY(-3px)">
+        <div style="display:flex; align-items:center; gap:8px;"><h3 style="font-size:15.5px; font-weight:700; margin:0;">深脑</h3><span style="background:rgba(232,120,90,.14); color:#C25A34; padding:2px 8px; border-radius:999px; font-size:10px; font-weight:600; font-family:'Space Grotesk',sans-serif;">Beta</span></div>
+        <p style="font-size:12.5px; color:#5A5C68; line-height:1.6; margin:0;">复杂任务的深度推理：多步规划、工具调用与自我校验。</p>
+      </a>
+    </div>
+
+    <div style="display:flex; justify-content:center; padding:6px 0;"><svg width="20" height="26" viewBox="0 0 20 26" fill="none"><path d="M10 1 V19" stroke="#C7C4E8" stroke-width="2" stroke-dasharray="4 4"/><path d="M4 15 L10 22 L16 15" stroke="#5A4FE6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+    <!-- 基座 · 底 -->
+    <div style="font-family:'Space Grotesk',sans-serif; font-size:10.5px; font-weight:700; letter-spacing:.14em; color:#5A4FE6; margin-bottom:10px;">基座 · FOUNDATION</div>
+    <a href="products.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:24px; flex-wrap:wrap; background:linear-gradient(120deg,#F3F1FE,#ECEAFB); border:1px solid rgba(91,79,230,.22); border-radius:20px; padding:24px 28px;" style-hover="border-color:rgba(91,79,230,.45)">
+      <span data-mark data-size="46" style="display:inline-flex; flex-shrink:0;"></span>
+      <div style="flex:1; min-width:220px;">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:5px;"><h3 style="font-size:19px; font-weight:700; margin:0;">智核 · TOKEN HUB</h3><span style="background:rgba(91,79,230,.14); color:#5A4FE6; padding:2px 9px; border-radius:999px; font-size:10.5px; font-weight:600; font-family:'Space Grotesk',sans-serif;">底层基座</span></div>
+        <p style="font-size:14px; color:#5A5C68; line-height:1.65; margin:0; max-width:640px;">统一接入 50+ 大模型的调用入口。智能路由、灰度发布、成本核算与用量分析，托起上层每一个应用与能力。</p>
+      </div>
+      <div style="display:flex; gap:22px; font-family:'Space Grotesk',sans-serif;">
+        <div><div style="font-size:20px; font-weight:700; color:#5A4FE6;">50+</div><div style="font-size:11px; color:#8A8C96;">模型</div></div>
+        <div><div style="font-size:20px; font-weight:700; color:#5A4FE6;">-38%</div><div style="font-size:11px; color:#8A8C96;">成本</div></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===== 产品展示窗口（旗舰示例·智核）===== -->
+<section style="max-width:1060px; margin:0 auto; padding:8px 40px 0;">
+  <div style="display:flex; align-items:center; gap:14px; justify-content:center; margin-bottom:22px;">
+    <span style="display:inline-block; width:24px; height:1px; background:rgba(22,24,31,.18);"></span>
+    <span style="font-family:'Space Grotesk',sans-serif; font-size:11.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#9A9CA6;">产品一瞥 · 智核 TOKEN HUB</span>
+    <span style="display:inline-block; width:24px; height:1px; background:rgba(22,24,31,.18);"></span>
+  </div>
+  <div class="zwy-hero-art" style="position:relative; margin:0 auto; max-width:940px; border-radius:16px; background:#fff; border:1px solid rgba(21,22,28,.08); box-shadow:0 44px 100px -46px rgba(21,22,28,.32),0 10px 28px -14px rgba(21,22,28,.12); overflow:hidden;">
+    <div style="display:flex; align-items:center; gap:7px; padding:12px 16px; border-bottom:1px solid rgba(21,22,28,.06); background:linear-gradient(180deg,#FBFBFE,#F5F5FA);">
+      <span style="width:11px; height:11px; border-radius:50%; background:#FF5F57;"></span>
+      <span style="width:11px; height:11px; border-radius:50%; background:#FEBC2E;"></span>
+      <span style="width:11px; height:11px; border-radius:50%; background:#28C840;"></span>
+      <span style="flex:1; text-align:center; font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:#9A9CA6; letter-spacing:.02em;">智核 · TOKEN HUB — 一个接口，接入所有大模型</span>
+    </div>
+    <div style="position:relative; padding:26px 28px; background:linear-gradient(160deg,#FFFFFF,#F3F3FA);">
+    <div style="position:absolute; inset:0; background-image:radial-gradient(circle, rgba(21,22,28,.05) 1px, transparent 1px); background-size:22px 22px; opacity:.5;"></div>
+    <svg viewBox="0 0 560 400" style="position:relative; width:100%; height:auto; display:block;" fill="none">
+      <defs>
+        <linearGradient id="pc-top" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#B79CFF"></stop><stop offset="1" stop-color="#8E74F2"></stop></linearGradient>
+        <linearGradient id="pc-right" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7A5FEA"></stop><stop offset="1" stop-color="#5B44D6"></stop></linearGradient>
+        <linearGradient id="pc-left" x1="0" y1="0" x2="0.2" y2="1"><stop offset="0" stop-color="#5E45C8"></stop><stop offset="1" stop-color="#3F2CA0"></stop></linearGradient>
+        <radialGradient id="pc-glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#8E74F2" stop-opacity=".5"></stop><stop offset="1" stop-color="#8E74F2" stop-opacity="0"></stop></radialGradient>
+      </defs>
+      <!-- glow behind hub -->
+      <ellipse cx="280" cy="200" rx="120" ry="110" fill="url(#pc-glow)"><animate attributeName="rx" values="120;132;120" dur="4s" repeatCount="indefinite"></animate><animate attributeName="ry" values="110;120;110" dur="4s" repeatCount="indefinite"></animate></ellipse>
+      <!-- connectors -->
+      <path d="M188 208 C 214 200, 226 200, 236 200" stroke="#B9BCC8" stroke-width="1.5" stroke-dasharray="4 5" style="animation:dash 1s linear infinite;"></path>
+      <path d="M324 200 C 338 200, 352 200, 376 200" stroke="#B9BCC8" stroke-width="1.5" stroke-dasharray="4 5" style="animation:dash 1s linear infinite;"></path>
+      <!-- flow dots in -->
+      <circle r="3.5" fill="#5A4FE6"><animateMotion dur="1.6s" repeatCount="indefinite" path="M188 208 C 214 200, 226 200, 236 200"></animateMotion></circle>
+      <!-- LEFT: 应用端 request card -->
+      <g style="animation:floaty 6s ease-in-out infinite;">
+        <rect x="60" y="168" width="128" height="72" rx="14" fill="#FFFFFF" stroke="#15161C" stroke-width="1.6"></rect>
+        <circle cx="82" cy="190" r="7" fill="#EEF0FF" stroke="#5A4FE6" stroke-width="1.6"></circle>
+        <path d="M98 187 h58 M98 194 h40" stroke="#B9BCC8" stroke-width="2.4" stroke-linecap="round"></path>
+        <path d="M76 214 h96" stroke="#EDEEF5" stroke-width="1.4"></path>
+        <path d="M76 224 h70" stroke="#5A4FE6" stroke-width="2.4" stroke-linecap="round"></path>
+      </g>
+      <!-- CENTER: crystal hub (clean gem, no white notch) -->
+      <g style="animation:floaty2 6s ease-in-out infinite .3s;">
+        <path d="M232 170 L280 197 L280 259 L232 232 Z" fill="url(#pc-left)"></path>
+        <path d="M280 197 L328 170 L328 232 L280 259 Z" fill="url(#pc-right)"></path>
+        <path d="M232 170 L280 143 L328 170 L280 197 Z" fill="url(#pc-top)"></path>
+        <!-- crisp edge highlights -->
+        <path d="M280 143 L280 197" stroke="#EDE9FF" stroke-width="1.4" stroke-opacity=".5"></path>
+        <path d="M232 170 L280 197 L328 170" stroke="#C9BEFF" stroke-width="1.4" stroke-opacity=".45" fill="none"></path>
+        <path d="M280 143 L328 170 L328 232 L280 259 L232 232 L232 170 Z" fill="none" stroke="#3F2CA0" stroke-width="1.2" stroke-opacity=".35" stroke-linejoin="round"></path>
+      </g>
+      <!-- flow dots out -->
+      <circle r="3.5" fill="#5A4FE6"><animateMotion dur="1.6s" begin=".8s" repeatCount="indefinite" path="M324 200 C 338 200, 352 200, 376 200"></animateMotion></circle>
+      <!-- RIGHT: 多模型 chips (clean, labeled) -->
+      <g style="animation:floaty 6s ease-in-out infinite .6s;">
+        <g><rect x="380" y="160" width="120" height="26" rx="9" fill="#FFFFFF" stroke="#15161C" stroke-width="1.6"></rect><circle cx="396" cy="173" r="4" fill="#10A37F"></circle><text x="410" y="177" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600" fill="#3D3F49">GPT-4o</text></g>
+        <g><rect x="380" y="190" width="120" height="26" rx="9" fill="#F4F4FB" stroke="#15161C" stroke-width="1.6"></rect><circle cx="396" cy="203" r="4" fill="#D97757"></circle><text x="410" y="207" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600" fill="#3D3F49">Claude</text></g>
+        <g><rect x="380" y="220" width="120" height="26" rx="9" fill="#FFFFFF" stroke="#15161C" stroke-width="1.6"></rect><circle cx="396" cy="233" r="4" fill="#5A4FE6"></circle><text x="410" y="237" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600" fill="#3D3F49">通义千问</text></g>
+      </g>
+      <!-- labels -->
+      <text x="124" y="264" text-anchor="middle" font-family="Noto Sans SC, sans-serif" font-size="13" fill="#8A8C96">应用端</text>
+      <text x="280" y="126" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12.5" font-weight="600" fill="#5A4FE6">造物云 · 智核</text>
+      <text x="440" y="270" text-anchor="middle" font-family="Noto Sans SC, sans-serif" font-size="13" fill="#8A8C96">多模型</text>
+      <!-- code card -->
+      <g style="animation:floaty 7s ease-in-out infinite .2s;">
+        <rect x="18" y="40" width="196" height="92" rx="12" fill="#FFFFFF" stroke="rgba(21,22,28,.1)" stroke-width="1"></rect>
+        <text x="34" y="64" font-family="Space Grotesk, monospace" font-size="10.5" fill="#8A8C96">POST /v1/chat</text>
+        <text x="34" y="86" font-family="Space Grotesk, monospace" font-size="10.5" fill="#3D3F49">{ "model": <tspan fill="#5A4FE6">"auto"</tspan>,</text>
+        <text x="34" y="104" font-family="Space Grotesk, monospace" font-size="10.5" fill="#3D3F49">&#160;&#160;"messages": [ … ] }</text>
+      </g>
+      <g style="animation:floaty 7s ease-in-out infinite .5s;">
+        <rect x="352" y="278" width="196" height="88" rx="12" fill="#FFFFFF" stroke="rgba(21,22,28,.1)" stroke-width="1"></rect>
+        <text x="368" y="302" font-family="Space Grotesk, monospace" font-size="10.5" fill="#8A8C96">routed → gpt-4o</text>
+        <text x="368" y="324" font-family="Space Grotesk, monospace" font-size="10.5" fill="#3D3F49">latency <tspan fill="#0E9C6B">212ms</tspan></text>
+        <text x="368" y="342" font-family="Space Grotesk, monospace" font-size="10.5" fill="#3D3F49">cost <tspan fill="#0E9C6B">-38%</tspan></text>
+      </g>
+    </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROOF ===== -->
+<section style="max-width:1280px; margin:0 auto; padding:52px 40px 40px;">
+  <div class="zwy-hero" style="display:grid; grid-template-columns:1.15fr 1fr; gap:24px; align-items:center; background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:22px; padding:36px 40px; box-shadow:0 20px 50px -34px rgba(21,22,28,.2);">
+    <div>
+      <div style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.14em; color:#8A8C96; margin-bottom:12px;">COMPOUNDING — 复利</div>
+      <h2 style="font-size:27px; font-weight:700; letter-spacing:-.02em; margin:0 0 12px;">越用越聪明的，不是工具，<br>是你的公司</h2>
+      <p style="font-size:14.5px; color:#5A5C68; line-height:1.7; margin:0 0 24px; max-width:420px;">同样用一年，“买使用权”归零，“给所有权”复利上扬。资产账本让这条差距看得见。</p>
+      <div style="display:flex; gap:30px; font-family:'Space Grotesk',sans-serif;">
+        <div><div style="font-size:26px; font-weight:700; color:#15161C;">99.9%</div><div style="font-size:12px; color:#8A8C96;">可用性 SLA</div></div>
+        <div style="width:1px; background:rgba(21,22,28,.1);"></div>
+        <div><div style="font-size:26px; font-weight:700; color:#15161C;">私有化</div><div style="font-size:12px; color:#8A8C96;">数据不出域</div></div>
+      </div>
+    </div>
+    <div style="border:1px solid rgba(21,22,28,.08); border-radius:16px; padding:20px 22px; background:linear-gradient(160deg,#FBFBFE,#F4F3FB);">
+      <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:14px;"><div style="font-size:13.5px; font-weight:600;">沉淀资产</div><div style="font-family:'Space Grotesk',sans-serif; font-size:12px; color:#0E9C6B;">+38% MoM ↑</div></div>
+      <svg viewBox="0 0 440 170" style="width:100%; height:auto; display:block;" fill="none">
+        <defs><linearGradient id="hpArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5A4FE6" stop-opacity=".26"/><stop offset="1" stop-color="#5A4FE6" stop-opacity="0"/></linearGradient></defs>
+        <g stroke="rgba(21,22,28,.06)" stroke-width="1"><line x1="30" y1="20" x2="430" y2="20"/><line x1="30" y1="70" x2="430" y2="70"/><line x1="30" y1="120" x2="430" y2="120"/></g>
+        <path d="M30 128 L428 122" stroke="#C7C9D4" stroke-width="2" stroke-dasharray="4 5"/>
+        <text x="330" y="116" font-family="Space Grotesk, sans-serif" font-size="9" fill="#B7B9C4">买使用权</text>
+        <path d="M30 138 C 130 132, 210 108, 290 80 C 350 58, 400 34, 428 22 L428 145 L30 145 Z" fill="url(#hpArea)"/>
+        <path d="M30 138 C 130 132, 210 108, 290 80 C 350 58, 400 34, 428 22" stroke="#5A4FE6" stroke-width="2.6" stroke-linecap="round"/>
+        <circle cx="428" cy="22" r="4.5" fill="#5A4FE6" stroke="#fff" stroke-width="2"><animate attributeName="r" values="4.5;6.5;4.5" dur="2s" repeatCount="indefinite"/></circle>
+        <text x="300" y="52" font-family="Space Grotesk, sans-serif" font-size="9" fill="#5A4FE6" font-weight="600">给所有权</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<div id="cta" style="position:relative; top:-72px;"></div>
+<section style="max-width:1280px; margin:0 auto; padding:20px 40px 72px;">
+  <div style="position:relative; overflow:hidden; border-radius:24px; background:linear-gradient(120deg,#5A4FE6,#4331B8); padding:52px 48px; display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap;">
+    <div style="position:absolute; inset:0; background-image:radial-gradient(circle, rgba(255,255,255,.1) 1px, transparent 1px); background-size:22px 22px; opacity:.5;"></div>
+    <div style="position:relative;">
+      <h2 style="font-size:28px; font-weight:700; color:#fff; margin:0 0 8px;">让你的公司，开始记得自己是谁</h2>
+      <p style="font-size:15px; color:rgba(255,255,255,.8); margin:0; max-width:440px;">一次演示，看清楚 AI 产出如何在你的企业里被确权、沉淀、复利。</p>
+    </div>
+    <a href="#cta" style="position:relative; display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:#4331B8; background:#fff; border-radius:999px; padding:14px 26px; box-shadow:0 12px 30px -10px rgba(0,0,0,.4);" style-hover="transform:translateY(-2px)">预约演示 <span style="font-size:16px;">→</span></a>
+  </div>
+</section>
+
+<!-- Create with AI 品牌带 -->
+<section style="position:relative; overflow:hidden; background:linear-gradient(180deg, transparent 0%, #EDEEF3 46%, #EAECF2 100%); padding:104px 40px 6px; text-align:center;">
+  <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(50px,11vw,164px); line-height:.84; letter-spacing:-.05em; background:linear-gradient(180deg,#CBCDD9,#E2E3EB); -webkit-background-clip:text; background-clip:text; color:transparent; user-select:none;">Create with AI</div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer style="background:#EAECF2; border-top:1px solid rgba(21,22,28,.07); padding:56px 40px 32px;">
+  <div style="max-width:1280px; margin:0 auto;">
+    <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; padding-bottom:32px; border-bottom:1px solid rgba(21,22,28,.09);">
+      <div style="min-width:220px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;"><span data-mark data-size="28" style="display:inline-flex;"></span><span data-wm data-h="18" style="display:inline-flex; color:#15161C;"></span></div>
+        <p style="font-size:13px; color:#5A5C68; line-height:1.65; margin:0; max-width:250px;">企业智能的资产化系统。让 AI 产出的所有权，归你自己。</p>
+      </div>
+      <div><div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.1em; margin-bottom:16px; color:#9A9CA6;">PRODUCTS</div><div style="display:flex; flex-direction:column; gap:11px; font-size:13px;"><a href="api-hub.html" style="color:#5A5C68;" style-hover="color:#16181F">智核 · TOKEN HUB</a><a href="workbench.html" style="color:#5A5C68;" style-hover="color:#16181F">AI 工作台</a><a href="ledger.html" style="color:#5A5C68;" style-hover="color:#16181F">资产账本</a><a href="products.html" style="color:#5A5C68;" style-hover="color:#16181F">深脑</a></div></div>
+      <div><div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.1em; margin-bottom:16px; color:#9A9CA6;">SOLUTIONS</div><div style="display:flex; flex-direction:column; gap:11px; font-size:13px;"><a href="solutions.html" style="color:#5A5C68;" style-hover="color:#16181F">行业方案</a><a href="cases.html" style="color:#5A5C68;" style-hover="color:#16181F">客户案例</a><a href="ams.html" style="color:#5A5C68;" style-hover="color:#16181F">方法论 · AMS</a></div></div>
+      <div><div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.1em; margin-bottom:16px; color:#9A9CA6;">COMPANY</div><div style="display:flex; flex-direction:column; gap:11px; font-size:13px;"><a href="about.html" style="color:#5A5C68;" style-hover="color:#16181F">关于我们</a><a href="cases.html" style="color:#5A5C68;" style-hover="color:#16181F">客户案例</a><a href="news.html" style="color:#5A5C68;" style-hover="color:#16181F">资讯</a><a href="#cta" style="color:#5A5C68;" style-hover="color:#16181F">预约演示</a></div></div>
+    </div>
+    <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; padding-top:20px; font-size:11.5px; color:#9A9CA6; font-family:'Space Grotesk',sans-serif;">
+      <span>© 2026 杭州造物云技术有限公司</span>
+      <span style="display:flex; gap:16px; flex-wrap:wrap; align-items:center;"><a href="design-system.html" style="color:#9A9CA6;" style-hover="color:#16181F">设计系统</a><span>浙ICP备2021038972号-1 · 浙公网安备 33010602013219号</span></span>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const root = this.el || document;
+    // crystal mark (bright gem)
+    const PLATE = "M27.356405,6.5566244Q27.640217,6.7204833,27.900215,6.9199853Q28.16021,7.1194868,28.391941,7.3512182Q28.623672,7.5829496,28.823174,7.8429451Q29.022675,8.1029396,29.186533,8.3867512Q29.350391,8.6705627,29.475803,8.9733343Q29.601215,9.2761059,29.686035,9.5926561Q29.770855,9.9092064,29.813629,10.23412Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.813631,21.765881Q29.770855,22.090794,29.686037,22.407345Q29.601215,22.723896,29.475803,23.026669Q29.350391,23.329437,29.186531,23.613249Q29.022675,23.89706,28.823174,24.157059Q28.623672,24.417053,28.391941,24.648785Q28.16021,24.880516,27.900215,25.080017Q27.640217,25.279518,27.356405,25.443377L18.5,30.556623Q18.216188,30.720484,17.913418,30.845898Q17.610645,30.97131,17.294096,31.056129Q16.977547,31.140947,16.652632,31.183723Q16.327717,31.226498,16,31.226498Q15.672283,31.226498,15.347369,31.183723Q15.022456,31.140945,14.705906,31.056128Q14.389355,30.97131,14.086583,30.845898Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q4.3597822,25.279518,4.0997868,25.080017Q3.8397913,24.880516,3.6080601,24.648783Q3.3763289,24.417053,3.1768272,24.157059Q2.9773254,23.89706,2.8134668,23.613249Q2.6496081,23.329437,2.5241961,23.026669Q2.3987842,22.723896,2.3139648,22.407347Q2.2291453,22.090796,2.1863694,21.765881Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.1863689,10.23412Q2.2291448,9.9092064,2.3139644,9.5926561Q2.3987837,9.2761059,2.5241957,8.9733343Q2.6496074,8.6705627,2.8134661,8.3867512Q2.977325,8.1029396,3.1768267,7.8429446Q3.3763285,7.5829496,3.6080596,7.3512182Q3.8397908,7.1194868,4.0997868,6.9199853Q4.3597822,6.7204833,4.6435933,6.5566244L13.5,1.4433756Q13.783812,1.2795169,14.086583,1.1541051Q14.389355,1.0286931,14.705906,0.94387358Q15.022456,0.85905409,15.34737,0.8162784Q15.672283,0.77350271,16,0.77350271Q16.327717,0.77350277,16.652632,0.81627846Q16.977547,0.85905421,17.294096,0.9438737Q17.610645,1.0286932,17.913418,1.1541052Q18.216188,1.2795172,18.5,1.4433758L27.356405,6.5566244Z";
+    const F = { top:"M16 8 L22.928 12 L16 16 L9.072 12 Z", right:"M16 16 L22.928 12 L22.928 20 L16 24 Z", left:"M9.072 12 L16 16 L16 24 L9.072 20 Z" };
+    let u = 0;
+    root.querySelectorAll('[data-mark]').forEach(el => {
+      const s = +(el.dataset.size || 28); const id = 'pm' + (u++);
+      el.innerHTML = '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:' + s + 'px;height:' + s + 'px;display:block;filter:drop-shadow(0 2px 6px rgba(21,22,28,.18));">'
+        + '<defs>'
+        + '<linearGradient id="' + id + 't" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#CBB8FF"/><stop offset="1" stop-color="#A48DF4"/></linearGradient>'
+        + '<linearGradient id="' + id + 'r" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8E6DEE"/><stop offset="1" stop-color="#6B45DE"/></linearGradient>'
+        + '<linearGradient id="' + id + 'l" x1="0" y1="0" x2="0.2" y2="1"><stop offset="0" stop-color="#4E36BE"/><stop offset="1" stop-color="#2E1F86"/></linearGradient>'
+        + '</defs>'
+        + '<path d="' + PLATE + '" fill="#FFFFFF" stroke="rgba(21,22,28,.06)" stroke-width="0.5"/>'
+        + '<path d="' + F.left + '" fill="url(#' + id + 'l)"/>'
+        + '<path d="' + F.right + '" fill="url(#' + id + 'r)"/>'
+        + '<path d="' + F.top + '" fill="url(#' + id + 't)"/>'
+        + '</svg>';
+    });
+    // wordmark
+    const slots = Array.from(root.querySelectorAll('[data-wm]'));
+    fetch('assets-zwy/wordmark.svg').then(r => r.text()).then(txt => {
+      slots.forEach(w => { const h = +(w.dataset.h || 18); w.innerHTML = txt; const svg = w.querySelector('svg'); if (svg) { svg.removeAttribute('height'); svg.removeAttribute('width'); svg.style.height = h + 'px'; svg.style.width = 'auto'; svg.style.display = 'block'; } });
+    }).catch(() => { slots.forEach(w => { const h = +(w.dataset.h || 18); w.innerHTML = '<span style="font-weight:700;font-size:' + (h + 3) + 'px;">造物云</span>'; }); });
+    // reveal
+    const els = root.querySelectorAll('[data-reveal]');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((es) => { es.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = 1; e.target.style.transform = 'none'; io.unobserve(e.target); } }); }, { threshold: 0.12 });
+      els.forEach(e => io.observe(e));
+    } else { els.forEach(e => { e.style.opacity = 1; e.style.transform = 'none'; }); }
+  }
+}
+</script>
+</body>
+</html>

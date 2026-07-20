@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>价值观动画 · 造物云 v8</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing:border-box; }
+  body { margin:0; background:radial-gradient(ellipse 110% 60% at 50% -8%, #F1F1F8, #FBFBFD 56%); color:#15161C; font-family:'Noto Sans SC', system-ui, sans-serif; -webkit-font-smoothing:antialiased; line-height:1.7; }
+  ::selection { background:#5A4FE6; color:#fff; }
+  /* AI 产出粒子：从对话源落下，汇入资产 */
+  @keyframes drip { 0%{ transform:translateY(0) scale(1); opacity:0; } 12%{ opacity:1; } 78%{ transform:translateY(150px) scale(1); opacity:1; } 100%{ transform:translateY(168px) scale(.4); opacity:0; } }
+  /* 蒸发对照：无确权则漂走消失 */
+  @keyframes evaporate { 0%{ transform:translateY(0) scale(1); opacity:0; } 20%{ opacity:.7; } 100%{ transform:translateY(-60px) scale(.5); opacity:0; } }
+  /* 资产层叠加厚（构建一次） */
+  @keyframes stackIn { 0%{ transform:translateY(-26px); opacity:0; } 60%{ opacity:1; } 100%{ transform:translateY(0); opacity:1; } }
+  @keyframes rise { to { stroke-dashoffset:0; } }
+  @keyframes floaty { 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-6px);} }
+  @keyframes glowPulse { 0%,100%{ opacity:.5; } 50%{ opacity:1; } }
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; } }
+</style>
+</helmet>
+
+<div style="max-width:100%; overflow-x:clip;">
+<nav style="display:flex; align-items:center; justify-content:space-between; padding:0 40px; height:66px; border-bottom:1px solid rgba(21,22,28,.07);">
+  <div style="display:flex; align-items:center; gap:10px;"><span data-mark data-size="26" style="display:inline-flex;"></span><span data-wm data-h="16" style="display:inline-flex; color:#15161C;"></span></div>
+  <a href="index.html#cta" style="font-size:13px; font-weight:600; color:#fff; background:#5A4FE6; border-radius:999px; padding:9px 18px; text-decoration:none;">预约演示</a>
+</nav>
+
+<section style="max-width:1280px; margin:0 auto; padding:60px 40px 80px; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
+  <div>
+    <div style="display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid rgba(21,22,28,.09); border-radius:999px; padding:6px 14px; box-shadow:0 2px 8px rgba(21,22,28,.04); margin-bottom:24px;">
+      <span style="width:16px; height:16px; border-radius:50%; background:#5A4FE6; display:flex; align-items:center; justify-content:center;"><span style="width:5px; height:5px; border-radius:50%; background:#fff;"></span></span>
+      <span style="font-size:12.5px; font-weight:500; color:#3D3F49;">企业智能的资产化系统</span>
+    </div>
+    <h1 style="font-size:clamp(36px,5vw,56px); font-weight:700; letter-spacing:-.02em; line-height:1.16; margin:0 0 20px;">智能变成自来水，<br>你唯一的不同，<br>是<span style="color:#5A4FE6;">记得自己是谁</span>。</h1>
+    <p style="font-size:16.5px; color:#5A5C68; line-height:1.75; max-width:490px; margin:0 0 26px;">别人卖你 AI 的<b style="color:#15161C;">使用权</b>，我们给你 AI 产出的<b style="color:#15161C;">所有权</b>。判断、方法与成果不再蒸发——它们被确权、沉淀成归你所有、越用越厚的数字资产。<b style="color:#15161C;">费用消失，资产复利。</b></p>
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <a href="index.html#cta" style="display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:#fff; background:#5A4FE6; border-radius:999px; padding:13px 24px; box-shadow:0 2px 6px rgba(0,0,0,.12),0 14px 30px -12px #5A4FE6; text-decoration:none;">预约演示 <span style="font-size:16px;">→</span></a>
+      <a href="#" style="display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:#15161C; background:#fff; border:1px solid rgba(21,22,28,.12); border-radius:999px; padding:13px 24px; text-decoration:none;">看它怎么运转</a>
+    </div>
+  </div>
+
+  <!-- Asset-compounding visual -->
+  <div style="position:relative; border-radius:28px; background:linear-gradient(160deg,#FFFFFF,#F2F2FA); border:1px solid rgba(21,22,28,.06); box-shadow:0 30px 60px -30px rgba(21,22,28,.16); padding:22px; aspect-ratio:1/1; overflow:hidden;">
+    <div style="position:absolute; inset:0; background-image:radial-gradient(circle, rgba(21,22,28,.045) 1px, transparent 1px); background-size:22px 22px;"></div>
+    <svg viewBox="0 0 440 440" style="position:relative; width:100%; height:100%; display:block;" fill="none">
+      <defs>
+        <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8E74F2"/><stop offset="1" stop-color="#5B44D6"/></linearGradient>
+        <linearGradient id="curve" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#C7C4E8"/><stop offset="1" stop-color="#5A4FE6"/></linearGradient>
+      </defs>
+
+      <!-- compounding curve (越用越厚) -->
+      <path d="M46 392 C 150 388, 250 350, 300 250 S 372 96, 398 60" stroke="url(#curve)" stroke-width="3" stroke-linecap="round" stroke-dasharray="620" stroke-dashoffset="620" style="animation:rise 3.4s cubic-bezier(.4,1,.6,1) 1.2s forwards;"/>
+
+      <!-- source: AI 产出 -->
+      <g style="animation:floaty 6s ease-in-out infinite;">
+        <rect x="140" y="30" width="160" height="46" rx="14" fill="#fff" stroke="rgba(21,22,28,.1)"/>
+        <circle cx="164" cy="53" r="4" fill="#5A4FE6"/>
+        <text x="180" y="57" font-family="Noto Sans SC, sans-serif" font-size="13" fill="#3D3F49">AI 对话 · 判断 · 成果</text>
+      </g>
+
+      <!-- 蒸发对照（少量漂走消失） -->
+      <rect x="316" y="90" width="12" height="12" rx="4" fill="#C7C9D2" style="transform-box:fill-box; transform-origin:center; animation:evaporate 2.8s ease-out infinite .3s;"/>
+      <rect x="322" y="96" width="9" height="9" rx="3" fill="#D6D8E0" style="transform-box:fill-box; transform-origin:center; animation:evaporate 3.2s ease-out infinite 1.4s;"/>
+      <text x="360" y="104" font-family="Noto Sans SC, sans-serif" font-size="11" fill="#B7B9C2">未确权 → 蒸发</text>
+
+      <!-- 落下的产出粒子（汇入资产） -->
+      <g style="transform-box:fill-box;"><rect x="196" y="92" width="16" height="16" rx="5" fill="#7B5FEA" style="transform-box:fill-box; transform-origin:center; animation:drip 1.8s cubic-bezier(.5,0,.7,1) infinite;"/></g>
+      <rect x="214" y="92" width="13" height="13" rx="4" fill="#9A80F0" style="transform-box:fill-box; transform-origin:center; animation:drip 1.8s cubic-bezier(.5,0,.7,1) infinite .45s;"/>
+      <rect x="204" y="92" width="11" height="11" rx="4" fill="#6B4FE0" style="transform-box:fill-box; transform-origin:center; animation:drip 1.8s cubic-bezier(.5,0,.7,1) infinite .9s;"/>
+      <rect x="222" y="92" width="14" height="14" rx="4" fill="#8E74F2" style="transform-box:fill-box; transform-origin:center; animation:drip 1.8s cubic-bezier(.5,0,.7,1) infinite 1.35s;"/>
+
+      <!-- 资产层叠（越用越厚·每块确权） -->
+      <g style="animation:floaty 7s ease-in-out infinite;">
+        <rect x="150" y="356" width="150" height="20" rx="7" fill="url(#tile)" style="transform-box:fill-box; animation:stackIn .6s cubic-bezier(.4,1,.6,1) .2s both;"/>
+        <rect x="156" y="332" width="138" height="20" rx="7" fill="url(#tile)" style="transform-box:fill-box; animation:stackIn .6s cubic-bezier(.4,1,.6,1) .5s both;"/>
+        <rect x="150" y="308" width="150" height="20" rx="7" fill="url(#tile)" style="transform-box:fill-box; animation:stackIn .6s cubic-bezier(.4,1,.6,1) .8s both;"/>
+        <rect x="160" y="284" width="130" height="20" rx="7" fill="url(#tile)" style="transform-box:fill-box; animation:stackIn .6s cubic-bezier(.4,1,.6,1) 1.1s both;"/>
+        <rect x="154" y="260" width="142" height="20" rx="7" fill="url(#tile)" style="transform-box:fill-box; animation:stackIn .6s cubic-bezier(.4,1,.6,1) 1.4s both;"/>
+        <!-- 确权锁标记 -->
+        <g style="animation:glowPulse 2.6s ease-in-out infinite;">
+          <circle cx="290" cy="366" r="3" fill="#fff"/><circle cx="284" cy="342" r="3" fill="#fff"/><circle cx="290" cy="318" r="3" fill="#fff"/>
+        </g>
+      </g>
+      <text x="225" y="410" text-anchor="middle" font-family="Noto Sans SC, sans-serif" font-size="14" font-weight="600" fill="#15161C">你的资产 · 越用越厚 · 归你所有</text>
+    </svg>
+    <!-- counter -->
+    <div style="position:absolute; left:22px; bottom:20px; font-family:'Space Grotesk',sans-serif;">
+      <div style="font-size:12px; color:#8A8C96;">沉淀资产</div>
+      <div style="font-size:26px; font-weight:700; color:#5A4FE6; line-height:1;"><span data-count>9.5</span>万<span style="font-size:16px;">+</span> <span style="font-size:14px; color:#0E9C6B;">↑</span></div>
+    </div>
+  </div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const root = this.el || document;
+    const PLATE = "M27.356405,6.5566244Q27.640217,6.7204833,27.900215,6.9199853Q28.16021,7.1194868,28.391941,7.3512182Q28.623672,7.5829496,28.823174,7.8429451Q29.022675,8.1029396,29.186533,8.3867512Q29.350391,8.6705627,29.475803,8.9733343Q29.601215,9.2761059,29.686035,9.5926561Q29.770855,9.9092064,29.813629,10.23412Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.813631,21.765881Q29.770855,22.090794,29.686037,22.407345Q29.601215,22.723896,29.475803,23.026669Q29.350391,23.329437,29.186531,23.613249Q29.022675,23.89706,28.823174,24.157059Q28.623672,24.417053,28.391941,24.648785Q28.16021,24.880516,27.900215,25.080017Q27.640217,25.279518,27.356405,25.443377L18.5,30.556623Q18.216188,30.720484,17.913418,30.845898Q17.610645,30.97131,17.294096,31.056129Q16.977547,31.140947,16.652632,31.183723Q16.327717,31.226498,16,31.226498Q15.672283,31.226498,15.347369,31.183723Q15.022456,31.140945,14.705906,31.056128Q14.389355,30.97131,14.086583,30.845898Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q4.3597822,25.279518,4.0997868,25.080017Q3.8397913,24.880516,3.6080601,24.648783Q3.3763289,24.417053,3.1768272,24.157059Q2.9773254,23.89706,2.8134668,23.613249Q2.6496081,23.329437,2.5241961,23.026669Q2.3987842,22.723896,2.3139648,22.407347Q2.2291453,22.090796,2.1863694,21.765881Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.1863689,10.23412Q2.2291448,9.9092064,2.3139644,9.5926561Q2.3987837,9.2761059,2.5241957,8.9733343Q2.6496074,8.6705627,2.8134661,8.3867512Q2.977325,8.1029396,3.1768267,7.8429446Q3.3763285,7.5829496,3.6080596,7.3512182Q3.8397908,7.1194868,4.0997868,6.9199853Q4.3597822,6.7204833,4.6435933,6.5566244L13.5,1.4433756Q13.783812,1.2795169,14.086583,1.1541051Q14.389355,1.0286931,14.705906,0.94387358Q15.022456,0.85905409,15.34737,0.8162784Q15.672283,0.77350271,16,0.77350271Q16.327717,0.77350277,16.652632,0.81627846Q16.977547,0.85905421,17.294096,0.9438737Q17.610645,1.0286932,17.913418,1.1541052Q18.216188,1.2795172,18.5,1.4433758L27.356405,6.5566244Z";
+    const F = { top:"M16 8 L22.928 12 L16 16 L9.072 12 Z", right:"M16 16 L22.928 12 L22.928 20 L16 24 Z", left:"M9.072 12 L16 16 L16 24 L9.072 20 Z" };
+    let u = 0;
+    root.querySelectorAll('[data-mark]').forEach(el => {
+      const s = +(el.dataset.size || 26); const id = 'vm' + (u++);
+      el.innerHTML = '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:' + s + 'px;height:' + s + 'px;display:block;filter:drop-shadow(0 2px 6px rgba(21,22,28,.16));">'
+        + '<defs><linearGradient id="' + id + 't" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#CBB8FF"/><stop offset="1" stop-color="#A48DF4"/></linearGradient>'
+        + '<linearGradient id="' + id + 'r" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8E6DEE"/><stop offset="1" stop-color="#6B45DE"/></linearGradient>'
+        + '<linearGradient id="' + id + 'l" x1="0" y1="0" x2="0.2" y2="1"><stop offset="0" stop-color="#4E36BE"/><stop offset="1" stop-color="#2E1F86"/></linearGradient></defs>'
+        + '<path d="' + PLATE + '" fill="#FFFFFF" stroke="rgba(21,22,28,.06)" stroke-width="0.5"/>'
+        + '<path d="' + F.left + '" fill="url(#' + id + 'l)"/><path d="' + F.right + '" fill="url(#' + id + 'r)"/><path d="' + F.top + '" fill="url(#' + id + 't)"/></svg>';
+    });
+    const slots = Array.from(root.querySelectorAll('[data-wm]'));
+    fetch('assets-zwy/wordmark.svg').then(r => r.text()).then(txt => {
+      slots.forEach(w => { const h = +(w.dataset.h || 16); w.innerHTML = txt; const svg = w.querySelector('svg'); if (svg) { svg.removeAttribute('height'); svg.removeAttribute('width'); svg.style.height = h + 'px'; svg.style.width = 'auto'; svg.style.display = 'block'; } });
+    }).catch(() => { slots.forEach(w => { w.innerHTML = '<span style="font-weight:700;font-size:19px;">造物云</span>'; }); });
+    // counter: 9.1 → 9.5 loop, conveying 越用越厚
+    const c = root.querySelector('[data-count]');
+    if (c && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+      let v = 9.1;
+      setInterval(() => { v += 0.01; if (v >= 9.5) v = 9.1; c.textContent = v.toFixed(1); }, 90);
+    }
+  }
+}
+</script>
+</body>
+</html>

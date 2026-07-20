@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>设计系统 · 造物云 v8</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07070F; --fg:#ECEEFF; --fg2:rgba(236,238,255,.52); --fg3:rgba(236,238,255,.28); --fgStrong:rgba(236,238,255,.72);
+    --accent:#7B80FF; --accentDeep:#5B5FE0; --acBg:rgba(123,128,255,.13);
+    --sloganInk:rgba(236,238,255,.05); --bg2:#100D24;
+    --surf:rgba(255,255,255,.05); --glass:rgba(255,255,255,.06); --card:rgba(255,255,255,.055); --demo:rgba(255,255,255,.03); --panel:rgba(255,255,255,.022);
+    --glassA:rgba(255,255,255,.035); --glassB:rgba(255,255,255,.07); --glassC:rgba(255,255,255,.11);
+    --bdr:rgba(255,255,255,.08); --bdrSoft:rgba(255,255,255,.05); --bdrBrt:rgba(255,255,255,.16); --glassTop:rgba(255,255,255,.16);
+    --navBg:rgba(9,10,20,.72); --navBdr:rgba(255,255,255,.09);
+    --ftrBg:#0E0A1E; --ftrBdr:rgba(255,255,255,.12); --ftrStrong:rgba(255,255,255,.85); --ftrText:rgba(255,255,255,.5); --ftrFaint:rgba(255,255,255,.4);
+    --ok:#4ECDA0; --info:#6AA6F5; --warn:#E8B45A; --err:#EC6E77; --okBg:rgba(78,205,160,.13); --infoBg:rgba(106,166,245,.13); --warnBg:rgba(232,180,90,.13); --errBg:rgba(236,110,119,.13);
+    --heroInk:#ECEEFF; --heroSub:rgba(236,238,255,.6); --heroBase:#07070F;
+    --glow1:rgba(123,128,255,.4); --glow2:rgba(90,95,224,.24); --glow3:rgba(56,120,248,.12);
+    --bubble:rgba(255,255,255,.05); --bubbleBdr:rgba(255,255,255,.06);
+    --shGlass:inset 0 1px 0 var(--glassTop),0 1px 2px rgba(0,0,0,.35),0 12px 32px -10px rgba(0,0,0,.5);
+    --sh1:0 1px 2px rgba(0,0,0,.45),0 5px 14px -4px rgba(0,0,0,.5);
+    --sh2:0 2px 6px rgba(0,0,0,.4),0 14px 34px -8px rgba(0,0,0,.55),0 34px 68px -24px rgba(0,0,0,.5);
+  }
+  html[data-theme="light"]{
+    --bg:#F4F5F8; --fg:#16181F; --fg2:rgba(22,24,31,.56); --fg3:rgba(22,24,31,.40); --fgStrong:rgba(22,24,31,.80);
+    --accent:#5A4FE6; --accentDeep:#4438C4; --acBg:rgba(90,79,230,.08);
+    --sloganInk:rgba(22,24,31,.045); --bg2:#EDEEF6;
+    --surf:rgba(255,255,255,.72); --glass:rgba(255,255,255,.7); --card:rgba(255,255,255,.8); --demo:rgba(22,24,31,.025); --panel:rgba(22,24,31,.016);
+    --glassA:rgba(255,255,255,.5); --glassB:rgba(255,255,255,.72); --glassC:rgba(255,255,255,.9);
+    --bdr:rgba(22,24,31,.10); --bdrSoft:rgba(22,24,31,.06); --bdrBrt:rgba(22,24,31,.17); --glassTop:rgba(255,255,255,.92);
+    --navBg:rgba(244,245,248,.82); --navBdr:rgba(22,24,31,.07);
+    --ftrBg:#EAECF2; --ftrBdr:rgba(22,24,31,.10); --ftrStrong:rgba(22,24,31,.86); --ftrText:rgba(22,24,31,.56); --ftrFaint:rgba(22,24,31,.42);
+    --ok:#0E9C6B; --info:#2C74D6; --warn:#B77A22; --err:#D8474F; --okBg:rgba(14,156,107,.1); --infoBg:rgba(44,116,214,.1); --warnBg:rgba(183,122,34,.1); --errBg:rgba(216,71,79,.1);
+    --heroInk:#171826; --heroSub:rgba(23,24,38,.62); --heroBase:#ECEDF5;
+    --glow1:rgba(90,79,230,.15); --glow2:rgba(120,95,235,.09); --glow3:rgba(70,130,240,.07);
+    --bubble:rgba(90,79,230,.05); --bubbleBdr:rgba(90,79,230,.09);
+    --shGlass:inset 0 1px 0 var(--glassTop),0 0 0 1px rgba(24,21,14,.04),0 12px 30px -10px rgba(24,21,14,.10);
+    --sh1:0 0 0 1px rgba(24,21,14,.05),0 1px 2px rgba(24,21,14,.05),0 4px 10px -3px rgba(24,21,14,.06);
+    --sh2:0 0 0 1px rgba(24,21,14,.05),0 2px 6px rgba(24,21,14,.05),0 14px 28px -8px rgba(24,21,14,.09),0 28px 56px -18px rgba(24,21,14,.07);
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; scroll-padding-top:72px; }
+  body { margin:0; background:var(--bg); background-image:radial-gradient(ellipse 130% 620px at 50% -180px, var(--bg2), transparent 72%); background-repeat:no-repeat; color:var(--fg); font-family:'Noto Sans SC', system-ui, -apple-system, sans-serif; -webkit-font-smoothing:antialiased; line-height:1.7; transition:background-color .3s ease, color .3s ease; }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { color:var(--accentDeep); }
+  ::selection { background:var(--accent); color:#fff; }
+  ::placeholder { color:var(--fg3); }
+  :focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+  html { scrollbar-color: var(--bdrBrt) transparent; scrollbar-width: thin; }
+  ::-webkit-scrollbar { width:11px; height:11px; }
+  ::-webkit-scrollbar-track { background:transparent; }
+  ::-webkit-scrollbar-thumb { background:var(--bdrBrt); border-radius:99px; border:3px solid transparent; background-clip:content-box; }
+  ::-webkit-scrollbar-thumb:hover { background:var(--fg3); background-clip:content-box; }
+  @keyframes zwyShim { 0%,72%,100%{ filter:brightness(1);} 12%{ filter:brightness(1.28);} }
+  @keyframes zwyPulse { 0%,100%{ transform:scale(1);} 50%{ transform:scale(1.12);} }
+  @keyframes zwyFade { 0%{ opacity:.2; transform:translateY(12px);} 100%{ opacity:1; transform:translateY(0);} }
+  @keyframes gemGlow { 0%,100%{ transform:translate(-50%,-50%) scale(1); opacity:.85;} 50%{ transform:translate(-50%,-50%) scale(1.06); opacity:1;} }
+  @keyframes gemCalm { 0%,100%{ transform:scale(.985) translateY(0); opacity:.4;} 50%{ transform:scale(1.02) translateY(-2px); opacity:.66;} }
+  @keyframes gemDeep { 0%,100%{ transform:scale(.96) translateY(2px); opacity:.5;} 50%{ transform:scale(1.075) translateY(-5px); opacity:1;} }
+  @keyframes gemSweep { 0%{ transform:translateX(-140%);} 100%{ transform:translateX(240%);} }
+  @keyframes gemDot { 0%,60%,100%{ opacity:.25; transform:translateY(0);} 30%{ opacity:1; transform:translateY(-4px);} }
+  @keyframes zwyFloat { 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-9px);} }
+  @keyframes dvDraw { to { stroke-dashoffset:0; } }
+  @keyframes skShine { 0%{ background-position:100% 0; } 100%{ background-position:0 0; } }
+  @media (max-width: 900px){ [data-hero-anchor]{ display:none !important; } }
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; } }
+</style>
+</helmet>
+
+<div style="max-width:100%; overflow-x:clip;">
+
+<!-- ===== NAV ===== -->
+<nav data-nav style="position:sticky; top:0; z-index:60; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:0 40px; height:64px; background:var(--navBg); backdrop-filter:saturate(180%) blur(22px); -webkit-backdrop-filter:saturate(180%) blur(22px); border-bottom:1px solid var(--navBdr); transition:height .3s cubic-bezier(.4,1,.6,1), box-shadow .3s ease, border-color .3s ease;">
+  <div style="display:flex; align-items:center; gap:10px;">
+    <span data-mark data-size="26" data-shimmer="1" data-elevate="1" style="display:inline-flex;"></span>
+    <span data-wm data-h="15" style="display:inline-flex; align-items:center; color:var(--fg);"></span>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; font-weight:600; letter-spacing:.08em; color:var(--fg3); padding-left:8px; border-left:1px solid var(--bdr);">DESIGN SYSTEM</span>
+  </div>
+  <div style="display:flex; align-items:center; gap:2px; font-size:12.5px; overflow-x:auto;">
+    <a href="#essence" style="color:var(--fg2); padding:7px 10px; border-radius:8px; white-space:nowrap;" style-hover="background:var(--surf); color:var(--fg)">内核</a>
+    <a href="#logo" style="color:var(--fg2); padding:7px 10px; border-radius:8px; white-space:nowrap;" style-hover="background:var(--surf); color:var(--fg)">Logo</a>
+    <a href="#color" style="color:var(--fg2); padding:7px 10px; border-radius:8px; white-space:nowrap;" style-hover="background:var(--surf); color:var(--fg)">配色</a>
+    <a href="#type" style="color:var(--fg2); padding:7px 10px; border-radius:8px; white-space:nowrap;" style-hover="background:var(--surf); color:var(--fg)">字体</a>
+    <a href="#icon" style="color:var(--fg2); padding:7px 10px; border-radius:8px; white-space:nowrap;" style-hover="background:var(--surf); color:var(--fg)">图标</a>
+    <a href="#space" style="color:var(--fg2); padding:7px 10px; border-radius:8px; white-space:nowrap;" style-hover="background:var(--surf); color:var(--fg)">间距</a>
+    <a href="#shape" style="color:var(--fg2); padding:7px 10px; border-radius:8px; white-space:nowrap;" style-hover="background:var(--surf); color:var(--fg)">圆角阴影</a>
+    <a href="#motion" style="color:var(--fg2); padding:7px 10px; border-radius:8px; white-space:nowrap;" style-hover="background:var(--surf); color:var(--fg)">动效</a>
+    <a href="#nav" style="color:var(--fg2); padding:7px 10px; border-radius:8px; white-space:nowrap;" style-hover="background:var(--surf); color:var(--fg)">导航栏</a>
+    <a href="#components" style="color:var(--fg2); padding:7px 10px; border-radius:8px; white-space:nowrap;" style-hover="background:var(--surf); color:var(--fg)">组件</a>
+    <a href="#dataviz" style="color:var(--fg2); padding:7px 10px; border-radius:8px; white-space:nowrap;" style-hover="background:var(--surf); color:var(--fg)">数据</a>
+    <a href="#grid" style="color:var(--fg2); padding:7px 10px; border-radius:8px; white-space:nowrap;" style-hover="background:var(--surf); color:var(--fg)">栅格</a>
+    <a href="#feedback" style="color:var(--fg2); padding:7px 10px; border-radius:8px; white-space:nowrap;" style-hover="background:var(--surf); color:var(--fg)">反馈</a>
+    <a href="#states" style="color:var(--fg2); padding:7px 10px; border-radius:8px; white-space:nowrap;" style-hover="background:var(--surf); color:var(--fg)">状态</a>
+    <a href="#a11y" style="color:var(--fg2); padding:7px 10px; border-radius:8px; white-space:nowrap;" style-hover="background:var(--surf); color:var(--fg)">无障碍</a>
+    <a href="#voice" style="color:var(--fg2); padding:7px 10px; border-radius:8px; white-space:nowrap;" style-hover="background:var(--surf); color:var(--fg)">语气</a>
+    <button data-theme-btn aria-label="切换明暗主题" title="切换明暗主题" style="flex-shrink:0; width:34px; height:34px; margin-left:6px; border-radius:50%; border:1px solid var(--bdr); background:var(--surf); color:var(--fg2); cursor:pointer; display:flex; align-items:center; justify-content:center;"></button>
+  </div>
+</nav>
+
+<!-- ===== HERO (Gemini-infused: deep-space glow + breathing dialogs + live field) ===== -->
+<section style="position:relative; overflow:hidden; padding:104px 40px 88px; background:radial-gradient(ellipse 75% 60% at 70% 35%,var(--glow1),transparent 60%),radial-gradient(ellipse 45% 55% at 12% 82%,var(--glow2),transparent 55%),radial-gradient(ellipse 30% 40% at 88% 75%,var(--glow3),transparent 50%),var(--heroBase);">
+  <!-- ambient breathing glow -->
+  <div data-hero-glow style="position:absolute; left:64%; top:46%; width:1100px; height:820px; background:radial-gradient(ellipse 40% 44% at 50% 50%, var(--glow1) 0%, var(--glow2) 34%, transparent 66%); filter:blur(8px); animation:gemGlow 9s ease-in-out infinite; pointer-events:none; z-index:0;"></div>
+  <!-- breathing dialog bubbles -->
+
+  <div style="position:relative; z-index:2; max-width:1280px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,360px); gap:56px; align-items:center;">
+   <div>
+    <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; font-weight:700; letter-spacing:.16em; color:var(--accent); margin-bottom:16px;">ZAOWUYUN · DESIGN SYSTEM</div>
+    <h1 style="font-size:clamp(38px,5vw,60px); font-weight:600; line-height:1.14; letter-spacing:-.02em; margin:0 0 20px; color:var(--heroInk);">造物云<span style="color:var(--accent);">设计系统</span><br>整站的单一可信来源。</h1>
+    <p style="font-size:17px; color:var(--heroSub); max-width:560px; line-height:1.7; margin:0 0 32px; font-weight:400;">颜色、渐变、字体、间距、圆角、阴影、动效与核心组件，都在这里定义一次。官网每一页都从这套令牌与组件长出来——改这里，等于改全站。</p>
+
+    <!-- live command field (Gemini texture infused) -->
+    <div data-cmd-box style="max-width:560px; display:flex; align-items:center; gap:12px; background:var(--glass); border:1px solid var(--bdr); border-radius:999px; padding:0 8px 0 20px; height:60px; box-shadow:var(--shGlass); backdrop-filter:saturate(180%) blur(22px); -webkit-backdrop-filter:saturate(180%) blur(22px); transition:box-shadow .5s ease, transform .5s cubic-bezier(.22,.61,.36,1);">
+      <span data-mark data-size="22" data-elevate="1" style="display:inline-flex; flex-shrink:0;"></span>
+      <input data-cmd-input type="text" placeholder="问问造物云 · 试试“接入一个模型”" style="flex:1; min-width:0; height:100%; background:none; border:none; outline:none; color:var(--fg); font-family:inherit; font-size:15.5px;">
+      <button style="flex-shrink:0; width:44px; height:44px; border-radius:50%; border:none; background:var(--accent); color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px -6px var(--accent); transition:background .2s, transform .2s;" style-hover="background:var(--accentDeep); transform:scale(1.05)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+    <div data-cmd-hint style="margin-top:14px; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.02em; transition:opacity .4s ease;">聚焦输入框 — 背后的对话会“深呼吸”，这是造物云的科技质感底噪。</div>
+   </div>
+   <!-- right visual anchor: crystal + floating spec chips -->
+   <div data-hero-anchor style="position:relative; height:340px; display:flex; align-items:center; justify-content:center;">
+     <div style="position:absolute; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle,var(--glow1),transparent 68%); filter:blur(10px);"></div>
+     <span data-mark data-size="150" data-shimmer="1" data-elevate="1" style="position:relative; display:inline-flex; animation:zwyFloat 6s ease-in-out infinite;"></span>
+     <div style="position:absolute; top:24px; right:2px; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; font-weight:600; color:var(--fg2); background:var(--glass); border:1px solid var(--bdr); border-radius:10px; padding:7px 11px; box-shadow:var(--shGlass); backdrop-filter:blur(12px); animation:zwyFloat 5.2s ease-in-out infinite .3s;"><span style="color:var(--accent);">#</span> 7B80FF</div>
+     <div style="position:absolute; bottom:38px; left:0; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; font-weight:600; color:var(--fg2); background:var(--glass); border:1px solid var(--bdr); border-radius:10px; padding:7px 11px; box-shadow:var(--shGlass); backdrop-filter:blur(12px); animation:zwyFloat 5.8s ease-in-out infinite .6s;">radius 16</div>
+     <div style="position:absolute; bottom:4px; right:22px; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; font-weight:600; color:var(--fg2); background:var(--glass); border:1px solid var(--bdr); border-radius:10px; padding:7px 11px; box-shadow:var(--shGlass); backdrop-filter:blur(12px); animation:zwyFloat 6.4s ease-in-out infinite .15s;">easing · calm</div>
+   </div>
+  </div>
+</section>
+
+<!-- ===== 01 品牌内核 ===== -->
+<section id="essence" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">01</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">品牌内核</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Brand Essence</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:680px; margin:0 0 32px;">设计系统不是色卡的堆叠，而是一种态度的延续。造物云的视觉语言围绕三个词展开，所有令牌与组件都为它们服务。</p>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px;">
+    <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); background:var(--card); border:1px solid var(--bdr); border-radius:22px; padding:26px; box-shadow:var(--shGlass); backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px);">
+      <div style="width:44px; height:44px; border-radius:12px; background:var(--acBg); border:1px solid var(--bdr); display:flex; align-items:center; justify-content:center; color:var(--accent); margin-bottom:16px;"><svg width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M9 2L11 7L16 9L11 11L9 16L7 11L2 9L7 7L9 2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+      <h3 style="font-size:19px; font-weight:600; margin:0 0 8px;">基础设施感</h3>
+      <p style="font-size:14px; color:var(--fg2); line-height:1.65; margin:0;">智能像电力一样随取随用。视觉传达稳定、可计量、可信赖——克制的留白、精确的网格、可预期的交互。</p>
+    </div>
+    <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); background:var(--card); border:1px solid var(--bdr); border-radius:22px; padding:26px; box-shadow:var(--shGlass); backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px);">
+      <div style="width:44px; height:44px; border-radius:12px; background:var(--acBg); border:1px solid var(--bdr); display:flex; align-items:center; justify-content:center; color:var(--accent); margin-bottom:16px;"><svg width="20" height="20" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="1.3"/><path d="M9 5.5V9L11.5 10.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+      <h3 style="font-size:19px; font-weight:600; margin:0 0 8px;">专业冷感</h3>
+      <p style="font-size:14px; color:var(--fg2); line-height:1.65; margin:0;">面向企业的判断力。深空底色、紫蓝主调、思源黑体标题，传达技术的深度与产品的成熟，不卖萌、不喧哗。</p>
+    </div>
+    <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); background:var(--card); border:1px solid var(--bdr); border-radius:22px; padding:26px; box-shadow:var(--shGlass); backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px);">
+      <div style="width:44px; height:44px; border-radius:12px; background:var(--acBg); border:1px solid var(--bdr); display:flex; align-items:center; justify-content:center; color:var(--accent); margin-bottom:16px;"><svg width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M3 13C3 8 6 4.5 9 4.5S15 8 15 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="9" cy="13" r="1.4" fill="currentColor"/></svg></div>
+      <h3 style="font-size:19px; font-weight:600; margin:0 0 8px;">高光的活力</h3>
+      <p style="font-size:14px; color:var(--fg2); line-height:1.65; margin:0;">玻璃拟态、柔和渐变、会“呼吸”的背景对话——在专业之上留一束光，让“企业级”不等于“冰冷”。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 02 LOGO ===== -->
+<section id="logo" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">02</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">品牌标 · Logo</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Brand Mark</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:720px; margin:0 0 32px;">由<b style="color:var(--fg);">晶体标记</b>（白色超椭圆底板 + 三面紫色晶体）与<b style="color:var(--fg);">“造物云”字标</b>组成。字标为独立 SVG，用 currentColor 随背景反相。深、浅、紫底都用同一枚完整标记——浅底只多补一层承托投影 + 发丝边，绝不拆掉白底板。三面明度顺序「顶亮 · 左深」不可改。</p>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px;">
+    <div style="border:1px solid var(--bdr); border-radius:18px; overflow:hidden;">
+      <div style="height:150px; display:flex; align-items:center; justify-content:center; background:#07070F;"><span data-mark data-size="64" data-shimmer="1" style="display:inline-flex;"></span></div>
+      <div style="padding:11px 14px; border-top:1px solid var(--bdr); background:var(--card); font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">MARK · 深底（白板自带边界）</div>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:18px; overflow:hidden;">
+      <div style="height:150px; display:flex; align-items:center; justify-content:center; background:#F8F6F0;"><span data-mark data-size="64" data-elevate="1" data-hairline="1" style="display:inline-flex;"></span></div>
+      <div style="padding:11px 14px; border-top:1px solid var(--bdr); background:var(--card); font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">MARK · 浅底（承托投影 + 发丝边）</div>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:18px; overflow:hidden;">
+      <div style="height:150px; display:flex; align-items:center; justify-content:center; gap:12px; background:#07070F;"><span data-mark data-size="34" style="display:inline-flex;"></span><span data-wm data-h="22" style="display:inline-flex; color:#ECEEFF;"></span></div>
+      <div style="padding:11px 14px; border-top:1px solid var(--bdr); background:var(--card); font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">LOCKUP · 横向组合（默认）</div>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:18px; overflow:hidden;">
+      <div style="height:150px; display:flex; align-items:center; justify-content:center; gap:12px; background:linear-gradient(135deg,#6F76F2,#302B8F);"><span data-mark data-size="34" data-pal="mono" style="display:inline-flex;"></span><span data-wm data-h="22" style="display:inline-flex; color:#fff;"></span></div>
+      <div style="padding:11px 14px; border-top:1px solid var(--bdr); background:var(--card); font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">LOCKUP · 品牌紫底（反白全彩）</div>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:18px; overflow:hidden;">
+      <div style="height:150px; display:flex; align-items:center; justify-content:center; gap:12px; background:#0C0B12;"><span data-mark data-size="46" data-knockout="1" style="display:inline-flex; color:#ECEEFF;"></span><span data-wm data-h="24" style="display:inline-flex; color:#ECEEFF;"></span></div>
+      <div style="padding:11px 14px; border-top:1px solid var(--bdr); background:var(--card); font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">MONO · 仿白挖空（单色版 · 晶体镂空透底）</div>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:18px; overflow:hidden;">
+      <div style="height:150px; display:flex; align-items:center; justify-content:center; gap:12px; background:var(--accent);"><span data-mark data-size="46" data-reverse="1" style="display:inline-flex;"></span></div>
+      <div style="padding:11px 14px; border-top:1px solid var(--bdr); background:var(--card); font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">反白 · 白色晶体（主色 / 图片底 · 保留切面）</div>
+    </div>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:16px;">
+    <div style="border:1px solid var(--bdr); border-radius:12px; padding:14px 16px; background:var(--surf);"><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; letter-spacing:.08em; color:var(--fg3);">安全距</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:22px; font-weight:700; color:var(--accent); margin:6px 0 4px;">≥ 1X</div><div style="font-size:12.5px; color:var(--fg2); line-height:1.6;">X = 标记高 ÷ 4，四周各留 1X。</div></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; padding:14px 16px; background:var(--surf);"><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; letter-spacing:.08em; color:var(--fg3);">最小尺寸 · 屏幕</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:22px; font-weight:700; color:var(--accent); margin:6px 0 4px;">20 / 24px</div><div style="font-size:12.5px; color:var(--fg2); line-height:1.6;">单标记 ≥ 20px；组合整体高 ≥ 24px。</div></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; padding:14px 16px; background:var(--surf);"><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; letter-spacing:.08em; color:var(--fg3);">字标比例</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:22px; font-weight:700; color:var(--accent); margin:6px 0 4px;">×0.62</div><div style="font-size:12.5px; color:var(--fg2); line-height:1.6;">字标视高 = 标记视高 × 0.62。</div></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; padding:14px 16px; background:var(--surf);"><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; letter-spacing:.08em; color:var(--fg3);">晶体三层（调性对齐主色）</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:13.5px; font-weight:700; margin:6px 0 4px;"><span style="color:#C0C4FF;">顶</span> · <span style="color:#7A80F5;">右</span> · <span style="color:#3A3590;">左</span> 三面各带渐变</div><div style="font-size:12.5px; color:var(--fg2); line-height:1.6;">每面 light→dark 渐变，宝石级切面纵深，非平涂色块。</div></div>
+  </div>
+</section>
+
+<!-- ===== 03 COLOR ===== -->
+<section id="color" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">03</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">配色系统</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Colors</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:680px; margin:0 0 28px;">全部色值以 CSS 变量管理，明暗双主题各一套（点右上角切换）。主色为紫蓝，承担链接、强调与 CTA；语义色仅用于状态反馈。点击任意色块复制其变量名。</p>
+
+  <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.1em; margin-bottom:14px;">BACKGROUND · SURFACE · INK</div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:14px; margin-bottom:28px;">
+    <div data-copy="var(--bg)" style="border:1px solid var(--bdr); border-radius:12px; overflow:hidden; background:var(--surf);"><div style="height:80px; background:var(--bg); border-bottom:1px solid var(--bdr);"></div><div style="padding:11px 13px;"><div style="font-size:13px; font-weight:600;">页面底色</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">--bg</div></div></div>
+    <div data-copy="var(--surf)" style="border:1px solid var(--bdr); border-radius:12px; overflow:hidden; background:var(--surf);"><div style="height:80px; background:var(--surf);"></div><div style="padding:11px 13px;"><div style="font-size:13px; font-weight:600;">表面 / 浮层</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">--surf</div></div></div>
+    <div data-copy="var(--glass)" style="border:1px solid var(--bdr); border-radius:12px; overflow:hidden; background:var(--surf);"><div style="height:80px; background:var(--glass);"></div><div style="padding:11px 13px;"><div style="font-size:13px; font-weight:600;">玻璃面</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">--glass</div></div></div>
+    <div data-copy="var(--fg)" style="border:1px solid var(--bdr); border-radius:12px; overflow:hidden; background:var(--surf);"><div style="height:80px; background:var(--fg);"></div><div style="padding:11px 13px;"><div style="font-size:13px; font-weight:600;">主文字</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">--fg</div></div></div>
+    <div data-copy="var(--fg2)" style="border:1px solid var(--bdr); border-radius:12px; overflow:hidden; background:var(--surf);"><div style="height:80px; background:var(--fg2);"></div><div style="padding:11px 13px;"><div style="font-size:13px; font-weight:600;">次文字</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">--fg2</div></div></div>
+  </div>
+
+  <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.1em; margin-bottom:14px;">BRAND ACCENT · 品牌强调</div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:14px; margin-bottom:28px;">
+    <div data-copy="var(--accent)" style="border:1px solid var(--bdr); border-radius:12px; overflow:hidden; background:var(--surf);"><div style="height:80px; background:var(--accent);"></div><div style="padding:11px 13px;"><div style="font-size:13px; font-weight:600;">主强调 · 紫蓝</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">--accent</div></div></div>
+    <div data-copy="var(--accentDeep)" style="border:1px solid var(--bdr); border-radius:12px; overflow:hidden; background:var(--surf);"><div style="height:80px; background:var(--accentDeep);"></div><div style="padding:11px 13px;"><div style="font-size:13px; font-weight:600;">深强调 · hover</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">--accentDeep</div></div></div>
+    <div data-copy="var(--acBg)" style="border:1px solid var(--bdr); border-radius:12px; overflow:hidden; background:var(--surf);"><div style="height:80px; background:var(--acBg);"></div><div style="padding:11px 13px;"><div style="font-size:13px; font-weight:600;">强调底 · 浅</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">--acBg</div></div></div>
+  </div>
+
+  <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.1em; margin-bottom:14px;">SEMANTIC · 语义色</div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px;">
+    <div data-copy="var(--ok)" style="border:1px solid var(--bdr); border-radius:12px; overflow:hidden; background:var(--surf);"><div style="height:70px; background:var(--ok);"></div><div style="padding:10px 13px;"><div style="font-size:13px; font-weight:600;">成功</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">--ok</div></div></div>
+    <div data-copy="var(--info)" style="border:1px solid var(--bdr); border-radius:12px; overflow:hidden; background:var(--surf);"><div style="height:70px; background:var(--info);"></div><div style="padding:10px 13px;"><div style="font-size:13px; font-weight:600;">信息</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">--info</div></div></div>
+    <div data-copy="var(--warn)" style="border:1px solid var(--bdr); border-radius:12px; overflow:hidden; background:var(--surf);"><div style="height:70px; background:var(--warn);"></div><div style="padding:10px 13px;"><div style="font-size:13px; font-weight:600;">警告</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">--warn</div></div></div>
+    <div data-copy="var(--err)" style="border:1px solid var(--bdr); border-radius:12px; overflow:hidden; background:var(--surf);"><div style="height:70px; background:var(--err);"></div><div style="padding:10px 13px;"><div style="font-size:13px; font-weight:600;">错误</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">--err</div></div></div>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:24px;">
+    <div style="border:1px solid var(--bdr); border-radius:14px; padding:20px 22px; background:var(--panel);">
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;"><span style="width:6px; height:6px; border-radius:50%; background:var(--accent);"></span><span style="font-weight:600; font-size:13.5px;">文字不用纯黑 / 纯白</span></div>
+      <p style="font-size:12.5px; color:var(--fg2); line-height:1.7; margin:0;">暗色主文字用微带蓝调的 <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif;">#ECEEFF</span>，浅色用冷墨 <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif;">#16181F</span>——都不是纯黑纯白，让文字与底色共享色温、降低刺目。</p>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:14px; padding:20px 22px; background:var(--panel);">
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;"><span style="width:6px; height:6px; border-radius:50%; background:var(--accent);"></span><span style="font-weight:600; font-size:13.5px;">浅色主色的重新定义</span></div>
+      <p style="font-size:12.5px; color:var(--fg2); line-height:1.7; margin:0;">浅色主色收敛为靛蓝 <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif;">#5A4FE6</span>，底色改为中性冷灰 <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif;">#F4F5F8</span>——不发暖、不发脏，与暗色紫蓝同族呼应。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04 TYPE ===== -->
+<section id="type" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">04</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">字体系统</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Typography</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:720px; margin:0 0 28px;">一款中文字体撑全站：<b style="color:var(--fg);">思源黑体（Noto Sans SC）</b>。标题与正文同字体，靠字号 + 字重分层——展示标题用 <b style="color:var(--fg);">SemiBold 600</b>（中文大字号下 700/900 偏方偏重，600 更清透、更接近 Google/Gemini 的从容气质）。拉丁字母、数字与 kicker 用 <b style="color:var(--fg);">Space Grotesk</b>。</p>
+  <div style="border-top:1px solid var(--bdr);">
+    <div style="display:flex; align-items:baseline; gap:24px; padding:16px 0; border-bottom:1px solid var(--bdrSoft); flex-wrap:wrap;"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); width:150px; flex-shrink:0;">Display · 600</span><span style="font-size:52px; font-weight:600; letter-spacing:-.02em; line-height:1.1; flex:1; min-width:200px;">智能是基础设施</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--accent);">52–66 / 600</span></div>
+    <div style="display:flex; align-items:baseline; gap:24px; padding:16px 0; border-bottom:1px solid var(--bdrSoft); flex-wrap:wrap;"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); width:150px; flex-shrink:0;">H2 · 600</span><span style="font-size:32px; font-weight:600; letter-spacing:-.02em; flex:1; min-width:200px;">为企业级需求而设计</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--accent);">32 / 600</span></div>
+    <div style="display:flex; align-items:baseline; gap:24px; padding:16px 0; border-bottom:1px solid var(--bdrSoft); flex-wrap:wrap;"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); width:150px; flex-shrink:0;">H3 · 600</span><span style="font-size:22px; font-weight:600; flex:1; min-width:200px;">用好每一个 Token</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--accent);">22 / 1.3</span></div>
+    <div style="display:flex; align-items:baseline; gap:24px; padding:16px 0; border-bottom:1px solid var(--bdrSoft); flex-wrap:wrap;"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); width:150px; flex-shrink:0;">Body · 400</span><span style="font-size:15px; color:var(--fg2); flex:1; min-width:200px;">统一管理所有 AI 模型的调用入口，智能路由、成本可控。</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--accent);">15 / 1.7</span></div>
+    <div style="display:flex; align-items:baseline; gap:24px; padding:16px 0; border-bottom:1px solid var(--bdrSoft); flex-wrap:wrap;"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); width:150px; flex-shrink:0;">Latin / 数字</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:24px; font-weight:600; letter-spacing:.01em; flex:1; min-width:200px;">ZAOWUYUN 2026 · 99.9%</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--accent);">Space Grotesk</span></div>
+    <div style="display:flex; align-items:baseline; gap:24px; padding:16px 0; border-bottom:1px solid var(--bdrSoft); flex-wrap:wrap;"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); width:150px; flex-shrink:0;">Kicker</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; font-weight:700; letter-spacing:.16em; color:var(--accent); flex:1; min-width:200px;">TOKEN HUB</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--accent);">11 · .16em</span></div>
+  </div>
+</section>
+
+<!-- ===== 05 ICON ===== -->
+<section id="icon" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">05</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">图标系统</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Iconography</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:680px; margin:0 0 28px;">全站只用<b style="color:var(--fg);">单色线性图标，不用 emoji</b>。统一 24×24 网格、描边 1.5、圆角端点，描边一律 currentColor 随上下文取色。</p>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(92px,1fr)); gap:12px;">
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg);" style-hover="border-color:var(--accent); color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1 0-8 5 5 0 0 1 9.58-1.5A3.5 3.5 0 0 1 18 18Z"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">云</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg);" style-hover="border-color:var(--accent); color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">模型</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg);" style-hover="border-color:var(--accent); color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H6a2 2 0 0 0-2 2v3M9 20H6a2 2 0 0 1-2-2v-3M15 4h3a2 2 0 0 1 2 2v3M15 20h3a2 2 0 0 0 2-2v-3"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">API</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg);" style-hover="border-color:var(--accent); color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="m20 20-3.6-3.6"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">搜索</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg);" style-hover="border-color:var(--accent); color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">设置</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg);" style-hover="border-color:var(--accent); color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">闪电</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg);" style-hover="border-color:var(--accent); color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">数据</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg);" style-hover="border-color:var(--accent); color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2Z"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">对话</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg);" style-hover="border-color:var(--accent); color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">文档</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg);" style-hover="border-color:var(--accent); color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.4 12 2.5 2.5 4.7-5.2"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">校验</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg);" style-hover="border-color:var(--accent); color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">用户</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg);" style-hover="border-color:var(--accent); color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">箭头</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg); transition:transform .2s, color .2s, border-color .2s;" style-hover="border-color:var(--accent); color:var(--accent); transform:translateY(-2px)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="5" rx="1.5"/><rect x="14" y="15" width="7" height="5" rx="1.5"/><path d="M6.5 9v3.5a2 2 0 0 0 2 2H17.5"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">工作流</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg); transition:transform .2s, color .2s, border-color .2s;" style-hover="border-color:var(--accent); color:var(--accent); transform:translateY(-2px)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 2 4.5 5 4.5 8.5L12 15l-4.5-3.5C7.5 8 9 5 12 3Z"/><path d="M12 15v4M9 21l3-2 3 2"/><circle cx="12" cy="9" r="1.4"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">部署</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg); transition:transform .2s, color .2s, border-color .2s;" style-hover="border-color:var(--accent); color:var(--accent); transform:translateY(-2px)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 8-7 9-4-1-7-4.6-7-9V6l7-3Z"/><path d="m9 12 2 2 4-4"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">安全</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg); transition:transform .2s, color .2s, border-color .2s;" style-hover="border-color:var(--accent); color:var(--accent); transform:translateY(-2px)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="4"/><path d="m11 11 8 8M16 16l2-2 2 2-2 2z"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">密钥</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg); transition:transform .2s, color .2s, border-color .2s;" style-hover="border-color:var(--accent); color:var(--accent); transform:translateY(-2px)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">分析</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg); transition:transform .2s, color .2s, border-color .2s;" style-hover="border-color:var(--accent); color:var(--accent); transform:translateY(-2px)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9A6 6 0 0 0 6 9c0 5-2.5 6-2.5 6h17S18 14 18 9M10.5 21a2 2 0 0 0 3 0"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">通知</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg); transition:transform .2s, color .2s, border-color .2s;" style-hover="border-color:var(--accent); color:var(--accent); transform:translateY(-2px)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">时间</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg); transition:transform .2s, color .2s, border-color .2s;" style-hover="border-color:var(--accent); color:var(--accent); transform:translateY(-2px)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M16 6a3 3 0 0 1 0 5.5M17 14c2.3.5 4 2.4 4 5"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">团队</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg); transition:transform .2s, color .2s, border-color .2s;" style-hover="border-color:var(--accent); color:var(--accent); transform:translateY(-2px)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 14.5 14.5 9.5M8 12l-2.5 2.5a3.5 3.5 0 0 0 5 5L13 17M16 12l2.5-2.5a3.5 3.5 0 0 0-5-5L11 7"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">链接</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg); transition:transform .2s, color .2s, border-color .2s;" style-hover="border-color:var(--accent); color:var(--accent); transform:translateY(-2px)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">代码</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg); transition:transform .2s, color .2s, border-color .2s;" style-hover="border-color:var(--accent); color:var(--accent); transform:translateY(-2px)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 8 4-8 4-8-4 8-4Z"/><path d="m4 12 8 4 8-4M4 16.5l8 4 8-4"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">分层</span></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; background:var(--surf); aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:var(--fg); transition:transform .2s, color .2s, border-color .2s;" style-hover="border-color:var(--accent); color:var(--accent); transform:translateY(-2px)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-.5 3M20 5v6h-6"/></svg><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10px; color:var(--fg3);">同步</span></div>
+  </div>
+
+  <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin:28px 0 14px;">IN CONTEXT · 图标在组件中</div>
+  <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:center;">
+    <button style="font-family:inherit; font-size:14px; font-weight:600; color:#fff; background:var(--accent); border:none; border-radius:999px; padding:10px 18px; cursor:pointer; display:inline-flex; align-items:center; gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>立即调用</button>
+    <span style="display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; font-weight:600; padding:5px 12px; border-radius:999px; background:var(--acBg); color:var(--accent);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.4 12 2.5 2.5 4.7-5.2"/></svg>已校验</span>
+    <span style="width:44px; height:44px; border-radius:12px; background:var(--acBg); border:1px solid var(--bdr); display:flex; align-items:center; justify-content:center; color:var(--accent);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg></span>
+    <div style="position:relative; width:240px; max-width:60vw;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--fg3)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; left:13px; top:50%; transform:translateY(-50%);"><circle cx="11" cy="11" r="6"/><path d="m20 20-3.6-3.6"/></svg><input placeholder="搜索模型 / 文档" style="font-family:inherit; font-size:14px; color:var(--fg); background:var(--surf); border:1px solid var(--bdr); border-radius:12px; padding:10px 14px 10px 38px; width:100%; outline:none;" style-focus="border-color:var(--accent); box-shadow:0 0 0 3px var(--acBg)"></div>
+  </div>
+  <p style="font-size:12.5px; color:var(--fg3); line-height:1.7; margin:18px 0 0;">规范：统一 24×24 网格、描边 1.5、圆角端点；按钮内 16px、徽章内 14px、卡片图标位 22px；颜色一律 <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif;">currentColor</span>，随容器取色，不另画实心版。</p>
+</section>
+
+<!-- ===== 06 SPACE ===== -->
+<section id="space" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">06</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">间距</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Spacing</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:680px; margin:0 0 24px;">以 4px 为基数的阶梯。组件内部用小档，区块之间用中大档，页面级垂直节奏用 64 / 96。</p>
+  <div>
+    <div style="display:flex; align-items:center; gap:16px; padding:11px 0; border-bottom:1px solid var(--bdrSoft);"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; width:64px; flex-shrink:0;">s-1</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); width:56px;">4px</span><span style="height:14px; width:4px; background:var(--accent); border-radius:3px;"></span><span style="font-size:11px; color:var(--fg3); margin-left:12px;">图标内距</span></div>
+    <div style="display:flex; align-items:center; gap:16px; padding:11px 0; border-bottom:1px solid var(--bdrSoft);"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; width:64px; flex-shrink:0;">s-2</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); width:56px;">8px</span><span style="height:14px; width:8px; background:var(--accent); border-radius:3px;"></span><span style="font-size:11px; color:var(--fg3); margin-left:12px;">按钮内距</span></div>
+    <div style="display:flex; align-items:center; gap:16px; padding:11px 0; border-bottom:1px solid var(--bdrSoft);"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; width:64px; flex-shrink:0;">s-4</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); width:56px;">16px</span><span style="height:14px; width:16px; background:var(--accent); border-radius:3px;"></span><span style="font-size:11px; color:var(--fg3); margin-left:12px;">标准 gap</span></div>
+    <div style="display:flex; align-items:center; gap:16px; padding:11px 0; border-bottom:1px solid var(--bdrSoft);"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; width:64px; flex-shrink:0;">s-5</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); width:56px;">24px</span><span style="height:14px; width:24px; background:var(--accent); border-radius:3px;"></span><span style="font-size:11px; color:var(--fg3); margin-left:12px;">区块间距</span></div>
+    <div style="display:flex; align-items:center; gap:16px; padding:11px 0; border-bottom:1px solid var(--bdrSoft);"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; width:64px; flex-shrink:0;">s-6</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); width:56px;">32px</span><span style="height:14px; width:32px; background:var(--accent); border-radius:3px;"></span><span style="font-size:11px; color:var(--fg3); margin-left:12px;">大块面</span></div>
+    <div style="display:flex; align-items:center; gap:16px; padding:11px 0; border-bottom:1px solid var(--bdrSoft);"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; width:64px; flex-shrink:0;">s-8</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); width:56px;">64px</span><span style="height:14px; width:64px; background:var(--accent); border-radius:3px;"></span><span style="font-size:11px; color:var(--fg3); margin-left:12px;">section 纵边</span></div>
+    <div style="display:flex; align-items:center; gap:16px; padding:11px 0; border-bottom:1px solid var(--bdrSoft);"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; width:64px; flex-shrink:0;">s-9</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); width:56px;">96px</span><span style="height:14px; width:96px; background:var(--accent); border-radius:3px;"></span><span style="font-size:11px; color:var(--fg3); margin-left:12px;">页面顶部</span></div>
+  </div>
+</section>
+
+<!-- ===== 07 SHAPE ===== -->
+<section id="shape" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">07</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">圆角 + 阴影</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Radius + Shadow</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:680px; margin:0 0 24px;">圆角偏大偏柔，呼应玻璃拟态。阴影多层叠加而非单层重模糊：近处锐影定边界，远处大模糊负扩散托浮起；浅色主题再叠一层发丝环。</p>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+    <div>
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.1em; margin-bottom:16px;">RADIUS</div>
+      <div style="display:flex; gap:16px; flex-wrap:wrap;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:8px;"><span style="width:56px; height:56px; background:var(--acBg); border:1px solid var(--accent); border-radius:8px;"></span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">8 · sm</span></div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:8px;"><span style="width:56px; height:56px; background:var(--acBg); border:1px solid var(--accent); border-radius:12px;"></span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">12 · md</span></div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:8px;"><span style="width:56px; height:56px; background:var(--acBg); border:1px solid var(--accent); border-radius:18px;"></span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">18 · lg</span></div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:8px;"><span style="width:56px; height:56px; background:var(--acBg); border:1px solid var(--accent); border-radius:22px;"></span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">22 · xl</span></div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:8px;"><span style="width:80px; height:40px; background:var(--acBg); border:1px solid var(--accent); border-radius:999px;"></span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">999 · pill</span></div>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.1em; margin-bottom:16px;">SHADOW</div>
+      <div style="display:flex; gap:20px; flex-wrap:wrap;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:10px;"><span style="width:120px; height:60px; background:var(--card); border-radius:12px; border:1px solid var(--bdr); box-shadow:var(--sh1);"></span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">sh-1 · 浮起</span></div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:10px;"><span style="width:120px; height:60px; background:var(--card); border-radius:12px; border:1px solid var(--bdr); box-shadow:var(--sh2);"></span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">sh-2 · 模态</span></div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:10px;"><span style="width:120px; height:60px; background:var(--glass); border-radius:12px; box-shadow:var(--shGlass);"></span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">sh-glass · 玻璃</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 07·5 SURFACES & REGIONS ===== -->
+<section id="surfaces" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">08</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">材质与分区</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Surfaces &amp; Regions</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:700px; margin:0 0 28px;">同一层玻璃在不同透明度下承担不同层级。整站遵循一条<b style="color:var(--fg);">表面阶梯</b>：底 → 分区面 → 表面 / 卡片 → 玻璃浮层，越靠前的元素越透、越亮。相邻区域用「底色交替 + 发丝分隔线」建立呼吸节奏，重点区（Hero / CTA）才铺满主色光晕与点阵肌理。</p>
+
+  <!-- Glass transparency ladder -->
+  <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.1em; margin-bottom:14px;">GLASS LADDER · 玻璃透明度对比</div>
+  <p style="font-size:12.5px; color:var(--fg3); margin:-8px 0 16px; line-height:1.6;">玻璃质感只有在“背后有内容”时才看得出。下方底板固定为一张彩色图形＋网格的忙背景（不随主题变），三张卡用<b style="color:var(--fg2);">同一套白色、不同不透明度＋模糊</b>叠加——透得越多、越能看到背后的图形，就是越“轻”的玻璃。</p>
+  <div style="position:relative; border-radius:18px; overflow:hidden; border:1px solid var(--bdr); margin-bottom:32px; background:linear-gradient(120deg,#3a2f8f 0%,#5a3fb5 40%,#2a3f9a 100%);">
+    <div style="position:absolute; width:260px; height:260px; border-radius:50%; left:-40px; top:-60px; background:radial-gradient(circle, #8b5bff, transparent 70%); filter:blur(24px);"></div>
+    <div style="position:absolute; width:240px; height:240px; border-radius:50%; right:6%; top:20%; background:radial-gradient(circle, #35c9e0, transparent 70%); filter:blur(26px);"></div>
+    <div style="position:absolute; width:220px; height:220px; border-radius:50%; left:38%; bottom:-70px; background:radial-gradient(circle, #ff6bd0, transparent 70%); filter:blur(28px);"></div>
+    <div style="position:absolute; inset:0; background-image:radial-gradient(circle, rgba(255,255,255,.16) 1px, transparent 1px); background-size:22px 22px;"></div>
+    <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:120px; font-weight:700; color:rgba(255,255,255,.08); letter-spacing:.1em; user-select:none;">AI</div>
+    <div style="position:relative; display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:16px; padding:40px 36px;">
+      <div style="background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:20px; box-shadow:0 8px 24px -12px rgba(0,0,0,.5); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);"><div style="color:#fff; font-weight:600; font-size:15px; margin-bottom:6px;">glass-A · 最轻</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:rgba(255,255,255,.85); margin-bottom:8px;">白 5% · 模糊 6px</div><div style="color:rgba(255,255,255,.7); font-size:12px; line-height:1.55;">氛围层 / 大面积浮层，背景几乎全透。</div></div>
+      <div style="background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18); border-radius:16px; padding:20px; box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 10px 30px -12px rgba(0,0,0,.55); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);"><div style="color:#fff; font-weight:600; font-size:15px; margin-bottom:6px;">glass-B · 标准</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:rgba(255,255,255,.85); margin-bottom:8px;">白 10% · 模糊 14px</div><div style="color:rgba(255,255,255,.72); font-size:12px; line-height:1.55;">默认卡片 / 弹层，背景朦胧可辨。</div></div>
+      <div style="background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.28); border-radius:16px; padding:20px; box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 14px 40px -12px rgba(0,0,0,.6); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);"><div style="color:#fff; font-weight:600; font-size:15px; margin-bottom:6px;">glass-C · 最实</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:rgba(255,255,255,.9); margin-bottom:8px;">白 20% · 模糊 24px</div><div style="color:rgba(255,255,255,.8); font-size:12px; line-height:1.55;">承载正文 / 表单，背景仅余色晕。</div></div>
+    </div>
+  </div>
+
+  <!-- Surface hierarchy + region rhythm -->
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px;">
+    <div style="border:1px solid var(--bdr); border-radius:18px; padding:24px; background:var(--panel);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:16px;">SURFACE STACK · 表面阶梯</div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:center; gap:12px; background:var(--bg); border:1px solid var(--bdr); border-radius:10px; padding:12px 14px;"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--accent); width:64px;">--bg</span><span style="font-size:13px; color:var(--fg2);">页面底</span></div>
+        <div style="display:flex; align-items:center; gap:12px; background:var(--panel); border:1px solid var(--bdr); border-radius:10px; padding:12px 14px;"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--accent); width:64px;">--panel</span><span style="font-size:13px; color:var(--fg2);">分区面（交替区）</span></div>
+        <div style="display:flex; align-items:center; gap:12px; background:var(--surf); border:1px solid var(--bdr); border-radius:10px; padding:12px 14px;"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--accent); width:64px;">--surf</span><span style="font-size:13px; color:var(--fg2);">表面 / 卡片</span></div>
+        <div style="display:flex; align-items:center; gap:12px; background:var(--glass); border:1px solid var(--bdrBrt); border-radius:10px; padding:12px 14px; box-shadow:var(--shGlass);"><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--accent); width:64px;">--glass</span><span style="font-size:13px; color:var(--fg2);">玻璃浮层（最前）</span></div>
+      </div>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:18px; padding:24px; background:var(--panel);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:16px;">REGION RHYTHM · 分区节奏</div>
+      <div style="display:flex; flex-direction:column; border:1px solid var(--bdr); border-radius:12px; overflow:hidden;">
+        <div style="padding:14px 16px; background:var(--bg); font-size:12.5px; color:var(--fg2);">A 区 · 底色（--bg）</div>
+        <div style="padding:14px 16px; background:var(--panel); border-top:1px solid var(--bdr); font-size:12.5px; color:var(--fg2);">B 区 · 分区面（--panel）+ 发丝分隔</div>
+        <div style="padding:14px 16px; background:var(--bg); border-top:1px solid var(--bdr); font-size:12.5px; color:var(--fg2);">A 区 · 底色</div>
+        <div style="padding:18px 16px; border-top:1px solid var(--bdr); background:radial-gradient(ellipse 60% 120% at 30% 30%, var(--glow1), transparent 60%),var(--accent); color:#fff; font-size:12.5px; font-weight:600;">重点区 · 主色光晕 + 点阵肌理（Hero / CTA）</div>
+      </div>
+      <p style="font-size:12px; color:var(--fg3); line-height:1.6; margin:14px 0 0;">规则：普通信息区 A / B 交替、用 1px 发丝线分隔；每屏最多一个重点区，避免多个高饱和区域相邻打架。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 08·5 LAYOUT ===== -->
+<section id="layout" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">08·5</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">布局规范</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Layout</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:700px; margin:0 0 28px;">全站统一：<b style="color:var(--fg);">1280px 容器 · 40px 页边距 · 12 栏栅格</b>。内容按可读宽度设上限，区块用固定的纵向节奏；正文左对齐，仅 Hero / CTA / 巨幕居中。</p>
+
+  <!-- 12-col grid + container -->
+  <div style="border:1px solid var(--bdr); border-radius:16px; overflow:hidden; background:var(--panel); margin-bottom:20px;">
+    <div style="padding:14px 18px; border-bottom:1px solid var(--bdrSoft); display:flex; justify-content:space-between; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);"><span>12-COLUMN GRID</span><span>gutter 24 · margin 40</span></div>
+    <div style="padding:18px; display:grid; grid-template-columns:repeat(12,1fr); gap:8px;">
+      <div style="height:56px; background:var(--acBg); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius:6px;"></div><div style="height:56px; background:var(--acBg); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius:6px;"></div><div style="height:56px; background:var(--acBg); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius:6px;"></div><div style="height:56px; background:var(--acBg); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius:6px;"></div><div style="height:56px; background:var(--acBg); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius:6px;"></div><div style="height:56px; background:var(--acBg); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius:6px;"></div><div style="height:56px; background:var(--acBg); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius:6px;"></div><div style="height:56px; background:var(--acBg); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius:6px;"></div><div style="height:56px; background:var(--acBg); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius:6px;"></div><div style="height:56px; background:var(--acBg); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius:6px;"></div><div style="height:56px; background:var(--acBg); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius:6px;"></div><div style="height:56px; background:var(--acBg); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius:6px;"></div>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;">
+    <div style="border:1px solid var(--bdr); border-radius:14px; padding:20px 22px; background:var(--panel);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:12px;">CONTAINER · 容器</div>
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:22px; font-weight:700; color:var(--accent);">1280<span style="font-size:13px; color:var(--fg3);">px max</span></div>
+      <p style="font-size:12.5px; color:var(--fg2); line-height:1.6; margin:8px 0 0;">页边距桌面 40 / 移动 20；超宽屏两侧留白，内容不铺满。</p>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:14px; padding:20px 22px; background:var(--panel);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:12px;">MEASURE · 可读宽度</div>
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:22px; font-weight:700; color:var(--accent);">≤ 680<span style="font-size:13px; color:var(--fg3);">px 正文</span></div>
+      <p style="font-size:12.5px; color:var(--fg2); line-height:1.6; margin:8px 0 0;">标题 ≤ 760px；正文行长约 36–46 字，避免整屏通栏长句。</p>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:14px; padding:20px 22px; background:var(--panel);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:12px;">RHYTHM · 纵向节奏</div>
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:22px; font-weight:700; color:var(--accent);">96 / 64 / 32</div>
+      <p style="font-size:12.5px; color:var(--fg2); line-height:1.6; margin:8px 0 0;">页面级 96、区块间 64、块内 32、元素 16——四档定节奏。</p>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:14px; padding:20px 22px; background:var(--panel);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:12px;">BREAKPOINTS · 断点</div>
+      <div style="display:flex; flex-direction:column; gap:6px; font-size:12.5px; color:var(--fg2);"><span><b style="color:var(--fg); font-family:'Space Grotesk',ui-sans-serif,sans-serif;">≤640</b> 移动 · 单栏</span><span><b style="color:var(--fg); font-family:'Space Grotesk',ui-sans-serif,sans-serif;">641–1024</b> 平板 · 双栏</span><span><b style="color:var(--fg); font-family:'Space Grotesk',ui-sans-serif,sans-serif;">≥1025</b> 桌面 · 多栏</span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px; border:1px solid var(--bdr); border-radius:14px; padding:18px 22px; background:var(--panel); font-size:13px; color:var(--fg2); line-height:1.7;"><b style="color:var(--fg);">对齐原则：</b>正文与列表左对齐；数字 / 标签用等宽对齐位数；仅 Hero、CTA、巨幕 slogan 居中。卡片网格用 <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif;">auto-fit + minmax</span> 自适应，最小列宽 220–300px，移动端收单栏。</div>
+</section>
+
+<!-- ===== 08 MOTION ===== -->
+<section id="motion" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">08</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">动效</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Motion</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:680px; margin:0 0 24px;">三档时长 + 两条曲线：微交互 150ms、常规 250ms、入场 700ms。此外还有一层<b style="color:var(--fg);">“呼吸”底噪</b>——借鉴 Gemini 的科技质感：背景对话与光晕缓慢起伏，聚焦输入时转为“深呼吸”。一律尊重 prefers-reduced-motion。</p>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px;">
+    <div style="border:1px solid var(--bdr); border-radius:18px; overflow:hidden; display:flex; flex-direction:column;"><div style="flex:1; min-height:150px; padding:32px; display:flex; align-items:center; justify-content:center;"><div style="width:84px; height:84px; border-radius:14px; background:var(--accent); display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; transition:transform .25s cubic-bezier(.4,1,.6,1);" style-hover="transform:translateY(-12px)">Hover Lift</div></div><div style="border-top:1px solid var(--bdr); background:var(--demo); padding:12px 16px; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11.5px; color:var(--fg2);">transition .25s · translateY(-12px)</div></div>
+    <div style="border:1px solid var(--bdr); border-radius:18px; overflow:hidden; display:flex; flex-direction:column;"><div style="flex:1; min-height:150px; padding:32px; display:flex; align-items:center; justify-content:center;"><div style="width:84px; height:84px; border-radius:14px; background:var(--accent); display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; animation:zwyPulse 2s cubic-bezier(.4,1,.6,1) infinite;">Pulse</div></div><div style="border-top:1px solid var(--bdr); background:var(--demo); padding:12px 16px; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11.5px; color:var(--fg2);">2s infinite · scale 1 → 1.12</div></div>
+    <div style="border:1px solid var(--bdr); border-radius:18px; overflow:hidden; display:flex; flex-direction:column;"><div style="flex:1; min-height:150px; padding:32px; display:flex; align-items:center; justify-content:center;"><div data-motion-bubble style="width:130px; height:46px; border-radius:23px; background:var(--bubble); border:1px solid var(--bubbleBdr); box-shadow:0 14px 48px -12px var(--glow1); animation:gemDeep 3.8s ease-in-out infinite;"></div></div><div style="border-top:1px solid var(--bdr); background:var(--demo); padding:12px 16px; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11.5px; color:var(--fg2);">呼吸 · 深呼吸 scale ±8% + 亮度起伏</div></div>
+    <div style="border:1px solid var(--bdr); border-radius:18px; overflow:hidden; display:flex; flex-direction:column;"><div style="flex:1; min-height:150px; padding:32px; display:flex; align-items:center; justify-content:center;"><div style="position:relative; width:120px; height:10px; border-radius:999px; background:var(--surf); overflow:hidden;"><div style="position:absolute; top:0; left:0; height:100%; width:40%; border-radius:999px; background:linear-gradient(90deg, transparent, var(--accent), transparent); animation:gemSweep 1.6s cubic-bezier(.5,0,.5,1) infinite;"></div></div></div><div style="border-top:1px solid var(--bdr); background:var(--demo); padding:12px 16px; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11.5px; color:var(--fg2);">处理中 · 扫光沿数据条流动</div></div>
+    <div style="border:1px solid var(--bdr); border-radius:18px; overflow:hidden; display:flex; flex-direction:column;"><div style="flex:1; min-height:150px; padding:32px; display:flex; align-items:center; justify-content:center; gap:8px;"><span style="width:9px; height:9px; border-radius:50%; background:var(--accent); animation:gemDot 1.4s ease-in-out infinite;"></span><span style="width:9px; height:9px; border-radius:50%; background:var(--accent); animation:gemDot 1.4s ease-in-out infinite .18s;"></span><span style="width:9px; height:9px; border-radius:50%; background:var(--accent); animation:gemDot 1.4s ease-in-out infinite .36s;"></span></div><div style="border-top:1px solid var(--bdr); background:var(--demo); padding:12px 16px; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11.5px; color:var(--fg2);">思考中 · 三点错峰跳动</div></div>
+    <div style="border:1px solid var(--bdr); border-radius:18px; overflow:hidden; display:flex; flex-direction:column;"><div style="flex:1; min-height:150px; padding:32px; display:flex; align-items:center; justify-content:center;"><div style="width:120px; height:40px; border-radius:999px; background:var(--surf); border:1px solid var(--accent); box-shadow:0 0 0 4px var(--acBg);"></div></div><div style="border-top:1px solid var(--bdr); background:var(--demo); padding:12px 16px; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11.5px; color:var(--fg2);">焦点环 · 1px 描边 + 4px 柔光环</div></div>
+    <div style="border:1px solid var(--bdr); border-radius:18px; overflow:hidden; display:flex; flex-direction:column;"><div style="flex:1; min-height:150px; padding:32px; display:flex; align-items:center; justify-content:center; gap:8px;"><span style="width:26px; height:44px; border-radius:8px; background:var(--accent); animation:zwyFade .8s cubic-bezier(.4,1,.6,1) infinite alternate;"></span><span style="width:26px; height:44px; border-radius:8px; background:var(--accent); opacity:.6; animation:zwyFade .8s cubic-bezier(.4,1,.6,1) .12s infinite alternate;"></span><span style="width:26px; height:44px; border-radius:8px; background:var(--accent); opacity:.3; animation:zwyFade .8s cubic-bezier(.4,1,.6,1) .24s infinite alternate;"></span></div><div style="border-top:1px solid var(--bdr); background:var(--demo); padding:12px 16px; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11.5px; color:var(--fg2);">渐显上移 · 错峰入场（stagger）</div></div>
+  </div>
+  <div style="margin-top:18px; display:flex; gap:24px; flex-wrap:wrap; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg2);">
+    <span>fast 150ms</span><span>base 250ms</span><span>slow 700ms</span><span>breathe 5.5–9s</span><span>ease cubic-bezier(.4,1,.6,1)</span>
+  </div>
+  <p style="margin-top:16px; font-size:13px; color:var(--fg2); line-height:1.7; max-width:720px;">动效哲学：<b style="color:var(--fg);">深度靠“连续”而非“花哨”。</b>状态之间用缓动过渡而非硬切；处理/思考用循环微动表达“系统在运转”；重点元素才叠加光晕与呼吸。任何一次交互只用一种动画，且都尊重 <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif;">prefers-reduced-motion</span>。</p>
+</section>
+
+<!-- ===== 08·8 NAVIGATION ===== -->
+<section id="nav" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">08·8</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">导航栏</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Navigation</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:720px; margin:0 0 28px;">全站顶栏的唯一规范。<b style="color:var(--fg);">三段式：品牌锁版 · 主导航 · 行动区。</b>高 64px、粘顶、玻璃模糊；容器 1280 内左右各 40 边距。信息架构对齐战略：产品（内核/产品分栏）→ 解决方案（按行业）→ 客户案例 → 定价 → 关于。行动区永远是「登录 + 预约演示」，CTA 是全站唯一的实心主色胶囊。</p>
+
+  <!-- default bar -->
+  <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.1em; margin-bottom:12px;">DEFAULT · 默认（顶部 · 透明玻璃）</div>
+  <div style="border:1px solid var(--bdr); border-radius:16px; overflow:hidden; margin-bottom:20px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:24px; height:64px; padding:0 24px; background:var(--navBg); backdrop-filter:saturate(180%) blur(22px); -webkit-backdrop-filter:saturate(180%) blur(22px);">
+      <div style="display:flex; align-items:center; gap:10px;"><span data-mark data-size="26" style="display:inline-flex;"></span><span data-wm data-h="15" style="display:inline-flex; color:var(--fg);"></span></div>
+      <div style="display:flex; align-items:center; gap:2px; font-size:13.5px;">
+        <span style="display:inline-flex; align-items:center; gap:4px; color:var(--fg); font-weight:500; padding:8px 12px; border-radius:9px;">产品<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        <span style="display:inline-flex; align-items:center; gap:4px; color:var(--fg2); padding:8px 12px; border-radius:9px;">解决方案<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        <span style="color:var(--fg2); padding:8px 12px; border-radius:9px;">客户案例</span>
+        <span style="color:var(--fg2); padding:8px 12px; border-radius:9px;">定价</span>
+        <span style="color:var(--fg2); padding:8px 12px; border-radius:9px;">关于</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span style="font-size:13.5px; font-weight:500; color:var(--fg2);">登录</span>
+        <span style="font-size:13.5px; font-weight:600; color:#fff; background:var(--accent); border-radius:999px; padding:9px 18px; box-shadow:0 1px 2px rgba(0,0,0,.2),0 8px 20px -8px var(--accent);">预约演示</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- mega menu open -->
+  <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.1em; margin-bottom:12px;">MEGA MENU · 「产品」展开（内核 / 产品分栏 + 统一入口右栏）</div>
+  <div style="border:1px solid var(--bdr); border-radius:16px; overflow:hidden; margin-bottom:20px; background:var(--card); box-shadow:var(--shGlass);">
+    <div style="display:grid; grid-template-columns:1.2fr 1.2fr 1fr; gap:0;">
+      <div style="padding:22px 24px; border-right:1px solid var(--bdrSoft);">
+        <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10.5px; letter-spacing:.12em; color:var(--fg3); margin-bottom:14px;">内核 · KERNEL</div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; gap:12px; align-items:flex-start;"><span style="width:34px; height:34px; flex-shrink:0; border-radius:10px; background:var(--acBg); border:1px solid var(--bdr); display:flex; align-items:center; justify-content:center; color:var(--accent);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2.5"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg></span><div><div style="font-size:13.5px; font-weight:600;">智核 · TOKEN HUB</div><div style="font-size:12px; color:var(--fg3); line-height:1.5;">模型硬件抽象 · 按量调度</div></div></div>
+          <div style="display:flex; gap:12px; align-items:flex-start;"><span style="width:34px; height:34px; flex-shrink:0; border-radius:10px; background:var(--acBg); border:1px solid var(--bdr); display:flex; align-items:center; justify-content:center; color:var(--accent);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg></span><div><div style="font-size:13.5px; font-weight:600;">企业记忆 · DAM</div><div style="font-size:12px; color:var(--fg3); line-height:1.5;">资产确权 · 越用越厚</div></div></div>
+        </div>
+      </div>
+      <div style="padding:22px 24px; border-right:1px solid var(--bdrSoft);">
+        <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10.5px; letter-spacing:.12em; color:var(--fg3); margin-bottom:14px;">产品 · PRODUCTS</div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; gap:12px; align-items:flex-start;"><span style="width:34px; height:34px; flex-shrink:0; border-radius:10px; background:var(--acBg); border:1px solid var(--bdr); display:flex; align-items:center; justify-content:center; color:var(--accent);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg></span><div><div style="font-size:13.5px; font-weight:600;">智能体工作台</div><div style="font-size:12px; color:var(--fg3); line-height:1.5;">团队生产力空间</div></div></div>
+          <div style="display:flex; gap:12px; align-items:flex-start;"><span style="width:34px; height:34px; flex-shrink:0; border-radius:10px; background:var(--acBg); border:1px solid var(--bdr); display:flex; align-items:center; justify-content:center; color:var(--accent);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><div><div style="font-size:13.5px; font-weight:600;">应用中心</div><div style="font-size:12px; color:var(--fg3); line-height:1.5;">开箱即用的应用</div></div></div>
+          <div style="display:flex; gap:12px; align-items:flex-start;"><span style="width:34px; height:34px; flex-shrink:0; border-radius:10px; background:var(--acBg); border:1px solid var(--bdr); display:flex; align-items:center; justify-content:center; color:var(--accent);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 1 4 4 4 4 0 0 1 0 8 4 4 0 0 1-8 0 4 4 0 0 1 0-8 4 4 0 0 1 4-4Z"/><path d="M12 3v18"/></svg></span><div><div style="font-size:13.5px; font-weight:600; display:flex; align-items:center; gap:6px;">深脑 <span style="font-size:9px; font-weight:600; font-family:'Space Grotesk',ui-sans-serif,sans-serif; color:var(--warn); background:color-mix(in srgb,var(--warn) 15%,transparent); border-radius:999px; padding:1px 7px;">Beta</span></div><div style="font-size:12px; color:var(--fg3); line-height:1.5;">深度推理引擎</div></div></div>
+        </div>
+      </div>
+      <div style="padding:22px 24px; background:var(--acBg);">
+        <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:10.5px; letter-spacing:.12em; color:var(--accent); margin-bottom:14px;">统一入口 · ONE DOOR</div>
+        <div style="font-size:13.5px; font-weight:600; margin-bottom:6px;">资产账本</div>
+        <p style="font-size:12px; color:var(--fg2); line-height:1.6; margin:0 0 16px;">一处看清所有被沉淀、被调用的企业资产——你的公司越用越聪明的证据。</p>
+        <span style="display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600; color:var(--accent);">查看产品全景 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- states + mobile -->
+  <div style="display:grid; grid-template-columns:1.5fr 1fr; gap:16px;">
+    <div style="border:1px solid var(--bdr); border-radius:16px; padding:22px 24px; background:var(--demo);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:18px;">ITEM STATES · 导航项状态</div>
+      <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+        <span style="font-size:13.5px; color:var(--fg2); padding:8px 12px; border-radius:9px;">默认</span>
+        <span style="font-size:13.5px; color:var(--fg); padding:8px 12px; border-radius:9px; background:var(--surf);">悬停 · 提亮＋底色</span>
+        <span style="font-size:13.5px; color:var(--accent); font-weight:600; padding:8px 0; border-bottom:2px solid var(--accent);">当前页 · 主色下划线</span>
+        <span style="font-size:13.5px; color:var(--fg3); padding:8px 12px; border-radius:9px;">禁用</span>
+      </div>
+      <div style="height:1px; background:var(--bdrSoft); margin:18px 0;"></div>
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:12px;">SCROLLED · 滚动后（收紧 56px + 实底 + 阴影）</div>
+      <div style="display:flex; align-items:center; justify-content:space-between; height:56px; padding:0 18px; border-radius:12px; background:var(--bg); border:1px solid var(--bdr); box-shadow:var(--sh1);">
+        <div style="display:flex; align-items:center; gap:8px;"><span data-mark data-size="22" style="display:inline-flex;"></span><span data-wm data-h="13" style="display:inline-flex; color:var(--fg);"></span></div>
+        <span style="font-size:12.5px; font-weight:600; color:#fff; background:var(--accent); border-radius:999px; padding:7px 15px;">预约演示</span>
+      </div>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:16px; padding:22px 24px; background:var(--demo);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:18px;">MOBILE · 移动端</div>
+      <div style="max-width:220px; margin:0 auto; border:1px solid var(--bdr); border-radius:16px; overflow:hidden;">
+        <div style="display:flex; align-items:center; justify-content:space-between; height:52px; padding:0 14px; background:var(--navBg);">
+          <div style="display:flex; align-items:center; gap:7px;"><span data-mark data-size="20" style="display:inline-flex;"></span><span data-wm data-h="12" style="display:inline-flex; color:var(--fg);"></span></div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--fg)" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </div>
+        <div style="border-top:1px solid var(--bdrSoft); padding:8px;">
+          <div style="font-size:13px; color:var(--fg); padding:9px 10px;">产品</div>
+          <div style="font-size:13px; color:var(--fg2); padding:9px 10px;">解决方案</div>
+          <div style="font-size:13px; color:var(--fg2); padding:9px 10px;">客户案例</div>
+          <div style="font-size:13px; color:var(--fg2); padding:9px 10px;">定价</div>
+          <div style="margin:8px; text-align:center; font-size:13px; font-weight:600; color:#fff; background:var(--accent); border-radius:999px; padding:10px;">预约演示</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; margin-top:16px;">
+    <div style="border:1px solid var(--bdr); border-radius:12px; padding:13px 15px; background:var(--surf);"><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">高度</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:18px; font-weight:700; color:var(--accent);">64 → 56</div><div style="font-size:12px; color:var(--fg2);">默认 / 滚动收紧</div></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; padding:13px 15px; background:var(--surf);"><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">背景</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:18px; font-weight:700; color:var(--accent);">blur 22</div><div style="font-size:12px; color:var(--fg2);">顶部玻璃 → 滚动实底</div></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; padding:13px 15px; background:var(--surf);"><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">行为</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:18px; font-weight:700; color:var(--accent);">sticky</div><div style="font-size:12px; color:var(--fg2);">粘顶 · z-index 60</div></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; padding:13px 15px; background:var(--surf);"><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">CTA</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:18px; font-weight:700; color:var(--accent);">唯一实心</div><div style="font-size:12px; color:var(--fg2);">全站仅此一个主色胶囊</div></div>
+  </div>
+</section>
+
+<!-- ===== 09 COMPONENTS ===== -->
+<section id="components" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">09</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">核心组件</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Components</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:680px; margin:0 0 28px;">按钮全部胶囊形；卡片为玻璃拟态；徽章用于状态与产品标记；表单聚焦时主色描边 + 柔光环。</p>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
+    <div style="border:1px solid var(--bdr); border-radius:18px; padding:28px; background:var(--demo);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:20px;">BUTTONS · 按钮</div>
+      <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+        <button style="font-family:inherit; font-size:14px; font-weight:600; color:#fff; background:var(--accent); border:none; border-radius:999px; padding:11px 22px; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,.2),0 8px 20px -8px var(--accent); transition:all .25s cubic-bezier(.4,1,.6,1);" style-hover="background:var(--accentDeep); transform:translateY(-1px)">预约演示</button>
+        <button style="font-family:inherit; font-size:14px; font-weight:600; color:var(--fg); background:var(--glass); border:1px solid var(--bdr); border-radius:999px; padding:11px 22px; cursor:pointer; box-shadow:inset 0 1px 0 var(--glassTop); backdrop-filter:blur(14px); transition:all .25s;" style-hover="border-color:var(--bdrBrt)">探索产品</button>
+        <button style="font-family:inherit; font-size:14px; font-weight:600; color:var(--fg); background:transparent; border:1px solid var(--bdrBrt); border-radius:999px; padding:11px 22px; cursor:pointer; transition:all .25s;" style-hover="background:var(--surf)">了解更多</button>
+      </div>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:18px; padding:28px; background:var(--demo);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:20px;">BADGES · 徽章</div>
+      <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+        <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; font-weight:600; padding:3px 11px; border-radius:999px; background:var(--acBg); color:var(--accent);">Core</span>
+        <span style="display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; font-weight:600; padding:3px 11px; border-radius:999px; background:color-mix(in srgb, var(--ok) 15%, transparent); color:var(--ok);"><span style="width:5px; height:5px; border-radius:50%; background:currentColor;"></span>运行中</span>
+        <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; font-weight:600; padding:3px 11px; border-radius:999px; background:color-mix(in srgb, var(--info) 15%, transparent); color:var(--info);">New</span>
+        <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; font-weight:600; padding:3px 11px; border-radius:999px; background:color-mix(in srgb, var(--warn) 15%, transparent); color:var(--warn);">Beta</span>
+        <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; font-weight:600; padding:3px 11px; border-radius:999px; background:transparent; border:1px solid var(--bdrBrt); color:var(--fg2);">标签</span>
+      </div>
+    </div>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px; margin-top:16px;">
+    <div style="border:1px solid var(--bdr); border-radius:18px; padding:28px; background:var(--demo);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:20px;">GLASS CARD · 玻璃卡</div>
+      <div style="background:var(--glass); border:1px solid var(--bdr); border-radius:22px; padding:24px 26px; box-shadow:var(--shGlass); backdrop-filter:saturate(180%) blur(22px); -webkit-backdrop-filter:saturate(180%) blur(22px); max-width:320px; transition:transform .25s cubic-bezier(.4,1,.6,1);" style-hover="transform:translateY(-4px)">
+        <div style="width:40px; height:40px; border-radius:11px; background:var(--acBg); border:1px solid var(--bdr); display:flex; align-items:center; justify-content:center; margin-bottom:14px; color:var(--accent);"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="1.3"/><circle cx="9" cy="9" r="2.2" fill="currentColor"/></svg></div>
+        <h4 style="font-size:17px; font-weight:600; margin:0 0 7px;">智核 · TOKEN HUB</h4>
+        <p style="font-size:13.5px; color:var(--fg2); line-height:1.6; margin:0;">统一接入 50+ 大模型，智能路由、灰度发布与成本核算，让模型能力像电力一样随取随用。</p>
+      </div>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:18px; padding:28px; background:var(--demo);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:20px;">FORM · 表单</div>
+      <div style="display:flex; flex-direction:column; gap:7px; max-width:320px;">
+        <label style="font-size:12.5px; font-weight:600; color:var(--fg2);">企业名称</label>
+        <input placeholder="请输入公司全称" style="font-family:inherit; font-size:14px; color:var(--fg); background:var(--surf); border:1px solid var(--bdr); border-radius:12px; padding:11px 14px; outline:none; transition:border-color .15s, box-shadow .15s;" style-focus="border-color:var(--accent); box-shadow:0 0 0 3px var(--acBg)">
+        <span style="font-size:11.5px; color:var(--fg3);">用于生成专属方案，不对外公开。</span>
+      </div>
+    </div>
+  </div>
+  <div style="border:1px solid var(--bdr); border-radius:18px; padding:8px 8px 4px; background:var(--demo); margin-top:16px;">
+    <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin:16px 16px 8px;">TABLE · 表格</div>
+    <table style="width:100%; border-collapse:collapse;">
+      <thead><tr>
+        <th style="padding:10px 16px; text-align:left; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; letter-spacing:.06em; color:var(--fg3); font-weight:600; border-bottom:1px solid var(--bdr);">模型</th>
+        <th style="padding:10px 16px; text-align:left; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; letter-spacing:.06em; color:var(--fg3); font-weight:600; border-bottom:1px solid var(--bdr);">上下文</th>
+        <th style="padding:10px 16px; text-align:left; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; letter-spacing:.06em; color:var(--fg3); font-weight:600; border-bottom:1px solid var(--bdr);">供应商</th>
+        <th style="padding:10px 16px; text-align:right; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; letter-spacing:.06em; color:var(--fg3); font-weight:600; border-bottom:1px solid var(--bdr);">日均调用</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="padding:11px 16px; font-size:13.5px; color:var(--fg); border-bottom:1px solid var(--bdrSoft);">GPT-4o</td><td style="padding:11px 16px; font-size:13.5px; color:var(--fg2); border-bottom:1px solid var(--bdrSoft);">128K</td><td style="padding:11px 16px; font-size:13.5px; color:var(--fg2); border-bottom:1px solid var(--bdrSoft);">OpenAI</td><td style="padding:11px 16px; font-size:13.5px; color:var(--fg2); text-align:right; font-variant-numeric:tabular-nums; border-bottom:1px solid var(--bdrSoft);">4.20M</td></tr>
+        <tr><td style="padding:11px 16px; font-size:13.5px; color:var(--fg); border-bottom:1px solid var(--bdrSoft);">Claude 3.5</td><td style="padding:11px 16px; font-size:13.5px; color:var(--fg2); border-bottom:1px solid var(--bdrSoft);">200K</td><td style="padding:11px 16px; font-size:13.5px; color:var(--fg2); border-bottom:1px solid var(--bdrSoft);">Anthropic</td><td style="padding:11px 16px; font-size:13.5px; color:var(--fg2); text-align:right; font-variant-numeric:tabular-nums; border-bottom:1px solid var(--bdrSoft);">3.15M</td></tr>
+        <tr><td style="padding:11px 16px; font-size:13.5px; color:var(--fg);">DeepSeek R1</td><td style="padding:11px 16px; font-size:13.5px; color:var(--fg2);">64K</td><td style="padding:11px 16px; font-size:13.5px; color:var(--fg2);">DeepSeek</td><td style="padding:11px 16px; font-size:13.5px; color:var(--fg2); text-align:right; font-variant-numeric:tabular-nums;">1.74M</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px; margin-top:16px;">
+    <div style="border:1px solid var(--bdr); border-radius:18px; padding:28px; background:var(--demo);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:20px;">CONTROLS · 控制</div>
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <div style="display:inline-flex; gap:3px; background:var(--surf); border:1px solid var(--bdr); border-radius:999px; padding:4px; align-self:flex-start;">
+          <span style="font-size:13px; font-weight:600; color:#fff; background:var(--accent); padding:7px 16px; border-radius:999px; box-shadow:0 2px 8px -3px var(--accent);">首页</span>
+          <span style="font-size:13px; color:var(--fg2); padding:7px 16px; border-radius:999px; cursor:pointer;">产品</span>
+          <span style="font-size:13px; color:var(--fg2); padding:7px 16px; border-radius:999px; cursor:pointer;">案例</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:22px;">
+          <div style="display:flex; align-items:center; gap:8px;"><div style="width:44px; height:26px; border-radius:999px; background:var(--accent); position:relative; box-shadow:inset 0 1px 2px rgba(0,0,0,.2);"><span style="position:absolute; top:3px; left:21px; width:20px; height:20px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.3);"></span></div><span style="font-size:13px; color:var(--fg2);">开</span></div>
+          <div style="display:flex; align-items:center; gap:8px;"><div style="width:44px; height:26px; border-radius:999px; background:var(--surf); border:1px solid var(--bdr); position:relative;"><span style="position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--fg3);"></span></div><span style="font-size:13px; color:var(--fg3);">关</span></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:22px;">
+          <label style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--fg2); cursor:pointer;"><span style="width:18px; height:18px; border-radius:5px; background:var(--accent); display:inline-flex; align-items:center; justify-content:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>记住登录</label>
+          <label style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--fg2); cursor:pointer;"><span style="width:18px; height:18px; border-radius:50%; border:2px solid var(--accent); display:inline-flex; align-items:center; justify-content:center;"><span style="width:8px; height:8px; border-radius:50%; background:var(--accent);"></span></span>私有部署</label>
+        </div>
+      </div>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:18px; padding:28px; background:var(--demo);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:20px;">FEEDBACK &amp; DATA · 反馈 / 数据</div>
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <div>
+          <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--fg2); margin-bottom:8px;"><span>Token 用量</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; color:var(--accent);">68%</span></div>
+          <div style="height:8px; border-radius:999px; background:var(--surf); overflow:hidden;"><div style="width:68%; height:100%; border-radius:999px; background:linear-gradient(90deg,var(--accent),var(--accentDeep));"></div></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:14px;">
+          <div style="flex:1; height:4px; border-radius:999px; background:var(--surf); position:relative;"><div style="width:52%; height:100%; border-radius:999px; background:var(--accent);"></div><span style="position:absolute; top:50%; left:52%; transform:translate(-50%,-50%); width:16px; height:16px; border-radius:50%; background:#fff; border:1px solid var(--bdr); box-shadow:0 2px 6px rgba(0,0,0,.25);"></span></div>
+          <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg2);">Temp 0.7</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <!-- sizes: circle -->
+          <div style="display:flex; align-items:flex-end; gap:12px;">
+            <span style="width:24px; height:24px; border-radius:50%; background:linear-gradient(135deg,#7B80FF,#5B5FE0); display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:9px; font-weight:600;">造</span>
+            <span style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg,#7B80FF,#5B5FE0); display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:600;">造</span>
+            <span style="width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,#7B80FF,#5B5FE0); display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:13px; font-weight:600;">造</span>
+            <span style="position:relative; width:48px; height:48px; display:inline-flex;"><span style="width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,#7B80FF,#5B5FE0); display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:16px; font-weight:600;">造</span><span style="position:absolute; right:1px; bottom:1px; width:12px; height:12px; border-radius:50%; background:var(--ok); border:2px solid var(--demo);"></span></span>
+            <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); align-self:center;">圆形 · 24/30/38/48 · 在线点</span>
+          </div>
+          <!-- sizes: rounded-square ladder (matches circle set) -->
+          <div style="display:flex; align-items:flex-end; gap:12px;">
+            <span style="width:24px; height:24px; border-radius:7px; background:linear-gradient(135deg,#7B80FF,#5B5FE0); display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:9px; font-weight:600;">造</span>
+            <span style="width:30px; height:30px; border-radius:9px; background:linear-gradient(135deg,#7B80FF,#5B5FE0); display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:600;">造</span>
+            <span style="width:38px; height:38px; border-radius:11px; background:linear-gradient(135deg,#7B80FF,#5B5FE0); display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:13px; font-weight:600;">造</span>
+            <span style="position:relative; width:48px; height:48px; display:inline-flex;"><span style="width:48px; height:48px; border-radius:14px; background:linear-gradient(135deg,#7B80FF,#5B5FE0); display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:16px; font-weight:600;">造</span><span style="position:absolute; right:-2px; bottom:-2px; width:12px; height:12px; border-radius:50%; background:var(--ok); border:2px solid var(--demo);"></span></span>
+            <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); align-self:center;">方形 · 24/30/38/48 · 圆角随尺寸</span>
+          </div>
+          <!-- shapes: rounded-square + image + fallback -->
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="width:38px; height:38px; border-radius:11px; background:linear-gradient(135deg,#4ECDA0,#2C9C6B); display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:13px; font-weight:600;">物</span>
+            <span style="width:38px; height:38px; border-radius:11px; background:linear-gradient(135deg,#E8B45A,#B77A22); display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:13px; font-weight:600;">云</span>
+            <span style="width:38px; height:38px; border-radius:11px; background:linear-gradient(160deg,#F4F4FB,#E4E4F0); border:1px solid var(--bdr); display:inline-flex; align-items:center; justify-content:center; color:var(--fg3);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19a6.5 6.5 0 0 1 13 0"/></svg></span>
+            <span style="width:38px; height:38px; border-radius:11px; background:var(--acBg); color:var(--accent); display:inline-flex; align-items:center; justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2.5"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg></span>
+            <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">方形（圆角 11）· 字符 / 占位 / 品牌</span>
+          </div>
+          <!-- stack -->
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <div style="display:flex; align-items:center;">
+              <span style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg,#7B80FF,#5B5FE0); border:2px solid var(--demo); display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:600;">造</span>
+              <span style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg,#4ECDA0,#2C9C6B); border:2px solid var(--demo); margin-left:-8px; display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:600;">物</span>
+              <span style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg,#E8B45A,#B77A22); border:2px solid var(--demo); margin-left:-8px; display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:600;">云</span>
+              <span style="width:30px; height:30px; border-radius:50%; background:var(--surf); border:2px solid var(--demo); margin-left:-8px; display:inline-flex; align-items:center; justify-content:center; color:var(--fg2); font-size:10px; font-weight:600;">+9</span>
+            </div>
+            <span style="position:relative; display:inline-flex;"><span style="font-size:12px; color:var(--fg3); border-bottom:1px dashed var(--bdrBrt); cursor:help;">协作成员</span><span style="position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%); background:var(--fg); color:var(--bg); font-size:11px; padding:6px 10px; border-radius:8px; white-space:nowrap; box-shadow:var(--sh1);">共 12 人在此空间</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 10 DATA VIZ ===== -->
+<section id="dataviz" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">10</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">数据可视化</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Data Viz</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:720px; margin:0 0 28px;">资产账本、复利曲线、用量看板——数据是造物云讲“资产化”故事的主角。图表语言统一：<b style="color:var(--fg);">主色承载“你的资产”，中性灰承载“成本 / 损耗”</b>；网格极淡、坐标克制，让数字自己说话。</p>
+
+  <!-- chart color ramp -->
+  <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.1em; margin-bottom:12px;">CHART RAMP · 图表色阶</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;">
+    <div style="border:1px solid var(--bdr); border-radius:14px; padding:16px 18px; background:var(--panel);">
+      <div style="font-size:12.5px; color:var(--fg2); margin-bottom:10px;">顺序 · 资产深度（单色渐深）</div>
+      <div style="display:flex; height:26px; border-radius:8px; overflow:hidden;"><span style="flex:1; background:#EEF0FF;"></span><span style="flex:1; background:#C9CCFF;"></span><span style="flex:1; background:#9A9BFA;"></span><span style="flex:1; background:#7B80FF;"></span><span style="flex:1; background:#5A4FE6;"></span><span style="flex:1; background:#3F2CA0;"></span></div>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:14px; padding:16px 18px; background:var(--panel);">
+      <div style="font-size:12.5px; color:var(--fg2); margin-bottom:10px;">分类 · 多序列（主色 + 语义）</div>
+      <div style="display:flex; gap:8px;"><span style="flex:1; height:26px; border-radius:7px; background:#7B80FF;"></span><span style="flex:1; height:26px; border-radius:7px; background:var(--ok);"></span><span style="flex:1; height:26px; border-radius:7px; background:var(--info);"></span><span style="flex:1; height:26px; border-radius:7px; background:var(--warn);"></span><span style="flex:1; height:26px; border-radius:7px; background:#B9BCC8;"></span></div>
+    </div>
+  </div>
+
+  <!-- charts row -->
+  <div style="display:grid; grid-template-columns:1.5fr 1fr; gap:16px; margin-bottom:16px;">
+    <!-- compounding area line -->
+    <div style="border:1px solid var(--bdr); border-radius:18px; padding:22px 24px; background:var(--demo);">
+      <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:4px;"><div style="font-size:14px; font-weight:600;">沉淀资产 · 复利曲线</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--ok);">+38% MoM ↑</div></div>
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); margin-bottom:14px;">资产量 vs. 一次性使用（对照）</div>
+      <svg viewBox="0 0 480 180" style="width:100%; height:auto; display:block;" fill="none">
+        <defs><linearGradient id="dvArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".28"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
+        <g stroke="var(--bdrSoft)" stroke-width="1"><line x1="40" y1="20" x2="470" y2="20"/><line x1="40" y1="65" x2="470" y2="65"/><line x1="40" y1="110" x2="470" y2="110"/><line x1="40" y1="150" x2="470" y2="150"/></g>
+        <g font-family="Space Grotesk, sans-serif" font-size="9" fill="var(--fg3)"><text x="8" y="24">9万</text><text x="8" y="114">4万</text><text x="8" y="154">0</text></g>
+        <g font-family="Space Grotesk, sans-serif" font-size="9" fill="var(--fg3)" text-anchor="middle"><text x="70" y="168">1月</text><text x="180" y="168">4月</text><text x="290" y="168">7月</text><text x="400" y="168">10月</text><text x="465" y="168">现在</text></g>
+        <!-- flat comparison (one-time usage) -->
+        <path d="M40 132 L465 126" stroke="#B9BCC8" stroke-width="2" stroke-dasharray="4 5"/>
+        <text x="360" y="120" font-family="Space Grotesk, sans-serif" font-size="9" fill="var(--fg3)">一次性使用</text>
+        <!-- compounding curve -->
+        <path d="M40 145 C 140 140, 210 120, 290 92 C 350 70, 410 40, 465 26 L465 150 L40 150 Z" fill="url(#dvArea)"/>
+        <path d="M40 145 C 140 140, 210 120, 290 92 C 350 70, 410 40, 465 26" stroke="var(--accent)" stroke-width="2.6" stroke-linecap="round" style="stroke-dasharray:640; stroke-dashoffset:640; animation:dvDraw 2.2s cubic-bezier(.4,1,.6,1) forwards;"/>
+        <circle cx="465" cy="26" r="4.5" fill="var(--accent)" stroke="var(--demo)" stroke-width="2"><animate attributeName="r" values="4.5;6.5;4.5" dur="2s" repeatCount="indefinite" begin="2.2s"/></circle>
+      </svg>
+    </div>
+    <!-- donut: cost composition -->
+    <div style="border:1px solid var(--bdr); border-radius:18px; padding:22px 24px; background:var(--demo);">
+      <div style="font-size:14px; font-weight:600; margin-bottom:2px;">调用构成</div>
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); margin-bottom:14px;">按模型分布</div>
+      <div style="display:flex; align-items:center; gap:20px;">
+        <svg viewBox="0 0 120 120" style="width:120px; height:120px; flex-shrink:0;">
+          <circle cx="60" cy="60" r="46" fill="none" stroke="var(--surf)" stroke-width="16"/>
+          <circle cx="60" cy="60" r="46" fill="none" stroke="#7B80FF" stroke-width="16" stroke-dasharray="130 289" stroke-dashoffset="0" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+          <circle cx="60" cy="60" r="46" fill="none" stroke="var(--ok)" stroke-width="16" stroke-dasharray="80 289" stroke-dashoffset="-135" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+          <circle cx="60" cy="60" r="46" fill="none" stroke="var(--info)" stroke-width="16" stroke-dasharray="45 289" stroke-dashoffset="-220" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+          <text x="60" y="57" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700" fill="var(--fg)">2.4M</text>
+          <text x="60" y="72" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="8" fill="var(--fg3)">tokens</text>
+        </svg>
+        <div style="display:flex; flex-direction:column; gap:9px; font-size:12.5px;">
+          <div style="display:flex; align-items:center; gap:8px;"><span style="width:9px; height:9px; border-radius:3px; background:#7B80FF;"></span><span style="color:var(--fg2);">GPT · 45%</span></div>
+          <div style="display:flex; align-items:center; gap:8px;"><span style="width:9px; height:9px; border-radius:3px; background:var(--ok);"></span><span style="color:var(--fg2);">Claude · 28%</span></div>
+          <div style="display:flex; align-items:center; gap:8px;"><span style="width:9px; height:9px; border-radius:3px; background:var(--info);"></span><span style="color:var(--fg2);">通义 · 16%</span></div>
+          <div style="display:flex; align-items:center; gap:8px;"><span style="width:9px; height:9px; border-radius:3px; background:var(--surf);"></span><span style="color:var(--fg2);">其他 · 11%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- bars + rules -->
+  <div style="display:grid; grid-template-columns:1.5fr 1fr; gap:16px;">
+    <div style="border:1px solid var(--bdr); border-radius:18px; padding:22px 24px; background:var(--demo);">
+      <div style="font-size:14px; font-weight:600; margin-bottom:2px;">周用量 · 调用次数</div>
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); margin-bottom:16px;">近 7 日</div>
+      <div style="display:flex; align-items:flex-end; gap:14px; height:120px;">
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;"><div style="width:100%; max-width:34px; height:48%; border-radius:7px 7px 3px 3px; background:linear-gradient(var(--accent),#9A9BFA);"></div><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:9px; color:var(--fg3);">一</span></div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;"><div style="width:100%; max-width:34px; height:62%; border-radius:7px 7px 3px 3px; background:linear-gradient(var(--accent),#9A9BFA);"></div><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:9px; color:var(--fg3);">二</span></div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;"><div style="width:100%; max-width:34px; height:54%; border-radius:7px 7px 3px 3px; background:linear-gradient(var(--accent),#9A9BFA);"></div><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:9px; color:var(--fg3);">三</span></div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;"><div style="width:100%; max-width:34px; height:78%; border-radius:7px 7px 3px 3px; background:linear-gradient(var(--accent),#9A9BFA);"></div><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:9px; color:var(--fg3);">四</span></div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;"><div style="width:100%; max-width:34px; height:100%; border-radius:7px 7px 3px 3px; background:linear-gradient(#5A4FE6,var(--accent)); box-shadow:0 0 0 3px var(--acBg);"></div><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:9px; color:var(--accent); font-weight:600;">五</span></div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;"><div style="width:100%; max-width:34px; height:44%; border-radius:7px 7px 3px 3px; background:linear-gradient(var(--accent),#9A9BFA); opacity:.7;"></div><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:9px; color:var(--fg3);">六</span></div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;"><div style="width:100%; max-width:34px; height:30%; border-radius:7px 7px 3px 3px; background:linear-gradient(var(--accent),#9A9BFA); opacity:.7;"></div><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:9px; color:var(--fg3);">日</span></div>
+      </div>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:18px; padding:22px 24px; background:var(--panel); display:flex; flex-direction:column; gap:13px;">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em;">RULES · 图表规则</div>
+      <div style="display:flex; gap:9px; align-items:flex-start; font-size:12.5px; color:var(--fg2); line-height:1.5;"><span style="color:var(--accent); flex-shrink:0;">01</span>资产 / 增长永远用主色；成本 / 损耗用中性灰，二者同图对照。</div>
+      <div style="display:flex; gap:9px; align-items:flex-start; font-size:12.5px; color:var(--fg2); line-height:1.5;"><span style="color:var(--accent); flex-shrink:0;">02</span>网格极淡（bdrSoft），无边框、无阴影；坐标标签用 Space Grotesk。</div>
+      <div style="display:flex; gap:9px; align-items:flex-start; font-size:12.5px; color:var(--fg2); line-height:1.5;"><span style="color:var(--accent); flex-shrink:0;">03</span>关键点用脉冲圆点强调，线条入场“生长”（dvDraw），不做花哨转场。</div>
+      <div style="display:flex; gap:9px; align-items:flex-start; font-size:12.5px; color:var(--fg2); line-height:1.5;"><span style="color:var(--accent); flex-shrink:0;">04</span>最多 5 个分类序列，超出并入“其他”（surf 灰）。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 11 RESPONSIVE & GRID ===== -->
+<section id="grid" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">11</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">响应式与栅格</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Responsive &amp; Grid</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:720px; margin:0 0 28px;">内容容器统一 <b style="color:var(--fg);">1280 居中</b>，桌面左右留白 40、移动 20。12 列栅格、列间距 24；断点自小到大逐级放开，先保证移动端可读，再往上补充。</p>
+
+  <!-- breakpoints -->
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:24px;">
+    <div style="border:1px solid var(--bdr); border-radius:12px; padding:14px 16px; background:var(--surf);"><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">SM · 手机横</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:18px; font-weight:700; color:var(--accent);">640</div></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; padding:14px 16px; background:var(--surf);"><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">MD · 平板</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:18px; font-weight:700; color:var(--accent);">768</div></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; padding:14px 16px; background:var(--surf);"><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">LG · 小屏</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:18px; font-weight:700; color:var(--accent);">1024</div></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; padding:14px 16px; background:var(--acBg);"><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--accent);">XL · 桌面（基准）</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:18px; font-weight:700; color:var(--accent);">1280</div></div>
+    <div style="border:1px solid var(--bdr); border-radius:12px; padding:14px 16px; background:var(--surf);"><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">2XL · 宽屏</div><div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:18px; font-weight:700; color:var(--accent);">1536</div></div>
+  </div>
+
+  <!-- 12-col grid -->
+  <div style="border:1px solid var(--bdr); border-radius:16px; padding:20px 22px; background:var(--demo);">
+    <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:14px;">12-COLUMN · 24 GUTTER</div>
+    <div style="display:grid; grid-template-columns:repeat(12,1fr); gap:8px; margin-bottom:14px;">
+      <div style="height:40px; border-radius:6px; background:var(--acBg); border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);"></div><div style="height:40px; border-radius:6px; background:var(--acBg); border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);"></div><div style="height:40px; border-radius:6px; background:var(--acBg); border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);"></div><div style="height:40px; border-radius:6px; background:var(--acBg); border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);"></div><div style="height:40px; border-radius:6px; background:var(--acBg); border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);"></div><div style="height:40px; border-radius:6px; background:var(--acBg); border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);"></div><div style="height:40px; border-radius:6px; background:var(--acBg); border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);"></div><div style="height:40px; border-radius:6px; background:var(--acBg); border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);"></div><div style="height:40px; border-radius:6px; background:var(--acBg); border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);"></div><div style="height:40px; border-radius:6px; background:var(--acBg); border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);"></div><div style="height:40px; border-radius:6px; background:var(--acBg); border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);"></div><div style="height:40px; border-radius:6px; background:var(--acBg); border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);"></div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(12,1fr); gap:8px;">
+      <div style="grid-column:span 8; height:36px; border-radius:6px; background:var(--accent); display:flex; align-items:center; padding-left:12px; color:#fff; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px;">主内容 · span 8</div>
+      <div style="grid-column:span 4; height:36px; border-radius:6px; background:var(--surf); border:1px solid var(--bdr); display:flex; align-items:center; padding-left:12px; color:var(--fg2); font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px;">侧栏 · span 4</div>
+    </div>
+    <p style="font-size:12.5px; color:var(--fg3); margin:16px 0 0; line-height:1.6;">卡片网格用 <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif;">auto-fit + minmax</span> 自适应换行；&lt;768 单列堆叠，导航收进抽屉，左右留白降到 20。</p>
+  </div>
+</section>
+
+<!-- ===== 12 FEEDBACK ===== -->
+<section id="feedback" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">12</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">反馈</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Feedback</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:720px; margin:0 0 28px;">系统对用户的回话：<b style="color:var(--fg);">Alert 常驻页内、Toast 短暂浮层、Modal 打断确认。</b>四种语义色各司其职，图标 + 文案双通道，不靠颜色单独传达。</p>
+
+  <!-- alerts -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+    <div style="display:flex; gap:12px; align-items:flex-start; border:1px solid color-mix(in srgb,var(--info) 30%,transparent); background:var(--infoBg); border-radius:14px; padding:14px 16px;"><span style="color:var(--info); flex-shrink:0; margin-top:1px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.01"/></svg></span><div><div style="font-size:13.5px; font-weight:600; margin-bottom:2px;">提示 · Info</div><div style="font-size:12.5px; color:var(--fg2); line-height:1.5;">新模型 GPT-4o 已可在智核接入。</div></div></div>
+    <div style="display:flex; gap:12px; align-items:flex-start; border:1px solid color-mix(in srgb,var(--ok) 30%,transparent); background:var(--okBg); border-radius:14px; padding:14px 16px;"><span style="color:var(--ok); flex-shrink:0; margin-top:1px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></span><div><div style="font-size:13.5px; font-weight:600; margin-bottom:2px;">成功 · Success</div><div style="font-size:12.5px; color:var(--fg2); line-height:1.5;">资产已确权并沉淀到账本。</div></div></div>
+    <div style="display:flex; gap:12px; align-items:flex-start; border:1px solid color-mix(in srgb,var(--warn) 30%,transparent); background:var(--warnBg); border-radius:14px; padding:14px 16px;"><span style="color:var(--warn); flex-shrink:0; margin-top:1px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4M12 17v.01"/></svg></span><div><div style="font-size:13.5px; font-weight:600; margin-bottom:2px;">警告 · Warning</div><div style="font-size:12.5px; color:var(--fg2); line-height:1.5;">本月用量已达配额 80%。</div></div></div>
+    <div style="display:flex; gap:12px; align-items:flex-start; border:1px solid color-mix(in srgb,var(--err) 30%,transparent); background:var(--errBg); border-radius:14px; padding:14px 16px;"><span style="color:var(--err); flex-shrink:0; margin-top:1px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15 9-6 6M9 9l6 6"/></svg></span><div><div style="font-size:13.5px; font-weight:600; margin-bottom:2px;">错误 · Error</div><div style="font-size:12.5px; color:var(--fg2); line-height:1.5;">鉴权失败，请检查 API Key。</div></div></div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+    <!-- toast -->
+    <div style="border:1px solid var(--bdr); border-radius:16px; padding:24px; background:var(--demo); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; align-self:flex-start;">TOAST · 浮层提示</div>
+      <div style="display:flex; align-items:center; gap:12px; background:var(--glass); border:1px solid var(--bdr); border-radius:12px; padding:12px 16px; box-shadow:var(--shGlass); backdrop-filter:blur(12px);"><span style="width:22px; height:22px; border-radius:50%; background:var(--ok); color:#fff; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span><span style="font-size:13px; color:var(--fg);">已保存到工作台</span><span style="font-size:12px; color:var(--accent); font-weight:600; margin-left:8px;">撤销</span></div>
+    </div>
+    <!-- modal -->
+    <div style="border:1px solid var(--bdr); border-radius:16px; padding:24px; background:var(--demo);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:14px;">MODAL · 打断确认</div>
+      <div style="border:1px solid var(--bdr); border-radius:14px; padding:20px; background:var(--card); box-shadow:var(--sh2);">
+        <div style="font-size:15px; font-weight:600; margin-bottom:6px;">删除这个应用？</div>
+        <p style="font-size:12.5px; color:var(--fg2); line-height:1.6; margin:0 0 16px;">删除后其调用记录仍保留在资产账本，但应用本身无法恢复。</p>
+        <div style="display:flex; gap:10px; justify-content:flex-end;"><span style="font-size:13px; font-weight:600; color:var(--fg2); border:1px solid var(--bdr); border-radius:999px; padding:8px 16px;">取消</span><span style="font-size:13px; font-weight:600; color:#fff; background:var(--err); border-radius:999px; padding:8px 16px;">删除</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 13 STATES ===== -->
+<section id="states" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">13</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">状态</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Empty · Loading · 404</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:720px; margin:0 0 28px;">空、加载、出错也是产品的一部分。<b style="color:var(--fg);">空状态给下一步、加载用骨架占位、错误页给出路。</b>语气保持笃定友好，不卖惨、不甩锅。</p>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px;">
+    <!-- empty -->
+    <div style="border:1px solid var(--bdr); border-radius:16px; padding:28px 24px; background:var(--demo); text-align:center; display:flex; flex-direction:column; align-items:center; gap:12px;">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; align-self:flex-start;">EMPTY · 空状态</div>
+      <span data-mark data-size="40" data-elevate="1" style="display:inline-flex; opacity:.85; margin-top:8px;"></span>
+      <div style="font-size:14px; font-weight:600;">还没有接入任何模型</div>
+      <p style="font-size:12.5px; color:var(--fg2); line-height:1.6; margin:0;">接入第一个模型，开始积累你的资产。</p>
+      <span style="font-size:13px; font-weight:600; color:#fff; background:var(--accent); border-radius:999px; padding:8px 18px;">＋ 接入模型</span>
+    </div>
+    <!-- loading skeleton -->
+    <div style="border:1px solid var(--bdr); border-radius:16px; padding:24px; background:var(--demo);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:18px;">LOADING · 骨架屏</div>
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;"><span data-sk style="width:38px; height:38px; border-radius:50%; flex-shrink:0;"></span><div style="flex:1; display:flex; flex-direction:column; gap:8px;"><span data-sk style="height:11px; border-radius:6px; width:60%;"></span><span data-sk style="height:11px; border-radius:6px; width:40%;"></span></div></div>
+      <div style="display:flex; flex-direction:column; gap:10px;"><span data-sk style="height:11px; border-radius:6px; width:100%;"></span><span data-sk style="height:11px; border-radius:6px; width:90%;"></span><span data-sk style="height:11px; border-radius:6px; width:70%;"></span></div>
+      <div style="display:flex; align-items:center; gap:8px; margin-top:18px; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11.5px; color:var(--fg3);"><span data-dots style="display:inline-flex; gap:3px;"><span style="width:5px; height:5px; border-radius:50%; background:var(--accent); animation:gemDot 1.2s ease-in-out infinite;"></span><span style="width:5px; height:5px; border-radius:50%; background:var(--accent); animation:gemDot 1.2s ease-in-out .2s infinite;"></span><span style="width:5px; height:5px; border-radius:50%; background:var(--accent); animation:gemDot 1.2s ease-in-out .4s infinite;"></span></span>思考中</div>
+    </div>
+    <!-- 404 -->
+    <div style="border:1px solid var(--bdr); border-radius:16px; padding:28px 24px; background:var(--demo); text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; align-self:flex-start;">404 · 找不到</div>
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:46px; font-weight:700; letter-spacing:-.02em; background:linear-gradient(120deg,var(--accent),var(--accentDeep)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; margin-top:6px;">404</div>
+      <div style="font-size:14px; font-weight:600;">这里空空如也</div>
+      <p style="font-size:12.5px; color:var(--fg2); line-height:1.6; margin:0;">页面走丢了，我们带你回去。</p>
+      <span style="font-size:13px; font-weight:600; color:var(--accent); border:1px solid var(--bdr); border-radius:999px; padding:8px 18px;">返回首页</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 14 ACCESSIBILITY ===== -->
+<section id="a11y" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">14</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">无障碍</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Accessibility</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:720px; margin:0 0 28px;">好设计对所有人成立。<b style="color:var(--fg);">对比达 WCAG AA、焦点永远可见、命中区 ≥44px、颜色不作唯一信号、尊重减弱动效。</b></p>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px;">
+    <div style="border:1px solid var(--bdr); border-radius:16px; padding:22px; background:var(--demo);">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em; margin-bottom:14px;">CONTRAST · 对比</div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; background:var(--accent); border-radius:10px; padding:10px 14px;"><span style="color:#fff; font-size:13px; font-weight:600;">主色底 + 白字</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:rgba(255,255,255,.85);">AA ✓</span></div>
+        <div style="display:flex; align-items:center; justify-content:space-between; background:var(--surf); border:1px solid var(--bdr); border-radius:10px; padding:10px 14px;"><span style="color:var(--fg); font-size:13px; font-weight:600;">正文 · fg / bg</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">AA ✓</span></div>
+        <div style="display:flex; align-items:center; justify-content:space-between; background:var(--surf); border:1px solid var(--bdr); border-radius:10px; padding:10px 14px;"><span style="color:var(--fg2); font-size:13px;">辅助文字 · fg2</span><span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3);">≥4.5:1</span></div>
+      </div>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:16px; padding:22px; background:var(--demo); display:flex; flex-direction:column; gap:16px;">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em;">FOCUS · 焦点可见</div>
+      <button style="align-self:flex-start; font-size:13px; font-weight:600; color:var(--fg); background:var(--surf); border:1px solid var(--bdr); border-radius:999px; padding:9px 18px; outline:2px solid var(--accent); outline-offset:2px; cursor:pointer;">键盘聚焦态</button>
+      <p style="font-size:12.5px; color:var(--fg2); line-height:1.6; margin:0;">所有可交互元素带 2px 主色焦点环，offset 2px，绝不 <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif;">outline:none</span> 了事。</p>
+    </div>
+    <div style="border:1px solid var(--bdr); border-radius:16px; padding:22px; background:var(--demo); display:flex; flex-direction:column; gap:14px;">
+      <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; color:var(--fg3); letter-spacing:.08em;">TARGET · 命中区 ≥44</div>
+      <div style="position:relative; align-self:flex-start;"><span style="width:44px; height:44px; border-radius:12px; border:1px dashed var(--bdrBrt); display:inline-flex; align-items:center; justify-content:center; color:var(--accent);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      <p style="font-size:12.5px; color:var(--fg2); line-height:1.6; margin:0;">图标即使小，可点区域也补足 44×44；颜色之外必配图标或文字，色盲同样可辨。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 15 VOICE ===== -->
+<section id="voice" style="max-width:1280px; margin:0 auto; padding:64px 40px; border-top:1px solid var(--bdr);">
+  <div data-reveal style="opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.4,1,.6,1); display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.1em;">15</span>
+    <h2 style="font-size:32px; font-weight:600; letter-spacing:-.02em; margin:0;">语气</h2>
+    <span style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:12px; color:var(--fg3); letter-spacing:.12em; text-transform:uppercase;">Voice &amp; Tone</span>
+  </div>
+  <p style="color:var(--fg2); font-size:14.5px; max-width:680px; margin:0 0 28px;">专业、笃定、有洞见。像一位懂技术也懂业务的顾问——说人话、给判断，不堆砌术语，不喊口号。中文一律用弯引号“”，不用 emoji。</p>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+    <div style="border:1px solid color-mix(in srgb, var(--ok) 30%, transparent); background:color-mix(in srgb, var(--ok) 7%, transparent); border-radius:18px; padding:26px;">
+      <div style="font-weight:600; color:var(--ok); margin-bottom:14px;">✓ 这样说</div>
+      <p style="font-size:14px; line-height:1.7; color:var(--fgStrong); margin:0 0 10px;">“越用越聪明的不是工具，是你的公司。”</p>
+      <p style="font-size:14px; line-height:1.7; color:var(--fgStrong); margin:0 0 10px;">“统一接入 50+ 大模型，成本可控、随取随用。”</p>
+      <p style="font-size:14px; line-height:1.7; color:var(--fgStrong); margin:0;">“让每一条业务流水线具备 AI 决策能力。”</p>
+    </div>
+    <div style="border:1px solid color-mix(in srgb, var(--err) 30%, transparent); background:color-mix(in srgb, var(--err) 7%, transparent); border-radius:18px; padding:26px;">
+      <div style="font-weight:600; color:var(--err); margin-bottom:14px;">✕ 别这样说</div>
+      <p style="font-size:14px; line-height:1.7; color:var(--fgStrong); margin:0 0 10px;">“全球领先的一站式 AI 赋能生态平台。”</p>
+      <p style="font-size:14px; line-height:1.7; color:var(--fgStrong); margin:0 0 10px;">“颠覆式重塑企业数智化转型新范式。”</p>
+      <p style="font-size:14px; line-height:1.7; color:var(--fgStrong); margin:0;">“让 AI 为您的业务插上腾飞的翅膀！”</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<!-- ===== SLOGAN BAND ===== -->
+<section aria-label="Create with AI" style="position:relative; overflow:hidden; padding:128px 40px 120px; border-top:1px solid var(--bdr); background:radial-gradient(ellipse 60% 120% at 50% 130%, var(--glow1), transparent 62%);">
+  <div style="position:absolute; inset:0; background-image:linear-gradient(var(--bdrSoft) 1px, transparent 1px),linear-gradient(90deg, var(--bdrSoft) 1px, transparent 1px); background-size:60px 60px; -webkit-mask-image:radial-gradient(ellipse 72% 68% at 50% 44%, #000 18%, transparent 76%); mask-image:radial-gradient(ellipse 72% 68% at 50% 44%, #000 18%, transparent 76%); pointer-events:none;"></div>
+  <div style="position:absolute; left:50%; top:58%; width:860px; height:480px; transform:translate(-50%,-50%); background:radial-gradient(ellipse 50% 50% at 50% 50%, var(--glow1), transparent 66%); filter:blur(12px); animation:gemGlow 10s ease-in-out infinite; pointer-events:none;"></div>
+  <div style="position:relative; text-align:center; max-width:880px; margin:0 auto;">
+    <div style="display:inline-flex; align-items:center; gap:8px; font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-size:11px; font-weight:600; letter-spacing:.16em; color:var(--fg2); background:var(--surf); border:1px solid var(--bdr); border-radius:999px; padding:6px 14px; margin-bottom:28px;"><span style="width:6px; height:6px; border-radius:50%; background:var(--accent);"></span>SINGLE SOURCE OF TRUTH</div>
+    <h2 data-slogan style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-weight:700; font-size:clamp(52px,10vw,132px); letter-spacing:-.035em; line-height:.98; margin:0; background:linear-gradient(176deg, var(--fg) 32%, color-mix(in srgb, var(--accent) 78%, var(--fg))); -webkit-background-clip:text; background-clip:text; color:transparent; user-select:none;">Create with AI<span style="color:var(--accent); -webkit-text-fill-color:var(--accent);">.</span></h2>
+    <p style="font-size:16px; color:var(--fg2); line-height:1.7; margin:24px auto 32px; max-width:440px;">让每一次创造都沉淀成你公司的资产——整站，都从这套系统长出。</p>
+    <a href="index.html#cta" style="display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:#fff; background:var(--accent); border-radius:999px; padding:13px 26px; box-shadow:0 2px 6px rgba(0,0,0,.2),0 14px 34px -12px var(--accent); transition:transform .2s, background .2s;" style-hover="background:var(--accentDeep); transform:translateY(-2px)">开始创造 <span style="font-size:17px;">→</span></a>
+  </div>
+</section>
+
+<footer style="background:var(--ftrBg); padding:60px 40px 32px; border-top:1px solid var(--navBdr); transition:background .3s ease;">
+  <div style="max-width:1280px; margin:0 auto;">
+    <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; padding-bottom:36px; border-bottom:1px solid var(--ftrBdr);">
+      <div style="min-width:220px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+          <span data-mark data-size="30" data-elevate="1" style="display:inline-flex;"></span>
+          <span data-wm data-h="20" style="display:inline-flex; color:var(--ftrStrong);"></span>
+        </div>
+        <p style="font-size:13px; color:var(--ftrText); line-height:1.65; margin:0 0 18px; max-width:250px;">企业智能的资产化系统。让 AI 产出的所有权，归你自己。</p>
+        <a href="index.html#cta" style="text-decoration:none; background:var(--accent); color:#fff; font-size:13px; font-weight:600; padding:9px 18px; border-radius:999px; display:inline-flex; align-items:center; gap:6px;">预约演示 <span style="font-size:15px;">→</span></a>
+        <div style="display:flex; gap:10px; margin-top:22px;">
+          <a href="#" aria-label="微信" style="width:34px; height:34px; border-radius:10px; border:1px solid var(--ftrBdr); display:flex; align-items:center; justify-content:center; color:var(--ftrText);" style-hover="color:var(--ftrStrong); border-color:var(--ftrStrong)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.4 4.2C4.9 4.2 2 6.7 2 9.7c0 1.7 1 3.3 2.5 4.3L4 16.2l2.5-1.3c.6.2 1.3.3 1.9.3"/><path d="M22 14.6c0-2.5-2.4-4.5-5.4-4.5s-5.4 2-5.4 4.5 2.4 4.5 5.4 4.5c.7 0 1.3-.1 1.9-.3l2.3 1.2-.5-2c1-.7 1.7-1.8 1.7-3.4Z"/><path d="M6.5 8.4h.01M10.4 8.4h.01M14.6 14.3h.01M18.1 14.3h.01"/></svg></a>
+          <a href="#" aria-label="LinkedIn" style="width:34px; height:34px; border-radius:10px; border:1px solid var(--ftrBdr); display:flex; align-items:center; justify-content:center; color:var(--ftrText);" style-hover="color:var(--ftrStrong); border-color:var(--ftrStrong)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v6M8 7v.01M12 16v-3.5a2 2 0 0 1 4 0V16"/></svg></a>
+          <a href="#" aria-label="GitHub" style="width:34px; height:34px; border-radius:10px; border:1px solid var(--ftrBdr); display:flex; align-items:center; justify-content:center; color:var(--ftrText);" style-hover="color:var(--ftrStrong); border-color:var(--ftrStrong)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4 1.5-4-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.1em; margin-bottom:16px; color:var(--ftrFaint);">PRODUCTS</div>
+        <div style="display:flex; flex-direction:column; gap:11px; font-size:13px;">
+          <a href="api-hub.html" style="color:var(--ftrText);" style-hover="color:var(--ftrStrong)">智核 · TOKEN HUB</a>
+          <a href="workbench.html" style="color:var(--ftrText);" style-hover="color:var(--ftrStrong)">智能体工作台</a>
+          <a href="products.html" style="color:var(--ftrText);" style-hover="color:var(--ftrStrong)">应用中心</a>
+          <a href="products.html" style="color:var(--ftrText);" style-hover="color:var(--ftrStrong)">知识管理</a>
+          <a href="products.html" style="color:var(--ftrText);" style-hover="color:var(--ftrStrong)">深脑</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.1em; margin-bottom:16px; color:var(--ftrFaint);">SOLUTIONS</div>
+        <div style="display:flex; flex-direction:column; gap:11px; font-size:13px;">
+          <a href="#" style="color:var(--ftrText);" style-hover="color:var(--ftrStrong)">智能客服</a>
+          <a href="#" style="color:var(--ftrText);" style-hover="color:var(--ftrStrong)">知识管理</a>
+          <a href="#" style="color:var(--ftrText);" style-hover="color:var(--ftrStrong)">营销内容生成</a>
+          <a href="#" style="color:var(--ftrText);" style-hover="color:var(--ftrStrong)">流程自动化</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Space Grotesk',ui-sans-serif,sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.1em; margin-bottom:16px; color:var(--ftrFaint);">COMPANY</div>
+        <div style="display:flex; flex-direction:column; gap:11px; font-size:13px;">
+          <a href="about.html" style="color:var(--ftrText);" style-hover="color:var(--ftrStrong)">关于我们</a>
+          <a href="cases.html" style="color:var(--ftrText);" style-hover="color:var(--ftrStrong)">客户案例</a>
+          <a href="#" style="color:var(--ftrText);" style-hover="color:var(--ftrStrong)">加入我们</a>
+          <a href="#" style="color:var(--ftrText);" style-hover="color:var(--ftrStrong)">联系我们</a>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; padding-top:22px; font-size:11.5px; color:var(--ftrFaint); font-family:'Space Grotesk',ui-sans-serif,sans-serif;">
+      <span>© 2026 杭州造物云技术有限公司 · 保留所有权利</span>
+      <span style="display:flex; gap:16px; flex-wrap:wrap;"><a href="#" style="color:var(--ftrFaint);" style-hover="color:var(--ftrStrong)">设计系统</a><a href="#" style="color:var(--ftrFaint);" style-hover="color:var(--ftrStrong)">隐私政策</a><span>浙ICP备2021038972号-1</span><span>浙公网安备 33010602013219号</span></span>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<div id="zwy-toast" style="position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px); opacity:0; pointer-events:none; background:var(--accent); color:#fff; font-size:13px; font-weight:600; padding:10px 20px; border-radius:999px; box-shadow:var(--sh2); z-index:200; transition:opacity .25s, transform .25s;">已复制</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const root = this.el || document;
+    this._reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this._buildMarks(root);
+    this._injectWordmark(root);
+    this._theme(root);
+    this._reveal(root);
+    this._copy(root);
+    this._breathe(root);
+    this._navScroll(root);
+    root.querySelectorAll('[data-sk]').forEach(e=>{ e.style.background='linear-gradient(90deg,var(--surf) 25%,var(--bdrSoft) 37%,var(--surf) 63%)'; e.style.backgroundSize='400% 100%'; if(!this._reduce) e.style.animation='skShine 1.4s ease-in-out infinite'; });
+  }
+
+  _navScroll(root) {
+    const nav = root.querySelector('[data-nav]');
+    const links = Array.from(root.querySelectorAll('nav a[href^="#"]'));
+    if (!nav || !links.length) return;
+    const map = {};
+    links.forEach(a => { const id = a.getAttribute('href').slice(1); const sec = root.querySelector('#' + CSS.escape(id)); if (sec) map[id] = { a, sec }; });
+    const setActive = (id) => {
+      links.forEach(a => {
+        const on = a.getAttribute('href') === '#' + id;
+        a.style.color = on ? 'var(--accent)' : 'var(--fg2)';
+        a.style.background = on ? 'var(--acBg)' : 'transparent';
+        a.style.fontWeight = on ? '600' : '400';
+      });
+    };
+    const onScroll = () => {
+      const scrolled = window.scrollY > 12;
+      nav.style.height = scrolled ? '56px' : '64px';
+      nav.style.boxShadow = scrolled ? 'var(--sh1)' : 'none';
+      nav.style.borderBottomColor = scrolled ? 'transparent' : 'var(--navBdr)';
+      const line = window.scrollY + 120;
+      let cur = null;
+      for (const id in map) { if (map[id].sec.offsetTop <= line) cur = id; }
+      if (cur && cur !== this._curSpy) { this._curSpy = cur; setActive(cur); }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  _crystalSVG(o) {
+    const size = o.size || 44;
+    const PLATE = "M27.356405,6.5566244Q27.640217,6.7204833,27.900215,6.9199853Q28.16021,7.1194868,28.391941,7.3512182Q28.623672,7.5829496,28.823174,7.8429451Q29.022675,8.1029396,29.186533,8.3867512Q29.350391,8.6705627,29.475803,8.9733343Q29.601215,9.2761059,29.686035,9.5926561Q29.770855,9.9092064,29.813629,10.23412Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.813631,21.765881Q29.770855,22.090794,29.686037,22.407345Q29.601215,22.723896,29.475803,23.026669Q29.350391,23.329437,29.186531,23.613249Q29.022675,23.89706,28.823174,24.157059Q28.623672,24.417053,28.391941,24.648785Q28.16021,24.880516,27.900215,25.080017Q27.640217,25.279518,27.356405,25.443377L18.5,30.556623Q18.216188,30.720484,17.913418,30.845898Q17.610645,30.97131,17.294096,31.056129Q16.977547,31.140947,16.652632,31.183723Q16.327717,31.226498,16,31.226498Q15.672283,31.226498,15.347369,31.183723Q15.022456,31.140945,14.705906,31.056128Q14.389355,30.97131,14.086583,30.845898Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q4.3597822,25.279518,4.0997868,25.080017Q3.8397913,24.880516,3.6080601,24.648783Q3.3763289,24.417053,3.1768272,24.157059Q2.9773254,23.89706,2.8134668,23.613249Q2.6496081,23.329437,2.5241961,23.026669Q2.3987842,22.723896,2.3139648,22.407347Q2.2291453,22.090796,2.1863694,21.765881Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.1863689,10.23412Q2.2291448,9.9092064,2.3139644,9.5926561Q2.3987837,9.2761059,2.5241957,8.9733343Q2.6496074,8.6705627,2.8134661,8.3867512Q2.977325,8.1029396,3.1768267,7.8429446Q3.3763285,7.5829496,3.6080596,7.3512182Q3.8397908,7.1194868,4.0997868,6.9199853Q4.3597822,6.7204833,4.6435933,6.5566244L13.5,1.4433756Q13.783812,1.2795169,14.086583,1.1541051Q14.389355,1.0286931,14.705906,0.94387358Q15.022456,0.85905409,15.34737,0.8162784Q15.672283,0.77350271,16,0.77350271Q16.327717,0.77350277,16.652632,0.81627846Q16.977547,0.85905421,17.294096,0.9438737Q17.610645,1.0286932,17.913418,1.1541052Q18.216188,1.2795172,18.5,1.4433758L27.356405,6.5566244Z";
+    const FACES = {
+      top: "M16 8 L22.928 12 L16 16 L9.072 12 Z",
+      right: "M16 16 L22.928 12 L22.928 20 L16 24 Z",
+      left: "M9.072 12 L16 16 L16 24 L9.072 20 Z"
+    };
+    // Retuned to converge on the periwinkle brand accent (#7B80FF)
+    // Faceted gemstone: each face carries its own gradient (light→dark) so the crystal reads dimensional, not flat
+    const PAL = {
+      brand: { top: ['#CBB8FF','#A48DF4'], right: ['#8E6DEE','#6B45DE'], left: ['#4E36BE','#2E1F86'] },
+      mono:  { top: ['#FFFFFF','#FFFFFF'], right: ['rgba(255,255,255,.85)','rgba(255,255,255,.62)'], left: ['rgba(255,255,255,.55)','rgba(255,255,255,.32)'] }
+    };
+    const pal = PAL[o.pal] || PAL.brand;
+    const hair = (o.hairline || o.elevate) ? ' stroke="rgba(22,24,31,.10)" stroke-width="0.6" stroke-linejoin="round"' : '';
+    const topAnim = (o.shimmer && !this._reduce) ? ' style="animation:zwyShim 3.6s cubic-bezier(.4,1,.6,1) infinite;"' : '';
+    const elev = o.elevate ? ' filter:drop-shadow(0 2px 5px rgba(22,24,31,.20)) drop-shadow(0 0 1px rgba(22,24,31,.22));' : '';
+    const uid = 'zc' + (this._uid = (this._uid || 0) + 1);
+    if (o.reverse) {
+      return '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:' + size + 'px;height:' + size + 'px;display:block;' + elev + '">'
+        + '<path d="' + FACES.left + '" fill="rgba(255,255,255,.55)"></path>'
+        + '<path d="' + FACES.right + '" fill="rgba(255,255,255,.82)"></path>'
+        + '<path d="' + FACES.top + '" fill="#FFFFFF"></path>'
+        + '</svg>';
+    }
+    if (o.knockout) {
+      return '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:' + size + 'px;height:' + size + 'px;display:block;' + elev + '">'
+        + '<defs><mask id="' + uid + '" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">'
+        + '<rect x="0" y="0" width="32" height="32" fill="black"></rect>'
+        + '<path d="' + PLATE + '" fill="white"></path>'
+        + '<path d="' + FACES.top + '" fill="black"></path>'
+        + '<path d="' + FACES.right + '" fill="black"></path>'
+        + '<path d="' + FACES.left + '" fill="black"></path>'
+        + '</mask></defs>'
+        + '<path d="' + PLATE + '" fill="currentColor" mask="url(#' + uid + ')"></path>'
+        + '</svg>';
+    }
+    var grad = function(id, stops, x2, y2){
+      return '<linearGradient id="' + id + '" x1="0" y1="0" x2="' + x2 + '" y2="' + y2 + '">'
+        + '<stop offset="0" stop-color="' + stops[0] + '"></stop>'
+        + '<stop offset="1" stop-color="' + stops[1] + '"></stop></linearGradient>';
+    };
+    return '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:' + size + 'px;height:' + size + 'px;display:block;' + elev + '">'
+      + '<defs>' + grad(uid + 't', pal.top, '0.4', '1') + grad(uid + 'r', pal.right, '1', '1') + grad(uid + 'l', pal.left, '0.2', '1') + '</defs>'
+      + '<path d="' + PLATE + '" fill="#FFFFFF"' + hair + '></path>'
+      + '<path d="' + FACES.left + '" fill="url(#' + uid + 'l)"></path>'
+      + '<path d="' + FACES.right + '" fill="url(#' + uid + 'r)"></path>'
+      + '<path d="' + FACES.top + '" fill="url(#' + uid + 't)"' + topAnim + '></path>'
+      + '</svg>';
+  }
+  _buildMarks(root) {
+    root.querySelectorAll('[data-mark]').forEach(el => {
+      el.innerHTML = this._crystalSVG({
+        size: +(el.dataset.size || 44),
+        pal: el.dataset.pal || 'brand',
+        elevate: el.dataset.elevate === '1',
+        hairline: el.dataset.hairline === '1',
+        shimmer: el.dataset.shimmer === '1',
+        knockout: el.dataset.knockout === '1',
+        reverse: el.dataset.reverse === '1'
+      });
+    });
+  }
+
+  _injectWordmark(root) {
+    const slots = Array.from(root.querySelectorAll('[data-wm]'));
+    if (!slots.length) return;
+    const apply = (txt) => {
+      slots.forEach(w => {
+        const h = +(w.dataset.h || 22);
+        w.innerHTML = txt;
+        const svg = w.querySelector('svg');
+        if (svg) { svg.removeAttribute('height'); svg.removeAttribute('width'); svg.style.height = h + 'px'; svg.style.width = 'auto'; svg.style.display = 'block'; }
+      });
+    };
+    fetch('assets-zwy/wordmark.svg').then(r => r.text()).then(apply).catch(() => {
+      slots.forEach(w => { const h = +(w.dataset.h || 22); w.innerHTML = '<span style="font-weight:700;font-size:' + (h + 3) + 'px;letter-spacing:-.01em;">造物云</span>'; });
+    });
+  }
+
+  _theme(root) {
+    const btn = root.querySelector('[data-theme-btn]');
+    const de = document.documentElement;
+    const sun = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>';
+    const moon = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M20 13.5A7.5 7.5 0 0 1 10.5 4 6 6 0 1 0 20 13.5z"/></svg>';
+    const apply = (t) => {
+      if (t === 'light') { de.setAttribute('data-theme', 'light'); if (btn) btn.innerHTML = moon; }
+      else { de.removeAttribute('data-theme'); if (btn) btn.innerHTML = sun; }
+    };
+    let saved = null; try { saved = localStorage.getItem('zwyTheme'); } catch (e) {}
+    apply(saved || 'dark');
+    if (btn) btn.addEventListener('click', () => {
+      const nowLight = de.getAttribute('data-theme') === 'light';
+      const next = nowLight ? 'dark' : 'light';
+      apply(next);
+      try { localStorage.setItem('zwyTheme', next); } catch (e) {}
+    });
+  }
+
+  _reveal(root) {
+    const els = root.querySelectorAll('[data-reveal]');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(en => { if (en.isIntersecting) { en.target.style.opacity = 1; en.target.style.transform = 'none'; io.unobserve(en.target); } });
+      }, { threshold: 0.12 });
+      els.forEach(e => io.observe(e));
+    } else { els.forEach(e => { e.style.opacity = 1; e.style.transform = 'none'; }); }
+  }
+
+  _copy(root) {
+    const toast = document.querySelector('#zwy-toast');
+    let t;
+    const show = (msg) => { if (!toast) return; toast.textContent = msg; toast.style.opacity = '1'; toast.style.transform = 'translateX(-50%) translateY(0)'; clearTimeout(t); t = setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(-50%) translateY(20px)'; }, 1400); };
+    root.querySelectorAll('[data-copy]').forEach(el => {
+      el.style.cursor = 'pointer';
+      el.setAttribute('title', '点击复制 ' + el.getAttribute('data-copy'));
+      el.addEventListener('click', () => {
+        const v = el.getAttribute('data-copy');
+        const done = () => show('已复制 ' + v);
+        if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(v).then(done).catch(done); } else done();
+      });
+    });
+  }
+
+  _breathe(root) {
+    const input = root.querySelector('[data-cmd-input]');
+    const field = root.querySelector('[data-hero-field]');
+    const box = root.querySelector('[data-cmd-box]');
+    const hint = root.querySelector('[data-cmd-hint]');
+    const glow = root.querySelector('[data-hero-glow]');
+    const bubbles = Array.from(root.querySelectorAll('[data-hbubble]'));
+    if (!input) return;
+    bubbles.forEach(b => { const cs = getComputedStyle(b); b._dur = parseFloat(cs.animationDuration) || 7; b._delay = cs.animationDelay || '0s'; });
+    let deep = false;
+    const setDeep = (on) => {
+      if (on === deep || this._reduce) return;
+      deep = on;
+      bubbles.forEach(b => {
+        b.style.animationName = on ? 'gemDeep' : 'gemCalm';
+        b.style.animationDuration = (on ? (b._dur * 1.25).toFixed(2) : b._dur) + 's';
+        b.style.animationDelay = b._delay;
+        b.style.boxShadow = on ? '0 18px 64px -12px var(--glow1)' : '';
+        b.style.borderColor = on ? 'color-mix(in srgb, var(--accent) 26%, transparent)' : '';
+      });
+      if (glow) glow.style.animationDuration = on ? '5.5s' : '9s';
+      if (field) field.style.transform = on ? 'translateY(-8px)' : 'translateY(0)';
+      if (box) box.style.boxShadow = on ? '0 8px 34px -10px var(--accent), 0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent), var(--shGlass)' : 'var(--shGlass)';
+      if (hint) hint.style.opacity = on ? '0.35' : '1';
+    };
+    input.addEventListener('focus', () => setDeep(true));
+    input.addEventListener('blur', () => { if (!input.value) setDeep(false); });
+    input.addEventListener('input', () => setDeep(document.activeElement === input || input.value.length > 0));
+  }
+}
+</script>
+</body>
+</html>

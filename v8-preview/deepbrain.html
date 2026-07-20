@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>深脑 · 造物云</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:#F4F5F8; color:#15161C; font-family:'Noto Sans SC', system-ui, -apple-system, sans-serif; -webkit-font-smoothing:antialiased; line-height:1.7; }
+  a { color:#5A4FE6; text-decoration:none; }
+  ::selection { background:#5A4FE6; color:#fff; }
+  @keyframes floaty { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
+  @keyframes floaty2 { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-16px); } }
+  @keyframes dash { to { stroke-dashoffset:-16; } }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; } }
+  @media (max-width:880px){
+    .zwy-hero{ grid-template-columns:1fr !important; padding-top:44px !important; gap:36px !important; }
+    .zwy-hero-art{ order:-1; }
+    .zwy-nav{ padding:0 20px !important; }
+    .zwy-navlinks{ gap:16px !important; font-size:13px !important; }
+    
+  }
+
+  /* 移动端汉堡导航（纯 CSS）*/
+  .zwy-nt{ position:absolute; opacity:0; width:1px; height:1px; pointer-events:none; }
+  .zwy-hamb{ display:none; }
+  @media (max-width:880px){
+    .zwy-hamb{ display:inline-flex; flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; padding:9px; cursor:pointer; }
+    .zwy-hamb span{ display:block; height:2px; width:100%; background:#16181F; border-radius:2px; transition:transform .22s, opacity .22s; }
+    .zwy-navlinks{ position:fixed !important; top:64px; left:0; right:0; flex-direction:column; align-items:stretch !important; gap:4px !important; background:rgba(244,245,248,.98); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); border-bottom:1px solid rgba(22,24,31,.08); padding:14px 20px 20px !important; box-shadow:0 24px 40px -22px rgba(22,24,31,.28); display:none !important; }
+    .zwy-nt:checked ~ .zwy-navlinks{ display:flex !important; }
+    .zwy-navlinks a{ padding:12px 8px !important; font-size:15px !important; border-radius:10px; display:flex !important; }
+    .zwy-navlinks a:last-child{ margin-top:8px; justify-content:center; }
+    .zwy-nt:checked ~ .zwy-hamb span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+    .zwy-nt:checked ~ .zwy-hamb span:nth-child(2){ opacity:0; }
+    .zwy-nt:checked ~ .zwy-hamb span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  }
+
+  /* 页脚移动端：四栏折叠为两栏 */
+  @media (max-width:760px){
+    footer [style*="1.6fr 1fr 1fr 1fr"]{ grid-template-columns:1fr 1fr !important; gap:28px 24px !important; }
+  }
+
+/* ===== 顶栏 · 三段式 ===== */
+  /* ===== 顶栏 · 三段式（默认透明 · 滚动实底 · 内容 1600 居中）===== */
+  .zwy-topnav{ position:sticky; top:0; z-index:100; isolation:isolate; background:transparent; border-bottom:1px solid transparent; transition:background .25s, box-shadow .25s, border-color .25s; }
+  .zwy-topnav.scrolled, .zwy-topnav:has(.zwy-nav-item:hover){ background:rgba(244,245,248,.85); -webkit-backdrop-filter:saturate(185%) blur(44px); backdrop-filter:saturate(185%) blur(44px); border-bottom-color:rgba(21,22,28,.06); }
+  .zwy-topnav-inner{ position:relative; max-width:1600px; margin:0 auto; padding:0 40px; height:72px; display:flex; align-items:center; gap:20px; transition:height .25s; }
+  .zwy-topnav.scrolled .zwy-topnav-inner{ height:62px; }
+  .zwy-topnav-brand{ display:flex; align-items:center; gap:9px; text-decoration:none; flex-shrink:0; }
+  .zwy-tabs{ flex:1; align-self:stretch; display:flex; align-items:center; justify-content:center; gap:2px; }
+  .zwy-actions{ flex-shrink:0; display:flex; align-items:center; gap:6px; }
+  .zwy-tabs > a, .zwy-nav-trigger{ display:inline-flex; align-items:center; gap:5px; font-size:13.5px; color:rgba(21,22,28,.74); font-weight:500; padding:8px 13px; border-radius:99px; text-decoration:none; transition:background .2s, color .2s; white-space:nowrap; cursor:pointer; }
+  .zwy-tabs > a:hover, .zwy-nav-item:hover .zwy-nav-trigger{ background:rgba(21,22,28,.06); color:#16181F; }
+  .zwy-cta{ font-size:13.5px; color:#fff; background:#5A4FE6; font-weight:600; padding:9px 18px; border-radius:99px; text-decoration:none; box-shadow:0 6px 16px -6px #5A4FE6; transition:background .2s; }
+  .zwy-cta:hover{ background:#4438C4; }
+  /* 下拉 / MEGA */
+  .zwy-nav-item{ position:static; align-self:stretch; display:inline-flex; align-items:center; }
+  .zwy-caret{ opacity:.6; transition:transform .22s; }
+  .zwy-nav-item:hover .zwy-caret{ transform:rotate(180deg); }
+  .zwy-pop{ position:absolute; top:100%; left:0; right:0; transform:translateY(8px); padding-top:14px; opacity:0; visibility:hidden; transition:opacity .2s ease, transform .2s ease; z-index:120; }
+  .zwy-nav-item:hover .zwy-pop{ opacity:1; visibility:visible; transform:translateY(0); }
+  .zwy-pop-inner{ background:#FFFFFF; -webkit-backdrop-filter:saturate(180%) blur(28px); backdrop-filter:saturate(180%) blur(28px); border:1px solid rgba(21,22,28,.08); border-radius:20px; box-shadow:0 40px 80px -28px rgba(21,22,28,.42), 0 8px 24px -12px rgba(21,22,28,.2); padding:12px; }
+  .zwy-mega .zwy-pop-inner{ display:grid; grid-template-columns:1.15fr 1fr 1.1fr; gap:20px; padding:24px 28px; }
+  .zwy-mega-col{ padding:10px 12px; }
+  .zwy-mega-col.door{ background:rgba(90,79,230,.05); border-radius:14px; display:flex; flex-direction:column; }
+  .zwy-mega-h{ font-family:'Space Grotesk',sans-serif; font-size:10px; font-weight:700; letter-spacing:.1em; color:#9A9CA6; margin:2px 0 8px 10px; }
+  .zwy-mega-h em{ font-style:normal; color:#5A4FE6; }
+  .zwy-dd-item{ display:flex; gap:12px; align-items:flex-start; padding:10px 12px; border-radius:12px; text-decoration:none; transition:background .18s; }
+  .zwy-dd-item:hover{ background:rgba(90,79,230,.08); }
+  .zwy-dd-item .ic{ flex-shrink:0; width:34px; height:34px; border-radius:10px; background:rgba(90,79,230,.1); display:flex; align-items:center; justify-content:center; color:#5A4FE6; }
+  .zwy-dd-item > span:last-child{ display:flex; flex-direction:column; min-width:0; }
+  .zwy-dd-item .tt{ display:flex; align-items:center; gap:6px; font-size:13.5px; font-weight:600; color:#16181F; letter-spacing:-.01em; }
+  .zwy-dd-item .dd{ display:block; font-size:11.5px; color:#8A8C96; margin-top:3px; line-height:1.4; }
+  .zwy-mega-more{ display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600; color:#5A4FE6; text-decoration:none; padding:10px 12px; margin-top:auto; }
+  .zwy-sol .zwy-pop-inner{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding:18px 22px; }
+  .zwy-ams .zwy-pop-inner{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding:18px 22px; }
+  .zwy-badge{ font-family:'Space Grotesk',sans-serif; font-size:9px; font-weight:700; color:#C25A34; background:rgba(232,120,90,.14); border-radius:999px; padding:1px 6px; }
+  /* 移动端汉堡 */
+  .zwy-nt{ position:absolute; opacity:0; width:1px; height:1px; pointer-events:none; }
+  .zwy-hamb{ display:none; }
+  @media (max-width:960px){
+    .zwy-topnav{ background:rgba(244,245,248,.92); -webkit-backdrop-filter:saturate(180%) blur(20px); backdrop-filter:saturate(180%) blur(20px); border-bottom-color:rgba(21,22,28,.07); }
+    .zwy-topnav-inner{ padding:0 18px; gap:10px; }
+    .zwy-hamb{ display:inline-flex; flex-direction:column; justify-content:center; gap:5px; width:38px; height:38px; padding:9px; cursor:pointer; flex-shrink:0; }
+    .zwy-hamb span{ display:block; height:2px; width:100%; background:#16181F; border-radius:2px; transition:transform .22s, opacity .22s; }
+    .zwy-tabs{ position:absolute; top:calc(100% + 8px); left:12px; right:12px; flex:none; flex-direction:column; align-items:stretch; gap:4px; background:rgba(255,255,255,.97); -webkit-backdrop-filter:saturate(180%) blur(24px); backdrop-filter:saturate(180%) blur(24px); border:1px solid rgba(21,22,28,.08); border-radius:20px; padding:12px; box-shadow:0 26px 50px -20px rgba(21,22,28,.32); display:none; }
+    .zwy-nt:checked ~ .zwy-tabs{ display:flex; }
+    .zwy-tabs > a, .zwy-nav-trigger{ width:100%; justify-content:space-between; padding:12px 14px; font-size:15px; border-radius:12px; }
+    .zwy-nav-item{ display:block; width:100%; }
+    .zwy-caret{ display:none; }
+    .zwy-pop{ position:static; transform:none; opacity:1; visibility:visible; padding-top:0; }
+    .zwy-pop-inner{ background:transparent; border:0; box-shadow:none; padding:2px 0 6px 12px; width:auto !important; display:block !important; }
+    .zwy-mega-h{ margin-left:12px; }
+    .zwy-dd-item .ic, .zwy-dd-item .dd{ display:none; }
+    .zwy-mega-col.door{ background:transparent; }
+    .zwy-nt:checked ~ .zwy-hamb span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+    .zwy-nt:checked ~ .zwy-hamb span:nth-child(2){ opacity:0; }
+    .zwy-nt:checked ~ .zwy-hamb span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  }
+  /* 页脚移动端 */
+  @media (max-width:760px){ footer [style*="1.7fr 1fr 1fr 1fr"]{ grid-template-columns:1fr 1fr !important; gap:28px 24px !important; } }
+</style>
+</helmet>
+
+<div style="max-width:100%; overflow-x:clip; background:#F4F5F8;">
+
+<!-- ===== NAV ===== -->
+<nav class="zwy-topnav" id="zwytopnav">
+  <div class="zwy-topnav-inner">
+    <a href="index.html" class="zwy-topnav-brand" aria-label="造物云"><span data-mark data-size="26" style="display:inline-flex;"></span><span data-wm data-h="16" style="display:inline-flex; align-items:center; color:#16181F;"></span></a>
+    <input type="checkbox" id="zwynav" class="zwy-nt" aria-hidden="true">
+    <div class="zwy-tabs">
+      <div class="zwy-nav-item">
+        <a href="products.html" class="zwy-nav-trigger">产品体系 <svg class="zwy-caret" width="9" height="9" viewBox="0 0 10 10"><path d="M2 3.5L5 6.5L8 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="zwy-pop zwy-mega"><div class="zwy-pop-inner">
+          <div class="zwy-mega-col"><div class="zwy-mega-h">基座 · <em>FOUNDATION</em></div>
+            <a class="zwy-dd-item" href="api-hub.html"><span class="ic"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="2.6"/><circle cx="10" cy="3" r="1.4"/><circle cx="16.5" cy="14" r="1.4"/><circle cx="3.5" cy="14" r="1.4"/><path d="M10 7.4V4.4M12.2 11.7l3 1.7M7.8 11.7l-3 1.7"/></svg></span><span><span class="tt">智核 · TOKEN HUB</span><span class="dd">一个接口，接入所有大模型</span></span></a>
+            <a class="zwy-dd-item" href="workbench.html"><span class="ic"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M3 8h14M8 8v8"/></svg></span><span><span class="tt">智能体工作台</span><span class="dd">说人话，把判断变成应用</span></span></a>
+          </div>
+          <div class="zwy-mega-col"><div class="zwy-mega-h">上层 · <em>APPLICATIONS</em></div>
+            <a class="zwy-dd-item" href="appcenter.html"><span class="ic"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="6" height="6" rx="1.2"/><rect x="11" y="3" width="6" height="6" rx="1.2"/><rect x="3" y="11" width="6" height="6" rx="1.2"/><rect x="11" y="11" width="6" height="6" rx="1.2"/></svg></span><span><span class="tt">应用中心</span><span class="dd">开箱即用的成熟应用</span></span></a>
+            <a class="zwy-dd-item" href="knowledge.html"><span class="ic"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="10" cy="5" rx="6" ry="2.2"/><path d="M4 5v10c0 1.2 2.7 2.2 6 2.2s6-1 6-2.2V5M4 10c0 1.2 2.7 2.2 6 2.2s6-1 6-2.2"/></svg></span><span><span class="tt">知识管理</span><span class="dd">文档与历史沉淀为 AI 记忆</span></span></a>
+            <a class="zwy-dd-item" href="deepbrain.html"><span class="ic"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3a3.5 3.5 0 00-3.5 3.5v7A3 3 0 009.5 16.5h1A3 3 0 0013.5 13.5v-7A3.5 3.5 0 0010 3z"/><path d="M10 7.5v5M8 10h4"/></svg></span><span><span class="tt">深脑 <span class="zwy-badge">Beta</span></span><span class="dd">复杂任务的深度洞察</span></span></a>
+          </div>
+          <div class="zwy-mega-col door"><div class="zwy-mega-h">老板视图 · <em>ONE VIEW</em></div>
+            <a class="zwy-dd-item" href="ledger.html"><span class="ic"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="12" height="14" rx="1.5"/><path d="M7 7h6M7 10h6M7 13h4"/></svg></span><span><span class="tt">资产账本</span><span class="dd">一处看清被沉淀、被调用的企业资产——你的公司越用越聪明的证据</span></span></a>
+            <a class="zwy-mega-more" href="products.html">查看产品全景 &rarr;</a>
+          </div>
+        </div></div>
+      </div>
+      <div class="zwy-nav-item zwy-sol">
+        <a href="solutions.html" class="zwy-nav-trigger">解决方案 <svg class="zwy-caret" width="9" height="9" viewBox="0 0 10 10"><path d="M2 3.5L5 6.5L8 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="zwy-pop"><div class="zwy-pop-inner">
+          <a class="zwy-dd-item" href="solutions.html"><span class="ic"><svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="3.4"/></svg></span><span><span class="tt">服装行业</span><span class="dd">设计 · 版型 · 搭配经验沉淀</span></span></a>
+          <a class="zwy-dd-item" href="solutions.html"><span class="ic"><svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="3.4"/></svg></span><span><span class="tt">文化艺术</span><span class="dd">创作与鉴赏方法资产化</span></span></a>
+          <a class="zwy-dd-item" href="solutions.html"><span class="ic"><svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="3.4"/></svg></span><span><span class="tt">家居百货</span><span class="dd">选品 · 导购 · 服务判断沉淀</span></span></a>
+          <a class="zwy-dd-item" href="solutions.html"><span class="ic"><svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="3.4"/></svg></span><span><span class="tt">教育行业</span><span class="dd">名师经验与教研资产化</span></span></a>
+        </div></div>
+      </div>
+      <a href="cases.html">案例</a>
+      <div class="zwy-nav-item zwy-ams">
+        <a href="ams.html" class="zwy-nav-trigger">方法论 <svg class="zwy-caret" width="9" height="9" viewBox="0 0 10 10"><path d="M2 3.5L5 6.5L8 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="zwy-pop"><div class="zwy-pop-inner">
+          <a class="zwy-dd-item" href="https://qiuyiwu.com/ai-cognition/" target="_blank" rel="noopener"><span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5.5 8 5 5 5v12c3 0 5.5.5 7 1.5"/><path d="M12 6.5C13.5 5.5 16 5 19 5v12c-3 0-5.5.5-7 1.5z"/></svg></span><span><span class="tt">《AI 思维与认知》</span><span class="dd">AI 的差距，本质是认知的差距 · 免费</span></span></a>
+          <a class="zwy-dd-item" href="https://qiuyiwu.com/ai-transformation/" target="_blank" rel="noopener"><span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5.5 8 5 5 5v12c3 0 5.5.5 7 1.5"/><path d="M12 6.5C13.5 5.5 16 5 19 5v12c-3 0-5.5.5-7 1.5z"/></svg></span><span><span class="tt">《AI 转型》</span><span class="dd">飞轮、J 曲线，穿越组织变革死亡谷 · 免费</span></span></a>
+          <a class="zwy-dd-item" href="https://qiuyiwu.com/ams/" target="_blank" rel="noopener"><span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5.5 8 5 5 5v12c3 0 5.5.5 7 1.5"/><path d="M12 6.5C13.5 5.5 16 5 19 5v12c-3 0-5.5.5-7 1.5z"/></svg></span><span><span class="tt">《智能体管理学》</span><span class="dd">执行交给智能体，管理学如何重写 · 免费</span></span></a>
+          <a class="zwy-dd-item" href="https://qiuyiwu.com/ai-product-innovation/" target="_blank" rel="noopener"><span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5.5 8 5 5 5v12c3 0 5.5.5 7 1.5"/><path d="M12 6.5C13.5 5.5 16 5 19 5v12c-3 0-5.5.5-7 1.5z"/></svg></span><span><span class="tt">《AI 产品创新工程》</span><span class="dd">产品从工具，升级为认知系统 · 免费</span></span></a>
+        </div></div>
+      </div>
+      <a href="news.html">资讯</a>
+      <a href="about.html">关于</a>
+      <a href="https://innolab.cc" target="_blank" rel="noopener">innolab ↗</a>
+    </div>
+    <div class="zwy-actions">
+      <a href="#cta" class="zwy-cta">预约咨询</a>
+    </div>
+    <label for="zwynav" class="zwy-hamb" aria-label="导航菜单"><span></span><span></span><span></span></label>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section style="position:relative; overflow:clip;">
+  <div style="position:absolute; left:58%; top:-120px; width:760px; height:520px; background:radial-gradient(ellipse 44% 46% at 50% 50%, rgba(90,79,230,.14), transparent 68%); pointer-events:none;"></div>
+  <div style="position:relative; max-width:1180px; margin:0 auto; padding:92px 40px 40px;">
+    <div style="font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:600; letter-spacing:.16em; color:#5A4FE6; margin-bottom:22px;">深脑 · Beta</div>
+    <h1 style="font-size:clamp(36px,4.8vw,56px); font-weight:700; letter-spacing:-.02em; line-height:1.14; margin:0 0 20px; max-width:18ch;">处理真正<span style="color:#5A4FE6;">难的问题</span>。</h1>
+    <p style="font-size:17.5px; color:#5A5C68; line-height:1.72; max-width:600px; margin:0 0 30px;">面向复杂任务的深度推理引擎——多步规划、工具调用与自我校验。账本越厚、知识越多，深脑越聪明。</p>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:32px;">
+      <a href="#cta" style="display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:#fff; background:#5A4FE6; border-radius:999px; padding:13px 26px; box-shadow:0 2px 6px rgba(0,0,0,.12),0 14px 30px -12px #5A4FE6;" style-hover="background:#4438C4">预约咨询 <span style="font-size:16px;">→</span></a>
+      <a href="products.html" style="display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:#15161C; background:#fff; border:1px solid rgba(21,22,28,.12); border-radius:999px; padding:13px 26px;" style-hover="border-color:rgba(21,22,28,.28)">看它在闭环里的位置</a>
+    </div>
+    <div style="display:flex; gap:28px; flex-wrap:wrap; font-size:13px; color:#8A8C96;"><span><strong style="font-family:'Space Grotesk',sans-serif; color:#15161C; font-size:17px;">多步</strong> 规划拆解</span> <span><strong style="font-family:'Space Grotesk',sans-serif; color:#15161C; font-size:17px;">自校验</strong> 降低幻觉</span> <span><strong style="font-family:'Space Grotesk',sans-serif; color:#15161C; font-size:17px;">越用越强</strong> 复利增长</span></div>
+  </div>
+</section>
+
+<section style="max-width:1180px; margin:0 auto; padding:4px 40px 8px;">
+  <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:12px;"><span style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:500; color:#9A9CA6; background:#fff; border:1px solid rgba(21,22,28,.1); border-radius:999px; padding:7px 15px;">① 接入</span><span style="color:#C3C5D0; font-size:13px;">→</span><span style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:500; color:#9A9CA6; background:#fff; border:1px solid rgba(21,22,28,.1); border-radius:999px; padding:7px 15px;">② 生产</span><span style="color:#C3C5D0; font-size:13px;">→</span><span style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:500; color:#9A9CA6; background:#fff; border:1px solid rgba(21,22,28,.1); border-radius:999px; padding:7px 15px;">③ 沉淀确权</span><span style="color:#C3C5D0; font-size:13px;">→</span><span style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:#fff; background:#5A4FE6; border:1px solid #5A4FE6; border-radius:999px; padding:7px 15px; box-shadow:0 8px 18px -8px #5A4FE6;">④ 复利</span></div>
+  <p style="text-align:center; font-size:13.5px; color:#5A5C68; margin:0;">深脑是闭环的<strong style="color:#16181F;">第四段 · 复利</strong>——沉淀反哺决策，越用越聪明。</p>
+</section>
+
+<div style="background:linear-gradient(180deg,#E4E5EF,#EAEBF3); border-top:1px solid rgba(21,22,28,.08); border-bottom:1px solid rgba(21,22,28,.08); margin-top:44px;">
+  <section style="max-width:1180px; margin:0 auto; padding:76px 40px;">
+    <div style="text-align:center; max-width:680px; margin:0 auto 40px;"><div style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.14em; color:#8A8C96; margin-bottom:14px;">THE SHIFT · 转变</div><h2 style="font-size:clamp(27px,3.4vw,38px); font-weight:700; letter-spacing:-.025em; line-height:1.24; margin:0;">从“一步到位容易翻车”，<br>到“拆解、调用、自校验”</h2></div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div style="background:rgba(255,255,255,.6); border:1px solid rgba(21,22,28,.08); border-radius:18px; padding:28px;"><div style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.12em; color:#9A9CA6; margin-bottom:14px;">没有深脑</div><div style="display:flex; flex-direction:column; gap:11px; font-size:14px; color:#8A8C96; line-height:1.6;"><div>复杂任务一步到位，容易翻车</div><div>不会调用企业已有的资产</div><div>幻觉难控，不敢用在关键决策</div></div></div>
+      <div style="background:#fff; border:1px solid rgba(90,79,230,.24); border-radius:18px; padding:28px; box-shadow:0 24px 50px -34px rgba(90,79,230,.45);"><div style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.12em; color:#5A4FE6; margin-bottom:14px;">有了深脑</div><div style="display:flex; flex-direction:column; gap:11px; font-size:14px; color:#3D3F49; line-height:1.6;"><div>多步拆解规划，稳扎稳打</div><div>调动账本与知识里的资产</div><div>自我校验，把幻觉挡在门外</div></div></div>
+    </div>
+  </section>
+</div>
+
+<section style="max-width:1180px; margin:0 auto; padding:80px 40px 20px;">
+  <div style="text-align:center; max-width:680px; margin:0 auto 40px;"><div style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.14em; color:#8A8C96; margin-bottom:14px;">CAPABILITIES · 核心能力</div><h2 style="font-size:clamp(27px,3.4vw,38px); font-weight:700; letter-spacing:-.025em; margin:0;">把最难的判断做对</h2></div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px;"><div data-reveal style="opacity:0; transform:translateY(18px); transition:all .6s cubic-bezier(.2,.7,.2,1) 0.0s; background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:18px; padding:26px; box-shadow:0 20px 44px -32px rgba(22,24,31,.18);" style-hover="border-color:rgba(90,79,230,.3); transform:translateY(-4px)"><h3 style="font-size:18px; font-weight:700; margin:0 0 14px; color:#16181F;">多步规划</h3><div style="display:flex; flex-direction:column; gap:11px;"><div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:#3D3F49; line-height:1.55;"><span style="flex-shrink:0; width:16px; height:16px; margin-top:2px; border-radius:5px; background:rgba(90,79,230,.12); color:#5A4FE6; display:inline-flex; align-items:center; justify-content:center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>把复杂目标拆成可执行的步骤链</div><div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:#3D3F49; line-height:1.55;"><span style="flex-shrink:0; width:16px; height:16px; margin-top:2px; border-radius:5px; background:rgba(90,79,230,.12); color:#5A4FE6; display:inline-flex; align-items:center; justify-content:center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>边做边调整，不一条道走到黑</div><div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:#3D3F49; line-height:1.55;"><span style="flex-shrink:0; width:16px; height:16px; margin-top:2px; border-radius:5px; background:rgba(90,79,230,.12); color:#5A4FE6; display:inline-flex; align-items:center; justify-content:center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>复杂任务也能稳扎稳打</div></div></div><div data-reveal style="opacity:0; transform:translateY(18px); transition:all .6s cubic-bezier(.2,.7,.2,1) 0.06s; background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:18px; padding:26px; box-shadow:0 20px 44px -32px rgba(22,24,31,.18);" style-hover="border-color:rgba(90,79,230,.3); transform:translateY(-4px)"><h3 style="font-size:18px; font-weight:700; margin:0 0 14px; color:#16181F;">工具调用</h3><div style="display:flex; flex-direction:column; gap:11px;"><div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:#3D3F49; line-height:1.55;"><span style="flex-shrink:0; width:16px; height:16px; margin-top:2px; border-radius:5px; background:rgba(90,79,230,.12); color:#5A4FE6; display:inline-flex; align-items:center; justify-content:center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>调动企业的数据、能力与外部工具</div><div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:#3D3F49; line-height:1.55;"><span style="flex-shrink:0; width:16px; height:16px; margin-top:2px; border-radius:5px; background:rgba(90,79,230,.12); color:#5A4FE6; display:inline-flex; align-items:center; justify-content:center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>让推理落在真实资产上</div><div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:#3D3F49; line-height:1.55;"><span style="flex-shrink:0; width:16px; height:16px; margin-top:2px; border-radius:5px; background:rgba(90,79,230,.12); color:#5A4FE6; display:inline-flex; align-items:center; justify-content:center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>不是空想，是有据的判断</div></div></div><div data-reveal style="opacity:0; transform:translateY(18px); transition:all .6s cubic-bezier(.2,.7,.2,1) 0.12s; background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:18px; padding:26px; box-shadow:0 20px 44px -32px rgba(22,24,31,.18);" style-hover="border-color:rgba(90,79,230,.3); transform:translateY(-4px)"><h3 style="font-size:18px; font-weight:700; margin:0 0 14px; color:#16181F;">自我校验</h3><div style="display:flex; flex-direction:column; gap:11px;"><div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:#3D3F49; line-height:1.55;"><span style="flex-shrink:0; width:16px; height:16px; margin-top:2px; border-radius:5px; background:rgba(90,79,230,.12); color:#5A4FE6; display:inline-flex; align-items:center; justify-content:center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>对结果反复核验</div><div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:#3D3F49; line-height:1.55;"><span style="flex-shrink:0; width:16px; height:16px; margin-top:2px; border-radius:5px; background:rgba(90,79,230,.12); color:#5A4FE6; display:inline-flex; align-items:center; justify-content:center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>把幻觉挡在门外</div><div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:#3D3F49; line-height:1.55;"><span style="flex-shrink:0; width:16px; height:16px; margin-top:2px; border-radius:5px; background:rgba(90,79,230,.12); color:#5A4FE6; display:inline-flex; align-items:center; justify-content:center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>关键决策也敢用</div></div></div><div data-reveal style="opacity:0; transform:translateY(18px); transition:all .6s cubic-bezier(.2,.7,.2,1) 0.18s; background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:18px; padding:26px; box-shadow:0 20px 44px -32px rgba(22,24,31,.18);" style-hover="border-color:rgba(90,79,230,.3); transform:translateY(-4px)"><h3 style="font-size:18px; font-weight:700; margin:0 0 14px; color:#16181F;">复利增强</h3><div style="display:flex; flex-direction:column; gap:11px;"><div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:#3D3F49; line-height:1.55;"><span style="flex-shrink:0; width:16px; height:16px; margin-top:2px; border-radius:5px; background:rgba(90,79,230,.12); color:#5A4FE6; display:inline-flex; align-items:center; justify-content:center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>账本越厚、知识越多，深脑越强</div><div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:#3D3F49; line-height:1.55;"><span style="flex-shrink:0; width:16px; height:16px; margin-top:2px; border-radius:5px; background:rgba(90,79,230,.12); color:#5A4FE6; display:inline-flex; align-items:center; justify-content:center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>沉淀反哺决策</div><div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:#3D3F49; line-height:1.55;"><span style="flex-shrink:0; width:16px; height:16px; margin-top:2px; border-radius:5px; background:rgba(90,79,230,.12); color:#5A4FE6; display:inline-flex; align-items:center; justify-content:center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>这就是“越用越聪明”</div></div></div></div>
+</section>
+
+<section style="max-width:1180px; margin:0 auto; padding:44px 40px 20px;">
+  <div style="position:relative; overflow:hidden; border:1px solid rgba(21,22,28,.08); border-radius:24px; background:linear-gradient(160deg,#FFFFFF,#F3F3FA); padding:34px; box-shadow:0 30px 60px -40px rgba(21,22,28,.2);">
+    <div style="position:absolute; inset:0; background-image:radial-gradient(circle, rgba(21,22,28,.05) 1px, transparent 1px); background-size:22px 22px; opacity:.5;"></div>
+    <div style="position:relative; text-align:center; margin-bottom:14px;"><div style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.14em; color:#8A8C96; margin-bottom:14px;">HOW IT WORKS · 一张图看懂</div><h3 style="font-size:20px; font-weight:700; margin:0;">账本越厚，知识越多，深脑越聪明</h3></div>
+    <div style="position:relative;"><div style="max-width:600px; margin:0 auto; border-radius:14px; background:#fff; border:1px solid rgba(21,22,28,.1); box-shadow:0 30px 70px -44px rgba(21,22,28,.42); overflow:hidden; text-align:left;">
+      <div style="display:flex; align-items:center; gap:7px; padding:11px 15px; border-bottom:1px solid rgba(21,22,28,.06); background:linear-gradient(180deg,#FBFBFE,#F4F4F9);">
+        <span style="width:10px;height:10px;border-radius:50%;background:#FF5F57;"></span><span style="width:10px;height:10px;border-radius:50%;background:#FEBC2E;"></span><span style="width:10px;height:10px;border-radius:50%;background:#28C840;"></span>
+        <span style="flex:1; text-align:center; font-family:'Space Grotesk',sans-serif; font-size:11px; color:#9A9CA6; letter-spacing:.02em;">深脑 · 推理过程</span>
+      </div>
+      <div style="padding:22px 24px;"><div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(21,22,28,.06);">
+  <span style="width:24px;height:24px;border-radius:8px;background:rgba(90,79,230,.1);color:#5A4FE6;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:700;font-family:'Space Grotesk',sans-serif;">1</span>
+  <span style="flex:1;font-size:13px;color:#16181F;">拆解目标 · 3 个子任务</span>
+  <span style="font-size:11px;font-weight:600;color:#8A8C96;">已规划</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(21,22,28,.06);">
+  <span style="width:24px;height:24px;border-radius:8px;background:rgba(90,79,230,.1);color:#5A4FE6;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:700;font-family:'Space Grotesk',sans-serif;">2</span>
+  <span style="flex:1;font-size:13px;color:#16181F;">调用 <span style="color:#5A4FE6;font-weight:600;">资产账本</span> · <span style="color:#5A4FE6;font-weight:600;">知识管理</span></span>
+  <span style="font-size:11px;font-weight:600;color:#8A8C96;">取用资产</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(21,22,28,.06);">
+  <span style="width:24px;height:24px;border-radius:8px;background:rgba(90,79,230,.1);color:#5A4FE6;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:700;font-family:'Space Grotesk',sans-serif;">3</span>
+  <span style="flex:1;font-size:13px;color:#16181F;">自我校验 · 交叉核对</span>
+  <span style="font-size:11px;font-weight:600;color:#0E9C6B;">✓ 通过</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:12px 0;">
+  <span style="width:24px;height:24px;border-radius:8px;background:rgba(90,79,230,.1);color:#5A4FE6;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:700;font-family:'Space Grotesk',sans-serif;">4</span>
+  <span style="flex:1;font-size:13px;color:#16181F;">输出结论 · 附依据</span>
+  <span style="font-size:11px;font-weight:600;color:#5A4FE6;">可采用</span></div></div>
+    </div></div>
+  </div>
+</section>
+
+<div style="background:linear-gradient(180deg,#0C0B18,#141234); border-top:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06); margin-top:44px;">
+  <section style="max-width:1180px; margin:0 auto; padding:74px 40px; text-align:center;"><div style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.14em; color:#A79CFF; margin-bottom:14px;">NORTH STAR · 北极星</div><div style="font-size:clamp(26px,3.6vw,40px); font-weight:700; color:#fff; letter-spacing:-.02em; line-height:1.24; max-width:20ch; margin:0 auto;">决策质量随资产厚度<br>复利增长。</div></section>
+</div>
+
+<section style="max-width:1180px; margin:0 auto; padding:80px 40px 20px;">
+  <div style="text-align:center; max-width:680px; margin:0 auto 32px;"><div style="font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.14em; color:#8A8C96; margin-bottom:14px;">IN THE LOOP · 闭环协同</div><h2 style="font-size:clamp(24px,3vw,32px); font-weight:700; letter-spacing:-.02em; margin:0 0 10px;">深脑的养料与反哺</h2><p style="font-size:14.5px; color:#5A5C68; line-height:1.7; margin:0;">吃账本与知识的沉淀，把洞察反哺回生产。</p></div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;"><a href="ledger.html" style="text-decoration:none; background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:18px; padding:26px; display:block; box-shadow:0 20px 44px -34px rgba(22,24,31,.16);" style-hover="border-color:rgba(90,79,230,.4); transform:translateY(-4px)"><div style="font-family:'Space Grotesk',sans-serif; font-size:10.5px; font-weight:700; letter-spacing:.12em; color:#5A4FE6; margin-bottom:8px;">③ 沉淀确权</div><div style="font-size:17px; font-weight:700; color:#16181F; margin-bottom:6px;">资产账本 →</div><p style="font-size:13.5px; color:#5A5C68; line-height:1.6; margin:0;">深脑的养料，来自账本里沉淀的资产。</p></a><a href="workbench.html" style="text-decoration:none; background:#fff; border:1px solid rgba(21,22,28,.08); border-radius:18px; padding:26px; display:block; box-shadow:0 20px 44px -34px rgba(22,24,31,.16);" style-hover="border-color:rgba(90,79,230,.4); transform:translateY(-4px)"><div style="font-family:'Space Grotesk',sans-serif; font-size:10.5px; font-weight:700; letter-spacing:.12em; color:#5A4FE6; margin-bottom:8px;">② 生产</div><div style="font-size:17px; font-weight:700; color:#16181F; margin-bottom:6px;">智能体工作台 →</div><p style="font-size:13.5px; color:#5A5C68; line-height:1.6; margin:0;">把深脑的洞察，反哺回工作台的生产。</p></a></div>
+</section>
+
+<section id="cta" style="max-width:1180px; margin:0 auto; padding:80px 40px 96px; text-align:center;">
+  <h2 style="font-size:clamp(30px,3.8vw,44px); font-weight:700; letter-spacing:-.025em; line-height:1.16; margin:0 auto 30px; max-width:18ch;">把最难的判断，交给越用越聪明的深脑。</h2>
+  <a href="#cta" style="display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:#fff; background:#5A4FE6; border-radius:999px; padding:15px 30px; box-shadow:0 2px 6px rgba(0,0,0,.12),0 14px 30px -12px #5A4FE6;" style-hover="background:#4438C4">预约咨询 <span style="font-size:16px;">→</span></a>
+</section>
+
+<footer style="background:linear-gradient(180deg,#12102A,#0C0A1E); border-top:1px solid rgba(255,255,255,.06); padding:60px 40px 32px;">
+  <div style="max-width:1600px; margin:0 auto;">
+    <div style="display:grid; grid-template-columns:1.7fr 1fr 1fr 1fr; gap:40px; padding-bottom:36px; border-bottom:1px solid rgba(255,255,255,.08);">
+      <div style="min-width:220px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;"><span data-mark data-size="28" style="display:inline-flex;"></span><span data-wm data-h="18" style="display:inline-flex; color:#fff;"></span></div>
+        <p style="font-size:13px; color:rgba(236,238,255,.6); line-height:1.65; margin:0 0 18px; max-width:260px;">让 AI 产出的所有权，归你自己。</p>
+        <a href="#cta" style="display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:600; color:#fff; background:#5A4FE6; border-radius:999px; padding:9px 18px; text-decoration:none; box-shadow:0 8px 20px -8px #5A4FE6;" style-hover="background:#4438C4">预约咨询 &rarr;</a>
+        <div style="display:flex; gap:10px; margin-top:22px;"><a href="#" aria-label="微信" style="width:34px; height:34px; border-radius:10px; border:1px solid rgba(255,255,255,.16); display:flex; align-items:center; justify-content:center; color:rgba(236,238,255,.6);" style-hover="color:#fff; border-color:rgba(255,255,255,.4)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.4 4.2C4.9 4.2 2 6.7 2 9.7c0 1.7 1 3.3 2.5 4.3L4 16.2l2.5-1.3c.6.2 1.3.3 1.9.3"/><path d="M22 14.6c0-2.5-2.4-4.5-5.4-4.5s-5.4 2-5.4 4.5 2.4 4.5 5.4 4.5c.7 0 1.3-.1 1.9-.3l2.3 1.2-.5-2c1-.7 1.7-1.8 1.7-3.4Z"/><path d="M6.5 8.4h.01M10.4 8.4h.01M14.6 14.3h.01M18.1 14.3h.01"/></svg></a><a href="#" aria-label="LinkedIn" style="width:34px; height:34px; border-radius:10px; border:1px solid rgba(255,255,255,.16); display:flex; align-items:center; justify-content:center; color:rgba(236,238,255,.6);" style-hover="color:#fff; border-color:rgba(255,255,255,.4)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v6M8 7v.01M12 16v-3.5a2 2 0 0 1 4 0V16"/></svg></a><a href="#" aria-label="GitHub" style="width:34px; height:34px; border-radius:10px; border:1px solid rgba(255,255,255,.16); display:flex; align-items:center; justify-content:center; color:rgba(236,238,255,.6);" style-hover="color:#fff; border-color:rgba(255,255,255,.4)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4 1.5-4-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></div>
+      </div>
+      <div><div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.1em; margin-bottom:16px; color:rgba(236,238,255,.42);">PRODUCTS</div><div style="display:flex; flex-direction:column; gap:11px; font-size:13px;"><a href="api-hub.html" style="color:rgba(236,238,255,.6);" style-hover="color:#fff">智核 · TOKEN HUB</a><a href="workbench.html" style="color:rgba(236,238,255,.6);" style-hover="color:#fff">智能体工作台</a><a href="ledger.html" style="color:rgba(236,238,255,.6);" style-hover="color:#fff">资产账本</a><a href="deepbrain.html" style="color:rgba(236,238,255,.6);" style-hover="color:#fff">深脑</a></div></div>
+      <div><div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.1em; margin-bottom:16px; color:rgba(236,238,255,.42);">SOLUTIONS</div><div style="display:flex; flex-direction:column; gap:11px; font-size:13px;"><a href="solutions.html" style="color:rgba(236,238,255,.6);" style-hover="color:#fff">行业方案</a><a href="cases.html" style="color:rgba(236,238,255,.6);" style-hover="color:#fff">客户案例</a><a href="ams.html" style="color:rgba(236,238,255,.6);" style-hover="color:#fff">方法论 · AMS</a></div></div>
+      <div><div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.1em; margin-bottom:16px; color:rgba(236,238,255,.42);">COMPANY</div><div style="display:flex; flex-direction:column; gap:11px; font-size:13px;"><a href="about.html" style="color:rgba(236,238,255,.6);" style-hover="color:#fff">关于我们</a><a href="cases.html" style="color:rgba(236,238,255,.6);" style-hover="color:#fff">客户案例</a><a href="news.html" style="color:rgba(236,238,255,.6);" style-hover="color:#fff">资讯</a><a href="#cta" style="color:rgba(236,238,255,.6);" style-hover="color:#fff">预约咨询</a></div></div>
+    </div>
+    <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; padding-top:22px; font-size:11.5px; color:rgba(236,238,255,.4); font-family:'Space Grotesk',sans-serif;">
+      <span>© 2026 杭州造物云技术有限公司 · 保留所有权利</span>
+      <span style="display:flex; gap:16px; flex-wrap:wrap; align-items:center;"><a href="design-system.html" style="color:rgba(236,238,255,.4);" style-hover="color:#fff">设计系统</a><span>浙ICP备2021038972号-1 · 浙公网安备 33010602013219号</span></span>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const root = this.el || document;
+    // crystal mark (bright gem)
+    const PLATE = "M27.356405,6.5566244Q27.640217,6.7204833,27.900215,6.9199853Q28.16021,7.1194868,28.391941,7.3512182Q28.623672,7.5829496,28.823174,7.8429451Q29.022675,8.1029396,29.186533,8.3867512Q29.350391,8.6705627,29.475803,8.9733343Q29.601215,9.2761059,29.686035,9.5926561Q29.770855,9.9092064,29.813629,10.23412Q29.856407,10.559034,29.856405,10.886751L29.856405,21.113249Q29.856407,21.440968,29.813631,21.765881Q29.770855,22.090794,29.686037,22.407345Q29.601215,22.723896,29.475803,23.026669Q29.350391,23.329437,29.186531,23.613249Q29.022675,23.89706,28.823174,24.157059Q28.623672,24.417053,28.391941,24.648785Q28.16021,24.880516,27.900215,25.080017Q27.640217,25.279518,27.356405,25.443377L18.5,30.556623Q18.216188,30.720484,17.913418,30.845898Q17.610645,30.97131,17.294096,31.056129Q16.977547,31.140947,16.652632,31.183723Q16.327717,31.226498,16,31.226498Q15.672283,31.226498,15.347369,31.183723Q15.022456,31.140945,14.705906,31.056128Q14.389355,30.97131,14.086583,30.845898Q13.783812,30.720484,13.5,30.556623L4.6435938,25.443375Q4.3597822,25.279518,4.0997868,25.080017Q3.8397913,24.880516,3.6080601,24.648783Q3.3763289,24.417053,3.1768272,24.157059Q2.9773254,23.89706,2.8134668,23.613249Q2.6496081,23.329437,2.5241961,23.026669Q2.3987842,22.723896,2.3139648,22.407347Q2.2291453,22.090796,2.1863694,21.765881Q2.1435938,21.440968,2.1435938,21.113249L2.1435933,10.886751Q2.1435933,10.559034,2.1863689,10.23412Q2.2291448,9.9092064,2.3139644,9.5926561Q2.3987837,9.2761059,2.5241957,8.9733343Q2.6496074,8.6705627,2.8134661,8.3867512Q2.977325,8.1029396,3.1768267,7.8429446Q3.3763285,7.5829496,3.6080596,7.3512182Q3.8397908,7.1194868,4.0997868,6.9199853Q4.3597822,6.7204833,4.6435933,6.5566244L13.5,1.4433756Q13.783812,1.2795169,14.086583,1.1541051Q14.389355,1.0286931,14.705906,0.94387358Q15.022456,0.85905409,15.34737,0.8162784Q15.672283,0.77350271,16,0.77350271Q16.327717,0.77350277,16.652632,0.81627846Q16.977547,0.85905421,17.294096,0.9438737Q17.610645,1.0286932,17.913418,1.1541052Q18.216188,1.2795172,18.5,1.4433758L27.356405,6.5566244Z";
+    const F = { top:"M16 8 L22.928 12 L16 16 L9.072 12 Z", right:"M16 16 L22.928 12 L22.928 20 L16 24 Z", left:"M9.072 12 L16 16 L16 24 L9.072 20 Z" };
+    let u = 0;
+    root.querySelectorAll('[data-mark]').forEach(el => {
+      const s = +(el.dataset.size || 28); const id = 'pm' + (u++);
+      el.innerHTML = '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:' + s + 'px;height:' + s + 'px;display:block;filter:drop-shadow(0 2px 6px rgba(21,22,28,.18));">'
+        + '<defs>'
+        + '<linearGradient id="' + id + 't" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#CBB8FF"/><stop offset="1" stop-color="#A48DF4"/></linearGradient>'
+        + '<linearGradient id="' + id + 'r" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8E6DEE"/><stop offset="1" stop-color="#6B45DE"/></linearGradient>'
+        + '<linearGradient id="' + id + 'l" x1="0" y1="0" x2="0.2" y2="1"><stop offset="0" stop-color="#4E36BE"/><stop offset="1" stop-color="#2E1F86"/></linearGradient>'
+        + '</defs>'
+        + '<path d="' + PLATE + '" fill="#FFFFFF" stroke="rgba(21,22,28,.06)" stroke-width="0.5"/>'
+        + '<path d="' + F.left + '" fill="url(#' + id + 'l)"/>'
+        + '<path d="' + F.right + '" fill="url(#' + id + 'r)"/>'
+        + '<path d="' + F.top + '" fill="url(#' + id + 't)"/>'
+        + '</svg>';
+    });
+    // wordmark
+    const slots = Array.from(root.querySelectorAll('[data-wm]'));
+    fetch('assets-zwy/wordmark.svg').then(r => r.text()).then(txt => {
+      slots.forEach(w => { const h = +(w.dataset.h || 18); w.innerHTML = txt; const svg = w.querySelector('svg'); if (svg) { svg.removeAttribute('height'); svg.removeAttribute('width'); svg.style.height = h + 'px'; svg.style.width = 'auto'; svg.style.display = 'block'; } });
+    }).catch(() => { slots.forEach(w => { const h = +(w.dataset.h || 18); w.innerHTML = '<span style="font-weight:700;font-size:' + (h + 3) + 'px;">造物云</span>'; }); });
+    // reveal
+    const els = root.querySelectorAll('[data-reveal]');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((es) => { es.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = 1; e.target.style.transform = 'none'; io.unobserve(e.target); } }); }, { threshold: 0.12 });
+      els.forEach(e => io.observe(e));
+    } else { els.forEach(e => { e.style.opacity = 1; e.style.transform = 'none'; }); }
+  }
+}
+</script>
+<script>
+(function(){ var nav=document.getElementById('zwytopnav'); if(!nav) return;
+  var f=function(){ nav.classList.toggle('scrolled',(window.scrollY||window.pageYOffset||0)>8); };
+  window.addEventListener('scroll',f,{passive:true}); f();
+})();
+</script>
+</body>
+</html>

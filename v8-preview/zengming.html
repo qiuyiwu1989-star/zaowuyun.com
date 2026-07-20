@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>曾鸣的智能体时代思想图谱 · 从黑洞效应出发 | 造物云手记</title>
+<meta name="description" content="以「AI 时代的核心竞争力是黑洞效应」为入口，汇总曾鸣教授关于智能体时代范式、组织与战略的思考——底层范式 → 技术飞轮 → 组织变革 → 战略逻辑，17 个核心判断。">
+<meta property="og:title" content="曾鸣的智能体时代思想图谱 · 从黑洞效应出发">
+<meta property="og:description" content="智能体是有学习闭环的最小生产单元；核心壁垒是黑洞效应；管理从控制转向编排，战略从地图变成指南针。曾鸣智能体时代思考汇总。">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  :root{ --ink:#16181F; --ink2:#42444E; --ink3:#6B6D78; --edge:#8A8C96; --teal:#5A4FE6; --tealDeep:#4438C4; --bg:#F4F5F8; --paper:#FFFFFF;
+    --sans:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif; --mono:'Space Grotesk',ui-sans-serif,sans-serif; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:radial-gradient(ellipse 90% 42% at 50% -8%, rgba(90,79,230,.08), transparent 60%), var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.82; -webkit-font-smoothing:antialiased; font-size:16px; }
+  a{ color:var(--teal); text-decoration:none; }
+  ::selection{ background:var(--teal); color:#fff; }
+
+  .tb{ position:sticky; top:0; z-index:20; backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); background:rgba(244,245,248,.8); border-bottom:1px solid rgba(21,22,28,.06); }
+  .tb-in{ max-width:1000px; margin:0 auto; padding:0 28px; height:60px; display:flex; align-items:center; justify-content:space-between; }
+  .brand{ display:flex; align-items:center; gap:9px; font-weight:700; font-size:16px; color:var(--ink); letter-spacing:-.01em; }
+  .brand .gem{ width:16px; height:16px; border-radius:5px; background:linear-gradient(150deg,#8E6DEE,#5B44D6); box-shadow:0 3px 8px -3px rgba(90,79,230,.6); }
+  .back{ font-size:13.5px; color:var(--ink3); font-weight:500; }
+  .back:hover{ color:var(--ink); }
+
+  .wrap{ max-width:1000px; margin:0 auto; padding:0 28px; }
+  .col{ max-width:720px; margin:0 auto; }
+
+  .ahero{ padding:60px 0 26px; text-align:center; }
+  .eyebrow{ font-family:var(--mono); font-size:11.5px; font-weight:700; letter-spacing:.16em; color:var(--teal); text-transform:uppercase; margin-bottom:22px; }
+  h1{ font-size:clamp(28px,4.6vw,42px); font-weight:700; letter-spacing:-.03em; line-height:1.24; margin:0 0 20px; }
+  h1 em{ font-style:normal; color:var(--teal); }
+  .deck{ font-size:clamp(15px,2vw,17px); color:var(--ink2); line-height:1.8; max-width:600px; margin:0 auto; }
+  .meta{ margin-top:24px; font-family:var(--mono); font-size:12px; letter-spacing:.03em; color:var(--edge); }
+
+  .intro{ margin:26px auto 6px; max-width:720px; padding:24px 26px; background:linear-gradient(168deg,#1B1740,#0E0B24); border-radius:20px; color:#fff; position:relative; overflow:hidden; box-shadow:0 40px 90px -54px rgba(20,16,40,.95); }
+  .intro::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle, rgba(255,255,255,.045) 1px, transparent 1px); background-size:22px 22px; }
+  .intro .k{ position:relative; font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.16em; color:#A79CFF; margin-bottom:10px; }
+  .intro p{ position:relative; margin:0 0 12px; font-size:14.5px; line-height:1.85; color:rgba(236,238,255,.82); }
+  .intro p:last-child{ margin-bottom:0; }
+  .intro b{ color:#fff; }
+  .intro em{ font-style:normal; color:#C7BEFF; font-weight:600; }
+
+  .layer{ margin:52px auto 0; max-width:900px; }
+  .layer-h{ display:flex; align-items:baseline; gap:14px; margin-bottom:6px; flex-wrap:wrap; }
+  .layer-h .ln{ font-family:var(--mono); font-size:13px; font-weight:700; color:var(--teal); letter-spacing:.04em; }
+  .layer-h h2{ font-size:clamp(20px,2.8vw,25px); font-weight:700; letter-spacing:-.02em; margin:0; }
+  .layer-sub{ font-size:13.5px; color:var(--ink3); margin:0 0 20px; }
+  .layer.hot .layer-h h2{ color:var(--tealDeep); }
+
+  .vpgrid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:680px){ .vpgrid{ grid-template-columns:1fr; } }
+  .vp{ background:var(--paper); border:1px solid rgba(21,22,28,.08); border-radius:16px; padding:20px 20px 18px; box-shadow:0 18px 44px -34px rgba(21,22,28,.22); transition:transform .2s, border-color .2s, box-shadow .2s; }
+  .vp:hover{ transform:translateY(-3px); border-color:rgba(90,79,230,.28); box-shadow:0 24px 50px -30px rgba(90,79,230,.28); }
+  .vp .no{ font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--edge); margin-bottom:8px; }
+  .vp h3{ font-size:16.5px; font-weight:700; letter-spacing:-.01em; line-height:1.4; margin:0 0 8px; color:var(--ink); }
+  .vp p{ font-size:13.5px; color:var(--ink3); line-height:1.72; margin:0; }
+  .vp.star{ border-color:rgba(90,79,230,.3); background:linear-gradient(168deg,#F6F4FE,#FFFFFF); box-shadow:0 24px 56px -30px rgba(90,79,230,.4); }
+  .vp.star .no{ color:var(--teal); }
+  .vp .tagline{ display:inline-block; margin-top:10px; font-family:var(--mono); font-size:10.5px; font-weight:700; letter-spacing:.04em; color:var(--teal); background:rgba(90,79,230,.09); border:1px solid rgba(90,79,230,.16); border-radius:999px; padding:2px 9px; }
+
+  .three{ margin:56px auto 0; max-width:720px; }
+  .three .th{ text-align:center; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.14em; color:var(--edge); text-transform:uppercase; margin-bottom:20px; }
+  .tcard{ display:flex; gap:16px; align-items:flex-start; background:var(--paper); border:1px solid rgba(21,22,28,.08); border-radius:16px; padding:20px 22px; margin-bottom:12px; box-shadow:0 18px 44px -34px rgba(21,22,28,.2); }
+  .tcard .tn{ font-family:var(--mono); font-size:30px; font-weight:700; line-height:.9; color:rgba(90,79,230,.28); flex-shrink:0; }
+  .tcard p{ margin:0; font-size:15px; color:var(--ink2); line-height:1.7; }
+  .tcard b{ color:var(--ink); }
+
+  .concepts{ margin:56px auto 0; max-width:720px; }
+  .ch{ font-size:clamp(19px,2.6vw,23px); font-weight:700; letter-spacing:-.02em; margin:0 0 18px; }
+  .clist{ display:flex; flex-direction:column; gap:1px; background:rgba(21,22,28,.08); border:1px solid rgba(21,22,28,.08); border-radius:14px; overflow:hidden; }
+  .crow{ display:grid; grid-template-columns:150px 1fr; gap:16px; background:var(--paper); padding:14px 18px; }
+  @media(max-width:560px){ .crow{ grid-template-columns:1fr; gap:3px; } }
+  .crow .term{ font-weight:700; color:var(--tealDeep); font-size:14.5px; }
+  .crow .def{ font-size:13.5px; color:var(--ink3); line-height:1.66; }
+
+  .bridge{ margin:56px auto 0; max-width:720px; padding:26px 28px; background:rgba(90,79,230,.05); border:1px solid rgba(90,79,230,.14); border-radius:18px; }
+  .bridge h2{ font-size:20px; font-weight:700; letter-spacing:-.02em; margin:0 0 12px; }
+  .bridge p{ font-size:14.5px; color:var(--ink2); line-height:1.8; margin:0 0 12px; }
+  .bridge b{ color:var(--ink); }
+  .bridge .go{ font-weight:600; border-bottom:1px solid rgba(90,79,230,.35); }
+
+  .note{ margin:44px auto 0; max-width:720px; padding:18px 22px; background:rgba(21,22,28,.03); border:1px solid rgba(21,22,28,.07); border-radius:14px; font-size:12.5px; color:var(--ink3); line-height:1.78; }
+  .note a{ font-weight:600; border-bottom:1px solid rgba(90,79,230,.3); }
+
+  .cta{ margin:36px auto 0; max-width:720px; padding:38px 32px; text-align:center; background:linear-gradient(168deg,#1B1740,#0E0B24); border-radius:24px; color:#fff; position:relative; overflow:hidden; box-shadow:0 44px 100px -54px rgba(20,16,40,.95); }
+  .cta::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle, rgba(255,255,255,.045) 1px, transparent 1px); background-size:24px 24px; }
+  .cta h3{ position:relative; font-size:clamp(19px,2.8vw,25px); font-weight:700; letter-spacing:-.02em; margin:0 0 10px; }
+  .cta p{ position:relative; font-size:14px; color:rgba(236,238,255,.68); margin:0 0 22px; }
+  .cta .btn{ position:relative; display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:#fff; background:var(--teal); border-radius:999px; padding:13px 26px; box-shadow:0 16px 40px -14px rgba(90,79,230,.7); }
+  .cta .btn:hover{ background:#6357EA; }
+
+  footer{ max-width:720px; margin:52px auto 0; padding:26px 28px 48px; border-top:1px solid rgba(21,22,28,.08); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-family:var(--mono); font-size:12px; color:var(--edge); }
+  footer a{ color:var(--ink3); }
+  footer a:hover{ color:var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="tb">
+  <div class="tb-in">
+    <a class="brand" href="index.html"><span class="gem"></span>造物云</a>
+    <a class="back" href="index.html">← 回到首页</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="col">
+    <div class="ahero">
+      <div class="eyebrow">曾鸣 · 智能体时代的范式 · 组织 · 战略</div>
+      <h1>从<em>黑洞效应</em>出发<br>曾鸣的智能体时代思想图谱</h1>
+      <p class="deck">这个时代最重要的判断，被曾鸣浓缩成一个词——黑洞效应。<br>以它为入口，把他对范式、组织与战略的思考，汇成一张图。</p>
+      <div class="meta">造物云手记 · 整理自曾鸣公开论述</div>
+    </div>
+
+    <div class="intro">
+      <div class="k">切入点 · 黑洞效应</div>
+      <p>曾鸣把 AI 时代的核心竞争优势，概括成一个物理意象——<b>黑洞效应</b>：更聪明的智能体吸引更多用户，用户在人机交互中产生<em>私有知识</em>，私有知识让模型更强，于是吸引更多用户。这是一个不断自我加强的正反馈。</p>
+      <p>关键在于，人机对话沉淀出来的私有知识，是<b>互联网上从未存在过的战略资产</b>；当推理与训练走向一体化，这份私有知识的价值会被指数级放大。谁先让智能体「独立上岗」，谁就先打开这个黑洞的开关。</p>
+      <p>——这，正是造物云讲「资产化」的理论根。下面把他的整套判断，分四层展开。</p>
+    </div>
+  </div>
+
+  <!-- 第一层 -->
+  <div class="layer">
+    <div class="layer-h"><span class="ln">第一层</span><h2>底层范式：智能经济的基本结构</h2></div>
+    <p class="layer-sub">这个时代的「最小单元」变了，价值的来源也跟着变。</p>
+    <div class="vpgrid">
+      <div class="vp"><div class="no">01</div><h3>最小生产单元的更替</h3><p>农业→工业→互联网→智能体时代，经济的基本单元一路演进。智能体拥有「感知→决策→执行→学习」的完整闭环，是第一个有生长性的生产单元。</p></div>
+      <div class="vp"><div class="no">02</div><h3>AI 解决问题的升维</h3><p>互联网解决的是「信息不对称」；AGI 解决的是「决策效率与知识稀缺」。从信息时代升级到知识时代，价值来源从网络效应，转向供给创造。</p></div>
+      <div class="vp"><div class="no">03</div><h3>智能体三阶段论</h3><p>可靠代理 → 能干助理 → 聪明伙伴。这是从工具到助手再到协作者的质变，核心是自主性与泛化能力的跃升，而不是单纯的功能升级。</p></div>
+      <div class="vp"><div class="no">04</div><h3>决策模型的核心地位</h3><p>AI 时代的核心能力，是「建立决策模型」而非执行。把隐性的决策逻辑显性化，才是关键——AI 是能自我学习的认知体，不是执行工具。</p></div>
+    </div>
+  </div>
+
+  <!-- 第二层 -->
+  <div class="layer hot">
+    <div class="layer-h"><span class="ln">第二层</span><h2>技术飞轮：黑洞效应与竞争动力学</h2></div>
+    <p class="layer-sub">竞争优势从哪里来——为什么这次是「引力」，而不只是「效率」。</p>
+    <div class="vpgrid">
+      <div class="vp star"><div class="no">05 · 核心</div><h3>黑洞效应 —— 核心竞争优势</h3><p>更聪明的智能体吸引用户，产生私有知识数据，让模型更强，形成正反馈。人机对话产生的私有知识，是互联网上未曾存在的战略资产；「推理与训练一体化」后，其价值被指数级放大。<span class="tagline">知识吸附的正反馈</span></p></div>
+      <div class="vp"><div class="no">06</div><h3>多极均衡，而非赢者通吃</h3><p>不同领域的私有知识具有异质性，难被单一主体垄断。市场结构更像「多个太阳并存」，而不是互联网时代的单极垄断。</p></div>
+      <div class="vp"><div class="no">07</div><h3>让智能体「独立上岗」是开关</h3><p>触发黑洞效应的战略优先级，是让智能体独立完成任务。它一旦独立上岗，数据闭环自动发生，AI 就开始持续进化。</p></div>
+      <div class="vp"><div class="no">08</div><h3>高维碾压低维</h3><p>工业时代拼规模经济，互联网时代拼网络效应，AI 时代拼智能维度——「高智商碾压低智商」，取代了互联网的「高频碾压低频」。</p></div>
+    </div>
+  </div>
+
+  <!-- 第三层 -->
+  <div class="layer">
+    <div class="layer-h"><span class="ln">第三层</span><h2>组织变革：从执行型到认知型网络</h2></div>
+    <p class="layer-sub">当 AI 成为组织的一员，管理与人的价值都要重新排布。</p>
+    <div class="vpgrid">
+      <div class="vp"><div class="no">09</div><h3>AI 成为组织成员</h3><p>AI 从工具演进为业务、决策、执行流程的参与者。岗位设计、流程设计、管理逻辑，都需要被全面更新。</p></div>
+      <div class="vp"><div class="no">10</div><h3>管理逻辑的根本转向</h3><p>从「控制与分工」转向「编排与协同」。管理者从执行的监督者，变成系统的设计者——编排能力成为核心竞争力。</p></div>
+      <div class="vp"><div class="no">11</div><h3>人的价值向上迁移</h3><p>执行层的价值消失，人向「决策者与设计者」迁移。AI 放大专家优势，普通知识工作者面临替代——护城河从「会做」转向「会想、会定义」。</p></div>
+      <div class="vp"><div class="no">12</div><h3>创造力成为最核心护城河</h3><p>AI 擅长在已知空间里寻优，人擅长在未知空间里探索。AGI 解放人类创造力，让人有精力去做真正的创意工作。</p></div>
+      <div class="vp"><div class="no">13</div><h3>π 型人才的稀缺</h3><p>单一专业能力快速贬值。最稀缺的，是能同时懂业务、懂 AI、懂系统的「翻译者」。</p></div>
+    </div>
+  </div>
+
+  <!-- 第四层 -->
+  <div class="layer">
+    <div class="layer-h"><span class="ln">第四层</span><h2>战略逻辑：智能时代的竞争新范式</h2></div>
+    <p class="layer-sub">壁垒、战略、边界——三个词全部被重写。</p>
+    <div class="vpgrid">
+      <div class="vp"><div class="no">14</div><h3>从产品公司到服务公司</h3><p>产品变成随用随学的动态系统，价值随时间累积。商业壁垒从「迁移成本」，转向「关系资产」——也就是持续累积的知识。</p></div>
+      <div class="vp"><div class="no">15</div><h3>战略从规划转向持续演化</h3><p>静态战略失效，环境变化超过规划有效期。智能战略 = Vision（方向感）× Action（实验）的持续迭代，是「指南针」而不是「地图」。</p></div>
+      <div class="vp"><div class="no">16</div><h3>竞争维度迁移到学习速度</h3><p>从「规模效率之争」转向「学习速度之争」。数据飞轮的转速 = 企业的进化速度，是 AI 时代真正的核心壁垒。</p></div>
+      <div class="vp"><div class="no">17</div><h3>企业边界模糊化</h3><p>多智能体可以跨组织调用外部能力。核心竞争力，从「拥有资源」转向「编排资源的能力」。</p></div>
+    </div>
+  </div>
+
+  <!-- 三句话 -->
+  <div class="three">
+    <div class="th">终极命题 · 三句话</div>
+    <div class="tcard"><span class="tn">1</span><p><b>范式</b>：最小生产单元从「人」变成「有学习闭环的智能体」，价值来源从连接，转向供给创造。</p></div>
+    <div class="tcard"><span class="tn">2</span><p><b>竞争</b>：核心壁垒是黑洞效应——让智能体独立上岗，私有知识在数据飞轮里越转越厚，<b>学习速度</b>决定生死。</p></div>
+    <div class="tcard"><span class="tn">3</span><p><b>组织与人</b>：管理从「控制分工」转向「编排协同」，人的价值上迁到「会想、会定义」，战略从地图变成指南针。</p></div>
+  </div>
+
+  <!-- 概念 -->
+  <div class="concepts">
+    <h2 class="ch">七个关键词</h2>
+    <div class="clist">
+      <div class="crow"><div class="term">黑洞效应</div><div class="def">知识吸附能力的正反馈循环，AI 时代的核心壁垒。</div></div>
+      <div class="crow"><div class="term">私有知识</div><div class="def">人机交互沉淀下来的数字化思考过程，战略价值随时间指数级增长。</div></div>
+      <div class="crow"><div class="term">智能维度</div><div class="def">行业格局按「智能维度」重新分层，低维无法与高维竞争。</div></div>
+      <div class="crow"><div class="term">编排能力</div><div class="def">管理核心从控制，转向编排多个节点/智能体协作的能力。</div></div>
+      <div class="crow"><div class="term">π 型人才</div><div class="def">同时具备业务、AI、系统三维能力的复合型「翻译者」。</div></div>
+      <div class="crow"><div class="term">持续演化</div><div class="def">战略从静态规划，变成持续感知、校准的动态系统（Visioning）。</div></div>
+      <div class="crow"><div class="term">认知型网络</div><div class="def">企业从执行型组织，演进为多智能体协作的认知网络。</div></div>
+    </div>
+  </div>
+
+  <!-- 造物云的接点 -->
+  <div class="bridge">
+    <h2>把这张图，落到你的公司</h2>
+    <p>曾鸣描述的是「时代往哪走」；造物云做的，是把它变成一家公司<b>能动手的三件事</b>——<b>确权</b>（让私有知识归你、有主）、<b>沉淀</b>（让它在数据飞轮里越转越厚）、<b>复利</b>（让学习速度变成你的护城河）。他说的黑洞效应，我们把它拆成了确权·沉淀·复利。</p>
+    <p>而「你的公司离黑洞的临界点还有多远」，我们用 L1–L5 五级来量——多数企业卡在 L2，密度不够，引力没启动。</p>
+    <p><a class="go" href="blackhole.html">延伸阅读：黑洞效应——为什么 AI 时代的竞争力，是一场引力游戏 →</a></p>
+  </div>
+
+  <div class="note">
+    本页是对曾鸣教授公开演讲与著作（《智能商业》《智能战略》等）中智能体时代相关判断的<b>整理与汇编</b>，结构与部分表述参考 <a href="https://agents.qiuyiwu.com/zengming/" target="_blank" rel="noopener">agents.qiuyiwu.com/zengming</a>；「黑洞效应」的引力隐喻延伸及与造物云方法的对接，为造物云团队的解读，文责在我们。若有转述不准之处，以曾鸣本人论述为准。
+  </div>
+
+  <div class="cta">
+    <h3>你的公司，在黑洞的哪一级？</h3>
+    <p>一场 3 小时的咨询 / 培训，把你在 L 几、私有知识正从哪儿漏，讲清楚。</p>
+    <a class="btn" href="index.html#cta">预约一场诊断 <span>→</span></a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 杭州造物云技术有限公司</span>
+  <span><a href="index.html">造物云首页</a> · <a href="blackhole.html">黑洞效应</a> · <a href="ams.html">L1–L5 蓝图</a></span>
+</footer>
+
+</body>
+</html>

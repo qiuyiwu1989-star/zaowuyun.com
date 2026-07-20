@@ -26,3 +26,9 @@ node_modules/
 # Build
 dist/
 build/
+
+# Downloaded data batches (large, not part of the site)
+data-*-batch-*/
+data-*-batch-*.zip
+# Logo slicing source (не part of published site)
+v8-preview/assets-zwy/_source.png
