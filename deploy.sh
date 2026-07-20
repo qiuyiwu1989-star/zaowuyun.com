@@ -7,7 +7,7 @@ SRC="$(cd "$(dirname "$0")" && pwd)"
 DST=/var/www/zwy
 # _archive/ 旧站与草稿：随站发布但只经 log.html 可达（不进任何对外导航），裸域已跳转 v7。
 sudo rsync -a --delete --exclude='.git' --exclude='.gitignore' --exclude='deploy.sh' \
-  --include='*.html' --include='*.md' --include='assets/***' \
+  --include='*.html' --include='*.md' --include='robots.txt' --include='sitemap.xml' --include='assets/***' \
   --include='v8-preview/***' --include='v7-preview/***' --include='_archive/***' \
   --exclude='*' \
   "$SRC"/ "$DST"/
