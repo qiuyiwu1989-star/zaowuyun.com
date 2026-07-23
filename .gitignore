@@ -32,3 +32,6 @@ data-*-batch-*/
 data-*-batch-*.zip
 # Logo slicing source (не part of published site)
 v8-preview/assets-zwy/_source.png
+
+# 影响力照片源图原件（大，只提交 impact/ 里压好的）
+v8-preview/assets-zwy/zaowuyun/
